@@ -1,7 +1,7 @@
 import React from 'react';
-import './styles/Portfolio.css';
+import './styles/Project.css';
 
-function Portfolio() {
+function Project() {
   const projects = [
     {
       title: "Data Analysis Project",
@@ -29,8 +29,8 @@ function Portfolio() {
 
   return (
     <div className="portfolio">
-      <h1>Portfolio</h1>
-      <p>Here are some of my projects:</p>
+      <h1>Project</h1>
+      
       <div className="project-slider">
         <button className="prev-button" onClick={() => scroll(-300)} aria-label="Previous">
           &lt;
@@ -55,4 +55,4 @@ function Portfolio() {
   );
 }
 
-export default Portfolio;
+export default Project;
