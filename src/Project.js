@@ -1,30 +1,31 @@
 import React, { useState } from 'react';
 import './styles/Project.css';
 const chicago_crime = process.env.PUBLIC_URL + '/docs/chicago.html';
+const chicago_cover = process.env.PUBLIC_URL + '/docs/chicago_cover.png';
 
 
 function Project() {
   const projects = [
     {
-      title: "Chicago Crime Analysis",
+      title: "Analyzing a Decade of Crime: Insights from Chicago’s Criminal Incident Data (2013-2022)",
       description: "An analysis of Chicago Crime in the past 10 years using R.",
       link: chicago_crime, // Linking to the chicago.html file
-      image: "https://via.placeholder.com/150",
-      tags: ["Python", "Data Analysis", "Education"],
+      image: chicago_cover,
+      tags: ["Data Analysis", "R"],
     },
     {
       title: "Personal Website",
       description: "A personal portfolio website built using React and deployed on GitHub Pages.",
       link: "https://linguoren369.github.io/linguo_ren_web/",
       image: "https://via.placeholder.com/150",
-      tags: ["React", "Web Development", "Portfolio"],
+      tags: ["Web Development"],
     },
     {
       title: "Machine Learning Classifier",
       description: "A machine learning model to classify images using TensorFlow.",
       link: "https://github.com/linguoren/ml-classifier-project",
       image: "https://via.placeholder.com/150",
-      tags: ["Machine Learning", "TensorFlow", "Classifier"],
+      tags: ["Machine Learning"],
     },
     {
       title: "Data Analysis Project",
@@ -71,6 +72,13 @@ function Project() {
             <a href={project.link} target="_blank" rel="noopener noreferrer">
               View Project
             </a>
+            <div className="tags-container">
+              {project.tags.map((tag, i) => (
+                <span key={i} className="tag-bubble">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         ))}
       </div>
