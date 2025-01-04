@@ -1,7 +1,7 @@
 .portfolio {
   text-align: center;
   padding: 20px;
-  overflow: visible; /* Ensures child elements are visible */
+  overflow: auto; /* Ensures child elements are visible */
 }
 
 .tag-selection-bar {
@@ -10,8 +10,10 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-  z-index: 10; /* Keeps the bar visible */
-  position: relative;
+  position: relative; /* Makes it part of the flow */
+  z-index: 10; /* Keeps it above overlapping elements */
+  background-color: white;
+  padding: 10px 0;
 }
 
 .tag-button {
@@ -42,6 +44,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
+  margin-top: 20px; /* Add space below the tag-selection-bar */
 }
 
 .project-card {
@@ -52,7 +55,12 @@
   overflow: hidden;
   padding: 20px;
   text-align: left;
+  z-index: 1400; 
+  transition: transform 0.2s ease;
+
+  ;
 }
+
 
 .project-image {
   max-width: 100%;
@@ -84,4 +92,18 @@
 .tag-bubble:hover {
   transform: scale(1.1); /* Enlarge slightly */
   background-color: #e6f7ff; /* Lighten color */
+}
+
+.read-more-button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.read-more-button:hover {
+  color: #0056b3;
 }

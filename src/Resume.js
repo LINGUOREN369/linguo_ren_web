@@ -1,4 +1,4 @@
-const LinguoRenPDF = process.env.PUBLIC_URL + '/docs/Linguo_Ren.pdf';
+const LinguoRenPDF = process.env.PUBLIC_URL + '/docs/Linguo_Ren_Resume.pdf';
 
 const Resume = () => {
   return (
