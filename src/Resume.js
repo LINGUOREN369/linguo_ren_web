@@ -1,4 +1,4 @@
-import LinguoRenPDF from './docs/Linguo_Ren.pdf';
+const LinguoRenPDF = process.env.PUBLIC_URL + '/docs/Linguo_Ren.pdf';
 
 const Resume = () => {
   return (

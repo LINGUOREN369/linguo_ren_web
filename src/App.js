@@ -135,7 +135,7 @@ function AppContent() {
               </p>
 
               <p>
-              With a strong foundation in data Science, machine learning, deep Learning, and a well-rounded liberal arts education, I combine technical expertise with a commitment to understanding and addressing complex systems. I aim to bridge analytical rigor with strategic insight, focusing on real-world challenges by analyzing comprehensive datasets to uncover impactful, data-driven solutions 
+              With a strong foundation in data science, machine learning, deep Learning, and a well-rounded liberal arts education, I combine technical expertise with a commitment to understanding and addressing complex systems. I aim to bridge analytical rigor with strategic insight, focusing on real-world challenges by analyzing comprehensive datasets to uncover impactful, data-driven solutions 
               </p>
 
               <p>
