@@ -107,10 +107,27 @@ header a:hover {
   cursor: pointer; /* Changes the cursor to a pointer on hover */
 }
 
+/* Portfolio button styles */
+.portfolio-button2 {
+  padding: 10px 20px; /* Adds padding inside the button */
+  font-size: 16px; /* Sets font size for the button text */
+  color: #fff; /* White text color */
+  background-color: #ae5a5a; /* Light blue background */
+  border: none; /* Removes border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+  margin-left: 10px; /* Adds spacing to the left of the button */
+}
+
 .portfolio-button:hover {
   background-color: #3979a3; /* Darker blue color on hover */
 }
 
+.portfolio-button2:hover {
+  background-color: #c80b63; /* Darker blue color on hover */
+  /* change text color to black */
+
+}
 /* Contact info styling in the sidebar */
 .contact-info {
   font-size: 18px; /* Larger font size for emphasis */

@@ -1,36 +1,28 @@
-import React from 'react';
+import LinguoRenPDF from './docs/Linguo_Ren.pdf';
 
 const Resume = () => {
   return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h1>Resume</h1>
+    <div
+      style={{
+        width: '80vw', // Full width of the viewport
+        height: '140vh', // Full height of the viewport
+        margin: 0, // Remove margin
+        padding: 0, // Remove padding
+        overflow: 'hidden', // Prevent overflow
+        display: 'flex', // Use flexbox for centering
+        justifyContent: 'center', // Center horizontally
+        alignItems: 'center', // Center vertically
+      }}
+    >
       <iframe
-        src="https://www.nytimes.com/" // Correct path to the PDF in the public folder
+        src={LinguoRenPDF}
         title="Resume"
-        width="90%"
-        height="600px"
         style={{
-          border: '1px solid #ccc',
-          borderRadius: '5px',
-          margin: '20px auto',
+          width: '80%', // Maintain original width
+          height: '100%', // Full height of the container
+          border: 'none', // Remove border for a cleaner look
         }}
       ></iframe>
-      <a
-        href="/Linguo_Ren.pdf" // Direct download link to the PDF in the public folder
-        download="Linguo_Ren.pdf"
-        style={{
-          display: 'inline-block',
-          marginTop: '20px',
-          padding: '10px 20px',
-          backgroundColor: '#4caf50',
-          color: 'white',
-          textDecoration: 'none',
-          borderRadius: '5px',
-          fontSize: '16px',
-        }}
-      >
-        Download PDF
-      </a>
     </div>
   );
 };

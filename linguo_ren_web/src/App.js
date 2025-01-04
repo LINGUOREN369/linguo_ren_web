@@ -12,15 +12,15 @@ function AppContent() {
   };
 
   const sidebarStyle = {
-    fontSize: '30px', // Increased font size for sidebar text
+    fontSize: '30px',
     fontWeight: 'bold',
-    lineHeight: '2', // Adjusted spacing for better readability
-    width: '15%', // Reduced sidebar width to half the original size
-    padding: '20px', // Add padding for layout adjustment
+    lineHeight: '2',
+    width: '15%',
+    padding: '20px',
   };
 
   const linkStyle = {
-    color: '#ffffff', // White text for links
+    color: '#ffffff',
     textDecoration: 'none',
   };
 
@@ -28,7 +28,7 @@ function AppContent() {
   const linkUnhoverStyle = (e) => (e.target.style.textDecoration = 'none');
 
   const bowdoinStyle = {
-    color: '#4da8da', // Original color for Bowdoin College link
+    color: '#4da8da',
     textDecoration: 'none',
     fontWeight: 'bold',
   };
@@ -53,7 +53,6 @@ function AppContent() {
                   Home
                 </Link>
               </li>
-
               <li>
                 <Link
                   to="/resume"
@@ -65,7 +64,6 @@ function AppContent() {
                   Résumé
                 </Link>
               </li>
-
               <li>
                 <Link
                   to="/project"
@@ -77,7 +75,6 @@ function AppContent() {
                   Projects
                 </Link>
               </li>
-
               <li>
                 <a
                   href="https://www.linkedin.com/in/linguo-ren/"
@@ -129,23 +126,24 @@ function AppContent() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Bowdoin College Official Website"
-                  style={bowdoinStyle} // Specific style for Bowdoin College link
+                  style={bowdoinStyle}
                 >
                   Bowdoin College
                 </a>
-                . My academic journey has been shaped by a deep curiosity for problem-solving and an appreciation for interdisciplinary connections. 
+                . My academic journey is driven by a deep curiosity for problem-solving and a passion for 
+                interdisciplinary connections. 
               </p>
 
               <p>
-                I’ve honed my skills as a data analyst and quantitative researcher, completing internships at a private equity firm and a securities firm. These experiences have fueled my interest in a data-driven career path, where I aim to bridge analytical rigor with strategic insight. My work often intersects with real-world issues, analyzing comprehensive datasets to explore how data can inform impactful solutions.
+              With a strong foundation in data Science, machine learning, deep Learning, and a well-rounded liberal arts education, I combine technical expertise with a commitment to understanding and addressing complex systems. I aim to bridge analytical rigor with strategic insight, focusing on real-world challenges by analyzing comprehensive datasets to uncover impactful, data-driven solutions 
               </p>
-              
-              <p className="no-padding" style={{ marginBottom: 0 }}>
+
+              <p>
                 <strong>Technical Skills:</strong>
-                <ul style={{ marginTop: 0 }}>
+                <ul>
                   <li><strong>Data Analysis:</strong> Python (Pandas, NumPy, Scikit-Learn, Matplotlib, Seaborn, NLTK, PyTorch), R (RStudio, Tidyverse, ggplot2), SQL, Stata, LaTeX</li>
                   <li><strong>Web & Software Development:</strong> Python, Java, C, HTML, JavaScript, CSS, React, Node.js</li>
-                  <li><strong>Tools & Platforms:</strong> Microsoft Suite (Excel, PowerPoint, Word), Github, Anaconda, Visual Studio Code, RStudio</li>
+                  <li><strong>Tools & Platforms:</strong> Microsoft Suite (Excel, PowerPoint, Word), GitHub, Anaconda, Visual Studio Code, RStudio</li>
                 </ul>
               </p>
               <p>
@@ -156,6 +154,10 @@ function AppContent() {
               </p>
               <Link to="/project" onClick={() => handleNavigation(false)}>
                 <button className="portfolio-button">View My Projects</button>
+              </Link>
+
+              <Link to="/resume" onClick={() => handleNavigation(false)}>
+                <button className="portfolio-button2">View My Resume</button>
               </Link>
             </header>
           )}
