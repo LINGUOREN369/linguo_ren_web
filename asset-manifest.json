@@ -1,16 +1,13 @@
 {
   "files": {
-    "main.css": "/linguo_ren_web/static/css/main.f855e6bc.css",
-    "main.js": "/linguo_ren_web/static/js/main.6a984625.js",
-    "static/js/488.05f231c6.chunk.js": "/linguo_ren_web/static/js/488.05f231c6.chunk.js",
-    "static/media/logo.svg": "/linguo_ren_web/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/linguo_ren_web/static/css/main.ff3bb8b2.css",
+    "main.js": "/linguo_ren_web/static/js/main.89b89052.js",
     "index.html": "/linguo_ren_web/index.html",
-    "main.f855e6bc.css.map": "/linguo_ren_web/static/css/main.f855e6bc.css.map",
-    "main.6a984625.js.map": "/linguo_ren_web/static/js/main.6a984625.js.map",
-    "488.05f231c6.chunk.js.map": "/linguo_ren_web/static/js/488.05f231c6.chunk.js.map"
+    "main.ff3bb8b2.css.map": "/linguo_ren_web/static/css/main.ff3bb8b2.css.map",
+    "main.89b89052.js.map": "/linguo_ren_web/static/js/main.89b89052.js.map"
   },
   "entrypoints": [
-    "static/css/main.f855e6bc.css",
-    "static/js/main.6a984625.js"
+    "static/css/main.ff3bb8b2.css",
+    "static/js/main.89b89052.js"
   ]
 }
