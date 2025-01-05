@@ -4,7 +4,11 @@ import './styles/App.css';
 import Project from './Project';
 import Resume from './Resume';
 const profile_photo = process.env.PUBLIC_URL + '/docs/profile_photo.JPG';
-faviconLink.href = process.env.PUBLIC_URL + "/favicon.ico";
+const faviconElement = document.querySelector("link[rel='icon']") || document.createElement("link");
+faviconElement.rel = "icon";
+faviconElement.href = faviconLink; 
+document.head.appendChild(faviconElement);
+
 
 function AppContent() {
   const [showHeader, setShowHeader] = useState(true);
