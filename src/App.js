@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react-router-dom';
 import './styles/App.css';
 import Project from './Project';
@@ -7,6 +7,32 @@ const profile_photo = process.env.PUBLIC_URL + '/docs/profile_photo.JPG';
 
 function AppContent() {
   const [showHeader, setShowHeader] = useState(true);
+  const location = useLocation(); // Get the current route location
+
+  useEffect(() => {
+    // Update the tab title based on the route
+    switch (location.pathname) {
+      case '/resume':
+        document.title = "Linguo's Résumé";
+        break;
+      case '/project':
+        document.title = "Linguo's Projects";
+        break;
+      default:
+        document.title = "Linguo's Portfolio";
+    }
+
+    // Update the favicon dynamically
+    const faviconLink = document.querySelector("link[rel='icon']") || document.createElement("link");
+    faviconLink.rel = "icon";
+    faviconLink.href = process.env.PUBLIC_URL + "/favicon.ico"; // Update with the path to your favicon
+    document.head.appendChild(faviconLink);
+
+    // Clean up: Optional if components unmount
+    return () => {
+      document.head.removeChild(faviconLink);
+    };
+  }, [location]);
 
   const handleNavigation = (showHeader) => {
     setShowHeader(showHeader);
@@ -33,8 +59,6 @@ function AppContent() {
     textDecoration: 'none',
     fontWeight: 'bold',
   };
-
-  const location = useLocation(); // Get the current route location
 
   return (
     <div className="App">
@@ -131,12 +155,11 @@ function AppContent() {
                 >
                   Bowdoin College
                 </a>
-                . My academic journey is driven by a deep curiosity for problem-solving and a passion for 
-                interdisciplinary connections. 
+                . My academic journey is driven by a deep curiosity for problem-solving and a passion for interdisciplinary connections.
               </p>
 
               <p>
-              With a strong foundation in data science, machine learning, deep Learning, and a well-rounded liberal arts education, I combine technical expertise with a commitment to understanding and addressing complex systems. I aim to bridge analytical rigor with strategic insight, focusing on real-world challenges by analyzing comprehensive datasets to uncover impactful, data-driven solutions 
+                With a strong foundation in data science, machine learning, deep learning, and a well-rounded liberal arts education, I combine technical expertise with a commitment to understanding and addressing complex systems. I aim to bridge analytical rigor with strategic insight, focusing on real-world challenges by analyzing comprehensive datasets to uncover impactful, data-driven solutions.
               </p>
 
               <p>
@@ -162,13 +185,13 @@ function AppContent() {
               </Link>
 
               <img
-            src= {profile_photo}
-            alt="Linguo Ren"
-            className="profile-image"
-            />
+                src={profile_photo}
+                alt="Linguo Ren"
+                className="profile-image"
+              />
             </header>
           )}
-         
+
           <Routes>
             <Route path="/project" element={<Project />} />
             <Route path="/resume" element={<Resume />} />
