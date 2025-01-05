@@ -3,9 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react
 import './styles/App.css';
 import Project from './Project';
 import Resume from './Resume';
-import favicon from './favicon.ico';
 const profile_photo = process.env.PUBLIC_URL + '/docs/profile_photo.JPG';
-
+const favicon = process.env.PUBLIC_URL + '/favicon.ico';
 
 function AppContent() {
   const [showHeader, setShowHeader] = useState(true);
@@ -23,17 +22,16 @@ function AppContent() {
       default:
         document.title = "Linguo's Portfolio";
     }
-
-    // Update the favicon dynamically
-    const faviconLink = document.querySelector("link[rel='icon']") || document.createElement("link");
-    faviconLink.rel = "icon";
-    faviconLink.href = process.env.PUBLIC_URL + favicon; // Update with the path to your favicon
-    document.head.appendChild(faviconLink);
-
-    // Clean up: Optional if components unmount
-    return () => {
-      document.head.removeChild(faviconLink);
-    };
+  
+    // Dynamically update the favicon
+    let faviconLink = document.querySelector("link[rel='icon']");
+    if (!faviconLink) {
+      faviconLink = document.createElement("link");
+      faviconLink.rel = "icon";
+      document.head.appendChild(faviconLink);
+    }
+    faviconLink.href = favicon;
+  
   }, [location]);
 
   const handleNavigation = (showHeader) => {
