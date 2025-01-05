@@ -1,19 +1,22 @@
 .portfolio {
   text-align: center;
-  padding: 20px;
   overflow: auto; /* Ensures child elements are visible */
+  padding: 20px 10px; /* Adjust padding to reduce unnecessary space */
+  min-height: 100vh; /* Ensures the page fills the viewport */
 }
 
 .tag-selection-bar {
-  margin-bottom: 20px;
+  position: auto;
+  top: 0; /* Keeps it aligned with the top of the viewport */
+  width: 100%; /* Spans the width of the container */
   display: flex;
-  justify-content: center;
+  justify-content: left; /* Align tags horizontally */
   flex-wrap: wrap;
-  gap: 10px;
-  position: relative; /* Makes it part of the flow */
-  z-index: 10; /* Keeps it above overlapping elements */
+  gap: 10px; /* Adjust spacing between tags */
+  z-index: 100; /* Ensure it stays above other elements */
   background-color: white;
-  padding: 10px 0;
+  padding: 5px 0; /* Reduce top and bottom padding */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
 }
 
 .tag-button {
@@ -106,4 +109,11 @@
 
 .read-more-button:hover {
   color: #0056b3;
+}
+
+.hint-text {
+  font-size: 14px;
+  color: #666; /* Subtle text color */
+  margin: 10px 0;
+  text-align: center; /* Center-align the hint */
 }
