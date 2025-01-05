@@ -3,11 +3,6 @@ import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react
 import './styles/App.css';
 import Project from './Project';
 import Resume from './Resume';
-const profile_photo = process.env.PUBLIC_URL + '/docs/profile_photo.JPG';
-const faviconElement = document.querySelector("link[rel='icon']") || document.createElement("link");
-faviconElement.rel = "icon";
-faviconElement.href = faviconLink; 
-document.head.appendChild(faviconElement);
 
 
 function AppContent() {
@@ -30,7 +25,7 @@ function AppContent() {
     // Update the favicon dynamically
     const faviconLink = document.querySelector("link[rel='icon']") || document.createElement("link");
     faviconLink.rel = "icon";
-    faviconLink.href = process.env.PUBLIC_URL + "/favicon.ico"; // Update with the path to your favicon
+    faviconLink.href = process.env.PUBLIC_URL + "/favicon.ico"; 
     document.head.appendChild(faviconLink);
 
     // Clean up: Optional if components unmount
