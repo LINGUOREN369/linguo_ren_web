@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/linguo_ren_web/static/css/main.c1c495b1.css",
-    "main.js": "/linguo_ren_web/static/js/main.f43d1881.js",
+    "main.js": "/linguo_ren_web/static/js/main.48127d52.js",
     "index.html": "/linguo_ren_web/index.html",
     "main.c1c495b1.css.map": "/linguo_ren_web/static/css/main.c1c495b1.css.map",
-    "main.f43d1881.js.map": "/linguo_ren_web/static/js/main.f43d1881.js.map"
+    "main.48127d52.js.map": "/linguo_ren_web/static/js/main.48127d52.js.map"
   },
   "entrypoints": [
     "static/css/main.c1c495b1.css",
-    "static/js/main.f43d1881.js"
+    "static/js/main.48127d52.js"
   ]
 }
