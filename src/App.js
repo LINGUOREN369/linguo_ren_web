@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link, useLocation } from 'react
 import './styles/App.css';
 import Project from './Project';
 import Resume from './Resume';
+const profile_photo = process.env.PUBLIC_URL + '/docs/profile_photo.JPG';
 
 function AppContent() {
   const [showHeader, setShowHeader] = useState(true);
@@ -159,8 +160,15 @@ function AppContent() {
               <Link to="/resume" onClick={() => handleNavigation(false)}>
                 <button className="portfolio-button2">View My Resume</button>
               </Link>
+
+              <img
+            src= {profile_photo}
+            alt="Linguo Ren"
+            className="profile-image"
+            />
             </header>
           )}
+         
           <Routes>
             <Route path="/project" element={<Project />} />
             <Route path="/resume" element={<Resume />} />

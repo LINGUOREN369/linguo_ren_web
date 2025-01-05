@@ -135,3 +135,14 @@ header a:hover {
   margin-top: 20px; /* Adds spacing above the contact section */
   line-height: 1.8; /* Adjusts line spacing for readability */
 }
+
+.profile-image {
+  width: 230px;
+  height: 200px;
+  border-radius: 50%; /* Makes the image circular */
+  position: absolute; /* Position it on the right */
+  top: 20px; /* Adjust as needed */
+  right: 20px; /* Adjust as needed */
+  border: 3px solid #4da8da; /* Optional border to match theme */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow for effect */
+}
