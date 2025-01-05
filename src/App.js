@@ -4,7 +4,7 @@ import './styles/App.css';
 import Project from './Project';
 import Resume from './Resume';
 const profile_photo = process.env.PUBLIC_URL + '/docs/profile_photo.JPG';
-const favicon = process.env.PUBLIC_URL + '/favicon.ico';
+const favicon = process.env.PUBLIC_URL + '/docs/favicon.ico';
 
 function AppContent() {
   const [showHeader, setShowHeader] = useState(true);
@@ -25,11 +25,6 @@ function AppContent() {
   
     // Dynamically update the favicon
     let faviconLink = document.querySelector("link[rel='icon']");
-    if (!faviconLink) {
-      faviconLink = document.createElement("link");
-      faviconLink.rel = "icon";
-      document.head.appendChild(faviconLink);
-    }
     faviconLink.href = favicon;
   
   }, [location]);
