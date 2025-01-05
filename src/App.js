@@ -4,6 +4,7 @@ import './styles/App.css';
 import Project from './Project';
 import Resume from './Resume';
 const profile_photo = process.env.PUBLIC_URL + '/docs/profile_photo.JPG';
+faviconLink.href = process.env.PUBLIC_URL + "/favicon.ico";
 
 function AppContent() {
   const [showHeader, setShowHeader] = useState(true);
