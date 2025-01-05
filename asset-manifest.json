@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/linguoren.com/static/css/main.7b11d624.css",
-    "main.js": "/linguoren.com/static/js/main.c0aebd05.js",
-    "index.html": "/linguoren.com/index.html",
-    "main.7b11d624.css.map": "/linguoren.com/static/css/main.7b11d624.css.map",
-    "main.c0aebd05.js.map": "/linguoren.com/static/js/main.c0aebd05.js.map"
+    "main.css": "/static/css/main.7b11d624.css",
+    "main.js": "/static/js/main.b06322f6.js",
+    "index.html": "/index.html",
+    "main.7b11d624.css.map": "/static/css/main.7b11d624.css.map",
+    "main.b06322f6.js.map": "/static/js/main.b06322f6.js.map"
   },
   "entrypoints": [
     "static/css/main.7b11d624.css",
-    "static/js/main.c0aebd05.js"
+    "static/js/main.b06322f6.js"
   ]
 }
