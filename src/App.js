@@ -130,7 +130,7 @@ function AppContent() {
               div>
 
               
-              <h1>Hey, I'm Linguo,</h1>
+              <h1>Hey, I'm Linguo!</h1>
               <p>
                 I’m a passionate individual pursuing <strong>Computer Science, Mathematics, and Education</strong> at{' '}
                 <a
