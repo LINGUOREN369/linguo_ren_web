@@ -4,8 +4,8 @@ const Resume = () => {
   return (
     <div
       style={{
-        width: '80vw', // Full width of the viewport
-        height: '140vh', // Full height of the viewport
+        width: '90vw', // Full width of the viewport
+        height: window.innerWidth <= 768 ? '60vh' : '100vh', // Height depends on viewport width
         margin: 0, // Remove margin
         padding: 0, // Remove padding
         overflow: 'hidden', // Prevent overflow
@@ -18,9 +18,10 @@ const Resume = () => {
         src={LinguoRenPDF}
         title="Resume"
         style={{
-          width: '80%', // Maintain original width
+          width: '100%', // Maintain original width
           height: '100%', // Full height of the container
-          border: 'none', // Remove border for a cleaner look
+          // set boarder for mobile
+          border: '1px solid black',
         }}
       ></iframe>
     </div>

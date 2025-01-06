@@ -47,7 +47,7 @@ header a:hover {
 
 
 .portfolio-button {
-  padding: 10px 30px; /* Adds padding inside the button */
+  padding: 10px 20px; /* Adds padding inside the button */
   font-size: 16px; /* Sets font size for the button text */
   color: #fff; /* White text color */
   background-color: #4da8da; /* Light blue background */
@@ -58,7 +58,7 @@ header a:hover {
 }
 
 .portfolio-button2 {
-  padding: 10px 30px; /* Adds padding inside the button */
+  padding: 10px 20px; /* Adds padding inside the button */
   font-size: 16px; /* Sets font size for the button text */
   color: #fff; /* White text color */
   background-color: #ae5a5a; /* Red background */

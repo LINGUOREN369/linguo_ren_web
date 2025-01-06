@@ -48,7 +48,7 @@ function AppContent() {
 >
   <span className="navbar-toggler-icon"></span>
 </button>
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="/" onClick={() => handleNavigation(true)}>
             Linguo Ren
           </Link>
           
@@ -161,6 +161,10 @@ function AppContent() {
               <Link to="/resume">
                 <button className="portfolio-button2">View My Resume</button>
               </Link>
+
+              {/* add some padding */}
+              <div className="mt-4"></div>
+
             </div>
             </div>
             {/* Image Section */}
