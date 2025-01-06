@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Project from './Project';
 import Resume from './Resume';
-const profilePhoto = process.env.PUBLIC_URL + '/docs/profile_photo.JPG';
+const profilePhoto = process.env.PUBLIC_URL + '/docs/profile_photo3.png';
 const favicon = process.env.PUBLIC_URL + '/docs/favicon.ico';
 
 function AppContent() {
@@ -147,11 +147,7 @@ function AppContent() {
               </p>
 
               <p>
-              With a strong foundation in data science, machine learning, deep learning, and a well-rounded liberal arts education, I combine technical expertise with a commitment to understanding and addressing complex systems. 
-              </p>
-
-              <p>
-              I aim to bridge analytical rigor with strategic insight, focusing on real-world challenges by analyzing comprehensive datasets to uncover impactful, data-driven solutions.
+              With a strong foundation in data science, machine learning, deep learning, and a well-rounded liberal arts education, I aim to bridge analytical rigor with strategic insight, focusing on real-world challenges by analyzing comprehensive datasets to uncover impactful, data-driven solutions.
               </p>
 
               <div className="mt-3">
