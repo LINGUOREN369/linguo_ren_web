@@ -23,7 +23,7 @@ function Project() {
       description: "Companion tool for radio DJs to help facilitate exploration and discovery with physical collections of vinyl records. By leveraging computer vision, deep learning, and metadata aggregation, this tool aims to reduce the amount of time needed to retrieve relevant information about a given release.",
       link: "https://github.com/mdrxy/album-wiz",
       image: album_wiz,
-      tags: ["Web Development", "Machine Learning & Deep Learning", "Data Analysis"],
+      tags: ["Python", "Web Development", "Machine Learning & Deep Learning", "Data Analysis",],
     },
     {
       title: "Analyzing a Decade of Crime: Insights from Chicago’s Criminal Incident Data (2013-2022)",
