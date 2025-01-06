@@ -1,122 +1,70 @@
-/* General styles for the body */
 body {
-  margin: 0; /* Removes default margin around the body */
-  font-family: 'Roboto', sans-serif; /* Sets a modern sans-serif font */
-  background-color: #f7f7f7; /* Light background color for the entire page */
-  color: #333; /* Dark gray text color for better contrast */
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
 }
 
-/* Main app container */
 .App {
-  display: flex; /* Flexbox layout for horizontal alignment */
-  height: 100vh; /* Sets the height to cover the full viewport */
+  height: 100vh;
 }
 
-/* Layout wrapper for sidebar and main content */
-.layout {
-  display: flex; /* Flexbox layout for side-by-side sections */
-  width: 100%; /* Full width of the page */
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-/* Sidebar styling */
-.sidebar {
-  background-color: #1c1c1c; /* Dark background for contrast */
-  color: #f5f5f5; /* Light text color */
-  width: 25%; /* Sidebar takes up 25% of the width */
-  display: flex; /* Flexbox layout */
-  flex-direction: column; /* Aligns children vertically */
-  justify-content: space-between; /* Space between elements in the sidebar */
-  padding: 20px; /* Adds padding inside the sidebar */
-}
-
-/* Sidebar navigation styles */
-.sidebar nav ul {
-  list-style: none; /* Removes default list bullet points */
-  padding: 0; /* Removes default padding */
-}
-
-.sidebar nav ul li {
-  margin: 15px 0; /* Adds vertical spacing between navigation items */
-}
-
-.sidebar nav ul li a {
-  color: #f5f5f5; /* Light text color for links */
-  text-decoration: none; /* Removes default underline */
-  font-size: 30px; /* Large font size for better readability */
-}
-
-.sidebar nav ul li a:hover {
-  text-decoration: underline; /* Adds underline on hover for interactivity */
-  /*size of text*/
-  size: 20px; /* Incorrect property - should be removed or fixed */
-}
-
-/* Contact information in the sidebar */
-.sidebar .contact-info {
-  font-size: 14px; /* Small font size for contact information */
-  line-height: 1.8; /* Adds spacing between lines */
-}
-
-/* Main content section */
-.content {
-  width: 75%; /* Content takes up the remaining 75% of the width */
-  padding: 50px; /* Adds spacing around the content */
-  display: flex; /* Flexbox layout */
-  flex-direction: column; /* Aligns children vertically */
-  justify-content: center; /* Centers the content vertically */
-}
-
-/* Header title styles */
 header h1 {
-  font-size: 3rem; /* Large font size for the main title */
-  margin-bottom: 10px; /* Adds spacing below the title */
+  font-size: 2.5rem;
 }
 
-/* Header subtitle styles */
+.reduced-margin {
+  margin-top: 5px; /* Custom margin value */
+  margin-bottom: 30px; /* Custom margin value */
+}
+
+/* Hide the title for mobile devices */
+@media (max-width: 768px) {
+}
+
 header h2 {
-  font-size: 1.5rem; /* Medium font size for the subtitle */
-  color: #555; /* Gray color for less emphasis */
-  margin-bottom: 20px; /* Adds spacing below the subtitle */
+  font-size: 1.5rem;
+  color: #555;
 }
 
-/* Header paragraph styles */
 header p {
-  font-size: 1rem; /* Standard font size for paragraphs */
-  line-height: 1.6; /* Adjusts line spacing for readability */
-  margin-bottom: 15px; /* Adds spacing below paragraphs */
+  font-size: 1rem;
 }
 
-/* Links within the header */
 header a {
-  color: #4da8da; /* Light blue color for links */
-  text-decoration: none; /* Removes default underline */
+  color: #4da8da;
+  text-decoration: none;
 }
 
 header a:hover {
-  text-decoration: underline; /* Adds underline on hover */
+  text-decoration: underline;
 }
 
-/* Portfolio button styles */
+
 .portfolio-button {
-  padding: 10px 20px; /* Adds padding inside the button */
+  padding: 10px 30px; /* Adds padding inside the button */
   font-size: 16px; /* Sets font size for the button text */
   color: #fff; /* White text color */
   background-color: #4da8da; /* Light blue background */
   border: none; /* Removes border */
   border-radius: 5px; /* Rounded corners */
   cursor: pointer; /* Changes the cursor to a pointer on hover */
+  margin-right: 15px; /* Add spacing between buttons */
 }
 
-/* Portfolio button styles */
 .portfolio-button2 {
-  padding: 10px 20px; /* Adds padding inside the button */
+  padding: 10px 30px; /* Adds padding inside the button */
   font-size: 16px; /* Sets font size for the button text */
   color: #fff; /* White text color */
-  background-color: #ae5a5a; /* Light blue background */
+  background-color: #ae5a5a; /* Red background */
   border: none; /* Removes border */
   border-radius: 5px; /* Rounded corners */
   cursor: pointer; /* Changes the cursor to a pointer on hover */
-  margin-left: 10px; /* Adds spacing to the left of the button */
 }
 
 .portfolio-button:hover {
@@ -124,25 +72,16 @@ header a:hover {
 }
 
 .portfolio-button2:hover {
-  background-color: #c80b63; /* Darker blue color on hover */
-  /* change text color to black */
+  background-color: #c80b63; /* Darker red color on hover */
+}
 
-}
-/* Contact info styling in the sidebar */
-.contact-info {
-  font-size: 18px; /* Larger font size for emphasis */
-  font-weight: bold; /* Makes the text bold */
-  margin-top: 20px; /* Adds spacing above the contact section */
-  line-height: 1.8; /* Adjusts line spacing for readability */
-}
 
 .profile-image {
-  width: 230px;
-  height: 200px;
-  border-radius: 50%; /* Makes the image circular */
-  position: absolute; /* Position it on the right */
-  top: 20px; /* Adjust as needed */
-  right: 20px; /* Adjust as needed */
-  border: 3px solid #4da8da; /* Optional border to match theme */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow for effect */
+  width: 300px; /* Set width for the image */
+  height: 300px; /* Set height for the image */
+  border-radius: 50%; /* Make the image circular */
+  border: 3px solid #4da8da; /* Add a border with a theme color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  display: block; /* Ensures the image behaves like a block element */
+  margin: 0 auto; /* Centers the image horizontally */
 }
