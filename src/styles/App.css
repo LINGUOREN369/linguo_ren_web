@@ -85,3 +85,38 @@ header a:hover {
   display: block; /* Ensures the image behaves like a block element */
   margin: 0 auto; /* Centers the image horizontally */
 }
+
+.email-copied-popup {
+  position: fixed;
+  top: 50%; /* Position vertically in the center */
+  left: 50%; /* Position horizontally in the center */
+  transform: translate(-50%, -50%); /* Offset to truly center the element */
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  animation: fade-in-out 3s ease-in-out;
+  text-align: center; /* Center align the text */
+}
+
+/* Optional animation for smoother appearance and disappearance */
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}

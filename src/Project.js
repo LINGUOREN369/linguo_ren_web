@@ -13,35 +13,35 @@ function Project() {
   const projects = [
     {
       title: "Abnormality Detection in Stock Market with Unsupervised Learning",
-      description: "This project developed a Temporal Convolutional Autoencoder (TCN-AE) to detect anomalies in high-frequency stock market data. It involved preprocessing trading data, reducing dimensionality, and applying hierarchical clustering to identify irregular patterns, including potential insider trading activities. The project experimented with various distance metrics and linkage criteria to improve accuracy and proposed future applications for regulatory agencies and individual investors in financial anomaly detection.",
+      description: "This project developed a Temporal Convolutional Autoencoder (TCN-AE) to detect anomalies in high-frequency stock market data. It involved preprocessing trading data, reducing dimensionality, and applying hierarchical clustering to identify irregular patterns, including potential insider trading activities. The project experimented with various distance metrics and linkage criteria to improve accuracy and proposed future applications for regulatory agencies and individual investors in financial anomaly detection. ",
       link: "https://github.com/LINGUOREN369/Anomaly_Detection",
       image: fml_cover,
       tags: ["Python", "Data Analysis", "Machine Learning & Deep Learning", "R"],
     },
     {
       title: "Vinyl Record Recognition System",
-      description: "Companion tool for radio DJs to help facilitate exploration and discovery with physical collections of vinyl records. By leveraging computer vision, deep learning, and metadata aggregation, this tool aims to reduce the amount of time needed to retrieve relevant information about a given release.",
+      description: "Companion tool for radio DJs to help facilitate exploration and discovery with physical collections of vinyl records. By leveraging computer vision, deep learning, and metadata aggregation, this tool aims to reduce the amount of time needed to retrieve relevant information about a given release. ",
       link: "https://github.com/mdrxy/album-wiz",
       image: album_wiz,
       tags: ["Python", "Web Development", "Machine Learning & Deep Learning", "Data Analysis",],
     },
     {
       title: "Analyzing a Decade of Crime: Insights from Chicago’s Criminal Incident Data (2013-2022)",
-      description: "This project analyzed over 2.5 million criminal incident records from the Chicago Police Department (2013–2022) to explore trends in crime, arrest ratios, and patterns across time and space. It utilized R for data analysis, statistical modeling, and visualization, leveraging libraries such as dplyr, ggplot2, tidyr, purrr, and ggmap. The analysis included bootstrapping-based statistical hypothesis testing to validate arrest ratio trends across districts, hours, and crime types, and geospatial visualizations were created to map crime densities and highlight spatial patterns in crime distribution across Chicago.",
+      description: "This project analyzed over 2.5 million criminal incident records from the Chicago Police Department (2013–2022) to explore trends in crime, arrest ratios, and patterns across time and space. It utilized R for data analysis, statistical modeling, and visualization, leveraging libraries such as dplyr, ggplot2, tidyr, purrr, and ggmap. The analysis included bootstrapping-based statistical hypothesis testing to validate arrest ratio trends across districts, hours, and crime types, and geospatial visualizations were created to map crime densities and highlight spatial patterns in crime distribution across Chicago. ",
       link: chicago_crime,
       image: chicago_cover,
       tags: ["Data Analysis", "R"],
     },
     {
       title: "NESCAC Postseason Policy: Balancing Academic Excellence and Athletic Competition",
-      description: "This project involved an in-depth analysis of the New England Small College Athletic Conference’s (NESCAC) transition from banning postseason competition to lifting the ban in 1993, exploring historical documents, stakeholder dynamics, and policy impacts on academics, athletics, and institutional reputation. It highlighted how pressures from students, coaches, and external institutions influenced systemic change in higher education, emphasizing the complex interplay of forces driving institutional decision-making.",
+      description: "This project involved an in-depth analysis of the New England Small College Athletic Conference’s (NESCAC) transition from banning postseason competition to lifting the ban in 1993, exploring historical documents, stakeholder dynamics, and policy impacts on academics, athletics, and institutional reputation. It highlighted how pressures from students, coaches, and external institutions influenced systemic change in higher education, emphasizing the complex interplay of forces driving institutional decision-making. ",
       link: nescac_policy,
       image: nescac_cover,
       tags: ["Education"],
     },
     {
       title: "Personal Website",
-      description: "This project is a dynamic portfolio website built using Javascript, React, CSS, and HTML, showcasing a collection of professional projects. It features a responsive and interactive interface that allows users to explore projects through a tag-based filtering system, enhancing navigation and user experience. The website employs React’s state management to dynamically display relevant projects based on user-selected tags. Each project is presented with a thumbnail, title, description, and a direct link to the repository or live demo.",
+      description: "This project is a dynamic portfolio website built using Javascript, React, CSS, and HTML, showcasing a collection of professional projects. It features a responsive and interactive interface that allows users to explore projects through a tag-based filtering system, enhancing navigation and user experience. The website employs React’s state management to dynamically display relevant projects based on user-selected tags. Each project is presented with a thumbnail, title, description, and a direct link to the repository or live demo. ",
       link: "https://linguoren369.github.io/linguo_ren_web/",
       image: webpage_cover,
       tags: ["Web Development"],
@@ -83,7 +83,7 @@ function Project() {
         ))}
       </div>
       
-      <p className="hint-text">Select a tag above to filter projects or scroll down to see more projects</p>
+      <p className="hint-text">Select a tag above to filter projects or scroll up to see more projects</p>
       <p className="hint-text">Click "Read More" to view full project descriptions</p>
 
       {/* Projects Display */}

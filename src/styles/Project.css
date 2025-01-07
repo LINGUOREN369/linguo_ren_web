@@ -93,10 +93,6 @@
   margin-top: 10px;
 }
 
-.tag-bubble:hover {
-  transform: scale(1.1); /* Enlarge slightly */
-  background-color: #e6f7ff; /* Lighten color */
-}
 
 .read-more-button {
   background: none;

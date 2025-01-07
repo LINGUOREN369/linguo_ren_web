@@ -4,11 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Project from './Project';
 import Resume from './Resume';
+
 const profilePhoto = process.env.PUBLIC_URL + '/docs/profile_photo3.png';
 const favicon = process.env.PUBLIC_URL + '/docs/favicon.ico';
 
+
 function AppContent() {
   const [showHeader, setShowHeader] = useState(true);
+  const [copied, setCopied] = useState(false); // Add this line to define 'copied' and 'setCopied'
   const location = useLocation();
   const navigate = useNavigate(); // For navigation
   const projectSectionRef = useRef(null); // Reference for the projects section
@@ -43,6 +46,14 @@ function AppContent() {
     }, 100); // Delay to ensure navigation completes
   };
 
+  const handleCopyEmail = () => {
+    const email = "lren@bowdoin.edu";
+    navigator.clipboard.writeText(email).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Reset the copied state after 2 seconds
+    });
+  };
+  
   return (
     <div className="App">
       {/* Navbar */}
@@ -112,14 +123,24 @@ function AppContent() {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="mailto:lren@bowdoin.edu" className="nav-link">
-                  Contact
-                </a>
+                <Link
+                  to="/"
+                  onClick={handleCopyEmail}
+                  className="nav-link"
+                >
+                  Email
+                </Link>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+
+      {copied && (
+        <div className="email-copied-popup">
+          Email copied to clipboard!
+        </div>
+      )}
 
       {/* Main Content */}
       <div className="container mt-4">
@@ -149,7 +170,7 @@ function AppContent() {
                 My academic journey is driven by a deep curiosity for problem-solving and a passion for interdisciplinary connections.
               </p>
               <p>
-              With a strong foundation in data science, machine learning, deep learning, and a well-rounded liberal arts education, I aim to bridge analytical rigor with strategic insight, focusing on real-world challenges by analyzing comprehensive datasets to uncover impactful, data-driven solutions.
+              With a strong foundation in data science, machine learning, and a well-rounded liberal arts education,  I combine analytical skills with strategic thinking to solve real-world problems and create data-driven solutions.
               </p>
 
               <div className="tools-section">
@@ -203,6 +224,7 @@ function AppContent() {
     </div>
   );
 }
+
 
 export default function App() {
   return (
