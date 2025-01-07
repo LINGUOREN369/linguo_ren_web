@@ -3,10 +3,10 @@ import { HashRouter as Router, Route, Routes, Link, useLocation, useNavigate } f
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Project from './Project';
-import Resume from './Resume';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/profile_photo3.png';
 const favicon = process.env.PUBLIC_URL + '/docs/favicon.ico';
+const resume = process.env.PUBLIC_URL + '/docs/Linguo_Ren_Resume.pdf';
 
 
 function AppContent() {
@@ -86,15 +86,6 @@ function AppContent() {
               </li>
               <li className="nav-item">
                 <Link
-                  to="/resume"
-                  onClick={() => handleNavigation(false)}
-                  className="nav-link"
-                >
-                  Résumé
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
                   to="/project"
                   onClick={() => handleNavigation(false)}
                   className="nav-link"
@@ -102,6 +93,16 @@ function AppContent() {
                   Projects
                 </Link>
               </li>
+
+              <a 
+                href={resume} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="nav-link"
+              >
+                Resume
+              </a>
+
               <li className="nav-item">
                 <a
                   href="https://www.linkedin.com/in/linguo-ren/"
@@ -206,9 +207,9 @@ function AppContent() {
                 <button onClick={scrollToProjects} className="portfolio-button">
                   View My Projects
                 </button>
-                <Link to="/resume">
+                <a href={resume} target="_blank" rel="noopener noreferrer">
                   <button className="portfolio-button2">View My Resume</button>
-                </Link>
+                </a>
               </div>
               <div className="mt-4"></div>
             </div>
@@ -217,7 +218,6 @@ function AppContent() {
         <div ref={projectSectionRef}>
           <Routes>
             <Route path="/project" element={<Project />} />
-            <Route path="/resume" element={<Resume />} />
           </Routes>
         </div>
       </div>
