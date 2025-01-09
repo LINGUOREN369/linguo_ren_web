@@ -1,6 +1,7 @@
 ## Linguo Ren Portfolio Website
 
-📖 **Introduction**
+**Introduction**
+
 
 Welcome to my personal portfolio website repository! This project showcases my skills, projects, and experiences in a visually appealing and interactive manner. It is designed to provide visitors with a seamless experience while exploring my professional journey and creative work.
 
@@ -32,7 +33,7 @@ The portfolio is built with modern web development technologies, featuring respo
 
 ---
 
-🚀 **Features**
+**Features**
 
 - **Dynamic Tag Selection Bar**: Easily filter projects by tags for efficient exploration.
 - **Responsive Grid Layout**: Optimized for all screen sizes, from mobile to desktop.
@@ -41,7 +42,7 @@ The portfolio is built with modern web development technologies, featuring respo
 
 ---
 
-🛠️ **Getting Started**
+**Getting Started**
 
 ### Prerequisites
 
@@ -50,7 +51,7 @@ Ensure you have the following installed on your machine:
 - npm (comes bundled with Node.js)
 - Git
 
-### 💻 Local Setup
+### Local Setup
 
 1. Clone the repository:
 
