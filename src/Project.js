@@ -42,7 +42,7 @@ function Project() {
     {
       title: "Personal Website",
       description: "This project is a dynamic portfolio website built using Javascript, React, CSS, and HTML, showcasing a collection of professional projects. It features a responsive and interactive interface that allows users to explore projects through a tag-based filtering system, enhancing navigation and user experience. The website employs React’s state management to dynamically display relevant projects based on user-selected tags. Each project is presented with a thumbnail, title, description, and a direct link to the repository or live demo. ",
-      link: "https://linguoren369.github.io/linguo_ren_web/",
+      link: "https://github.com/LINGUOREN369/linguo_ren_web",
       image: webpage_cover,
       tags: ["Web Development"],
     },

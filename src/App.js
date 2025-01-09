@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Project from './Project';
 
-const profilePhoto = process.env.PUBLIC_URL + '/docs/profile_photo3.png';
+const profilePhoto = process.env.PUBLIC_URL + '/docs/profile_photo3.JPG';
 const favicon = process.env.PUBLIC_URL + '/docs/favicon.ico';
 const resume = process.env.PUBLIC_URL + '/docs/Linguo_Ren_Resume.pdf';
 
@@ -18,14 +18,11 @@ function AppContent() {
 
   useEffect(() => {
     switch (location.pathname) {
-      case '/resume':
-        document.title = "Linguo's Résumé";
-        break;
       case '/project':
         document.title = "Linguo's Projects";
         break;
       default:
-        document.title = "Linguo's Portfolio";
+        document.title = "Linguo's Projects";
     }
 
     let faviconLink = document.querySelector("link[rel='icon']");
