@@ -1,0 +1,104 @@
+.edg-container {
+  padding-top: 16px;
+  padding-bottom: 40px;
+}
+
+.edg-hero { margin-bottom: 24px; }
+.edg-title { font-size: 2.2rem; margin-bottom: 6px; }
+.edg-subtitle { color: #475569; margin-bottom: 16px; line-height: 1.5; }
+
+.theme-dark .edg-subtitle { color: #9ca3af; }
+
+.edg-cover { max-height: 260px; border-radius: 8px; }
+.edg-illustration { width: 100%; max-height: 520px; object-fit: contain; border-radius: 8px; border: 1px solid #e5e7eb; background: #fff; }
+.theme-dark .edg-illustration { border-color: #374151; background: #0f172a; }
+.edg-figure { margin-top: 12px; text-align: center; }
+.edg-caption { font-size: 12px; color: #64748b; margin-top: 6px; }
+.theme-dark .edg-caption { color: #9ca3af; }
+
+/* Figures grid: side-by-side on large screens */
+.edg-figure-grid { display: grid; gap: 12px; margin-top: 12px; }
+@media (min-width: 992px) { .edg-figure-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+
+.edg-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.github-icon { width: 18px; height: 18px; display: inline-flex; }
+
+.edg-section { margin-top: 26px; scroll-margin-top: 90px; }
+.edg-h2 { font-size: 1.4rem; margin-bottom: 12px; }
+.edg-section p { line-height: 1.7; }
+.edg-section ul { padding-left: 1.1rem; }
+.edg-section li { margin: 6px 0; line-height: 1.6; }
+.edg-features { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
+.edg-feature {
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #334155;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.edg-feature-icon { width: 18px; height: 18px; display: inline-flex; color: #1f2937; }
+.theme-dark .edg-feature {
+  background: #0f172a; border-color: #374151; color: #e5e7eb;
+}
+
+.edg-note { color: #6b7280; }
+.theme-dark .edg-note { color: #9ca3af; }
+
+/* code block removed on theory-first page */
+
+.edg-footer { margin-top: 28px; display: flex; gap: 10px; }
+
+/* Split layout for list + figure */
+.edg-split { display: grid; gap: 16px; align-items: start; }
+.edg-split-col { min-width: 0; }
+@media (min-width: 992px) { .edg-split { grid-template-columns: 1.2fr 1fr; } }
+/* Nudge the structure figure up on desktop to visually align with the previous section heading */
+@media (min-width: 992px) { .edg-split .edg-figure { margin-top: -220px; } }
+
+/* Three-up comparison cards */
+.edg-compare-grid { display: grid; gap: 12px; margin-top: 16px; }
+@media (min-width: 640px) { .edg-compare-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 992px) { .edg-compare-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.edg-compare-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.edg-compare-title { font-size: 1rem; margin: 0 0 8px; color: #0f172a; }
+.edg-compare-card ul { padding-left: 1rem; margin: 0; }
+.edg-compare-card li { margin: 6px 0; line-height: 1.5; }
+.theme-dark .edg-compare-card { background: #0f172a; border-color: #374151; }
+.theme-dark .edg-compare-title { color: #e5e7eb; }
+.theme-dark .edg-feature-icon { color: #e5e7eb; }
+
+/* Section chips */
+.edg-toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; }
+.edg-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 9999px;
+  font-size: 13px;
+  text-decoration: none;
+}
+.edg-chip:hover,
+.edg-chip:focus-visible { background: #f8fafc; border-color: #d1d5db; text-decoration: none; }
+.theme-dark .edg-chip { background: #0f172a; color: #e5e7eb; border-color: #374151; }
+.theme-dark .edg-chip:hover,
+.theme-dark .edg-chip:focus-visible { background: #1f2937; border-color: #4b5563; }
+
+@media (min-width: 640px) { .edg-features { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 992px) {
+  .edg-cover { max-height: unset; margin-top: 14px; }
+  .edg-features { grid-template-columns: repeat(3, 1fr); }
+}

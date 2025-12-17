@@ -1,60 +1,91 @@
-## Linguo Ren Portfolio Website
+# Linguo Ren Portfolio
 
-**Introduction**
+A responsive single-page portfolio built with React to highlight Linguo Ren's interdisciplinary work across computer science, data science, and education. The site presents featured projects with tag-based filtering, provides quick access to contact links, and showcases a downloadable resume for prospective collaborators and employers.
 
+## Live Site
 
-Welcome to my personal portfolio website repository! This project showcases my skills, projects, and experiences in a visually appealing and interactive manner. It is designed to provide visitors with a seamless experience while exploring my professional journey and creative work.
+- Production: [https://linguoren.com](https://linguoren.com)
 
-The portfolio is built with modern web development technologies, featuring responsive design and clean aesthetics to ensure it looks great on all devices. It’s an excellent example of my ability to create dynamic and user-friendly web applications.
+## Features
 
----
+- Tag-driven project gallery that filters work by discipline and technology in real time.
+- Interactive project cards with expandable descriptions, prominent visuals, and direct links to GitHub repos, PDFs, or live demos.
+- Responsive layout implemented with Bootstrap to ensure smooth browsing on desktop and mobile devices.
+- Quick-contact navigation with LinkedIn, GitHub, and email shortcuts, plus clipboard support for the primary contact address.
+- Embedded resume viewer backed by static assets in `public/docs`, keeping the portfolio and downloadable resources in sync.
 
-🔧 **Technologies & Skills Used**
+## Tech Stack
 
-- **Frontend**:
-  - HTML5
-  - CSS3
-  - JavaScript (ES6+)
-  - React.js
-- **Styling**:
-  - CSS Modules
-  - Flexbox & Grid for layout
-- **Tools**:
-  - npm (Node Package Manager)
-  - Git & GitHub
-  - GitHub Pages for deployment
-- **Design**:
-  - Responsive Design
-  - Accessibility considerations
-- **Other Skills**:
-  - Version control using Git
-  - Debugging and testing React applications
-  - Writing maintainable and scalable CSS
+- React 19 with React Router for client-side navigation
+- Bootstrap 5 and custom CSS modules for layout and styling
+- GitHub Pages and `gh-pages` CLI for static hosting and deployment
 
----
+## Project Structure
 
-**Features**
+```
+linguo_ren_web/
+├── public/             # Static assets served at build time (images, PDFs, favicon)
+├── src/
+│   ├── App.js          # Application shell, navigation, and hero section
+│   ├── Project.js      # Portfolio grid, tag filtering, and project definitions
+│   ├── Resume.js       # Embedded PDF resume viewer
+│   └── styles/         # Component-specific styling
+└── package.json        # Dependencies, scripts, and deployment metadata
+```
 
-- **Dynamic Tag Selection Bar**: Easily filter projects by tags for efficient exploration.
-- **Responsive Grid Layout**: Optimized for all screen sizes, from mobile to desktop.
-- **Interactive Project Cards**: Smooth animations and hover effects to enhance user engagement.
-- **GitHub Pages Deployment**: Easily accessible online for anyone to explore.
-
----
-
-**Getting Started**
+## Getting Started
 
 ### Prerequisites
 
-Ensure you have the following installed on your machine:
 - Node.js (LTS version recommended)
-- npm (comes bundled with Node.js)
-- Git
+- npm (bundled with Node.js)
 
-### Local Setup
+### Installation
 
-1. Clone the repository:
+```bash
+npm install
+```
 
-   ```bash
-   git clone https://github.com/your-username/linguo_ren_web.git
-   cd linguo_ren_web
+### Local Development
+
+```bash
+npm start
+```
+
+The development server runs on [http://localhost:3000](http://localhost:3000) by default and hot-reloads on changes under `src/`.
+
+### Production Build
+
+```bash
+npm run build
+```
+
+This creates an optimized production bundle in the `build/` directory.
+
+### Deployment
+
+The site is configured for GitHub Pages deployment via the `homepage` field in `package.json` and a `gh-pages` script.
+
+```bash
+npm run deploy
+```
+
+This command builds the site and publishes the `build/` directory to the configured GitHub Pages branch.
+
+## Customization
+
+- **Projects:** Update the project catalog in `src/Project.js`. Each entry controls the title, description, asset, tags, and outbound link. Static assets referenced by projects reside in `public/docs/`.
+- **Hero section:** Adjust personal details, skills, and hobbies in `src/App.js`.
+- **Resume:** Replace `public/docs/Linguo_Ren_Resume.pdf` to refresh the embedded resume displayed in `src/Resume.js`.
+
+## Testing
+
+The project inherits Create React App's default testing setup. To launch the interactive test runner:
+
+```bash
+npm test
+```
+
+## Contact
+
+For questions or collaboration opportunities, connect on [LinkedIn](https://www.linkedin.com/in/linguo-ren/) or reach out via email at `Linguoren2001@gmail.com`.

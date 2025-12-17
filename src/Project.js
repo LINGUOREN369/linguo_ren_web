@@ -6,113 +6,145 @@ const chicago_cover = process.env.PUBLIC_URL + '/docs/chicago_cover.png';
 const nescac_policy = process.env.PUBLIC_URL + '/docs/nescac_policy.pdf';
 const nescac_cover = process.env.PUBLIC_URL + '/docs/nescac_cover.png';
 const webpage_cover = process.env.PUBLIC_URL + '/docs/webpage_cover.png';
+const gopro_cover = process.env.PUBLIC_URL + '/docs/gopro_cover.png';
 const fml_cover = process.env.PUBLIC_URL + '/docs/fml_cover.png';
 const album_wiz = process.env.PUBLIC_URL + '/docs/album-wiz_cover.png';
+const gopro_analysis = process.env.PUBLIC_URL + '/docs/Linguo_Ren_GoPro.pdf';
+const RVOL_ATR_cover = process.env.PUBLIC_URL + '/docs/RVOL_ATR_cover.png';
+const edgrantai_cover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.svg';
 
 function Project() {
   const projects = [
     {
-      title: "Abnormality Detection in Stock Market with Unsupervised Learning",
-      description: "This project developed a Temporal Convolutional Autoencoder (TCN-AE) to detect anomalies in high-frequency stock market data. It involved preprocessing trading data, reducing dimensionality, and applying hierarchical clustering to identify irregular patterns, including potential insider trading activities. The project experimented with various distance metrics and linkage criteria to improve accuracy and proposed future applications for regulatory agencies and individual investors in financial anomaly detection. ",
+      link: "https://github.com/LINGUOREN369/EdGrantAI",
+      title: "EdGrantAI",
+      description: "Transparent grant matching for small education nonprofits (NSF-first) with explainable eligibility and Apply/Maybe/Avoid guidance.",
+      image: edgrantai_cover,
+      tags: ["Python", "Education", "NLP", "Machine Learning & Deep Learning"],
+    },
+    {
+      link: "https://github.com/LINGUOREN369/ATR-Sigma_RVOL_Strategy?tab=readme-ov-file#intraday_handlerpy--intraday-data-processing",
+      title: "ATR‑Sigma RVOL Pipeline",
+      description: "Processes intraday and daily trading data, computes ATR and RVOL indicators, and prepares datasets for ATR‑Sigma RVOL strategy backtesting.",
+      image: RVOL_ATR_cover,
+      tags: ["Python", "Data Analysis"],
+    },
+
+    {
+      title: "HFT Anomaly Detection",
+      description: "Unsupervised TCN autoencoder for anomalies in high‑frequency stock data; clustering surfaces irregular trading patterns.",
       link: "https://github.com/LINGUOREN369/Anomaly_Detection",
       image: fml_cover,
       tags: ["Python", "Data Analysis", "Machine Learning & Deep Learning", "R"],
     },
+    
     {
-      title: "Vinyl Record Recognition System",
-      description: "Companion tool for radio DJs to help facilitate exploration and discovery with physical collections of vinyl records. By leveraging computer vision, deep learning, and metadata aggregation, this tool aims to reduce the amount of time needed to retrieve relevant information about a given release. ",
+      title: "Vinyl Recognition AI",
+      description: "Computer vision + deep learning tool that recognizes vinyl releases and aggregates metadata for radio DJs.",
       link: "https://github.com/mdrxy/album-wiz",
       image: album_wiz,
       tags: ["Python", "Web Development", "Machine Learning & Deep Learning", "Data Analysis",],
     },
+
     {
-      title: "Analyzing a Decade of Crime: Insights from Chicago’s Criminal Incident Data (2013-2022)",
-      description: "This project analyzed over 2.5 million criminal incident records from the Chicago Police Department (2013–2022) to explore trends in crime, arrest ratios, and patterns across time and space. It utilized R for data analysis, statistical modeling, and visualization, leveraging libraries such as dplyr, ggplot2, tidyr, purrr, and ggmap. The analysis included bootstrapping-based statistical hypothesis testing to validate arrest ratio trends across districts, hours, and crime types, and geospatial visualizations were created to map crime densities and highlight spatial patterns in crime distribution across Chicago. ",
+      title: "Portfolio Website",
+      description: "Responsive React portfolio with tag‑based project filtering.",
+      link: "https://github.com/LINGUOREN369/linguo_ren_web",
+      image: webpage_cover,
+      tags: ["Web Development"],
+    },
+    
+    {
+      link: gopro_analysis,
+      title: "GoPro Acquisition Strategy",
+      description: "Strategic analysis of a GoPro acquisition: brand, market, technology, and growth opportunities.",
+      image: gopro_cover,
+      tags: ["Business Analysis", "Data Analysis"],
+    },
+
+    {
+      title: "Chicago Crime Insights",
+      description: "R‑based analysis and mapping of 2.5M Chicago crime records (2013–2022).",
       link: chicago_crime,
       image: chicago_cover,
       tags: ["Data Analysis", "R"],
     },
     {
-      title: "NESCAC Postseason Policy: Balancing Academic Excellence and Athletic Competition",
-      description: "This project involved an in-depth analysis of the New England Small College Athletic Conference’s (NESCAC) transition from banning postseason competition to lifting the ban in 1993, exploring historical documents, stakeholder dynamics, and policy impacts on academics, athletics, and institutional reputation. It highlighted how pressures from students, coaches, and external institutions influenced systemic change in higher education, emphasizing the complex interplay of forces driving institutional decision-making. ",
+      title: "NESCAC Postseason Policy",
+      description: "Historical analysis of NESCAC’s 1993 postseason policy shift and its academic–athletic impacts.",
       link: nescac_policy,
       image: nescac_cover,
       tags: ["Education"],
     },
-    {
-      title: "Personal Website",
-      description: "This project is a dynamic portfolio website built using Javascript, React, CSS, and HTML, showcasing a collection of professional projects. It features a responsive and interactive interface that allows users to explore projects through a tag-based filtering system, enhancing navigation and user experience. The website employs React’s state management to dynamically display relevant projects based on user-selected tags. Each project is presented with a thumbnail, title, description, and a direct link to the repository or live demo. ",
-      link: "https://github.com/LINGUOREN369/linguo_ren_web",
-      image: webpage_cover,
-      tags: ["Web Development"],
-    },
+
   ];
 
-  const [selectedTag, setSelectedTag] = useState("All");
-  const [expandedDescriptions, setExpandedDescriptions] = useState(
-    Array(projects.length).fill(false) // Initialize with all descriptions collapsed
-  );
+  const [selectedTags, setSelectedTags] = useState([]); // empty means "All"
 
   const allTags = ["All", ...new Set(projects.flatMap((project) => project.tags))];
 
   const filteredProjects =
-    selectedTag === "All"
+    selectedTags.length === 0
       ? projects
-      : projects.filter((project) => project.tags.includes(selectedTag));
+      : projects.filter((project) =>
+          selectedTags.every((tag) => project.tags.includes(tag))
+        );
 
-  const toggleDescription = (index) => {
-    setExpandedDescriptions((prev) => {
-      const newExpandedDescriptions = [...prev];
-      newExpandedDescriptions[index] = !newExpandedDescriptions[index];
-      return newExpandedDescriptions;
-    });
-  };
+  // descriptions are concise; no read-more toggle needed
 
   return (
     <div className="portfolio">
       {/* Tag Selection Bar */}
       <div className="tag-selection-bar">
-        {allTags.map((tag) => (
-          <button
-            key={tag}
-            className={`tag-button ${tag === selectedTag ? "active" : ""}`}
-            onClick={() => setSelectedTag(tag)}
-          >
-            {tag}
-          </button>
-        ))}
+        {allTags.map((tag) => {
+          const isActive =
+            (tag === "All" && selectedTags.length === 0) ||
+            selectedTags.includes(tag);
+          const handleClick = () => {
+            if (tag === "All") {
+              setSelectedTags([]);
+            } else {
+              setSelectedTags((prev) =>
+                prev.includes(tag)
+                  ? prev.filter((t) => t !== tag)
+                  : [...prev, tag]
+              );
+            }
+          };
+          return (
+            <button
+              key={tag}
+              className={`tag-button ${isActive ? "active" : ""}`}
+              onClick={handleClick}
+            >
+              {tag}
+            </button>
+          );
+        })}
       </div>
       
-      <p className="hint-text">Select a tag above to filter projects or scroll up to see more projects</p>
-      <p className="hint-text">Click "Read More" to view full project descriptions</p>
+      <p className="hint-text">Select tags to show projects that match ALL selected tags (click All to clear)</p>
+      {/* concise descriptions; no read-more */}
 
       {/* Projects Display */}
       <div className="project-grid">
-        {filteredProjects.map((project, index) => (
-          <div className="project-card" key={index}>
+        {filteredProjects.map((project) => (
+          <div className="project-card" key={project.title}>
             <img src={project.image} alt={project.title} className="project-image" />
             <h5>{project.title}</h5>
-            <p>
-              {expandedDescriptions[index]
-                ? project.description
-                : `${project.description.slice(0, 200)}...`}
-              <button
-                className="read-more-button"
-                onClick={() => toggleDescription(index)}
-              >
-                {expandedDescriptions[index] ? "Read Less" : "Read More"}
-              </button>
-            </p>
-            <a href={project.link} target="_blank" rel="noopener noreferrer">
-              View Project
+            <p>{project.description}</p>
+            <a
+              className="view-project-btn"
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open ${project.title} project`}
+            >
+              <span>View Project</span>
+              <svg className="view-project-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </a>
-            <div className="tags-container">
-              {project.tags.map((tag, i) => (
-                <span key={i} className="tag-bubble">
-                  {tag}
-                </span>
-              ))}
-            </div>
           </div>
         ))}
       </div>
