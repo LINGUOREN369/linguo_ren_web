@@ -1,6 +1,6 @@
 # Linguo Ren Portfolio
 
-A responsive single-page portfolio built with React to highlight Linguo Ren's interdisciplinary work across computer science, data science, and education. The site presents featured projects with tag-based filtering, provides quick access to contact links, and showcases a downloadable resume for prospective collaborators and employers.
+A responsive React portfolio highlighting Linguo Ren's interdisciplinary work across computer science, data science, and education. It features a filterable project gallery, a focused home hero, and an EdGrantAI intro page, all tuned for fast, accessible browsing on desktop and mobile (including iPhone).
 
 ## Live Site
 
@@ -8,17 +8,24 @@ A responsive single-page portfolio built with React to highlight Linguo Ren's in
 
 ## Features
 
-- Tag-driven project gallery that filters work by discipline and technology in real time.
-- Interactive project cards with expandable descriptions, prominent visuals, and direct links to GitHub repos, PDFs, or live demos.
-- Responsive layout implemented with Bootstrap to ensure smooth browsing on desktop and mobile devices.
-- Quick-contact navigation with LinkedIn, GitHub, and email shortcuts, plus clipboard support for the primary contact address.
-- Embedded resume viewer backed by static assets in `public/docs`, keeping the portfolio and downloadable resources in sync.
+- Tag-based project gallery with real-time filtering by discipline/tech.
+- Concise project cards with strong visuals and clear CTAs to repos, PDFs, or live demos.
+- Theme switcher (System / Light / Dark) with OS preference support.
+- Responsive layout with Bootstrap 5 + custom CSS, optimized for iPhone safe areas.
+- Quick-contact navigation with LinkedIn, GitHub, and a mailto email link.
+- Optional embedded resume viewer backed by static assets in `public/docs`.
+
+## Pages
+
+- `/` Home — Hero intro, social links, and primary CTAs.
+- `/project` Projects — Filterable grid of projects with tags and “View Project” links.
+- `/edgrantai` EdGrantAI — Overview/intro page for the EdGrantAI initiative.
 
 ## Tech Stack
 
-- React 19 with React Router for client-side navigation
-- Bootstrap 5 and custom CSS modules for layout and styling
-- GitHub Pages and `gh-pages` CLI for static hosting and deployment
+- React 19 with React Router
+- Bootstrap 5 and custom CSS
+- GitHub Pages + `gh-pages` for deployment
 
 ## Project Structure
 
@@ -74,9 +81,17 @@ This command builds the site and publishes the `build/` directory to the configu
 
 ## Customization
 
-- **Projects:** Update the project catalog in `src/Project.js`. Each entry controls the title, description, asset, tags, and outbound link. Static assets referenced by projects reside in `public/docs/`.
-- **Hero section:** Adjust personal details, skills, and hobbies in `src/App.js`.
-- **Resume:** Replace `public/docs/Linguo_Ren_Resume.pdf` to refresh the embedded resume displayed in `src/Resume.js`.
+- Projects: Edit `src/Project.js` to change titles, descriptions, links, assets, and tags. Place referenced assets in `public/docs/`.
+- Home hero: Update text, social links, and primary CTAs in `src/App.js`.
+- Theme: The navbar theme toggle persists preference in `localStorage` and respects `prefers-color-scheme`.
+- Resume (optional): Replace `public/docs/Linguo_Ren_Resume.pdf` and wire the route if needed.
+
+## Mobile UX Notes (iPhone)
+
+- Navigation bar: Top padding accounts for iOS safe-area insets to prevent overlap with the fixed navbar.
+- CTAs: Home page “View My Projects” and “EdGrantAI” buttons center and stack cleanly on small screens.
+- Hero/banner: Rendered only on the home page; Projects page scrolls naturally without a stationary hero.
+- Project page: Avoids nested scroll containers; cards sit above background and under the navbar correctly.
 
 ## Testing
 
@@ -88,4 +103,4 @@ npm test
 
 ## Contact
 
-For questions or collaboration opportunities, connect on [LinkedIn](https://www.linkedin.com/in/linguo-ren/) or reach out via email at `Linguoren2001@gmail.com`.
+For questions or collaboration opportunities, connect on [LinkedIn](https://www.linkedin.com/in/linguo-ren/) or email `Linguoren2001@gmail.com`.

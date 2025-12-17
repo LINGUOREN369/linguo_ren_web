@@ -59,12 +59,14 @@ function AppContent() {
   };
 
   const scrollToProjects = () => {
-    navigate('/project'); // Navigate to the project page
+    // Hide the home header when entering the Projects page
+    setShowHeader(false);
+    navigate('/project');
     setTimeout(() => {
       if (projectSectionRef.current) {
         projectSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    }, 100); // Delay to ensure navigation completes
+    }, 100);
   };
 
   // Email copying removed; using mailto link instead
@@ -196,7 +198,7 @@ function AppContent() {
 
       {/* Main Content */}
       <div className="container mt-4" id="main-content">
-        {showHeader && location.pathname !== '/resume' && (
+        {showHeader && location.pathname === '/' && (
           <header className="row align-items-center">
             <div className="col-lg-4 text-center">
               <img
@@ -264,7 +266,7 @@ function AppContent() {
               {/* Skills/Languages/Hobbies section removed by request */}
                 
 
-              <div className="mt-3">
+              <div className="mt-3 cta-buttons">
                 <button onClick={scrollToProjects} className="portfolio-button" aria-label="View my projects">
                   View My Projects
                 </button>

@@ -1,8 +1,8 @@
 .portfolio {
   text-align: center;
-  overflow: auto; /* Ensures child elements are visible */
+  overflow: visible; /* Avoid nested scroll containers on mobile */
   padding: 20px 10px; /* Adjust padding to reduce unnecessary space */
-  min-height: 100vh; /* Ensures the page fills the viewport */
+  min-height: auto; /* Let page height be natural to prevent background overlap */
 }
 
 .tag-selection-bar {
@@ -86,7 +86,7 @@
   overflow: hidden;
   padding: 20px;
   text-align: left;
-  z-index: 1400; 
+  z-index: 1; /* keep above background, below navbar */
   transition: transform 0.2s ease;
   position: relative; /* for bottom-left button positioning */
   padding-bottom: 64px; /* reserve space for the button */

@@ -3,7 +3,10 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: #f7f7f7;
   color: #333;
-  padding-top: 64px; /* offset fixed navbar */
+  /* Offset fixed navbar; include iOS safe-area when available */
+  padding-top: 64px; /* base fallback */
+  padding-top: calc(56px + constant(safe-area-inset-top));
+  padding-top: calc(56px + env(safe-area-inset-top));
 }
 
 /* Theme root helpers */
@@ -19,9 +22,7 @@ body {
   color: #93c5fd;
 }
 
-.App {
-  height: 100vh;
-}
+.App { min-height: 100vh; }
 
 .navbar-brand {
   font-size: 1.5rem;
@@ -257,6 +258,26 @@ header a:hover {
   border-color: #4b5563;
 }
 
+/* Mobile: center CTA buttons in a vertical stack */
+@media (max-width: 576px) {
+  .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .cta-buttons .portfolio-button {
+    display: inline-flex;
+    width: auto;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: center;
+  }
+  /* remove inline spacing rule when stacked */
+  .cta-buttons .portfolio-button + .portfolio-button { margin-left: 0; }
+}
+
 /* Secondary variant for EdGrantAI */
 .portfolio-button--secondary {
   color: #2563eb;
@@ -292,7 +313,7 @@ header a:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
   display: block; /* Ensures the image behaves like a block element */
   margin: 0 auto; /* Centers the image horizontally */
-  margin-top: -60px !important; /* Nudge image upward */
+  margin-top: -40px !important; /* Lower photo by 20px */
 }
 
 .theme-dark .profile-image {
@@ -359,4 +380,10 @@ header a:hover {
   background: #1f2937;
   color: #e5e7eb;
   border-color: #475569;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 576px) {
+  /* Lower profile image by another 40px on phones */
+  .profile-image { margin-top: 0 !important; }
 }
