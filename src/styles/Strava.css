@@ -8,6 +8,9 @@
 }
 .theme-dark .strava-card { border-color: #374151; background: #0f172a; }
 
+.strava-wrapper { margin-top: 12px; }
+.strava-wrapper .strava-intro { margin-bottom: 10px; line-height: 1.6; }
+
 .strava-intro {
   margin-top: 8px;
   color: #475569;

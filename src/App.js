@@ -290,16 +290,16 @@ function AppContent() {
       <div className="container mt-4" id="main-content">
         {showHeader && location.pathname === '/' && (
           <header className="row align-items-center">
-            <div className="col-lg-4 text-center">
+            <div className="col-lg-4 text-center hero-photo-col">
               <img
                 src={profilePhoto}
                 alt="Linguo Ren"
-                className="profile-image img-fluid mt-2"
+                className="profile-image img-fluid"
               />
             </div>
             {/* Text Section */}
             <div className="col-lg-8">
-              <div className="mt-4"></div>
+              
               <h1>Hey, I'm Linguo!</h1>
               <div className="pronounce-inline">
                 <button
@@ -329,6 +329,9 @@ function AppContent() {
               )}
               <p className="lead">
                 I am a public‑interest technologist applying AI to education equity and efficient resource allocation.
+              </p>
+              <p className="so-what">
+                I build systems that help under‑resourced institutions make decisions with the same rigor as elite private organizations.
               </p>
               <p>
                 Previously a quantitative researcher at a leading hedge fund, I developed rigorous analytics to drive measurable outcomes. I now bring that discipline to the social sector to scale impact for nonprofits.
@@ -396,12 +399,13 @@ function AppContent() {
               </div>
               <div className="mt-4"></div>
               <p className="strava-intro">
-                Outside of work, I explore New England on foot and by bike—it's how I recharge and spark new ideas. The Strava snapshot below updates daily via a lightweight Strava API integration.
+                Outside of work, I explore New England on foot and by bike. This Strava snapshot updates daily via a lightweight API integration.
               </p>
               <StravaWidget />
             </div>
           </header>
         )}
+        
         <div ref={projectSectionRef}>
           <Routes>
             <Route path="/project" element={<Project />} />

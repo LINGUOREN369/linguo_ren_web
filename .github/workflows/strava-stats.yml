@@ -4,12 +4,20 @@ on:
   schedule:
     - cron: '23 6 * * *' # daily at 06:23 UTC
   workflow_dispatch: {}
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+      - 'public/strava/stats.json'
+      - 'build/**'
+      - 'README.md'
 
 permissions:
   contents: write
 
 jobs:
   update:
+    # Avoid accidental re-runs if triggered multiple ways
+    concurrency: strava-stats
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -52,4 +60,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
           keep_files: true
-

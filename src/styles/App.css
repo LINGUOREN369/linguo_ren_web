@@ -24,6 +24,11 @@ body {
 
 .App { min-height: 100vh; }
 
+/* Lift hero photo on large screens to align with intro text */
+@media (min-width: 992px) {
+  .hero-photo-col { margin-top: -300px; }
+}
+
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
@@ -143,6 +148,13 @@ header h2 {
 header p {
   font-size: 1rem;
 }
+
+.so-what {
+  font-weight: 600;
+  color: #0f172a;
+  margin-top: 6px;
+}
+.theme-dark .so-what { color: #e5e7eb; }
 
 header a {
   color: #084f75;
