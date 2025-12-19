@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Project from './Project';
 import EdGrantAI from './EdGrantAI';
+import StravaWidget from './StravaWidget';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const favicon = process.env.PUBLIC_URL + '/docs/profile_photo.png';
@@ -394,6 +395,10 @@ function AppContent() {
                 </Link>
               </div>
               <div className="mt-4"></div>
+              <p className="strava-intro">
+                Retired collegiate rower exploring Boston and nearby areas on two feet and two wheels.
+              </p>
+              <StravaWidget />
             </div>
           </header>
         )}

@@ -14,6 +14,7 @@ A responsive React portfolio highlighting Linguo Ren's interdisciplinary work ac
 - Responsive layout with Bootstrap 5 + custom CSS, optimized for iPhone safe areas.
 - Quick-contact navigation with LinkedIn, GitHub, and a mailto email link.
 - Optional embedded resume viewer backed by static assets in `public/docs`.
+- Optional Strava widget showing daily-updated YTD and all‑time run/ride totals.
 
 ## Pages
 
@@ -78,6 +79,25 @@ npm run deploy
 ```
 
 This command builds the site and publishes the `build/` directory to the configured GitHub Pages branch.
+
+## Strava Stats (Daily Auto‑Update)
+
+The home page can display a Strava summary (YTD and all‑time running/riding). A GitHub Action fetches stats once per day and writes `public/strava/stats.json`, then deploys the site.
+
+Setup:
+
+1. Create a Strava API application at https://www.strava.com/settings/api and note the Client ID and Client Secret.
+2. Obtain a Refresh Token for your athlete (requires a one‑time OAuth flow). See Strava’s OAuth docs.
+3. Add these GitHub repository secrets:
+   - `STRAVA_CLIENT_ID`
+   - `STRAVA_CLIENT_SECRET`
+   - `STRAVA_REFRESH_TOKEN`
+   - `STRAVA_ATHLETE_ID` (optional; auto‑detected if omitted)
+4. The workflow `.github/workflows/strava-stats.yml` runs daily (and on manual dispatch), updates `public/strava/stats.json`, builds, and deploys.
+
+Notes:
+- The widget reads `/strava/stats.json` at runtime. A placeholder is included until the first run.
+- The Action uses the built-in `GITHUB_TOKEN` to deploy to GitHub Pages.
 
 ## Customization
 

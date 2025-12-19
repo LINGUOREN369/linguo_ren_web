@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 320" role="img" aria-label="Candlestick chart with ATR/RVOL">
+  <!-- Background -->
+  <rect width="512" height="320" fill="#ffffff"/>
+
+  <!-- Grid lines -->
+  <g stroke="#e5e7eb" stroke-width="1">
+    <line x1="40" y1="260" x2="480" y2="260"/>
+    <line x1="40" y1="220" x2="480" y2="220"/>
+    <line x1="40" y1="180" x2="480" y2="180"/>
+    <line x1="40" y1="140" x2="480" y2="140"/>
+    <line x1="40" y1="100" x2="480" y2="100"/>
+  </g>
+
+  <!-- Axes -->
+  <g stroke="#94a3b8" stroke-width="2">
+    <line x1="40" y1="280" x2="480" y2="280"/>
+    <line x1="40" y1="40" x2="40" y2="280"/>
+  </g>
+
+  <!-- Candlesticks -->
+  <!-- Red (down) -->
+  <g>
+    <line x1="100" y1="90" x2="100" y2="210" stroke="#ef4444" stroke-width="4"/>
+    <rect x="92" y="130" width="16" height="60" fill="#ef4444" rx="2"/>
+  </g>
+  <!-- Green (up) -->
+  <g>
+    <line x1="150" y1="110" x2="150" y2="230" stroke="#10b981" stroke-width="4"/>
+    <rect x="142" y="150" width="16" height="50" fill="#10b981" rx="2"/>
+  </g>
+  <g>
+    <line x1="200" y1="100" x2="200" y2="220" stroke="#10b981" stroke-width="4"/>
+    <rect x="192" y="140" width="16" height="40" fill="#10b981" rx="2"/>
+  </g>
+  <g>
+    <line x1="250" y1="80" x2="250" y2="200" stroke="#ef4444" stroke-width="4"/>
+    <rect x="242" y="120" width="16" height="50" fill="#ef4444" rx="2"/>
+  </g>
+  <g>
+    <line x1="300" y1="120" x2="300" y2="240" stroke="#10b981" stroke-width="4"/>
+    <rect x="292" y="160" width="16" height="50" fill="#10b981" rx="2"/>
+  </g>
+  <g>
+    <line x1="350" y1="130" x2="350" y2="250" stroke="#ef4444" stroke-width="4"/>
+    <rect x="342" y="170" width="16" height="45" fill="#ef4444" rx="2"/>
+  </g>
+  <g>
+    <line x1="400" y1="110" x2="400" y2="230" stroke="#10b981" stroke-width="4"/>
+    <rect x="392" y="150" width="16" height="50" fill="#10b981" rx="2"/>
+  </g>
+
+  <!-- ATR / RVOL lines (moving averages) -->
+  <path d="M40,200 C100,190 150,210 200,180 S300,170 360,190 420,160 480,170" fill="none" stroke="#3b82f6" stroke-width="3" opacity="0.9"/>
+  <path d="M40,230 C100,220 150,235 200,220 S300,210 360,225 420,210 480,205" fill="none" stroke="#f59e0b" stroke-width="2.5" opacity="0.8"/>
+
+  <!-- Legend -->
+  <g font-family="system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#334155">
+    <rect x="56" y="46" width="9" height="9" fill="#3b82f6" rx="2"/>
+    <text x="70" y="54">ATR trend</text>
+    <rect x="140" y="46" width="9" height="9" fill="#f59e0b" rx="2"/>
+    <text x="154" y="54">RVOL trend</text>
+  </g>
+</svg>
