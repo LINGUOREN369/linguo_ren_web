@@ -50,11 +50,13 @@ export default function StravaWidget() {
             {renderTotals('Running', stats.ytd_run || {})}
             {renderTotals('Cycling', stats.ytd_ride || {})}
           </div>
-          <div className="strava-section">
-            <div className="strava-section-title">Previous Year {stats.prev_year ? `(${stats.prev_year})` : ''}</div>
-            {renderTotals('Running', stats.prev_year_run || {})}
-            {renderTotals('Cycling', stats.prev_year_ride || {})}
-          </div>
+          {typeof stats.prev_year !== 'undefined' && (
+            <div className="strava-section">
+              <div className="strava-section-title">Previous Year {stats.prev_year ? `(${stats.prev_year})` : ''}</div>
+              {renderTotals('Running', stats.prev_year_run || {})}
+              {renderTotals('Cycling', stats.prev_year_ride || {})}
+            </div>
+          )}
           <div className="strava-section">
             <div className="strava-section-title">All‑Time</div>
             {renderTotals('Running', stats.all_run || {})}
