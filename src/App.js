@@ -396,7 +396,7 @@ function AppContent() {
               </div>
               <div className="mt-4"></div>
               <p className="strava-intro">
-                Outside of work, I explore New England on foot and by bike. See the Strava snapshot below.
+                Outside of work, I explore New England on foot and by bike—it's how I recharge and spark new ideas. The Strava snapshot below updates daily via a lightweight Strava API integration.
               </p>
               <StravaWidget />
             </div>

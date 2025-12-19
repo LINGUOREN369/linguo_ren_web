@@ -25,7 +25,6 @@
 
 .strava-body { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 8px; }
 @media (min-width: 640px) { .strava-body { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1024px) { .strava-body { grid-template-columns: 1fr 1fr 1fr; } }
 
 .strava-section { border-top: 1px dashed #e5e7eb; padding-top: 10px; }
 .theme-dark .strava-section { border-top-color: #374151; }
