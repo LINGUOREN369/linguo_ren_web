@@ -103,11 +103,20 @@
 
 
 .project-image {
-  max-width: 100%;
-  height: 200px;
-  object-fit: fit;
-  border-radius: 5px;
-  margin-bottom: 6px;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* unify card media shape */
+  object-fit: cover;     /* crop centrally for consistency */
+  border-radius: 12px;   /* consistent rounded corners */
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  margin-bottom: 8px;
+}
+
+.theme-dark .project-image {
+  border-color: #374151;
+  background: #0f172a;
 }
 
 .tags-container {
@@ -169,9 +178,6 @@
 
 /* Fancy View Project button */
 .view-project-btn {
-  position: absolute;
-  left: 20px;
-  bottom: 20px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -185,6 +191,12 @@
   box-shadow: none;
   border: 1px solid #e5e7eb;
   transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.view-project-btn--solo {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
 }
 
 .view-project-btn:hover,
@@ -222,3 +234,24 @@
     transition: none;
   }
 }
+
+/* Footer nav within Projects page */
+.project-footer-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+/* Container for multiple action buttons at the bottom of a card */
+.project-actions {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+/* Reuse global .portfolio-button styles */
+/* Ensure spacing on narrow screens */
+.project-footer-nav .portfolio-button { text-decoration: none; }

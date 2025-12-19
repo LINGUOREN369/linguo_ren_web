@@ -25,6 +25,8 @@
 
 .edg-section { margin-top: 26px; scroll-margin-top: 90px; }
 .edg-h2 { font-size: 1.4rem; margin-bottom: 12px; }
+.edg-h3 { font-size: 1.05rem; margin: 14px 0 8px; color: #0f172a; }
+.theme-dark .edg-h3 { color: #e5e7eb; }
 .edg-section p { line-height: 1.7; }
 .edg-section ul { padding-left: 1.1rem; }
 .edg-section li { margin: 6px 0; line-height: 1.6; }
@@ -56,9 +58,11 @@
 /* Split layout for list + figure */
 .edg-split { display: grid; gap: 16px; align-items: start; }
 .edg-split-col { min-width: 0; }
-@media (min-width: 992px) { .edg-split { grid-template-columns: 1.2fr 1fr; } }
-/* Nudge the structure figure up on desktop to visually align with the previous section heading */
-@media (min-width: 992px) { .edg-split .edg-figure { margin-top: -220px; } }
+/* Do not split into two columns on desktop; keep a single stacked flow
+   to prevent text from overlapping adjacent figures. */
+/* Previously: @media (min-width: 992px) { .edg-split { grid-template-columns: 1.2fr 1fr; } } */
+/* Also remove the negative margin that pulled the figure upwards. */
+@media (min-width: 992px) { .edg-split .edg-figure { margin-top: 0; } }
 
 /* Three-up comparison cards */
 .edg-compare-grid { display: grid; gap: 12px; margin-top: 16px; }

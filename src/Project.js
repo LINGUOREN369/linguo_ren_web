@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './styles/Project.css';
 
 const chicago_crime = process.env.PUBLIC_URL + '/docs/chicago.html';
@@ -6,30 +7,32 @@ const chicago_cover = process.env.PUBLIC_URL + '/docs/chicago_cover.png';
 const nescac_policy = process.env.PUBLIC_URL + '/docs/nescac_policy.pdf';
 const nescac_cover = process.env.PUBLIC_URL + '/docs/nescac_cover.png';
 const webpage_cover = process.env.PUBLIC_URL + '/docs/webpage_cover.png';
+const portfolio_cover = process.env.PUBLIC_URL + '/docs/portfolio_cover.svg';
 const gopro_cover = process.env.PUBLIC_URL + '/docs/gopro_cover.png';
 const fml_cover = process.env.PUBLIC_URL + '/docs/fml_cover.png';
 const album_wiz = process.env.PUBLIC_URL + '/docs/album-wiz_cover.png';
 const gopro_analysis = process.env.PUBLIC_URL + '/docs/Linguo_Ren_GoPro.pdf';
 const RVOL_ATR_cover = process.env.PUBLIC_URL + '/docs/RVOL_ATR_cover.png';
 const edgrantai_cover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.svg';
+const maine_tree_flag = process.env.PUBLIC_URL + '/docs/maine_tree_flag.svg';
+const atr_rvol_candles = process.env.PUBLIC_URL + '/docs/atr_rvol_candles.svg';
 
 function Project() {
   const projects = [
     {
-      link: "https://github.com/LINGUOREN369/EdGrantAI",
       title: "EdGrantAI",
-      description: "Transparent grant matching for small education nonprofits (NSF-first) with explainable eligibility and Apply/Maybe/Avoid guidance.",
+      description: "Architected a decision‑support system designed to help nonprofits identify, prioritize, and understand funding opportunities with transparency and auditability.",
       image: edgrantai_cover,
+      route: "/edgrantai",
       tags: ["Python", "Education", "NLP", "Machine Learning & Deep Learning"],
     },
     {
-      link: "https://github.com/LINGUOREN369/ATR-Sigma_RVOL_Strategy?tab=readme-ov-file#intraday_handlerpy--intraday-data-processing",
-      title: "ATR‑Sigma RVOL Pipeline",
-      description: "Processes intraday and daily trading data, computes ATR and RVOL indicators, and prepares datasets for ATR‑Sigma RVOL strategy backtesting.",
-      image: RVOL_ATR_cover,
-      tags: ["Python", "Data Analysis"],
+      link: "https://sites.google.com/view/informal-science-education-me/home",
+      title: "Informal Science Education",
+      description: "Helps Maine K‑12 educators connect with informal science education providers, opportunities, and resources.",
+      image: maine_tree_flag,
+      tags: ["Education", "Web Development"],
     },
-
     {
       title: "HFT Anomaly Detection",
       description: "Unsupervised TCN autoencoder for anomalies in high‑frequency stock data; clustering surfaces irregular trading patterns.",
@@ -45,12 +48,19 @@ function Project() {
       image: album_wiz,
       tags: ["Python", "Web Development", "Machine Learning & Deep Learning", "Data Analysis",],
     },
+    {
+      link: "https://github.com/LINGUOREN369/ATR-Sigma_RVOL_Strategy?tab=readme-ov-file#intraday_handlerpy--intraday-data-processing",
+      title: "ATR‑Sigma RVOL Pipeline",
+      description: "Processes intraday and daily trading data, computes ATR and RVOL indicators, and prepares datasets for ATR‑Sigma RVOL strategy backtesting.",
+      image: atr_rvol_candles,
+      tags: ["Python", "Data Analysis"],
+    },
 
     {
       title: "Portfolio Website",
       description: "Responsive React portfolio with tag‑based project filtering.",
       link: "https://github.com/LINGUOREN369/linguo_ren_web",
-      image: webpage_cover,
+      image: portfolio_cover,
       tags: ["Web Development"],
     },
     
@@ -133,20 +143,62 @@ function Project() {
             <img src={project.image} alt={project.title} className="project-image" />
             <h5>{project.title}</h5>
             <p>{project.description}</p>
-            <a
-              className="view-project-btn"
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Open ${project.title} project`}
-            >
-              <span>View Project</span>
-              <svg className="view-project-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
+            {project.route || project.repo ? (
+              <div className="project-actions">
+                {project.route && (
+                  <Link
+                    to={project.route}
+                    className="view-project-btn"
+                    aria-label={`Open ${project.title} page`}
+                  >
+                    <span>View Project</span>
+                    <svg className="view-project-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </Link>
+                )}
+                {project.repo && (
+                  <a
+                    className="view-project-btn"
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Open ${project.title} GitHub repo`}
+                  >
+                    <span>GitHub Repo</span>
+                    <svg className="view-project-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </a>
+                )}
+              </div>
+            ) : (
+              <a
+                className="view-project-btn view-project-btn--solo"
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${project.title} project`}
+              >
+                <span>View Project</span>
+                <svg className="view-project-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            )}
           </div>
         ))}
+      </div>
+
+      {/* Bottom navigation back to Home */}
+      <div className="project-footer-nav">
+        <Link to="/" className="portfolio-button" aria-label="Go back to Home">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M12 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <span>Back to Home</span>
+        </Link>
       </div>
     </div>
   );

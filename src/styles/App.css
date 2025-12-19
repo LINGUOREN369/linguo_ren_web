@@ -31,6 +31,58 @@ body {
   letter-spacing: 0.04em;
 }
 
+.navbar-brand-wrap { gap: 4px; }
+
+.pronounce-btn {
+  color: inherit;
+  line-height: 1;
+}
+.pronounce-btn svg { display: block; width: 22px; height: 22px; }
+.pronounce-btn:hover,
+.pronounce-btn:focus-visible {
+  color: #93c5fd;
+}
+.theme-dark .pronounce-btn:hover,
+.theme-dark .pronounce-btn:focus-visible {
+  color: #93c5fd;
+}
+.theme-light .pronounce-btn:hover,
+.theme-light .pronounce-btn:focus-visible {
+  color: #2563eb;
+}
+
+/* Inline pronunciation control under heading */
+.pronounce-inline { margin-top: 6px; }
+.pronounce-inline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  padding: 4px 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.pronounce-inline-btn svg { width: 24px; height: 24px; display: block; }
+.pronounce-inline-btn .pronounce-text { font-style: normal; }
+.pronounce-inline-btn:focus-visible { outline: 2px solid #93c5fd; outline-offset: 2px; }
+.theme-dark .pronounce-inline-btn:hover,
+.theme-dark .pronounce-inline-btn:focus-visible { color: #93c5fd; }
+.theme-light .pronounce-inline-btn:hover,
+.theme-light .pronounce-inline-btn:focus-visible { color: #2563eb; }
+
+
+
+/* Pronunciation details block */
+.pronounce-details {
+  margin-top: 6px;
+  font-size: 0.95rem;
+}
+.pronounce-details .pronounce-row { margin-top: 2px; }
+.pronounce-details .label { color: #64748b; margin-right: 6px; }
+.theme-dark .pronounce-details .label { color: #9ca3af; }
+
 .nav-icon { margin-right: 0; display: inline-flex; }
 
 /* Align icons and text in navbar consistently */
@@ -64,21 +116,11 @@ body {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
-/* Brand color accents on hover */
-.theme-light .link-linkedin:hover,
-.theme-light .link-linkedin:focus-visible { color: #0A66C2; }
-.theme-dark .link-linkedin:hover,
-.theme-dark .link-linkedin:focus-visible { color: #0A66C2; }
-
-.theme-light .link-github:hover,
-.theme-light .link-github:focus-visible { color: #24292e; }
-.theme-dark .link-github:hover,
-.theme-dark .link-github:focus-visible { color: #f0f6fc; }
-
-.theme-light .link-email:hover,
-.theme-light .link-email:focus-visible { color: #2563eb; }
-.theme-dark .link-email:hover,
-.theme-dark .link-email:focus-visible { color: #93c5fd; }
+/* Unified nav link hover/focus text color across all items */
+.theme-light .navbar .nav-link:hover,
+.theme-light .navbar .nav-link:focus-visible { color: #2563eb; }
+.theme-dark .navbar .nav-link:hover,
+.theme-dark .navbar .nav-link:focus-visible { color: #93c5fd; }
 
 header h1 {
   font-size: 2.5rem;
@@ -386,4 +428,27 @@ header a:hover {
 @media (max-width: 576px) {
   /* Lower profile image by another 40px on phones */
   .profile-image { margin-top: 0 !important; }
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 40px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  font-size: 0.95rem;
+}
+.theme-dark .site-footer {
+  border-top-color: rgba(255,255,255,0.12);
+}
+.site-footer .container { gap: 12px; }
+
+/* Fun AI notice */
+.ai-notice {
+  margin-top: 6px;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+.theme-dark .ai-notice {
+  color: #9ca3af;
 }

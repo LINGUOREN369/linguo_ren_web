@@ -116,6 +116,7 @@ export default function EdGrantAI() {
               src={process.env.PUBLIC_URL + '/docs/edgrantai_structure.png'}
               alt="High-level structure of EdGrantAI components and data flow"
               className="edg-illustration img-fluid"
+              loading="lazy"
             />
             <div className="edg-caption">System structure — profiles, taxonomy mapping, scoring, and reports</div>
           </div>
@@ -129,6 +130,7 @@ export default function EdGrantAI() {
             src={process.env.PUBLIC_URL + '/docs/edgrantai_workflow.png'}
             alt="End‑to‑end workflow from RFP ingestion to fit reports"
             className="edg-illustration img-fluid"
+            loading="lazy"
           />
           <div className="edg-caption">End‑to‑end workflow — from RFP ingestion to Apply/Maybe/Avoid recommendations</div>
         </div>
@@ -162,6 +164,40 @@ export default function EdGrantAI() {
             </ul>
           </div>
         </div>
+      </section>
+
+      <section id="guardrails" className="edg-section">
+        <h2 className="edg-h2">Guardrails, Hallucination Prevention, and Transparency</h2>
+        <h3 className="edg-h3">Hallucination Prevention</h3>
+        <ul>
+          <li>Verbatim‑only extraction: pull short phrases directly from source documents; no guessing or summaries. Invalid outputs are rejected.</li>
+          <li>Dictionary‑first mapping: a curated glossary and synonyms map terms with full confidence; embeddings run only when the glossary has no match.</li>
+          <li>Per‑topic thresholds: some tags are strict while others are optional; geography and red flags always use strict rules to avoid false matches.</li>
+          <li>No free‑form generation: the model is used only for extraction and brief explanations, with explicit “do not invent” guidance.</li>
+        </ul>
+
+        <h3 className="edg-h3">Guardrails</h3>
+        <ul>
+          <li>Red‑flag gating: we only mark a red flag when trigger words like “only,” “required,” or “eligibility” appear near the concept.</li>
+          <li>Role clarity: audience words like “students” or “teachers” never become organization types.</li>
+          <li>Sensitive tags need explicit proof: computing requires clear signals like “computing,” “CS,” or “coding”; “English learners” must include “English.”</li>
+          <li>Tighter org profiles: multiple mentions and higher confidence are required before asserting strong claims; geography stays coarse and explicit.</li>
+          <li>Hard eligibility blocks: if a must‑have criterion fails (e.g., “universities only”), the match is set to Avoid regardless of other scores.</li>
+        </ul>
+
+        <h3 className="edg-h3">Auditability & Transparency</h3>
+        <ul>
+          <li>Evidence per tag: we keep the exact phrases and sources that led to each tag, plus a confidence score.</li>
+          <li>Reproducible profiles: profiles include a taxonomy version, timestamps, and source path/URL; we avoid storing raw vector data.</li>
+          <li>Consistency checks: routine checks keep the taxonomy and embeddings aligned over time.</li>
+        </ul>
+
+        <h3 className="edg-h3">What’s Not in the Current Repo (In Progress)</h3>
+        <ul>
+          <li>No retrieval‑augmented citations yet: we cite the input text directly; there’s no external document store.</li>
+          <li>No formal JSON‑schema validation or PII redaction yet: prompts discourage PII, but a sanitizer is not wired in.</li>
+          <li>Temperature hardening: we plan to fix extraction jobs to temperature 0 for extra determinism.</li>
+        </ul>
       </section>
 
       
