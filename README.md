@@ -98,6 +98,7 @@ Setup:
 Notes:
 - The widget reads `/strava/stats.json` at runtime. A placeholder is included until the first run.
 - The Action uses the built-in `GITHUB_TOKEN` to deploy to GitHub Pages.
+- Totals include VirtualRide under Cycling and TrailRun under Running (requires `activity:read` or `activity:read_all` for private activities).
 
 ## Customization
 

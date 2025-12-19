@@ -1,0 +1,33 @@
+GitHub Actions debug step for Strava secrets
+
+How to use
+1) Open .github/workflows/strava-stats.yml in GitHub and click Edit.
+2) Paste the block below BEFORE the step named "Fetch Strava stats".
+3) Commit directly to main, then run the "Update Strava Stats" workflow.
+4) In the job logs, look for lines that say SET or MISSING. Fix any missing secrets, re-run.
+5) Remove this debug step after secrets are confirmed.
+
+YAML snippet to paste
+- name: Debug Strava secrets presence
+  env:
+    STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+    STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+    STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+    STRAVA_ATHLETE_ID: ${{ secrets.STRAVA_ATHLETE_ID }}
+  run: |
+    echo "Checking Strava secrets..."
+    for v in STRAVA_CLIENT_ID STRAVA_CLIENT_SECRET STRAVA_REFRESH_TOKEN STRAVA_ATHLETE_ID; do
+      if [ -z "${!v}" ]; then echo "MISSING: $v"; else echo "SET: $v"; fi
+    done
+    MISSING=0
+    for v in STRAVA_CLIENT_ID STRAVA_CLIENT_SECRET STRAVA_REFRESH_TOKEN; do
+      if [ -z "${!v}" ]; then MISSING=1; fi
+    done
+    if [ "$MISSING" -eq 1 ]; then
+      echo "One or more required secrets are missing (CLIENT_ID/CLIENT_SECRET/REFRESH_TOKEN).";
+      exit 1;
+    fi
+
+Notes
+- Required secrets: STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, STRAVA_REFRESH_TOKEN
+- Optional secret: STRAVA_ATHLETE_ID (auto-detected if omitted)

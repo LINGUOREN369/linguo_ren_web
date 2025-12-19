@@ -36,7 +36,7 @@ export default function StravaWidget() {
   return (
     <section className="strava-card" aria-label="Strava running and riding stats">
       <div className="strava-header">
-        <span className="strava-title">Strava Summary</span>
+        <span className="strava-title">Strava Snapshot</span>
         {stats && stats.fetched_at && (
           <span className="strava-sub">Updated {new Date(stats.fetched_at).toLocaleDateString()}</span>
         )}
@@ -49,6 +49,11 @@ export default function StravaWidget() {
             <div className="strava-section-title">Year to Date</div>
             {renderTotals('Running', stats.ytd_run || {})}
             {renderTotals('Cycling', stats.ytd_ride || {})}
+          </div>
+          <div className="strava-section">
+            <div className="strava-section-title">Previous Year {stats.prev_year ? `(${stats.prev_year})` : ''}</div>
+            {renderTotals('Running', stats.prev_year_run || {})}
+            {renderTotals('Cycling', stats.prev_year_ride || {})}
           </div>
           <div className="strava-section">
             <div className="strava-section-title">All‑Time</div>

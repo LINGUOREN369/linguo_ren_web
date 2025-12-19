@@ -396,7 +396,7 @@ function AppContent() {
               </div>
               <div className="mt-4"></div>
               <p className="strava-intro">
-                Retired collegiate rower exploring Boston and nearby areas on two feet and two wheels.
+                Outside of work, I explore New England on foot and by bike. See the Strava snapshot below.
               </p>
               <StravaWidget />
             </div>
