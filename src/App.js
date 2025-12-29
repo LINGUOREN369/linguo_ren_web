@@ -328,16 +328,16 @@ function AppContent() {
                 </div>
               )}
               <p className="lead">
-                I am a public‑interest technologist applying AI to education equity and efficient resource allocation.
-              </p>
-              <p className="so-what">
-                I build systems that help under‑resourced institutions make decisions with the same rigor as elite private organizations.
+                I am a public‑interest technologist applying AI to education equity and efficient resource allocation. I work at the intersection of AI, evidence, and decision‑making in resource‑constrained nonprofit contexts.
               </p>
               <p>
-                Previously a quantitative researcher at a leading hedge fund, I developed rigorous analytics to drive measurable outcomes. I now bring that discipline to the social sector to scale impact for nonprofits.
+                I began an exploratory project EdGrantAI while doing nonprofit consulting, after seeing how understaffed organizations struggle to navigate complex funding decisions. As I started building an AI‑assisted decision‑support system, I realized the hardest part wasn’t modeling or extraction, but deciding when the system should refuse to decide.
               </p>
               <p>
-                My interdisciplinary study across Computer Science, Mathematics, and Education at Bowdoin College bridges technical rigor with ethics and policy. I build practical tools and system‑level insights that help nonprofits and public institutions make fair, evidence‑based decisions, and I provide pro bono consulting.
+                That realization shifted the work from a product into a living case study about evidence ambiguity, responsibility, and decision risk. Rather than optimizing for outputs, I used the act of system‑building to surface where AI decision support can mislead, overstep, or quietly shift responsibility onto users with limited time and capacity.
+              </p>
+              <p>
+                I’m particularly interested in evidence‑informed decision support, responsible AI, and how organizations design systems that acknowledge uncertainty rather than obscure it.
               </p>
 
               {/* Intro divider with social icons */}
