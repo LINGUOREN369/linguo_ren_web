@@ -28,7 +28,7 @@ function AppContent() {
         document.title = "Linguo's Projects";
         break;
       case '/edgrantai':
-        document.title = 'EdGrantAI — Transparent grant matching';
+        document.title = 'EdGrantAI — Evidence-aware grant decisions';
         break;
       default:
         document.title = "Linguo's Projects";

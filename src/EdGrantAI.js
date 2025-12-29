@@ -7,7 +7,7 @@ export default function EdGrantAI() {
     <div className="container edg-container">
       <header className="edg-hero">
         <h1 className="edg-title">EdGrantAI</h1>
-        <p className="edg-subtitle">Transparent grant matching for education nonprofits</p>
+        <p className="edg-subtitle">Evidence‑aware grant decisions, not black‑box recommendations</p>
         <div className="edg-cta">
           <a
             href="https://github.com/LINGUOREN369/EdGrantAI"
@@ -27,6 +27,19 @@ export default function EdGrantAI() {
         </div>
       </header>
 
+      <section className="edg-section">
+        <h2 className="edg-h2">Why EdGrantAI</h2>
+        <p>
+          Many nonprofits operate with shrinking staff and tighter funding cycles while making high‑stakes grant decisions under significant capacity constraints.
+        </p>
+        <p>
+          The central risk is not a lack of information; rather, decision‑support tools that appear authoritative can inadvertently mislead, with real consequences.
+        </p>
+        <p>
+          EdGrantAI prioritizes making evidence boundaries and constraints explicit over optimizing recommendations, so practitioners maintain clarity when capacity is already stretched.
+        </p>
+      </section>
+
       {/* Section navigation removed per request */}
 
       <section id="overview" className="edg-section">
@@ -34,8 +47,8 @@ export default function EdGrantAI() {
         <p>
           EdGrantAI helps small education nonprofits quickly identify which grants fit their mission,
           which they are truly eligible for, and which to avoid—along with clear, explainable rationale.
-          Instead of a generic list, it provides structured matching, eligibility checks, taxonomy‑driven
-          tagging, curated grants, red‑flag warnings, and concise Grant Fit Reports.
+          Instead of a generic list, it makes evidence boundaries and constraints explicit, provides eligibility checks,
+          taxonomy‑driven tagging, curated grants, red‑flag warnings, and concise Grant Fit Reports.
         </p>
         <div className="edg-features">
           <div className="edg-feature">
@@ -44,7 +57,7 @@ export default function EdGrantAI() {
                 <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm1 15h-2v-6h2Zm0-8h-2V7h2Z"/>
               </svg>
             </span>
-            <span>Explainable matching</span>
+            <span>Evidence boundaries</span>
           </div>
           <div className="edg-feature">
             <span className="edg-feature-icon" aria-hidden="true">
@@ -106,8 +119,8 @@ export default function EdGrantAI() {
           <div className="edg-split-col">
             <ul>
               <li><strong>Real RFPs → Structured Signals</strong>: extracts programs, eligibility, geography, partners, and mission cues from actual solicitations (not generic lists).</li>
-              <li><strong>Taxonomy + Synonyms + Guardrails</strong>: maps phrases to curated education tags with dictionary‑first matching and safe fallback to embeddings.</li>
-              <li><strong>Explainable Scoring</strong>: transparent weights for mission alignment, eligibility fit, and geography fit; shows rationale and red flags.</li>
+              <li><strong>Taxonomy + Synonyms + Guardrails</strong>: maps phrases to curated education tags with dictionary‑first mapping and safe fallback to embeddings.</li>
+              <li><strong>Evidence‑bounded scoring</strong>: transparent weights for mission alignment, eligibility fit, and geography fit; shows rationale and red flags.</li>
               <li><strong>Competition‑aware filtering</strong>: flags time‑wasting misalignment early (e.g., university‑only, required district partner).</li>
             </ul>
           </div>
@@ -124,7 +137,7 @@ export default function EdGrantAI() {
       </section>
 
       <section id="design-logic" className="edg-section">
-        <h2 className="edg-h2">Traditional vs ChatGPT‑Only vs Our Approach</h2>
+        <h2 className="edg-h2">Traditional vs ChatGPT‑Only vs EdGrantAI</h2>
         <div className="edg-figure">
           <img
             src={process.env.PUBLIC_URL + '/docs/edgrantai_workflow.png'}
@@ -159,7 +172,7 @@ export default function EdGrantAI() {
             <ul>
               <li>Real RFPs → structured profiles</li>
               <li>Taxonomy + synonyms + guardrails</li>
-              <li>Explainable scoring with eligibility checks</li>
+              <li>Evidence boundaries + eligibility checks</li>
               <li>Clear Apply / Maybe / Avoid with rationale</li>
             </ul>
           </div>
@@ -178,7 +191,7 @@ export default function EdGrantAI() {
 
         <h3 className="edg-h3">Guardrails</h3>
         <ul>
-          <li>Red‑flag gating: we only mark a red flag when trigger words like “only,” “required,” or “eligibility” appear near the concept.</li>
+          <li>Red‑flag gating: a red flag is marked only when trigger words like “only,” “required,” or “eligibility” appear near the concept.</li>
           <li>Role clarity: audience words like “students” or “teachers” never become organization types.</li>
           <li>Sensitive tags need explicit proof: computing requires clear signals like “computing,” “CS,” or “coding”; “English learners” must include “English.”</li>
           <li>Tighter org profiles: multiple mentions and higher confidence are required before asserting strong claims; geography stays coarse and explicit.</li>
@@ -187,17 +200,17 @@ export default function EdGrantAI() {
 
         <h3 className="edg-h3">Auditability & Transparency</h3>
         <ul>
-          <li>Evidence per tag: we keep the exact phrases and sources that led to each tag, plus a confidence score.</li>
-          <li>Reproducible profiles: profiles include a taxonomy version, timestamps, and source path/URL; we avoid storing raw vector data.</li>
+          <li>Evidence per tag: the exact phrases and sources that led to each tag are retained, along with a confidence score.</li>
+          <li>Reproducible profiles: profiles include a taxonomy version, timestamps, and source path/URL; raw vector data is not stored.</li>
           <li>Consistency checks: routine checks keep the taxonomy and embeddings aligned over time.</li>
         </ul>
 
         <h3 className="edg-h3">What’s Not in the Current Repo (In Progress)</h3>
         <ul>
-          <li>No retrieval‑augmented citations yet: we cite the input text directly; there’s no external document store.</li>
+          <li>No retrieval‑augmented citations yet: the input text is cited directly; there is no external document store.</li>
           <li>No formal JSON‑schema validation or PII redaction yet: prompts discourage PII, but a sanitizer is not wired in.</li>
-          <li>Temperature hardening: we plan to fix extraction jobs to temperature 0 for extra determinism.</li>
-        </ul>
+          <li>Temperature hardening: planned change to fix extraction jobs to temperature 0 for additional determinism.</li>
+      </ul>
       </section>
 
       
