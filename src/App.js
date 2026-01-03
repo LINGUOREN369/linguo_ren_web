@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Project from './Project';
 import EdGrantAI from './EdGrantAI';
+import EdGrantAIChat from './EdGrantAIChat';
 import StravaWidget from './StravaWidget';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/profile_photo.png';
@@ -29,6 +30,9 @@ function AppContent() {
         break;
       case '/edgrantai':
         document.title = 'EdGrantAI — Evidence-aware grant decisions';
+        break;
+      case '/edgrantai-chat':
+        document.title = 'EdGrantAI — Live matcher';
         break;
       default:
         document.title = "Linguo's Projects";
@@ -396,6 +400,13 @@ function AppContent() {
                 >
                   EdGrantAI (In Progress)
                 </Link>
+                <Link
+                  to="/edgrantai-chat"
+                  className="portfolio-button portfolio-button--secondary"
+                  aria-label="Open EdGrantAI live matcher page"
+                >
+                  EdGrantAI Matcher
+                </Link>
               </div>
               <div className="mt-4"></div>
               <p className="strava-intro">
@@ -410,6 +421,7 @@ function AppContent() {
           <Routes>
             <Route path="/project" element={<Project />} />
             <Route path="/edgrantai" element={<EdGrantAI />} />
+            <Route path="/edgrantai-chat" element={<EdGrantAIChat />} />
           </Routes>
         </div>
       </div>
