@@ -60,7 +60,6 @@ export default function EdGrantAI() {
         <div className="edg-section-header">
           <span className="edg-kicker">Executive overview</span>
           <h2 className="edg-h2">Case Study: Moving Beyond Generic Chatbots to Reliable Decision Support</h2>
-          <p className="edg-intro">The comparison below contrasts manual workflows and generic AI with EdGrantAI’s structured, evidence-bound approach.</p>
         </div>
         <div className="edg-grid edg-grid-1 edg-stagger">
           <article className="edg-card">
