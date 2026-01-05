@@ -1,6 +1,7 @@
 .edg-container {
   position: relative;
   isolation: isolate;
+  overflow-x: hidden;
   padding: 48px 0 88px;
   font-family: inherit;
   color: var(--edg-ink);
