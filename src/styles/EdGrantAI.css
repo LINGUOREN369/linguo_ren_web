@@ -216,6 +216,88 @@
 .edg-grid-2 { grid-template-columns: 1fr; }
 .edg-grid-1 { grid-template-columns: 1fr; }
 
+.edg-overview-grid {
+  align-items: start;
+}
+
+.edg-overview-stack {
+  margin-top: 22px;
+}
+
+.edg-pair-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.edg-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.edg-pair-arrow {
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 1px solid var(--edg-border);
+  background: var(--edg-surface);
+  color: var(--edg-accent);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.edg-structure-grid {
+  display: grid;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.edg-structure-figure {
+  margin: 0;
+  padding: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 421px;
+}
+
+.edg-structure-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--edg-border);
+  background: #ffffff;
+}
+
+.edg-structure-copy p + p { margin-top: 12px; }
+
+.edg-structure-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 421px;
+}
+
+.edg-comparison-figure {
+  margin: 0;
+  padding: 18px;
+}
+
+.edg-comparison-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--edg-border);
+  background: #ffffff;
+}
+
 .edg-card {
   background: var(--edg-card-bg);
   border: 1px solid var(--edg-border);
@@ -281,6 +363,8 @@
   font-weight: 600;
   color: var(--edg-accent-ink);
 }
+
+.edg-oversight-callout { margin-top: 18px; }
 
 .edg-pillar-grid {
   list-style: none;
@@ -456,6 +540,7 @@
   .edg-phase-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .edg-two-col-list { columns: 2; column-gap: 28px; }
   .edg-principles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .edg-structure-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
 }
 
 @media (max-width: 700px) {
@@ -464,4 +549,14 @@
   .edg-step { grid-template-columns: 1fr; }
   .edg-step-index { margin-left: 8px; }
   .edg-timeline::before { left: 24px; }
+  .edg-pair { grid-template-columns: 1fr; }
+  .edg-pair-arrow {
+    margin: 0 auto;
+    transform: rotate(90deg);
+  }
+  .edg-structure-figure { height: auto; }
+  .edg-structure-copy {
+    min-height: auto;
+    justify-content: flex-start;
+  }
 }

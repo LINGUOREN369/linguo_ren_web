@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import './styles/EdGrantAI.css';
 
 export default function EdGrantAI() {
+  const structureImage = process.env.PUBLIC_URL + '/docs/edgrantai_structure.png';
+  const workflowComparisonImage = process.env.PUBLIC_URL + '/docs/edgrant_traditional_genai.png';
+
   return (
     <div className="container edg-container">
       <header className="edg-hero">
@@ -43,12 +46,11 @@ export default function EdGrantAI() {
                 For small education nonprofits, the grant landscape is often inequitable. Large institutions have dedicated teams to parse complex solicitation documents (RFPs), while smaller organizations rely on overworked staff who lose 10–100 hours on a single proposal depending on the size of the grant and often for grants they were never eligible for in the first place.
               </p>
               <p>
-                EdGrantAI was built to solve this specific problem. It is an evidence-bound decision engine that converts complex NSF solicitations into clear, actionable intelligence. This case study illustrates how nonprofits can move beyond "playing with ChatGPT" to building specialized, transparent tools that solve mission-critical problems.
+                EdGrantAI was built to solve this specific problem. It is an evidence-bound decision engine that converts complex NSF solicitations into clear, actionable intelligence. 
               </p>
-              <div className="edg-stat">
-                <span className="edg-stat-value">10-100</span>
-                <span className="edg-stat-label">hours lost on a single proposal for small nonprofits</span>
-              </div>
+              <p>
+                This case study shows how nonprofits can move beyond experimental ChatGPT use to build purpose-built, transparent AI tools that address mission-critical needs. It highlights how to distinguish between tasks that require model reasoning and those that demand deterministic control—ensuring AI is used efficiently, responsibly, and in ways that strengthen, rather than obscure, human decision-making.
+              </p>
             </div>
           </div>
         </div>
@@ -58,6 +60,7 @@ export default function EdGrantAI() {
         <div className="edg-section-header">
           <span className="edg-kicker">Executive overview</span>
           <h2 className="edg-h2">Case Study: Moving Beyond Generic Chatbots to Reliable Decision Support</h2>
+          <p className="edg-intro">The comparison below contrasts manual workflows and generic AI with EdGrantAI’s structured, evidence-bound approach.</p>
         </div>
         <div className="edg-grid edg-grid-1 edg-stagger">
           <article className="edg-card">
@@ -67,7 +70,10 @@ export default function EdGrantAI() {
               and invite-only. Public funding (for example, National Science Foundation) is open to all but buried under technical jargon, shifting
               deadlines, and complex eligibility rules. Furthermore, federal agencies cannot legally recommend or rank grants for specific applicants.
             </p>
-            <div className="edg-divider"></div>
+          </article>
+        </div>
+        <div className="edg-grid edg-grid-2 edg-stagger edg-overview-grid edg-overview-stack">
+          <article className="edg-card">
             <p className="edg-label">We saw two major problems</p>
             <ol>
               <li><strong>The Resource Gap:</strong> Small nonprofits cannot afford to manually scan thousands of pages of federal compliance documents.</li>
@@ -81,21 +87,121 @@ export default function EdGrantAI() {
               every recommendation.
             </p>
           </article>
+          <figure className="edg-card edg-comparison-figure">
+            <p className="edg-label">Workflow comparison</p>
+            <img
+              className="edg-comparison-image"
+              src={workflowComparisonImage}
+              alt="Workflow comparison showing traditional manual search, generic ChatGPT, and the structured EdGrantAI pipeline."
+              loading="lazy"
+            />
+          </figure>
         </div>
       </section>
 
       <section className="edg-section" id="alignment">
         <div className="edg-section-header">
           <span className="edg-kicker">Alignment goals</span>
-          <h2 className="edg-h2">Alignment Goals (System Level)</h2>
-          <p className="edg-intro">These goals show up as concrete controls in extraction, mapping, profile building, and matching.</p>
+          <h2 className="edg-h2">Alignment Goals and Responsible AI Design</h2>
+          <p className="edg-intro">
+            Each goal maps directly to a design choice in the repo, so you can see how the system stays evidence-bound in practice.
+          </p>
         </div>
-        <ul className="edg-pillar-grid edg-stagger">
-          <li className="edg-card edg-pillar">Evidence-bound (no invented facts)</li>
-          <li className="edg-card edg-pillar">Transparent (traceable outputs and clear scoring)</li>
-          <li className="edg-card edg-pillar">Reproducible (versioned taxonomy and deterministic parsing)</li>
-          <li className="edg-card edg-pillar">Conservative in ambiguity (prefers "unknown" over guess)</li>
-        </ul>
+        <div className="edg-pair-grid edg-stagger">
+          <article className="edg-pair">
+            <div className="edg-card">
+              <span className="edg-label">Alignment goal</span>
+              <h3 className="edg-card-title">Evidence-bound</h3>
+              <p>No invented facts or inferred eligibility.</p>
+            </div>
+            <div className="edg-pair-arrow" aria-hidden="true">-&gt;</div>
+            <div className="edg-card">
+              <span className="edg-label">Design implementation</span>
+              <p>Evidence over creativity: everything traces to extracted text and curated taxonomy tags.</p>
+            </div>
+          </article>
+          <article className="edg-pair">
+            <div className="edg-card">
+              <span className="edg-label">Alignment goal</span>
+              <h3 className="edg-card-title">Transparent and reproducible</h3>
+              <p>Outputs are traceable and repeatable across runs.</p>
+            </div>
+            <div className="edg-pair-arrow" aria-hidden="true">-&gt;</div>
+            <div className="edg-card">
+              <span className="edg-label">Design implementation</span>
+              <p>Profiles include taxonomy version, confidence values, and evidence for every tag.</p>
+            </div>
+          </article>
+          <article className="edg-pair">
+            <div className="edg-card">
+              <span className="edg-label">Alignment goal</span>
+              <h3 className="edg-card-title">Conservative in ambiguity</h3>
+              <p>Prefer "unknown" over guess when evidence is thin.</p>
+            </div>
+            <div className="edg-pair-arrow" aria-hidden="true">-&gt;</div>
+            <div className="edg-card">
+              <span className="edg-label">Design implementation</span>
+              <p>Strict thresholds and guarded embedding fallback keep weak matches from surfacing.</p>
+            </div>
+          </article>
+          <article className="edg-pair">
+            <div className="edg-card">
+              <span className="edg-label">Alignment goal</span>
+              <h3 className="edg-card-title">Data minimization</h3>
+              <p>Limit what the system stores and exposes.</p>
+            </div>
+            <div className="edg-pair-arrow" aria-hidden="true">-&gt;</div>
+            <div className="edg-card">
+              <span className="edg-label">Design implementation</span>
+              <p>Raw embeddings are not stored in profiles; reports include only necessary metadata.</p>
+            </div>
+          </article>
+          <article className="edg-pair">
+            <div className="edg-card">
+              <span className="edg-label">Alignment goal</span>
+              <h3 className="edg-card-title">Human oversight</h3>
+              <p>Final decisions stay with people, not models.</p>
+            </div>
+            <div className="edg-pair-arrow" aria-hidden="true">-&gt;</div>
+            <div className="edg-card">
+              <span className="edg-label">Design implementation</span>
+              <p>Humans curate taxonomy, synonyms, and thresholds, and decide whether to apply.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section className="edg-section edg-panel" id="system-structure">
+        <div className="edg-section-header">
+          <span className="edg-kicker">System structure</span>
+          <h2 className="edg-h2">System Structure</h2>
+        </div>
+        <div className="edg-structure-grid edg-stagger">
+          <div className="edg-card edg-structure-copy">
+            <p className="edg-label">How to read it</p>
+            <p>
+              This structure is an evidence chain: every recommendation can be traced back to exact language in the source documents. It starts with
+              controlled keyphrase extraction to keep outputs verbatim, then normalizes wording through a shared taxonomy so different documents can
+              be compared consistently over time.
+            </p>
+            <p>
+              The profile builder turns evidence into two comparable JSON profiles, and the matching engine scores overlap with explicit penalties and
+              eligibility blocks. That algorithm is chosen because it is symmetric, deterministic, and auditable—so it can be inspected, tuned, and
+              defended. Explanations are optional and come last, only after a match clears a confidence gate.
+            </p>
+            <p>
+              In short, the structure exists to reduce hallucinations, enforce fairness in comparison, and keep humans in control of final decisions.
+            </p>
+          </div>
+          <figure className="edg-card edg-structure-figure">
+            <img
+              className="edg-structure-image"
+              src={structureImage}
+              alt="EdGrantAI system structure from organization and grant text through keyphrase extraction, mapping, profiling, matching, and recommendations."
+              loading="lazy"
+            />
+          </figure>
+        </div>
       </section>
 
       <section className="edg-section edg-panel" id="guardrails">
@@ -114,7 +220,15 @@ export default function EdGrantAI() {
                   <ul>
                     <li>Extracts verbatim phrases only; no summarization or paraphrase.</li>
                     <li>Output must be a strict JSON array; invalid output is rejected.</li>
-                    <li>Deadlines are handled by deterministic parsing, not the LLM.</li>
+                    <li>Deadlines and award amounts are handled by deterministic parsing, not the LLM.</li>
+                  </ul>
+                </div>
+                <div className="edg-step-block">
+                  <span className="edg-label">Guardrails</span>
+                  <ul>
+                    <li>Rejects outputs that are not valid JSON.</li>
+                    <li>Only accepts phrases found in the source text.</li>
+                    <li>Deterministic parsers override model guesses for dates and funding.</li>
                   </ul>
                 </div>
                 <div className="edg-step-block">
@@ -122,14 +236,6 @@ export default function EdGrantAI() {
                   <ul>
                     <li>Prevents hallucinated facts or invented deadlines.</li>
                     <li>Keeps the system grounded in source evidence.</li>
-                  </ul>
-                </div>
-                <div className="edg-step-block">
-                  <span className="edg-label">Code references</span>
-                  <ul className="edg-code-list">
-                    <li><code>extraction/cke.py</code></li>
-                    <li><code>extraction/deadline_extractor.py</code></li>
-                    <li><code>extraction/section_utils.py</code></li>
                   </ul>
                 </div>
               </div>
@@ -151,7 +257,7 @@ export default function EdGrantAI() {
                   </ul>
                 </div>
                 <div className="edg-step-block">
-                  <span className="edg-label">Guardrails include</span>
+                  <span className="edg-label">Guardrails</span>
                   <ul>
                     <li>Audience phrases cannot create organization type tags.</li>
                     <li>Red flags require gating terms and, for grants, the Eligibility section.</li>
@@ -164,13 +270,6 @@ export default function EdGrantAI() {
                     <li>Avoids false eligibility claims.</li>
                     <li>Prevents misclassification that could waste staff time.</li>
                     <li>Constrains semantic similarity to safe, interpretable outcomes.</li>
-                  </ul>
-                </div>
-                <div className="edg-step-block">
-                  <span className="edg-label">Code references</span>
-                  <ul className="edg-code-list">
-                    <li><code>mapping/canonical_mapper.py</code></li>
-                    <li><code>mapping/embedding_matcher.py</code></li>
                   </ul>
                 </div>
               </div>
@@ -192,7 +291,7 @@ export default function EdGrantAI() {
                   </ul>
                 </div>
                 <div className="edg-step-block">
-                  <span className="edg-label">Organization profile rules</span>
+                  <span className="edg-label">Guardrails</span>
                   <ul>
                     <li>Geography must be explicit or derived from a named state.</li>
                     <li>Grade-band tags are not inferred from generic "K-12."</li>
@@ -205,13 +304,6 @@ export default function EdGrantAI() {
                     <li>Maintains a clear audit trail.</li>
                     <li>Limits sensitive or unstable data in storage.</li>
                     <li>Reduces the chance of wrongful ineligibility or false positives.</li>
-                  </ul>
-                </div>
-                <div className="edg-step-block">
-                  <span className="edg-label">Code references</span>
-                  <ul className="edg-code-list">
-                    <li><code>mapping/grant_profile_builder.py</code></li>
-                    <li><code>mapping/org_profile_builder.py</code></li>
                   </ul>
                 </div>
               </div>
@@ -230,6 +322,16 @@ export default function EdGrantAI() {
                     <li>Red flags can hard-block if eligibility is unmet.</li>
                     <li>Explanation generation is gated (top-K or minimum score).</li>
                     <li>Deadline and funding extraction are re-checked against source text.</li>
+                    <li>Embeddings drive mission/population similarity; other tags use exact match.</li>
+                  </ul>
+                </div>
+                <div className="edg-step-block">
+                  <span className="edg-label">Guardrails</span>
+                  <ul>
+                    <li>Eligibility red flags can override otherwise strong matches.</li>
+                    <li>Scores must cross a threshold before explanations appear.</li>
+                    <li>Deterministic checks validate deadlines and amounts.</li>
+                    <li>Confidence values are clamped; duplicates keep the highest score.</li>
                   </ul>
                 </div>
                 <div className="edg-step-block">
@@ -238,12 +340,7 @@ export default function EdGrantAI() {
                     <li>Prevents overconfident recommendations.</li>
                     <li>Adds safety rails around eligibility and deadlines.</li>
                     <li>Keeps explanations concise and grounded.</li>
-                  </ul>
-                </div>
-                <div className="edg-step-block">
-                  <span className="edg-label">Code references</span>
-                  <ul className="edg-code-list">
-                    <li><code>matching/matching_engine.py</code></li>
+                    <li>Stops tag spam from inflating match scores.</li>
                   </ul>
                 </div>
               </div>
@@ -252,49 +349,43 @@ export default function EdGrantAI() {
         </div>
       </section>
 
-      <section className="edg-section" id="principles">
-        <div className="edg-section-header">
-          <span className="edg-kicker">Responsible AI</span>
-          <h2 className="edg-h2">Responsible AI Design Principles in This Repo</h2>
-        </div>
-        <ol className="edg-principles edg-stagger">
-          <li className="edg-card edg-principle">
-            Evidence over creativity: everything traces to extracted text and curated taxonomy tags.
-          </li>
-          <li className="edg-card edg-principle">
-            Transparency and reproducibility: profiles include taxonomy version, confidence values, and evidence.
-          </li>
-          <li className="edg-card edg-principle">
-            Conservative defaults: strict thresholds and guarded embedding fallback; "unknown" is acceptable when evidence is missing.
-          </li>
-          <li className="edg-card edg-principle">
-            Data minimization: raw embeddings are not stored in profiles; reports include only necessary metadata.
-          </li>
-          <li className="edg-card edg-principle">
-            Human-in-the-loop control: humans curate the taxonomy, synonyms, and thresholds, and decide whether to apply.
-          </li>
-        </ol>
-      </section>
-
       <section className="edg-section edg-panel" id="oversight">
         <div className="edg-section-header">
           <span className="edg-kicker">Oversight</span>
           <h2 className="edg-h2">Human Role (Required, Not Optional)</h2>
+          <p className="edg-intro">Oversight is structured into three human checkpoints: define, calibrate, and decide.</p>
         </div>
-        <div className="edg-grid edg-grid-2 edg-stagger">
-          <div className="edg-card">
-            <p className="edg-label">Humans control</p>
-            <ul className="edg-two-col-list">
-              <li>Taxonomy content and synonyms (precision and scope)</li>
-              <li>Thresholds, weights, and stoplists</li>
-              <li>Source data quality and refresh cadence</li>
-              <li>Final "Apply / Maybe / Avoid" decisions</li>
-              <li>Evaluation and error analysis</li>
+        <div className="edg-phase-grid edg-stagger">
+          <article className="edg-card">
+            <p className="edg-label">Define</p>
+            <h3 className="edg-card-title">What the system knows</h3>
+            <ul>
+              <li>Curate taxonomy content, synonyms, and red flags.</li>
+              <li>Select source documents and organization profiles.</li>
+              <li>Set scope boundaries for what the system can and cannot infer.</li>
             </ul>
-          </div>
-          <div className="edg-card edg-card--accent edg-card--centered">
-            <p className="edg-judgment">The system provides evidence and ranking, but does not replace judgment.</p>
-          </div>
+          </article>
+          <article className="edg-card">
+            <p className="edg-label">Calibrate</p>
+            <h3 className="edg-card-title">How the engine behaves</h3>
+            <ul>
+              <li>Choose thresholds, weights, and stoplists.</li>
+              <li>Approve guardrails and explanation gating rules.</li>
+              <li>Tune for precision vs recall based on risk tolerance.</li>
+            </ul>
+          </article>
+          <article className="edg-card">
+            <p className="edg-label">Decide</p>
+            <h3 className="edg-card-title">How outputs are used</h3>
+            <ul>
+              <li>Make final Apply / Maybe / Avoid decisions.</li>
+              <li>Review high-stakes matches before submission.</li>
+              <li>Track outcomes and run error analysis.</li>
+            </ul>
+          </article>
+        </div>
+        <div className="edg-card edg-card--accent edg-card--centered edg-oversight-callout edg-stagger">
+          <p className="edg-judgment">The system provides evidence and ranking, but does not replace judgment.</p>
         </div>
 
         <div className="edg-section-header edg-section-header--tight">
@@ -343,53 +434,37 @@ export default function EdGrantAI() {
         <div className="edg-section-header">
           <span className="edg-kicker">Adoption</span>
           <h2 className="edg-h2">How This Can Inspire Other Nonprofits</h2>
+          <p className="edg-intro">
+            One set of lessons applies to any generative AI tool build. The second shows how teams can adapt this open-source pipeline to other
+            funders beyond NSF.
+          </p>
         </div>
-        <div className="edg-card edg-card--soft">
-          <p className="edg-label">Key takeaways for production tools</p>
-          <ol>
-            <li>Start with a narrow, high-impact workflow - pick one task where time loss is measurable (e.g., grant triage).</li>
-            <li>Build an evidence-first pipeline - extract verbatim evidence before using embeddings or LLMs.</li>
-            <li>Add guardrails early - prevent common errors before they reach users.</li>
-            <li>Make outputs auditable - show the chain from evidence to tag to score to recommendation.</li>
-            <li>Keep humans in control - the tool should surface options, not decide outcomes.</li>
-            <li>Measure real impact - track time saved, reduction in wasted proposals, and quality of matches.</li>
-          </ol>
-        </div>
-      </section>
-
-      <section className="edg-section edg-panel" id="adoption-path">
-        <div className="edg-section-header">
-          <span className="edg-kicker">Implementation path</span>
-          <h2 className="edg-h2">Practical Adoption Path for Nonprofits</h2>
-        </div>
-        <div className="edg-phase-grid edg-stagger">
-          <article className="edg-card">
-            <h3 className="edg-card-title">Phase 1</h3>
-            <ul>
-              <li>Ingest CSV or static documents.</li>
-              <li>Build profiles and run baseline matching.</li>
-              <li>Review outputs manually to tune taxonomy and thresholds.</li>
-            </ul>
+        <div className="edg-grid edg-grid-2 edg-stagger">
+          <article className="edg-card edg-card--soft">
+            <h3 className="edg-card-title">General recommendations for AI-assisted tools</h3>
+            <ol>
+              <li>Start with a narrow, high-impact workflow where time loss is measurable (e.g., grant triage).</li>
+              <li>Ground every output in evidence before any model reasoning or similarity.</li>
+              <li>Add guardrails early to block hallucinations and false eligibility.</li>
+              <li>Keep outputs auditable with a trace from evidence to tag to score.</li>
+              <li>Make human judgment the final checkpoint, not the model.</li>
+              <li>Measure real impact: time saved, reduced rejections, and quality of matches.</li>
+            </ol>
           </article>
-          <article className="edg-card">
-            <h3 className="edg-card-title">Phase 2</h3>
-            <ul>
-              <li>Add guardrails based on observed errors.</li>
-              <li>Introduce explanation gating and reason strings.</li>
-              <li>Formalize evaluation with a small labeled set.</li>
-            </ul>
-          </article>
-          <article className="edg-card">
-            <h3 className="edg-card-title">Phase 3</h3>
-            <ul>
-              <li>Integrate into workflows (CRM, calendar, intake forms).</li>
-              <li>Track time saved and acceptance rates.</li>
-              <li>Expand taxonomy and sources only when quality remains stable.</li>
-            </ul>
+          <article className="edg-card edg-card--soft">
+            <h3 className="edg-card-title">Adapting EdGrantAI for other funders</h3>
+            <ol>
+              <li>Swap in DOE, NIH, or foundation solicitations as source documents.</li>
+              <li>Extend the taxonomy with domain-specific mission and population tags.</li>
+              <li>Curate synonyms and red flags that reflect new eligibility rules.</li>
+              <li>Reweight scoring to match each funder’s priorities and risk profile.</li>
+              <li>Load your organization database so profiles reflect local context.</li>
+              <li>Validate on past awards before rolling into live decisions.</li>
+            </ol>
           </article>
         </div>
       </section>
-
+ 
       <section className="edg-section">
         <div className="edg-summary">
           <h2 className="edg-h2">Summary</h2>
