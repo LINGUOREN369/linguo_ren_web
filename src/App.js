@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { HashRouter as Router, Route, Routes, Link, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, useLocation, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Project from './Project';
@@ -332,16 +332,22 @@ function AppContent() {
                 </div>
               )}
               <p className="lead">
-                I am a public‑interest technologist applying AI to education equity and efficient resource allocation. I work at the intersection of AI, evidence, and decision‑making in resource‑constrained nonprofit contexts.
+                I am a public-interest technologist applying AI to education equity and efficient resource allocation. I work at the intersection of AI,
+                evidence, and decision-making in resource-constrained nonprofit contexts.
               </p>
               <p>
-                I began an exploratory project EdGrantAI while doing nonprofit consulting, after seeing how understaffed organizations struggle to navigate complex funding decisions. As I started building an AI‑assisted decision‑support system, I realized the hardest part wasn’t modeling or extraction, but deciding when the system should refuse to decide.
+                I began EdGrantAI while consulting for nonprofits and watching understaffed teams struggle to navigate complex funding decisions. Building
+                an AI-assisted decision-support system showed me the hardest part was not modeling or extraction, but deciding when the system should
+                refuse to decide.
               </p>
               <p>
-                That realization shifted the work from a product into a living case study about evidence ambiguity, responsibility, and decision risk. Rather than optimizing for outputs, I used the act of system‑building to surface where AI decision support can mislead, overstep, or quietly shift responsibility onto users with limited time and capacity.
+                That realization shifted the work from a product to a living case study on evidence ambiguity, responsibility, and decision risk. I use
+                system design to surface where AI decision support can mislead, overstep, or quietly shift responsibility onto staff with limited time
+                and capacity.
               </p>
               <p>
-                I’m particularly interested in evidence‑informed decision support, responsible AI, and how organizations design systems that acknowledge uncertainty rather than obscure it.
+                I am particularly interested in evidence-informed decision support, responsible AI, and how organizations design systems that
+                acknowledge uncertainty rather than obscure it.
               </p>
 
               {/* Intro divider with social icons */}
