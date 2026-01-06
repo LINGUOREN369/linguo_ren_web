@@ -2,7 +2,8 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/EdGrantAIChat.css';
 
-const DEFAULT_ENDPOINT = process.env.REACT_APP_EDGRANT_API_URL || '';
+const DEFAULT_ENDPOINT = process.env.REACT_APP_EDGRANT_API_URL
+  || 'https://edgrantai-proxy.lren-31b.workers.dev/recommend';
 const SAMPLE_MISSION = "We expand STEM learning for K-12 students through teacher training, rural outreach, and after-school robotics programs.";
 
 const formatGrantName = (rec) => {

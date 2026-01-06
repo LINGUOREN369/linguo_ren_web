@@ -29,6 +29,7 @@ jobs:
           node-version: '18'
 
       - name: Fetch Strava stats
+        if: ${{ secrets.STRAVA_CLIENT_ID != '' && secrets.STRAVA_CLIENT_SECRET != '' && secrets.STRAVA_REFRESH_TOKEN != '' }}
         env:
           STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
           STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
