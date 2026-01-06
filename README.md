@@ -80,6 +80,8 @@ npm run deploy
 
 This command builds the site and publishes the `build/` directory to the configured GitHub Pages branch.
 
+For EdGrantAI API calls, set `REACT_APP_EDGRANT_API_URL` at build time. In GitHub Actions, add a repo secret named `EDGRANT_API_URL`; the deploy workflow injects it during `npm run build`.
+
 ## Strava Stats (Daily Auto‑Update)
 
 The home page can display a Strava summary (YTD and all‑time running/riding). A GitHub Action fetches stats once per day and writes `public/strava/stats.json`, then deploys the site.

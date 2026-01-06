@@ -52,6 +52,8 @@ jobs:
         run: npm ci
 
       - name: Build site
+        env:
+          REACT_APP_EDGRANT_API_URL: ${{ secrets.EDGRANT_API_URL }}
         run: npm run build
 
       - name: Deploy to GitHub Pages

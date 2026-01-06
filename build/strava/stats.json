@@ -1,9 +1,0 @@
-{
-  "status": "placeholder",
-  "message": "Strava stats will appear after the first scheduled update.",
-  "fetched_at": null,
-  "ytd_run": { "distance_m": 0, "moving_time_s": 0, "elevation_gain_m": 0 },
-  "ytd_ride": { "distance_m": 0, "moving_time_s": 0, "elevation_gain_m": 0 },
-  "all_run": { "distance_m": 0, "moving_time_s": 0, "elevation_gain_m": 0 },
-  "all_ride": { "distance_m": 0, "moving_time_s": 0, "elevation_gain_m": 0 }
-}
