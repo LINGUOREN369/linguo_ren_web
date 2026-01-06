@@ -552,8 +552,31 @@
   .edg-timeline::before { left: 24px; }
   .edg-pair { grid-template-columns: 1fr; }
   .edg-pair-arrow {
-    margin: 0 auto;
-    transform: rotate(90deg);
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border-style: dashed;
+    background: var(--edg-panel);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0;
+  }
+  .edg-pair-arrow::before {
+    content: "maps to";
+    font-size: 0.65rem;
+    color: var(--edg-muted);
+  }
+  .edg-pair-arrow::after {
+    content: "->";
+    font-size: 0.75rem;
+    color: var(--edg-accent);
   }
   .edg-structure-figure { height: auto; }
   .edg-structure-copy {

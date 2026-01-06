@@ -4,7 +4,10 @@ import './styles/EdGrantAI.css';
 
 export default function EdGrantAI() {
   const structureImage = process.env.PUBLIC_URL + '/docs/edgrantai_structure.png';
-  const workflowComparisonImage = process.env.PUBLIC_URL + '/docs/edgrant_traditional_genai.png';
+  const workflowComparisonImage800 = process.env.PUBLIC_URL + '/docs/edgrant_traditional_genai_800.png';
+  const workflowComparisonImage1600 = process.env.PUBLIC_URL + '/docs/edgrant_traditional_genai_1600.png';
+  const workflowComparisonWebp800 = process.env.PUBLIC_URL + '/docs/edgrant_traditional_genai_800.webp';
+  const workflowComparisonWebp1600 = process.env.PUBLIC_URL + '/docs/edgrant_traditional_genai_1600.webp';
 
   return (
     <div className="container edg-container">
@@ -88,12 +91,24 @@ export default function EdGrantAI() {
           </article>
           <figure className="edg-card edg-comparison-figure">
             <p className="edg-label">Workflow comparison</p>
-            <img
-              className="edg-comparison-image"
-              src={workflowComparisonImage}
-              alt="Workflow comparison showing traditional manual search, generic ChatGPT, and the structured EdGrantAI pipeline."
-              loading="lazy"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet={`${workflowComparisonWebp800} 800w, ${workflowComparisonWebp1600} 1600w`}
+                sizes="(min-width: 900px) 46vw, 100vw"
+              />
+              <img
+                className="edg-comparison-image"
+                src={workflowComparisonImage800}
+                srcSet={`${workflowComparisonImage800} 800w, ${workflowComparisonImage1600} 1600w`}
+                sizes="(min-width: 900px) 46vw, 100vw"
+                width="800"
+                height="438"
+                alt="Workflow comparison showing traditional manual search, generic ChatGPT, and the structured EdGrantAI pipeline."
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </figure>
         </div>
       </section>
