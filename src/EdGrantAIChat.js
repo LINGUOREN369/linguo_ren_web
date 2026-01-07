@@ -1,9 +1,11 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/EdGrantAIChat.css';
 
-const DEFAULT_ENDPOINT = process.env.REACT_APP_EDGRANT_API_URL
+const API_ENDPOINT = process.env.REACT_APP_EDGRANT_API_URL
   || 'https://edgrantai-proxy.lren-31b.workers.dev/recommend';
+const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITE_KEY
+  || '0x4AAAAAACK9_1Q5N9HOGc3h';
 const SAMPLE_MISSION = "We expand STEM learning for K-12 students through teacher training, rural outreach, and after-school robotics programs.";
 
 const formatGrantName = (rec) => {
@@ -33,9 +35,6 @@ const bucketClass = (bucket) => {
 export default function EdGrantAIChat() {
   const [mission, setMission] = useState('');
   const [orgName, setOrgName] = useState('');
-  const [endpoint, setEndpoint] = useState(() => {
-    return localStorage.getItem('edgrant_api_endpoint') || DEFAULT_ENDPOINT;
-  });
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
@@ -46,12 +45,10 @@ export default function EdGrantAIChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const feedRef = useRef(null);
-
-  useEffect(() => {
-    if (endpoint) {
-      localStorage.setItem('edgrant_api_endpoint', endpoint);
-    }
-  }, [endpoint]);
+  const turnstileRef = useRef(null);
+  const turnstileWidgetRef = useRef(null);
+  const turnstileTokenRef = useRef('');
+  const turnstilePendingRef = useRef(null);
 
   useEffect(() => {
     if (feedRef.current) {
@@ -59,10 +56,100 @@ export default function EdGrantAIChat() {
     }
   }, [messages, isLoading]);
 
-  const endpointHint = useMemo(() => {
-    if (endpoint) return null;
-    return 'Set REACT_APP_EDGRANT_API_URL at build time, or paste an endpoint below.';
-  }, [endpoint]);
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY) return undefined;
+    let timerId = null;
+    let mounted = true;
+
+    const renderWidget = () => {
+      if (!mounted || turnstileWidgetRef.current || !turnstileRef.current) return;
+      if (!window.turnstile || typeof window.turnstile.render !== 'function') {
+        timerId = window.setTimeout(renderWidget, 200);
+        return;
+      }
+      turnstileWidgetRef.current = window.turnstile.render(turnstileRef.current, {
+        sitekey: TURNSTILE_SITE_KEY,
+        size: 'invisible',
+        callback: (token) => {
+          turnstileTokenRef.current = token;
+          const pending = turnstilePendingRef.current;
+          if (pending) {
+            pending.resolve(token);
+          }
+        },
+        'expired-callback': () => {
+          turnstileTokenRef.current = '';
+        },
+        'error-callback': () => {
+          const pending = turnstilePendingRef.current;
+          if (pending) {
+            pending.reject(new Error('Security check failed. Please try again.'));
+          }
+        },
+      });
+    };
+
+    renderWidget();
+
+    return () => {
+      mounted = false;
+      if (timerId) window.clearTimeout(timerId);
+      if (window.turnstile && turnstileWidgetRef.current) {
+        try {
+          window.turnstile.remove(turnstileWidgetRef.current);
+        } catch (err) {
+          // Ignore cleanup errors for third-party script.
+        }
+      }
+      turnstileWidgetRef.current = null;
+    };
+  }, []);
+
+  const getTurnstileToken = async () => {
+    if (!TURNSTILE_SITE_KEY) return null;
+    const turnstile = window.turnstile;
+    const widgetId = turnstileWidgetRef.current;
+    if (!turnstile || widgetId === null) {
+      throw new Error('Security check is still loading. Please try again.');
+    }
+    const existing = turnstile.getResponse(widgetId);
+    if (existing) return existing;
+    const pending = turnstilePendingRef.current;
+    if (pending && pending.promise) {
+      return pending.promise;
+    }
+    let resolveRef;
+    let rejectRef;
+    const promise = new Promise((resolve, reject) => {
+      resolveRef = resolve;
+      rejectRef = reject;
+    });
+    const timeoutId = window.setTimeout(() => {
+      turnstilePendingRef.current = null;
+      rejectRef(new Error('Security check timed out. Please try again.'));
+    }, 8000);
+    turnstilePendingRef.current = {
+      promise,
+      resolve: (token) => {
+        window.clearTimeout(timeoutId);
+        turnstilePendingRef.current = null;
+        resolveRef(token);
+      },
+      reject: (err) => {
+        window.clearTimeout(timeoutId);
+        turnstilePendingRef.current = null;
+        rejectRef(err);
+      },
+    };
+    try {
+      turnstile.reset(widgetId);
+      turnstile.execute(widgetId);
+    } catch (err) {
+      turnstilePendingRef.current = null;
+      throw new Error('Security check could not start. Please reload and try again.');
+    }
+    return promise;
+  };
 
   const submitMission = async (event) => {
     event.preventDefault();
@@ -71,7 +158,7 @@ export default function EdGrantAIChat() {
       setError('Please enter a mission statement.');
       return;
     }
-    if (!endpoint) {
+    if (!API_ENDPOINT) {
       setError('API endpoint not configured.');
       return;
     }
@@ -85,9 +172,19 @@ export default function EdGrantAIChat() {
       const payload = { mission: trimmed };
       if (orgName.trim()) payload.org_name = orgName.trim();
 
-      const response = await fetch(endpoint, {
+      let token = null;
+      if (TURNSTILE_SITE_KEY) {
+        token = await getTurnstileToken();
+      }
+
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) {
+        headers['CF-Turnstile-Token'] = token;
+      }
+
+      const response = await fetch(API_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify(payload),
       });
 
@@ -109,6 +206,14 @@ export default function EdGrantAIChat() {
     } catch (err) {
       setError(err?.message || 'Failed to fetch recommendations.');
     } finally {
+      if (TURNSTILE_SITE_KEY && window.turnstile && turnstileWidgetRef.current) {
+        try {
+          window.turnstile.reset(turnstileWidgetRef.current);
+          turnstileTokenRef.current = '';
+        } catch (err) {
+          // Ignore reset errors.
+        }
+      }
       setIsLoading(false);
     }
   };
@@ -182,22 +287,16 @@ export default function EdGrantAIChat() {
               </button>
             </div>
 
-            <div className="edg-chat-advanced">
-              <label className="edg-chat-label" htmlFor="endpoint">API endpoint</label>
-              <input
-                id="endpoint"
-                type="text"
-                className="edg-chat-input"
-                placeholder="https://api.example.com/edgrant/recommend"
-                value={endpoint}
-                onChange={(event) => setEndpoint(event.target.value)}
-              />
-              {endpointHint && <p className="edg-chat-hint">{endpointHint}</p>}
-            </div>
+            {TURNSTILE_SITE_KEY && (
+              <div className="edg-chat-turnstile">
+                <div ref={turnstileRef} />
+                <p className="edg-chat-hint">Protected by Cloudflare Turnstile.</p>
+              </div>
+            )}
 
             {error && <div className="edg-chat-error">{error}</div>}
             <p className="edg-chat-note">
-              This page only sends your mission text to your API endpoint. It does not store keys in the browser.
+              This page only sends your mission text to the EdGrantAI matcher. It does not store keys in the browser.
             </p>
           </form>
         </section>
