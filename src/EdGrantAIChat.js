@@ -59,8 +59,6 @@ export default function EdGrantAIChat() {
     }
   ]);
   const [recommendations, setRecommendations] = useState([]);
-  const [submittedMission, setSubmittedMission] = useState('');
-  const [submittedOrgName, setSubmittedOrgName] = useState('');
   const [processedOrgProfile, setProcessedOrgProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -210,8 +208,6 @@ export default function EdGrantAIChat() {
     setRecommendations([]);
     setProcessedOrgProfile(null);
     setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
-    setSubmittedMission(trimmed);
-    setSubmittedOrgName(orgName.trim());
     setMission('');
 
     try {
