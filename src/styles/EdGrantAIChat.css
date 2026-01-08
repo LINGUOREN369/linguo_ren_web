@@ -193,6 +193,18 @@
   margin-bottom: 16px;
 }
 
+.edg-chat-steps {
+  color: var(--chat-muted);
+  font-size: 0.95rem;
+  margin: 0 0 16px;
+  padding-left: 18px;
+  line-height: 1.6;
+}
+
+.edg-chat-steps li {
+  margin-bottom: 6px;
+}
+
 .edg-chat-form {
   display: flex;
   flex-direction: column;

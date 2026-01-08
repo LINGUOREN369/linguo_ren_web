@@ -344,7 +344,7 @@ export default function EdGrantAIChat() {
           </p>
           <div className="edg-chat-hero-actions">
             <Link to="/edgrantai" className="portfolio-button portfolio-button--secondary">
-              View the case study
+             Project Overview & Case Study
             </Link>
             <a
               className="portfolio-button"
@@ -352,7 +352,7 @@ export default function EdGrantAIChat() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Open the repo
+              GitHub Repository
             </a>
           </div>
         </div>
@@ -361,8 +361,14 @@ export default function EdGrantAIChat() {
 
       <div className="edg-chat-grid">
         <section className="edg-chat-card" aria-labelledby="edg-chat-inputs">
-          <h2 id="edg-chat-inputs" className="edg-chat-card-title">Enter your mission</h2>
-          <p className="edg-chat-card-subtitle">Add an organization name if you want it echoed in the response.</p>
+          <h2 id="edg-chat-inputs" className="edg-chat-card-title">How to use this tool</h2>
+          <ol className="edg-chat-steps">
+            <li>Paste your organization profile or mission statement into the Mission statement field. (If you want an example, click Load example case.)</li>
+            <li>Optional: add an organization name so results are labeled clearly.</li>
+            <li>Click Generate recommendations and wait a few seconds.</li>
+            <li>After results load, review the ranked grants.</li>
+            <li>JSON exports explain the output: Organization (JSON) shows the processed org profile (extracted phrases and tags), Match Report (JSON) shows scores, reasons, and the full ranked list. Each grant also links to Grant Info page and Grant Profile (JSON) (processed grant profile).</li>
+          </ol>
           <form onSubmit={submitMission} className="edg-chat-form">
             <label className="edg-chat-label" htmlFor="org-name">Organization name (optional)</label>
             <input
