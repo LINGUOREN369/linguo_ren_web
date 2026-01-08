@@ -36,12 +36,6 @@ const formatScore = (score) => {
   return `${Math.round(score * 100)}%`;
 };
 
-const slugify = (value) => {
-  if (!value || typeof value !== 'string') return 'grant';
-  const slug = value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-  return slug || 'grant';
-};
-
 const bucketClass = (bucket) => {
   switch ((bucket || '').toLowerCase()) {
     case 'apply':
