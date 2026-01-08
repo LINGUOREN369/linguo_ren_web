@@ -356,11 +356,7 @@ export default function EdGrantAIChat() {
             </a>
           </div>
         </div>
-        <div className="edg-chat-hero-panel">
-          <div className="edg-chat-hero-pill">Evidence-bound</div>
-          <div className="edg-chat-hero-pill">Transparent scoring</div>
-          <div className="edg-chat-hero-pill">Human-in-the-loop</div>
-        </div>
+
       </header>
 
       <div className="edg-chat-grid">
@@ -520,7 +516,7 @@ export default function EdGrantAIChat() {
                             rel="noopener noreferrer"
                             className="edg-rec-action"
                           >
-                            Grant Info...
+                            Grant Info (NSF Site)
                           </a>
                         )}
                         <button
