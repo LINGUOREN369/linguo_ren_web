@@ -29,13 +29,16 @@ jobs:
           node-version: '18'
 
       - name: Fetch Strava stats
-        if: ${{ secrets.STRAVA_CLIENT_ID != '' && secrets.STRAVA_CLIENT_SECRET != '' && secrets.STRAVA_REFRESH_TOKEN != '' }}
         env:
           STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
           STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
           STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
           STRAVA_ATHLETE_ID: ${{ secrets.STRAVA_ATHLETE_ID }}
         run: |
+          if [[ -z "$STRAVA_CLIENT_ID" || -z "$STRAVA_CLIENT_SECRET" || -z "$STRAVA_REFRESH_TOKEN" ]]; then
+            echo "Strava secrets not set; skipping fetch."
+            exit 0
+          fi
           node ./scripts/strava-fetch.mjs
 
       - name: Commit updated stats
