@@ -6,6 +6,7 @@ const API_ENDPOINT = process.env.REACT_APP_EDGRANT_API_URL
   || 'https://edgrantai-proxy.lren-31b.workers.dev/recommend';
 const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITE_KEY
   || '0x4AAAAAACK9_1Q5N9HOGc3h';
+const PROCESSED_GRANT_BASE_URL = 'https://raw.githubusercontent.com/LINGUOREN369/EdGrantAI/main/data/processed_grants';
 const EXAMPLE_CASE_ORG = 'Utopia Math & Science Association (UMSA)';
 const EXAMPLE_CASE_TEXT = `Utopia Math & Science Association -- Organizational Profile (For Grant-Matching Test)
 
@@ -34,6 +35,28 @@ const formatGrantName = (rec) => {
 const formatScore = (score) => {
   if (typeof score !== 'number' || Number.isNaN(score)) return 'N/A';
   return `${Math.round(score * 100)}%`;
+};
+
+const grantProfileUrl = (rec) => {
+  const raw = rec?.grant_profile
+    || rec?.profile
+    || rec?.grant_profile_file
+    || rec?.profile_file
+    || rec?.grant_profile_path
+    || rec?.profile_path;
+  if (!raw || typeof raw !== 'string') return null;
+  let filename = raw.split('/').pop();
+  if (!filename) return null;
+  filename = filename.split('?')[0].split('#')[0].trim();
+  if (!filename) return null;
+  if (!filename.endsWith('.json')) {
+    filename = `${filename}.json`;
+  }
+  const lower = filename.toLowerCase();
+  if (!lower.includes('profile') && lower.endsWith('.json')) {
+    filename = filename.replace(/\.json$/i, '_profile.json');
+  }
+  return `${PROCESSED_GRANT_BASE_URL}/${encodeURIComponent(filename)}`;
 };
 
 const bucketClass = (bucket) => {
@@ -78,6 +101,11 @@ export default function EdGrantAIChat() {
     const url = URL.createObjectURL(blob);
     window.open(url, '_blank', 'noopener');
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+
+  const openUrl = (url) => {
+    if (!url) return;
+    window.open(url, '_blank', 'noopener');
   };
 
   const buildOrgProfile = () => processedOrgProfile;
@@ -410,53 +438,57 @@ export default function EdGrantAIChat() {
                     </button>
                   </div>
                 </div>
-                {recommendations.map((rec, idx) => (
-                  <article key={`${rec.grant_profile || rec.title}-${idx}`} className="edg-rec-card">
-                    <header className="edg-rec-header">
-                      <div>
-                        <h3 className="edg-rec-title">{formatGrantName(rec)}</h3>
-                        {rec.synopsis && <p className="edg-rec-synopsis">{rec.synopsis}</p>}
+                {recommendations.map((rec, idx) => {
+                  const profileUrl = grantProfileUrl(rec);
+                  return (
+                    <article key={`${rec.grant_profile || rec.title}-${idx}`} className="edg-rec-card">
+                      <header className="edg-rec-header">
+                        <div>
+                          <h3 className="edg-rec-title">{formatGrantName(rec)}</h3>
+                          {rec.synopsis && <p className="edg-rec-synopsis">{rec.synopsis}</p>}
+                        </div>
+                        <div className="edg-rec-meta">
+                          <span className={bucketClass(rec.bucket)}>{rec.bucket || 'Match'}</span>
+                          <span className="edg-rec-score">{formatScore(rec.score)}</span>
+                        </div>
+                      </header>
+                      <div className="edg-rec-details">
+                        {rec.deadline && <div><span>Deadline:</span> {rec.deadline}</div>}
+                        {rec.anticipated_funding_amount && (
+                          <div><span>Funding:</span> {rec.anticipated_funding_amount}</div>
+                        )}
                       </div>
-                      <div className="edg-rec-meta">
-                        <span className={bucketClass(rec.bucket)}>{rec.bucket || 'Match'}</span>
-                        <span className="edg-rec-score">{formatScore(rec.score)}</span>
-                      </div>
-                    </header>
-                    <div className="edg-rec-details">
-                      {rec.deadline && <div><span>Deadline:</span> {rec.deadline}</div>}
-                      {rec.anticipated_funding_amount && (
-                        <div><span>Funding:</span> {rec.anticipated_funding_amount}</div>
+                      {rec.reasons && Array.isArray(rec.reasons) && rec.reasons.length > 0 && (
+                        <ul className="edg-rec-reasons">
+                          {rec.reasons.map((reason, i) => (
+                            <li key={`${reason}-${i}`}>{reason}</li>
+                          ))}
+                        </ul>
                       )}
-                    </div>
-                    {rec.reasons && Array.isArray(rec.reasons) && rec.reasons.length > 0 && (
-                      <ul className="edg-rec-reasons">
-                        {rec.reasons.map((reason, i) => (
-                          <li key={`${reason}-${i}`}>{reason}</li>
-                        ))}
-                      </ul>
-                    )}
-                    {rec.explanation && <p className="edg-rec-explanation">{rec.explanation}</p>}
-                    <div className="edg-rec-actions">
-                      {rec.url && (
-                        <a
-                          href={rec.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                      {rec.explanation && <p className="edg-rec-explanation">{rec.explanation}</p>}
+                      <div className="edg-rec-actions">
+                        {rec.url && (
+                          <a
+                            href={rec.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="edg-rec-action"
+                          >
+                            Grant Info...
+                          </a>
+                        )}
+                        <button
+                          type="button"
                           className="edg-rec-action"
+                          onClick={() => openUrl(profileUrl)}
+                          disabled={!profileUrl}
                         >
-                          Grant Info...
-                        </a>
-                      )}
-                      <button
-                        type="button"
-                        className="edg-rec-action"
-                        onClick={() => openJsonTab(rec)}
-                      >
-                        Grant Profile (JSON)
-                      </button>
-                    </div>
-                  </article>
-                ))}
+                          Grant Profile (JSON)
+                        </button>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             )}
           </div>
