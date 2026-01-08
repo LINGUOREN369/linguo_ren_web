@@ -7,7 +7,6 @@ const API_ENDPOINT = process.env.REACT_APP_EDGRANT_API_URL
 const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITE_KEY
   || '0x4AAAAAACK9_1Q5N9HOGc3h';
 const PROCESSED_GRANT_BASE_URL = 'https://raw.githubusercontent.com/LINGUOREN369/EdGrantAI/main/data/processed_grants';
-const PROCESSED_ORG_BASE_URL = 'https://raw.githubusercontent.com/LINGUOREN369/EdGrantAI/main/data/processed_orgs';
 const EXAMPLE_CASE_ORG = 'Utopia Math & Science Association (UMSA)';
 const EXAMPLE_CASE_TEXT = `Utopia Math & Science Association -- Organizational Profile (For Grant-Matching Test)
 
@@ -76,12 +75,6 @@ const normalizeOrgProfileFilename = (orgProfile) => {
   return filename;
 };
 
-const orgProfileUrl = (orgProfile) => {
-  const filename = normalizeOrgProfileFilename(orgProfile);
-  if (!filename) return null;
-  return `${PROCESSED_ORG_BASE_URL}/${encodeURIComponent(filename)}`;
-};
-
 const bucketClass = (bucket) => {
   switch ((bucket || '').toLowerCase()) {
     case 'apply':
@@ -106,6 +99,7 @@ export default function EdGrantAIChat() {
   ]);
   const [recommendations, setRecommendations] = useState([]);
   const [orgProfileFile, setOrgProfileFile] = useState('');
+  const [processedOrgProfileJson, setProcessedOrgProfileJson] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const feedRef = useRef(null);
@@ -134,6 +128,7 @@ export default function EdGrantAIChat() {
   const buildMatchReport = () => ({
     generated_at: new Date().toISOString(),
     org_profile: orgProfileFile || null,
+    organization_profile: processedOrgProfileJson || null,
     recommendations: recommendations.map((rec, idx) => ({
       rank: idx + 1,
       ...rec,
@@ -256,6 +251,7 @@ export default function EdGrantAIChat() {
     setIsLoading(true);
     setRecommendations([]);
     setOrgProfileFile('');
+    setProcessedOrgProfileJson(null);
     setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
     setMission('');
 
@@ -286,15 +282,18 @@ export default function EdGrantAIChat() {
 
       const data = await response.json();
       const recs = data.recommendations || data.results || [];
-      const orgProfile = data.org_profile_file
+      const orgProfileFile = data.org_profile_file
         || data.org_profile_path
-        || data.org_profile
-        || data.organization_profile
+        || (typeof data.org_profile === 'string' ? data.org_profile : null);
+      if (typeof orgProfileFile === 'string') {
+        setOrgProfileFile(normalizeOrgProfileFilename(orgProfileFile) || '');
+      }
+      const orgProfileJson = data.organization_profile
         || data.processed_org_profile
         || data.org_profile_json
-        || null;
-      if (typeof orgProfile === 'string') {
-        setOrgProfileFile(normalizeOrgProfileFilename(orgProfile) || '');
+        || (data.org_profile && typeof data.org_profile === 'object' ? data.org_profile : null);
+      if (orgProfileJson && typeof orgProfileJson === 'object') {
+        setProcessedOrgProfileJson(orgProfileJson);
       }
       setRecommendations(recs);
       setMessages((prev) => [
@@ -319,8 +318,7 @@ export default function EdGrantAIChat() {
     }
   };
 
-  const orgProfileLink = orgProfileUrl(orgProfileFile);
-  const hasOrgProfile = Boolean(orgProfileLink);
+  const hasOrgProfile = Boolean(processedOrgProfileJson);
 
   return (
     <div className="container edg-chat">
@@ -445,7 +443,7 @@ export default function EdGrantAIChat() {
                     <button
                       type="button"
                       className="edg-rec-action"
-                      onClick={() => openUrl(orgProfileLink)}
+                      onClick={() => openJsonTab(processedOrgProfileJson)}
                       disabled={!hasOrgProfile}
                     >
                       Organization (JSON)
