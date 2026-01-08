@@ -80,7 +80,7 @@ export default function EdGrantAIChat() {
     setError('');
   };
 
-  const downloadReport = (rec, idx) => {
+  const openReport = (rec, idx) => {
     const report = {
       generated_at: new Date().toISOString(),
       org_name: submittedOrgName || null,
@@ -91,13 +91,8 @@ export default function EdGrantAIChat() {
     };
     const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `edgrantai-match-${slugify(formatGrantName(rec))}-rank-${idx + 1}.json`;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.setTimeout(() => URL.revokeObjectURL(url), 0);
+    window.open(url, '_blank', 'noopener');
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   useEffect(() => {
@@ -420,18 +415,18 @@ export default function EdGrantAIChat() {
                             href={rec.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="edg-rec-link"
+                            className="edg-rec-action"
                           >
-                            View source
+                            Grant Info...
                           </a>
                         )}
                         {showDownload && (
                           <button
                             type="button"
-                            className="edg-rec-download"
-                            onClick={() => downloadReport(rec, idx)}
+                            className="edg-rec-action"
+                            onClick={() => openReport(rec, idx)}
                           >
-                            Download JSON
+                            Match Report (JSON)
                           </button>
                         )}
                       </div>

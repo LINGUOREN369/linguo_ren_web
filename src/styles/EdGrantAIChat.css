@@ -383,20 +383,6 @@
   line-height: 1.6;
 }
 
-.edg-rec-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--chat-accent);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.edg-rec-link:hover,
-.edg-rec-link:focus-visible {
-  text-decoration: underline;
-}
-
 .edg-rec-actions {
   display: flex;
   flex-wrap: wrap;
@@ -405,7 +391,10 @@
   margin-top: 8px;
 }
 
-.edg-rec-download {
+.edg-rec-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border: 1px solid rgba(37, 99, 235, 0.3);
   background: rgba(37, 99, 235, 0.1);
   color: var(--chat-ink);
@@ -414,17 +403,18 @@
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
   transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.edg-rec-download:hover,
-.edg-rec-download:focus-visible {
+.edg-rec-action:hover,
+.edg-rec-action:focus-visible {
   border-color: rgba(37, 99, 235, 0.6);
   box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2);
   transform: translateY(-1px);
 }
 
-.theme-dark .edg-rec-download {
+.theme-dark .edg-rec-action {
   border-color: rgba(96, 165, 250, 0.4);
   background: rgba(96, 165, 250, 0.12);
 }
