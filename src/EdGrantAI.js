@@ -367,6 +367,39 @@ export default function EdGrantAI() {
               </div>
             </div>
           </article>
+
+          <article className="edg-step">
+            <div className="edg-step-index">5</div>
+            <div className="edg-step-body edg-card">
+              <h3 className="edg-card-title">Security After Matching and Recommendations</h3>
+              <div className="edg-step-grid">
+                <div className="edg-step-block">
+                  <span className="edg-label">Alignment choices</span>
+                  <ul>
+                    <li>Only mission text is sent to the API; no keys live in the browser.</li>
+                    <li>Requests include a short-lived Turnstile token, not user credentials.</li>
+                    <li>Payloads are minimized to what is needed for matching.</li>
+                  </ul>
+                </div>
+                <div className="edg-step-block">
+                  <span className="edg-label">Guardrails</span>
+                  <ul>
+                    <li>Origin allowlist blocks requests from unapproved sites.</li>
+                    <li>Rate limiting throttles abuse and automated scraping.</li>
+                    <li>Backend auth tokens restrict access to the matching API.</li>
+                  </ul>
+                </div>
+                <div className="edg-step-block">
+                  <span className="edg-label">Why it matters</span>
+                  <ul>
+                    <li>Protects organization data during evaluation.</li>
+                    <li>Prevents key leakage or direct abuse of the model.</li>
+                    <li>Keeps the system available and safe for real users.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 

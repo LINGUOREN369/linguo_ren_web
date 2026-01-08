@@ -13,7 +13,7 @@ const fml_cover = process.env.PUBLIC_URL + '/docs/fml_cover.png';
 const album_wiz = process.env.PUBLIC_URL + '/docs/album-wiz_cover.png';
 const gopro_analysis = process.env.PUBLIC_URL + '/docs/Linguo_Ren_GoPro.pdf';
 // const RVOL_ATR_cover = process.env.PUBLIC_URL + '/docs/RVOL_ATR_cover.png'; // unused
-const edgrantai_cover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.svg';
+const edgrantai_cover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 const maine_tree_flag = process.env.PUBLIC_URL + '/docs/maine_tree_flag.svg';
 const atr_rvol_candles = process.env.PUBLIC_URL + '/docs/atr_rvol_candles.svg';
 

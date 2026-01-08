@@ -9,6 +9,7 @@ import StravaWidget from './StravaWidget';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const favicon = process.env.PUBLIC_URL + '/docs/profile_photo.png';
+const edgrantaiCover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 
 
 function AppContent() {
@@ -24,15 +25,22 @@ function AppContent() {
   const PRONOUNCE_BILINGUAL = '';
 
   useEffect(() => {
+    let shareImage = profilePhoto;
+    let shareAlt = 'Linguo Ren profile photo';
+
     switch (location.pathname) {
       case '/project':
         document.title = "Linguo's Projects";
         break;
       case '/edgrantai':
         document.title = 'EdGrantAI — Evidence-aware grant decisions';
+        shareImage = edgrantaiCover;
+        shareAlt = 'EdGrantAI cover image';
         break;
       case '/edgrantai-chat':
         document.title = 'EdGrantAI — Live recommendations';
+        shareImage = edgrantaiCover;
+        shareAlt = 'EdGrantAI cover image';
         break;
       default:
         document.title = "Linguo's Projects";
@@ -40,6 +48,13 @@ function AppContent() {
 
     let faviconLink = document.querySelector("link[rel='icon']");
     faviconLink.href = favicon;
+
+    const ogImage = document.querySelector("meta[property='og:image']");
+    if (ogImage) ogImage.setAttribute('content', shareImage);
+    const ogImageAlt = document.querySelector("meta[property='og:image:alt']");
+    if (ogImageAlt) ogImageAlt.setAttribute('content', shareAlt);
+    const twitterImage = document.querySelector("meta[name='twitter:image']");
+    if (twitterImage) twitterImage.setAttribute('content', shareImage);
   }, [location]);
 
   // Ensure the home header shows whenever route is '/'
