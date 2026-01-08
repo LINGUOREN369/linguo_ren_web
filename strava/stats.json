@@ -1,9 +1,23 @@
 {
-  "status": "placeholder",
-  "message": "Strava stats will appear after the first scheduled update. Configure Strava secrets in GitHub Actions.",
-  "fetched_at": null,
-  "ytd_run": { "distance_m": 0, "moving_time_s": 0, "elevation_gain_m": 0 },
-  "ytd_ride": { "distance_m": 0, "moving_time_s": 0, "elevation_gain_m": 0 },
-  "all_run": { "distance_m": 0, "moving_time_s": 0, "elevation_gain_m": 0 },
-  "all_ride": { "distance_m": 0, "moving_time_s": 0, "elevation_gain_m": 0 }
+  "fetched_at": "2026-01-08T18:34:36.784Z",
+  "ytd_run": {
+    "distance_m": 16434,
+    "moving_time_s": 5400,
+    "elevation_gain_m": 165
+  },
+  "ytd_ride": {
+    "distance_m": 140406,
+    "moving_time_s": 17628,
+    "elevation_gain_m": 1371
+  },
+  "all_run": {
+    "distance_m": 2662683.799999998,
+    "moving_time_s": 924824,
+    "elevation_gain_m": 21747.09999999999
+  },
+  "all_ride": {
+    "distance_m": 9546492.299999999,
+    "moving_time_s": 1413435,
+    "elevation_gain_m": 87472.90000000001
+  }
 }
