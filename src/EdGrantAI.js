@@ -33,6 +33,13 @@ export default function EdGrantAI() {
                 </span>
                 <span>View on GitHub</span>
               </a>
+              <Link
+                to="/edgrantai-chat"
+                className="portfolio-button portfolio-button--secondary"
+                aria-label="Open EdGrantAI live recommendations chat"
+              >
+                Try Live Recommendations
+              </Link>
             </div>
             <div className="edg-pill-row">
               <span className="edg-pill">Evidence-bound</span>

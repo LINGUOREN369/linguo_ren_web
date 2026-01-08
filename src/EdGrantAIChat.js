@@ -336,10 +336,10 @@ export default function EdGrantAIChat() {
       )}
       <header className="edg-chat-hero">
         <div className="edg-chat-hero-content">
-          <p className="edg-chat-kicker">EdGrantAI Live Matcher</p>
+          <p className="edg-chat-kicker">EdGrantAI Live Recommendations</p>
           <h1 className="edg-chat-title">Mission to Recommendations</h1>
           <p className="edg-chat-subtitle">
-            Describe your mission in plain language. The matcher returns ranked grants, eligibility signals,
+            Describe your mission in plain language. The recommendation engine returns ranked grants, eligibility signals,
             and short explanations you can review with your team.
           </p>
           <div className="edg-chat-hero-actions">
@@ -427,7 +427,7 @@ export default function EdGrantAIChat() {
           </div>
           {recommendations.length > 0 && (
             <p className="edg-rec-note">
-              JSON exports open raw data used by the matcher: the processed organization profile and the full match report.
+              JSON exports open raw data used by the recommendation engine: the processed organization profile and the full match report.
             </p>
           )}
           <div className="edg-chat-feed-body" ref={feedRef}>

@@ -32,7 +32,7 @@ function AppContent() {
         document.title = 'EdGrantAI — Evidence-aware grant decisions';
         break;
       case '/edgrantai-chat':
-        document.title = 'EdGrantAI — Live matcher';
+        document.title = 'EdGrantAI — Live recommendations';
         break;
       default:
         document.title = "Linguo's Projects";
@@ -404,15 +404,9 @@ function AppContent() {
                   className="portfolio-button"
                   aria-label="Open EdGrantAI introduction page"
                 >
-                  EdGrantAI (In Progress)
+                  EdGrantAI
                 </Link>
-                <Link
-                  to="/edgrantai-chat"
-                  className="portfolio-button portfolio-button--secondary"
-                  aria-label="Open EdGrantAI live matcher page"
-                >
-                  EdGrantAI Matcher
-                </Link>
+  
               </div>
               <div className="mt-4"></div>
               <p className="strava-intro">
