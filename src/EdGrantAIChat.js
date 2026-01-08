@@ -61,6 +61,7 @@ export default function EdGrantAIChat() {
   const [recommendations, setRecommendations] = useState([]);
   const [submittedMission, setSubmittedMission] = useState('');
   const [submittedOrgName, setSubmittedOrgName] = useState('');
+  const [processedOrgProfile, setProcessedOrgProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const feedRef = useRef(null);
@@ -81,14 +82,11 @@ export default function EdGrantAIChat() {
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
-  const buildOrgProfile = () => ({
-    org_name: submittedOrgName || null,
-    mission: submittedMission,
-  });
+  const buildOrgProfile = () => processedOrgProfile;
 
   const buildMatchReport = () => ({
     generated_at: new Date().toISOString(),
-    organization: buildOrgProfile(),
+    organization_profile: buildOrgProfile(),
     recommendations: recommendations.map((rec, idx) => ({
       rank: idx + 1,
       ...rec,
@@ -210,6 +208,7 @@ export default function EdGrantAIChat() {
     setError('');
     setIsLoading(true);
     setRecommendations([]);
+    setProcessedOrgProfile(null);
     setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
     setSubmittedMission(trimmed);
     setSubmittedOrgName(orgName.trim());
@@ -242,6 +241,17 @@ export default function EdGrantAIChat() {
 
       const data = await response.json();
       const recs = data.recommendations || data.results || [];
+      const orgProfile = data.organization_profile
+        || data.org_profile
+        || data.org_profile_processed
+        || data.processed_org_profile
+        || data.organization
+        || data.org_profile_json
+        || data.profile
+        || null;
+      if (orgProfile) {
+        setProcessedOrgProfile(orgProfile);
+      }
       setRecommendations(recs);
       setMessages((prev) => [
         ...prev,
@@ -264,6 +274,8 @@ export default function EdGrantAIChat() {
       setIsLoading(false);
     }
   };
+
+  const hasOrgProfile = Boolean(processedOrgProfile);
 
   return (
     <div className="container edg-chat">
@@ -389,6 +401,7 @@ export default function EdGrantAIChat() {
                       type="button"
                       className="edg-rec-action"
                       onClick={() => openJsonTab(buildOrgProfile())}
+                      disabled={!hasOrgProfile}
                     >
                       Organization (JSON)
                     </button>

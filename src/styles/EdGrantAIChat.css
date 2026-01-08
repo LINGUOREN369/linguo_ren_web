@@ -445,6 +445,13 @@
   transform: translateY(-1px);
 }
 
+.edg-rec-action:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 .theme-dark .edg-rec-action {
   border-color: rgba(96, 165, 250, 0.4);
   background: rgba(96, 165, 250, 0.12);
