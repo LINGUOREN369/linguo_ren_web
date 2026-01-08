@@ -36,6 +36,12 @@ const formatScore = (score) => {
   return `${Math.round(score * 100)}%`;
 };
 
+const slugify = (value) => {
+  if (!value || typeof value !== 'string') return 'grant';
+  const slug = value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  return slug || 'grant';
+};
+
 const bucketClass = (bucket) => {
   switch ((bucket || '').toLowerCase()) {
     case 'apply':
@@ -59,6 +65,8 @@ export default function EdGrantAIChat() {
     }
   ]);
   const [recommendations, setRecommendations] = useState([]);
+  const [submittedMission, setSubmittedMission] = useState('');
+  const [submittedOrgName, setSubmittedOrgName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const feedRef = useRef(null);
@@ -70,6 +78,26 @@ export default function EdGrantAIChat() {
     setOrgName(EXAMPLE_CASE_ORG);
     setMission(EXAMPLE_CASE_TEXT);
     setError('');
+  };
+
+  const downloadReport = (rec, idx) => {
+    const report = {
+      generated_at: new Date().toISOString(),
+      org_name: submittedOrgName || null,
+      mission: submittedMission,
+      rank: idx + 1,
+      total_recommendations: recommendations.length,
+      recommendation: rec,
+    };
+    const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `edgrantai-match-${slugify(formatGrantName(rec))}-rank-${idx + 1}.json`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 0);
   };
 
   useEffect(() => {
@@ -188,6 +216,8 @@ export default function EdGrantAIChat() {
     setIsLoading(true);
     setRecommendations([]);
     setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
+    setSubmittedMission(trimmed);
+    setSubmittedOrgName(orgName.trim());
     setMission('');
 
     try {
@@ -354,8 +384,11 @@ export default function EdGrantAIChat() {
             )}
             {recommendations.length > 0 && (
               <div className="edg-chat-recs">
-                {recommendations.map((rec, idx) => (
-                  <article key={`${rec.grant_profile || rec.title}-${idx}`} className="edg-rec-card">
+                {recommendations.map((rec, idx) => {
+                  const score = typeof rec.score === 'number' ? rec.score : null;
+                  const showDownload = idx < 3 || (score !== null && score >= 0.5);
+                  return (
+                    <article key={`${rec.grant_profile || rec.title}-${idx}`} className="edg-rec-card">
                     <header className="edg-rec-header">
                       <div>
                         <h3 className="edg-rec-title">{formatGrantName(rec)}</h3>
@@ -380,18 +413,32 @@ export default function EdGrantAIChat() {
                       </ul>
                     )}
                     {rec.explanation && <p className="edg-rec-explanation">{rec.explanation}</p>}
-                    {rec.url && (
-                      <a
-                        href={rec.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="edg-rec-link"
-                      >
-                        View source
-                      </a>
+                    {(rec.url || showDownload) && (
+                      <div className="edg-rec-actions">
+                        {rec.url && (
+                          <a
+                            href={rec.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="edg-rec-link"
+                          >
+                            View source
+                          </a>
+                        )}
+                        {showDownload && (
+                          <button
+                            type="button"
+                            className="edg-rec-download"
+                            onClick={() => downloadReport(rec, idx)}
+                          >
+                            Download JSON
+                          </button>
+                        )}
+                      </div>
                     )}
                   </article>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
