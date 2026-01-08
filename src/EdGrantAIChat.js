@@ -6,7 +6,24 @@ const API_ENDPOINT = process.env.REACT_APP_EDGRANT_API_URL
   || 'https://edgrantai-proxy.lren-31b.workers.dev/recommend';
 const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITE_KEY
   || '0x4AAAAAACK9_1Q5N9HOGc3h';
-const SAMPLE_MISSION = "We expand STEM learning for K-12 students through teacher training, rural outreach, and after-school robotics programs.";
+const EXAMPLE_CASE_ORG = 'Utopia Math & Science Association (UMSA)';
+const EXAMPLE_CASE_TEXT = `Utopia Math & Science Association -- Organizational Profile (For Grant-Matching Test)
+
+The Utopia Math & Science Association (UMSA) is a nonprofit STEM education organization dedicated to improving how science, technology, engineering, and mathematics are taught and experienced by learners across diverse communities. Founded in 2004 with early support from regional education funders and national STEM initiatives, UMSA has grown into a recognized leader in designing innovative STEM learning models, strengthening educator capacity, and advancing research-informed improvements in STEM instruction.
+
+Since its founding, UMSA has received more than $18 million in grants and philanthropic funding to support its work. The organization collaborates with K-12 schools, school districts, state and local agencies, higher education institutions, and national partners to expand access to high-quality STEM learning opportunities and to scale effective instructional practices.
+
+UMSA's mission is to inspire meaningful and engaging STEM learning experiences so that all youth--regardless of background, geography, or circumstance--can become the innovators, problem-solvers, and contributors of tomorrow's workforce and civic life.
+
+UMSA's work spans three interconnected strategic functions. First, the organization designs and delivers high-quality STEM professional development for educators, supporting teachers in implementing inquiry-based, student-centered instruction and building confidence and pedagogical skill across K-12 classrooms. Second, UMSA conducts research and evaluation focused on STEM learning experiences, assessing education initiatives to identify effective models and translating findings into actionable insights for educators, schools, and education systems. Third, UMSA prioritizes relationship and network building by fostering partnerships at the local, regional, and national levels, developing educator networks that sustain long-term STEM improvement, and supporting community-based and rural STEM engagement efforts.
+
+UMSA was established as a 501(c)(3) nonprofit organization in 2004 and has steadily expanded its reach through multi-year professional learning initiatives, applied research projects, and cross-sector STEM collaborations. Over the past two decades, the organization has built a strong reputation for combining practical educator support with evidence-informed research and systems-level impact.
+
+Equity and accessibility are central to UMSA's approach. The organization is committed to ensuring that all students--particularly those in rural, underserved, or historically marginalized communities--have meaningful opportunities to engage in high-quality STEM learning. UMSA integrates principles of diversity, equity, inclusion, and accessibility (DEIA) into its programs, partnerships, and organizational decision-making.
+
+For grant-matching and testing purposes, UMSA seeks funding to scale educator training, expand STEM access in rural and underserved communities, and strengthen research and evaluation efforts that support systemic improvement in STEM education. Grant funding would enable the organization to develop new research-backed professional development programs, refine and evaluate STEM teaching models, expand regional and statewide educator networks, and disseminate tools, findings, and best practices.
+
+In summary, UMSA requests funding to expand research-backed STEM professional development for K-12 educators, with a targeted focus on rural and underserved communities. Grant support will allow UMSA to design and deliver inquiry-based training, provide sustained coaching and evaluation, and strengthen educator networks that translate evidence-based practices into classroom implementation. By pairing high-quality professional learning with applied research and dissemination, this investment will increase educator capacity, improve STEM instruction at scale, and ensure that students--regardless of geography or background--gain equitable access to engaging, high-impact STEM learning experiences.`;
 
 const formatGrantName = (rec) => {
   const raw = rec.title || rec.name || rec.program || rec.grant_profile || 'Grant';
@@ -49,6 +66,11 @@ export default function EdGrantAIChat() {
   const turnstileWidgetRef = useRef(null);
   const turnstileTokenRef = useRef('');
   const turnstilePendingRef = useRef(null);
+  const loadExampleCase = () => {
+    setOrgName(EXAMPLE_CASE_ORG);
+    setMission(EXAMPLE_CASE_TEXT);
+    setError('');
+  };
 
   useEffect(() => {
     if (feedRef.current) {
@@ -278,13 +300,26 @@ export default function EdGrantAIChat() {
               <button type="submit" className="portfolio-button" disabled={isLoading}>
                 {isLoading ? 'Matching...' : 'Generate recommendations'}
               </button>
-              <button
-                type="button"
-                className="portfolio-button portfolio-button--secondary"
-                onClick={() => setMission(SAMPLE_MISSION)}
-              >
-                Use sample mission
-              </button>
+            </div>
+
+            <div className="edg-chat-example edg-chat-advanced">
+              <div className="edg-chat-example-header">
+                <div>
+                  <p className="edg-chat-example-title">Example case: Utopia Math & Science Association</p>
+                  <p className="edg-chat-example-subtitle">Use this organizational profile to test grant matching.</p>
+                </div>
+                <button
+                  type="button"
+                  className="portfolio-button portfolio-button--secondary"
+                  onClick={loadExampleCase}
+                >
+                  Load example case
+                </button>
+              </div>
+              <details className="edg-chat-example-details">
+                <summary>View full profile text</summary>
+                <pre className="edg-chat-example-text">{EXAMPLE_CASE_TEXT}</pre>
+              </details>
             </div>
 
             {TURNSTILE_SITE_KEY && (

@@ -185,6 +185,57 @@
   padding-top: 12px;
 }
 
+.edg-chat-example {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.edg-chat-example-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.edg-chat-example-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--chat-ink);
+}
+
+.edg-chat-example-subtitle {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--chat-muted);
+}
+
+.edg-chat-example-details summary {
+  cursor: pointer;
+  color: var(--chat-accent);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.edg-chat-example-text {
+  margin: 10px 0 0;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--chat-panel-border);
+  background: rgba(148, 163, 184, 0.12);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--chat-ink);
+  white-space: pre-wrap;
+  font-family: inherit;
+}
+
+.theme-dark .edg-chat-example-text {
+  background: rgba(30, 41, 59, 0.6);
+}
+
 .edg-chat-hint {
   font-size: 0.85rem;
   color: var(--chat-muted);
