@@ -21,6 +21,10 @@ export default function StravaWidget() {
   }, []);
 
   const fmt = (n, digits = 1) => n.toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits });
+  const status = stats?.status;
+  const statusMessage = stats?.message;
+  const isPlaceholder = status === 'placeholder';
+  const isErrored = status === 'error';
 
   const renderTotals = (label, obj) => (
     <div className="strava-row">
@@ -43,7 +47,12 @@ export default function StravaWidget() {
       </div>
       {!stats && !error && <div className="strava-loading">Loading…</div>}
       {error && <div className="strava-error">Stats unavailable</div>}
-      {stats && (
+      {stats && (isPlaceholder || isErrored) && (
+        <div className={isErrored ? 'strava-error' : 'strava-loading'}>
+          {statusMessage || (isErrored ? 'Stats unavailable' : 'Stats not configured yet')}
+        </div>
+      )}
+      {stats && !(isPlaceholder || isErrored) && (
         <div className="strava-body">
           <div className="strava-section">
             <div className="strava-section-title">Year to Date</div>
