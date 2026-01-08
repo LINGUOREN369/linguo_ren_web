@@ -257,7 +257,7 @@ export default function EdGrantAIChat() {
     setMission('');
 
     try {
-      const payload = { mission: trimmed };
+      const payload = { mission: trimmed, explain: true };
       if (orgName.trim()) payload.org_name = orgName.trim();
 
       let token = null;
@@ -484,6 +484,8 @@ export default function EdGrantAIChat() {
                 </div>
                 {recommendations.map((rec, idx) => {
                   const profileUrl = grantProfileUrl(rec);
+                  const score = typeof rec.score === 'number' ? rec.score : null;
+                  const showExplanation = idx < 3 || (score !== null && score >= 0.6);
                   return (
                     <article key={`${rec.grant_profile || rec.title}-${idx}`} className="edg-rec-card">
                       <header className="edg-rec-header">
@@ -513,7 +515,9 @@ export default function EdGrantAIChat() {
                           ))}
                         </ul>
                       )}
-                      {rec.explanation && <p className="edg-rec-explanation">{rec.explanation}</p>}
+                      {showExplanation && rec.explanation && (
+                        <p className="edg-rec-explanation">{rec.explanation}</p>
+                      )}
                       <div className="edg-rec-actions">
                         {rec.url && (
                           <a
