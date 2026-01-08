@@ -25,6 +25,7 @@ Equity and accessibility are central to UMSA's approach. The organization is com
 For grant-matching and testing purposes, UMSA seeks funding to scale educator training, expand STEM access in rural and underserved communities, and strengthen research and evaluation efforts that support systemic improvement in STEM education. Grant funding would enable the organization to develop new research-backed professional development programs, refine and evaluate STEM teaching models, expand regional and statewide educator networks, and disseminate tools, findings, and best practices.
 
 In summary, UMSA requests funding to expand research-backed STEM professional development for K-12 educators, with a targeted focus on rural and underserved communities. Grant support will allow UMSA to design and deliver inquiry-based training, provide sustained coaching and evaluation, and strengthen educator networks that translate evidence-based practices into classroom implementation. By pairing high-quality professional learning with applied research and dissemination, this investment will increase educator capacity, improve STEM instruction at scale, and ensure that students--regardless of geography or background--gain equitable access to engaging, high-impact STEM learning experiences.`;
+const MAX_MESSAGE_PREVIEW = 240;
 
 const formatGrantName = (rec) => {
   const raw = rec.title || rec.name || rec.program || rec.grant_profile || 'Grant';
@@ -322,6 +323,17 @@ export default function EdGrantAIChat() {
 
   return (
     <div className="container edg-chat">
+      {error && (
+        <div className="edg-error-overlay" role="alert" aria-live="assertive">
+          <div className="edg-error-card">
+            <p className="edg-error-title">Action needed</p>
+            <p className="edg-error-message">{error}</p>
+            <button type="button" className="edg-error-dismiss" onClick={() => setError('')}>
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
       <header className="edg-chat-hero">
         <div className="edg-chat-hero-content">
           <p className="edg-chat-kicker">EdGrantAI Live Matcher</p>
@@ -409,7 +421,6 @@ export default function EdGrantAIChat() {
               </div>
             )}
 
-            {error && <div className="edg-chat-error">{error}</div>}
           </form>
         </section>
 
@@ -426,7 +437,17 @@ export default function EdGrantAIChat() {
           <div className="edg-chat-feed-body" ref={feedRef}>
             {messages.map((msg, idx) => (
               <div key={`${msg.role}-${idx}`} className={`edg-chat-bubble edg-chat-bubble--${msg.role}`}>
-                <p>{msg.text}</p>
+                {msg.role === 'user' && typeof msg.text === 'string' && msg.text.length > MAX_MESSAGE_PREVIEW ? (
+                  <>
+                    <p>{`${msg.text.slice(0, MAX_MESSAGE_PREVIEW).trim()}...`}</p>
+                    <details className="edg-chat-message-details">
+                      <summary>View full mission</summary>
+                      <pre className="edg-chat-message-full">{msg.text}</pre>
+                    </details>
+                  </>
+                ) : (
+                  <p>{msg.text}</p>
+                )}
               </div>
             ))}
             {isLoading && (
@@ -474,7 +495,11 @@ export default function EdGrantAIChat() {
                         </div>
                       </header>
                       <div className="edg-rec-details">
-                        {rec.deadline && <div><span>Deadline:</span> {rec.deadline}</div>}
+                        {rec.deadline ? (
+                          <div><span>Deadline:</span> {rec.deadline}</div>
+                        ) : (
+                          <div><span>Deadline:</span> Needs human review</div>
+                        )}
                         {rec.anticipated_funding_amount && (
                           <div><span>Funding:</span> {rec.anticipated_funding_amount}</div>
                         )}
