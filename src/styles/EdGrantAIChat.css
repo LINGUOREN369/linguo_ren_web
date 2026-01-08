@@ -317,6 +317,37 @@
   margin-top: 6px;
 }
 
+.edg-rec-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px dashed var(--chat-panel-border);
+  background: rgba(148, 163, 184, 0.08);
+}
+
+.edg-rec-tools-title {
+  margin: 0;
+  font-weight: 600;
+  color: var(--chat-ink);
+  font-size: 0.95rem;
+}
+
+.edg-rec-tools-subtitle {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: var(--chat-muted);
+}
+
+.edg-rec-tools-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .edg-rec-card {
   background: var(--chat-panel);
   border: 1px solid var(--chat-panel-border);

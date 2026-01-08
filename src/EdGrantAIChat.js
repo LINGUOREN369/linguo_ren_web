@@ -74,20 +74,26 @@ export default function EdGrantAIChat() {
     setError('');
   };
 
-  const openReport = (rec, idx) => {
-    const report = {
-      generated_at: new Date().toISOString(),
-      org_name: submittedOrgName || null,
-      mission: submittedMission,
-      rank: idx + 1,
-      total_recommendations: recommendations.length,
-      recommendation: rec,
-    };
-    const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+  const openJsonTab = (payload) => {
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     window.open(url, '_blank', 'noopener');
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
+
+  const buildOrgProfile = () => ({
+    org_name: submittedOrgName || null,
+    mission: submittedMission,
+  });
+
+  const buildMatchReport = () => ({
+    generated_at: new Date().toISOString(),
+    organization: buildOrgProfile(),
+    recommendations: recommendations.map((rec, idx) => ({
+      rank: idx + 1,
+      ...rec,
+    })),
+  });
 
   useEffect(() => {
     if (feedRef.current) {
@@ -373,11 +379,30 @@ export default function EdGrantAIChat() {
             )}
             {recommendations.length > 0 && (
               <div className="edg-chat-recs">
-                {recommendations.map((rec, idx) => {
-                  const score = typeof rec.score === 'number' ? rec.score : null;
-                  const showDownload = idx < 3 || (score !== null && score >= 0.5);
-                  return (
-                    <article key={`${rec.grant_profile || rec.title}-${idx}`} className="edg-rec-card">
+                <div className="edg-rec-tools">
+                  <div>
+                    <p className="edg-rec-tools-title">JSON exports</p>
+                    <p className="edg-rec-tools-subtitle">Organization profile and full match report.</p>
+                  </div>
+                  <div className="edg-rec-tools-actions">
+                    <button
+                      type="button"
+                      className="edg-rec-action"
+                      onClick={() => openJsonTab(buildOrgProfile())}
+                    >
+                      Organization (JSON)
+                    </button>
+                    <button
+                      type="button"
+                      className="edg-rec-action"
+                      onClick={() => openJsonTab(buildMatchReport())}
+                    >
+                      Match Report (JSON)
+                    </button>
+                  </div>
+                </div>
+                {recommendations.map((rec, idx) => (
+                  <article key={`${rec.grant_profile || rec.title}-${idx}`} className="edg-rec-card">
                     <header className="edg-rec-header">
                       <div>
                         <h3 className="edg-rec-title">{formatGrantName(rec)}</h3>
@@ -402,32 +427,27 @@ export default function EdGrantAIChat() {
                       </ul>
                     )}
                     {rec.explanation && <p className="edg-rec-explanation">{rec.explanation}</p>}
-                    {(rec.url || showDownload) && (
-                      <div className="edg-rec-actions">
-                        {rec.url && (
-                          <a
-                            href={rec.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="edg-rec-action"
-                          >
-                            Grant Info...
-                          </a>
-                        )}
-                        {showDownload && (
-                          <button
-                            type="button"
-                            className="edg-rec-action"
-                            onClick={() => openReport(rec, idx)}
-                          >
-                            Match Report (JSON)
-                          </button>
-                        )}
-                      </div>
-                    )}
+                    <div className="edg-rec-actions">
+                      {rec.url && (
+                        <a
+                          href={rec.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="edg-rec-action"
+                        >
+                          Grant Info...
+                        </a>
+                      )}
+                      <button
+                        type="button"
+                        className="edg-rec-action"
+                        onClick={() => openJsonTab(rec)}
+                      >
+                        Grant Profile (JSON)
+                      </button>
+                    </div>
                   </article>
-                  );
-                })}
+                ))}
               </div>
             )}
           </div>
