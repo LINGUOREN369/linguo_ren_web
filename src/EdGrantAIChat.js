@@ -281,7 +281,7 @@ export default function EdGrantAIChat() {
               id="org-name"
               type="text"
               className="edg-chat-input"
-              placeholder="Maine Math & Science Alliance"
+              placeholder="Utopia Math & Science Association"
               value={orgName}
               onChange={(event) => setOrgName(event.target.value)}
             />
@@ -291,7 +291,7 @@ export default function EdGrantAIChat() {
               id="mission"
               className="edg-chat-textarea"
               rows="6"
-              placeholder="We expand STEM learning for rural students by training teachers and building after-school programs..."
+              placeholder="The Utopia Math & Science Association (UMSA) is a nonprofit STEM education organization dedicated to improving how science, technology, engineering, and mathematics are taught and experienced by learners across diverse communities..."
               value={mission}
               onChange={(event) => setMission(event.target.value)}
             />
