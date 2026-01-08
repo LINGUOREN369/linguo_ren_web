@@ -37,6 +37,21 @@ const formatScore = (score) => {
   return `${Math.round(score * 100)}%`;
 };
 
+const countList = (value) => (Array.isArray(value) ? value.length : 0);
+
+const buildOrgStats = (profile) => {
+  if (!profile || typeof profile !== 'object') return null;
+  const tags = profile.canonical_tags || {};
+  return {
+    extracted: countList(profile.extracted_phrases),
+    mission: countList(tags.mission_tags),
+    population: countList(tags.population_tags),
+    orgType: countList(tags.org_type_tags),
+    geography: countList(tags.geography_tags),
+    redFlags: countList(tags.red_flag_tags),
+  };
+};
+
 const grantProfileUrl = (rec) => {
   const raw = rec?.grant_profile
     || rec?.profile
@@ -100,6 +115,7 @@ export default function EdGrantAIChat() {
   const [recommendations, setRecommendations] = useState([]);
   const [orgProfileFile, setOrgProfileFile] = useState('');
   const [processedOrgProfileJson, setProcessedOrgProfileJson] = useState(null);
+  const [orgSummary, setOrgSummary] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const feedRef = useRef(null);
@@ -252,6 +268,7 @@ export default function EdGrantAIChat() {
     setRecommendations([]);
     setOrgProfileFile('');
     setProcessedOrgProfileJson(null);
+    setOrgSummary(null);
     setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
     setMission('');
 
@@ -295,6 +312,9 @@ export default function EdGrantAIChat() {
       if (orgProfileJson && typeof orgProfileJson === 'object') {
         setProcessedOrgProfileJson(orgProfileJson);
       }
+      if (data.org_summary && typeof data.org_summary === 'object') {
+        setOrgSummary(data.org_summary);
+      }
       setRecommendations(recs);
       setMessages((prev) => [
         ...prev,
@@ -319,6 +339,9 @@ export default function EdGrantAIChat() {
   };
 
   const hasOrgProfile = Boolean(processedOrgProfileJson);
+  const orgStats = buildOrgStats(processedOrgProfileJson);
+  const orgDisplayName = orgSummary?.name || processedOrgProfileJson?.org_id || 'Organization profile';
+  const orgMission = orgSummary?.mission;
 
   return (
     <div className="container edg-chat">
@@ -434,6 +457,34 @@ export default function EdGrantAIChat() {
             )}
             {recommendations.length > 0 && (
               <div className="edg-chat-recs">
+                <article className="edg-rec-card edg-org-profile">
+                  <div className="edg-org-header">
+                    <div>
+                      <p className="edg-org-title">Organization Profile</p>
+                      <p className="edg-org-subtitle">{orgDisplayName}</p>
+                    </div>
+                    {orgProfileFile && <span className="edg-org-meta">{orgProfileFile}</span>}
+                  </div>
+                  {orgStats ? (
+                    <div className="edg-org-metrics">
+                      <div className="edg-org-stat"><span>Extracted phrases</span>{orgStats.extracted}</div>
+                      <div className="edg-org-stat"><span>Mission tags</span>{orgStats.mission}</div>
+                      <div className="edg-org-stat"><span>Population tags</span>{orgStats.population}</div>
+                      <div className="edg-org-stat"><span>Org type tags</span>{orgStats.orgType}</div>
+                      <div className="edg-org-stat"><span>Geography tags</span>{orgStats.geography}</div>
+                      <div className="edg-org-stat"><span>Red flags</span>{orgStats.redFlags}</div>
+                    </div>
+                  ) : (
+                    <p className="edg-org-empty">Processed organization profile not returned by the API yet.</p>
+                  )}
+                  {orgMission && <p className="edg-org-mission">{orgMission}</p>}
+                  {processedOrgProfileJson && (
+                    <details className="edg-org-details">
+                      <summary>View full profile JSON</summary>
+                      <pre className="edg-org-json">{JSON.stringify(processedOrgProfileJson, null, 2)}</pre>
+                    </details>
+                  )}
+                </article>
                 <div className="edg-rec-tools">
                   <div>
                     <p className="edg-rec-tools-title">JSON exports</p>
@@ -493,7 +544,7 @@ export default function EdGrantAIChat() {
                             rel="noopener noreferrer"
                             className="edg-rec-action"
                           >
-                            Grant Page (NSF)
+                            Grant Info...
                           </a>
                         )}
                         <button
@@ -502,7 +553,7 @@ export default function EdGrantAIChat() {
                           onClick={() => openUrl(profileUrl)}
                           disabled={!profileUrl}
                         >
-                          Grant Profile Extraction & Reasoning
+                          Grant Profile (JSON)
                         </button>
                       </div>
                     </article>
