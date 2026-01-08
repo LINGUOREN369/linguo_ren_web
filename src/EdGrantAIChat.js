@@ -410,9 +410,6 @@ export default function EdGrantAIChat() {
             )}
 
             {error && <div className="edg-chat-error">{error}</div>}
-            <p className="edg-chat-note">
-              This page only sends your mission text to the EdGrantAI matcher. It does not store keys in the browser.
-            </p>
           </form>
         </section>
 
@@ -421,6 +418,11 @@ export default function EdGrantAIChat() {
             <h2 className="edg-chat-card-title">Conversation</h2>
             <span className="edg-chat-status">{isLoading ? 'Analyzing' : 'Ready'}</span>
           </div>
+          {recommendations.length > 0 && (
+            <p className="edg-rec-note">
+              JSON exports open raw data used by the matcher: the processed organization profile and the full match report.
+            </p>
+          )}
           <div className="edg-chat-feed-body" ref={feedRef}>
             {messages.map((msg, idx) => (
               <div key={`${msg.role}-${idx}`} className={`edg-chat-bubble edg-chat-bubble--${msg.role}`}>

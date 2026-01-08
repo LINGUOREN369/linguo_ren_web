@@ -317,6 +317,13 @@
   margin-top: 6px;
 }
 
+.edg-rec-note {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--chat-muted);
+}
+
 .edg-rec-tools {
   display: flex;
   flex-wrap: wrap;
