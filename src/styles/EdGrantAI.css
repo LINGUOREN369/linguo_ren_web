@@ -440,6 +440,85 @@
 .edg-card ul,
 .edg-card ol { margin: 12px 0 0; padding-left: 1.2rem; }
 
+.edg-security-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.edg-security-flow { grid-column: 1 / -1; }
+
+.edg-card .edg-security-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.edg-security-term {
+  display: block;
+  font-weight: 600;
+  color: var(--edg-ink);
+}
+
+.edg-security-detail {
+  display: block;
+  color: var(--edg-muted);
+  font-size: 0.95rem;
+}
+
+.edg-card .edg-flow-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  counter-reset: edg-flow;
+}
+
+.edg-flow-list li {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.edg-flow-list li::before {
+  content: counter(edg-flow);
+  counter-increment: edg-flow;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--edg-accent);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.edg-card .edg-check-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.edg-check-list li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+
+.edg-check-list li::before {
+  content: '+';
+  color: var(--edg-accent);
+  font-weight: 700;
+}
+
 .edg-divider {
   width: 100%;
   height: 1px;

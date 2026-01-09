@@ -67,8 +67,8 @@ export default function EdGrantAI() {
         <div className="edg-hero-grid">
           <div className="edg-hero-copy">
             <span className="edg-eyebrow">EdGantAI: Responsible AI Case Study</span>
-            <h1 className="edg-title">EdGantAI: Responsible AI, Alignment, and Human Oversight</h1>
-            <p className="edg-subtitle">Moving Beyond Generic Chatbots to Reliable Decision Support</p>
+            <h1 className="edg-title">EdGrantAI: Evidence-Bound AI for High-Stakes Nonprofit Decisions</h1>
+            <p className="edg-subtitle">Why reliable decision support requires constraints, refusal, and human oversight</p>
             <div className="edg-cta">
               <a
                 href="https://github.com/LINGUOREN369/EdGrantAI"
@@ -450,50 +450,65 @@ export default function EdGrantAI() {
                 This section explains how the EdGrantAI chat endpoint is protected end-to-end, from the browser to the matching backend.
               </p>
             </div>
-            <div className="edg-grid edg-grid-1 edg-stagger">
-              <article className="edg-card">
-                <div className="edg-step-grid">
-                  <div className="edg-step-block">
-                    <span className="edg-label">Components</span>
-                    <ul>
-                      <li>Frontend: https://linguoren.com/edgrantai-chat</li>
-                      <li>Cloudflare Worker (edge gateway): https://edgrantai-proxy.lren-31b.workers.dev/recommend</li>
-                      <li>Render API (backend): https://edgrantai-api.onrender.com/recommend</li>
-                    </ul>
-                  </div>
-                  <div className="edg-step-block">
-                    <span className="edg-label">Request flow</span>
-                    <ol>
-                      <li>User submits a mission in the browser.</li>
-                      <li>Turnstile runs in the browser and returns a short-lived token.</li>
-                      <li>Browser sends mission + Turnstile token to the Worker.</li>
-                      <li>Worker validates Origin, Turnstile token, and rate limits the client.</li>
-                      <li>Worker injects EDGRANT_API_TOKEN and forwards to Render.</li>
-                      <li>Render validates the token and uses OPENAI_API_KEY for matching.</li>
-                      <li>Recommendations flow back to the browser.</li>
-                    </ol>
-                  </div>
-                </div>
-                <div className="edg-step-grid">
-                  <div className="edg-step-block">
-                    <span className="edg-label">Secrets and where they live</span>
-                    <ul>
-                      <li>OPENAI_API_KEY: Render only.</li>
-                      <li>EDGRANT_API_TOKEN: Worker + Render only.</li>
-                      <li>TURNSTILE_SECRET: Worker only.</li>
-                      <li>TURNSTILE_SITE_KEY: Frontend (public by design).</li>
-                    </ul>
-                  </div>
-                  <div className="edg-step-block">
-                    <span className="edg-label">Protections in place</span>
-                    <ul>
-                      <li>Origin allowlist: only https://linguoren.com (and https://www.linguoren.com) are accepted.</li>
-                      <li>Turnstile verification: blocks spoofed requests without a valid browser token.</li>
-                      <li>Rate limiting: throttles abusive traffic per IP.</li>
-                      <li>Backend auth: Render accepts only requests with a valid token.</li>
-                    </ul>
-                  </div>
-                </div>
+            <div className="edg-security-grid edg-stagger">
+              <article className="edg-card edg-card--accent edg-security-flow">
+                <span className="edg-label">Request flow</span>
+                <ol className="edg-flow-list">
+                  <li>User submits a mission in the browser.</li>
+                  <li>Turnstile runs in the browser and returns a short-lived token.</li>
+                  <li>Browser sends mission + Turnstile token to the edge gateway.</li>
+                  <li>Edge gateway validates origin, Turnstile token, and rate limits the client.</li>
+                  <li>Edge gateway injects a server-side API token and forwards to the backend.</li>
+                  <li>Backend validates the token and uses a server-only LLM API key for matching.</li>
+                  <li>Recommendations flow back to the browser.</li>
+                </ol>
+              </article>
+              <article className="edg-card edg-card--soft">
+                <span className="edg-label">Components</span>
+                <ul className="edg-security-list">
+                  <li>
+                    <span className="edg-security-term">Frontend</span>
+                    <span className="edg-security-detail">EdGrantAI Chat (browser)</span>
+                  </li>
+                  <li>
+                    <span className="edg-security-term">Edge gateway</span>
+                    <span className="edg-security-detail">Cloudflare Worker</span>
+                  </li>
+                  <li>
+                    <span className="edg-security-term">Matching backend</span>
+                    <span className="edg-security-detail">Render API</span>
+                  </li>
+                </ul>
+              </article>
+              <article className="edg-card edg-card--soft">
+                <span className="edg-label">Secrets and where they live</span>
+                <ul className="edg-security-list">
+                  <li>
+                    <span className="edg-security-term">LLM API key</span>
+                    <span className="edg-security-detail">Backend only</span>
+                  </li>
+                  <li>
+                    <span className="edg-security-term">Server-side API token</span>
+                    <span className="edg-security-detail">Edge gateway + backend only</span>
+                  </li>
+                  <li>
+                    <span className="edg-security-term">Turnstile secret key</span>
+                    <span className="edg-security-detail">Edge gateway only</span>
+                  </li>
+                  <li>
+                    <span className="edg-security-term">Turnstile site key</span>
+                    <span className="edg-security-detail">Frontend (public by design)</span>
+                  </li>
+                </ul>
+              </article>
+              <article className="edg-card edg-card--soft">
+                <span className="edg-label">Protections in place</span>
+                <ul className="edg-check-list">
+                  <li>Origin allowlist: only first-party domains are accepted.</li>
+                  <li>Turnstile verification: blocks spoofed requests without a valid browser token.</li>
+                  <li>Rate limiting: throttles abusive traffic per IP.</li>
+                  <li>Backend auth: accepts only requests with a valid server-side token.</li>
+                </ul>
               </article>
             </div>
           </section>
