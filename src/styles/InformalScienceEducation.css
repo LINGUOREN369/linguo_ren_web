@@ -48,7 +48,7 @@
 
 .ise-side-nav {
   position: sticky;
-  top: 110px;
+  top: 96px;
   align-self: start;
   padding: 16px 14px;
   border-radius: 18px;
@@ -199,7 +199,7 @@
   margin-top: 3.5rem;
   padding-top: 2.5rem;
   border-top: 1px solid #e5e7eb;
-  scroll-margin-top: 120px;
+  scroll-margin-top: 132px;
 }
 
 .ise-main > .ise-subpage:first-child { margin-top: 0; }
@@ -368,7 +368,7 @@
 
 @media (max-width: 1099px) {
   .ise-layout { grid-template-columns: 1fr; }
-  .ise-side-nav { top: 24px; }
+  .ise-side-nav { top: 76px; }
   .ise-side-list {
     display: flex;
     flex-wrap: nowrap;
@@ -383,4 +383,9 @@
   .ise-citation-list {
     column-count: 2;
   }
+}
+
+@media (max-width: 700px) {
+  .ise-layout { padding-top: 2.5rem; }
+  .ise-subpage { scroll-margin-top: 150px; }
 }

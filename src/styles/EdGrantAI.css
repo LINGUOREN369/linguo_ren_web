@@ -198,7 +198,7 @@
 
 .edg-side-nav {
   position: sticky;
-  top: 110px;
+  top: 96px;
   align-self: start;
   padding: 18px 16px;
   border-radius: 18px;
@@ -740,7 +740,7 @@
 
 @media (max-width: 1099px) {
   .edg-layout { grid-template-columns: 1fr; }
-  .edg-side-nav { top: 24px; }
+  .edg-side-nav { top: 76px; }
   .edg-side-list {
     display: flex;
     flex-wrap: nowrap;
@@ -754,6 +754,8 @@
 @media (max-width: 700px) {
   .edg-panel { padding: 22px; }
   .edg-title { font-size: 2.1rem; }
+  .edg-layout { padding-top: 48px; }
+  .edg-section { scroll-margin-top: 140px; }
   .edg-step { grid-template-columns: 1fr; }
   .edg-step-index { margin-left: 8px; }
   .edg-timeline::before { left: 24px; }
