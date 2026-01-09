@@ -6,10 +6,12 @@ import Project from './Project';
 import EdGrantAI from './EdGrantAI';
 import EdGrantAIChat from './EdGrantAIChat';
 import StravaWidget from './StravaWidget';
+import InformalScienceEducation from './InformalScienceEducation';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const favicon = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const edgrantaiCover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
+const maineTreeFlag = process.env.PUBLIC_URL + '/docs/maine_tree_flag.svg';
 
 
 function AppContent() {
@@ -41,6 +43,11 @@ function AppContent() {
         document.title = 'EdGrantAI — Live recommendations';
         shareImage = edgrantaiCover;
         shareAlt = 'EdGrantAI cover image';
+        break;
+      case '/informal-science-education':
+        document.title = 'Informal STEM Education for Maine';
+        shareImage = maineTreeFlag;
+        shareAlt = 'Maine tree flag illustration';
         break;
       default:
         document.title = "Linguo's Projects";
@@ -439,6 +446,7 @@ function AppContent() {
             <Route path="/project" element={<Project />} />
             <Route path="/edgrantai" element={<EdGrantAI />} />
             <Route path="/edgrantai-chat" element={<EdGrantAIChat />} />
+            <Route path="/informal-science-education" element={<InformalScienceEducation />} />
           </Routes>
         </div>
       </div>

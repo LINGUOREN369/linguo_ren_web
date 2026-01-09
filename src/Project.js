@@ -27,10 +27,10 @@ function Project() {
       tags: ["Python", "Education", "NLP", "Machine Learning & Deep Learning"],
     },
     {
-      link: "https://sites.google.com/view/informal-science-education-me/home",
       title: "Informal Science Education",
       description: "Helps Maine K‑12 educators connect with informal science education providers, opportunities, and resources.",
       image: maine_tree_flag,
+      route: "/informal-science-education",
       tags: ["Education", "Web Development"],
     },
     {
