@@ -13,6 +13,7 @@ const profilePhoto = process.env.PUBLIC_URL + '/docs/linguo4.JPG';
 const favicon = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const edgrantaiCover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 const maineEducatorsHero = process.env.PUBLIC_URL + '/docs/ise-maine-educators.svg';
+const informalScienceFavicon = process.env.PUBLIC_URL + '/docs/maine_tree_flag.svg';
 
 
 function AppContent() {
@@ -30,6 +31,7 @@ function AppContent() {
   useEffect(() => {
     let shareImage = profilePhoto;
     let shareAlt = 'Linguo Ren profile photo';
+    let faviconImage = favicon;
 
     switch (location.pathname) {
       case '/project':
@@ -42,28 +44,46 @@ function AppContent() {
         document.title = 'EdGrantAI — Evidence-aware grant decisions';
         shareImage = edgrantaiCover;
         shareAlt = 'EdGrantAI cover image';
+        faviconImage = edgrantaiCover;
+        break;
+      case '/edgrant':
+        document.title = 'EdGrantAI — Evidence-aware grant decisions';
+        shareImage = edgrantaiCover;
+        shareAlt = 'EdGrantAI cover image';
+        faviconImage = edgrantaiCover;
         break;
       case '/edgrantai-chat':
         document.title = 'EdGrantAI — Live recommendations';
         shareImage = edgrantaiCover;
         shareAlt = 'EdGrantAI cover image';
+        faviconImage = edgrantaiCover;
         break;
       case '/edgrantai-grants':
         document.title = 'EdGrantAI — Grant database';
         shareImage = edgrantaiCover;
         shareAlt = 'EdGrantAI cover image';
+        faviconImage = edgrantaiCover;
         break;
       case '/informal-science-education':
         document.title = 'Informal STEM Education for Maine';
         shareImage = maineEducatorsHero;
         shareAlt = 'Maine informal science education illustration';
+        faviconImage = informalScienceFavicon;
         break;
       default:
         document.title = "Linguo's Projects";
     }
 
     let faviconLink = document.querySelector("link[rel='icon']");
-    faviconLink.href = favicon;
+    if (faviconLink) {
+      const type = faviconImage.endsWith('.svg')
+        ? 'image/svg+xml'
+        : faviconImage.endsWith('.jpg') || faviconImage.endsWith('.jpeg')
+          ? 'image/jpeg'
+          : 'image/png';
+      faviconLink.href = faviconImage;
+      faviconLink.setAttribute('type', type);
+    }
 
     const ogImage = document.querySelector("meta[property='og:image']");
     if (ogImage) ogImage.setAttribute('content', shareImage);
