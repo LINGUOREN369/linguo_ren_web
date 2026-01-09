@@ -347,22 +347,24 @@ function AppContent() {
                 </div>
               )}
               <p className="lead">
-                I am a public-interest technologist applying AI to education equity and efficient resource allocation. I work at the intersection of AI,
-                evidence, and decision-making in resource-constrained nonprofit contexts.
+                I am a public-interest technologist focused on how AI and data systems shape real decisions in education and social-impact organizations.
+                My work centers on the intersection of evidence, accountability, and decision-making under constraint, especially in environments where
+                time, funding, and responsibility are unevenly distributed.
               </p>
               <p>
-                I began EdGrantAI while consulting for nonprofits and watching understaffed teams struggle to navigate complex funding decisions. Building
-                an AI-assisted decision-support system showed me the hardest part was not modeling or extraction, but deciding when the system should
-                refuse to decide.
+                Across consulting, research, and system-building work with nonprofits, I have repeatedly seen that the hardest problems are rarely
+                technical. Organizations struggle less with access to tools than with how judgments are made, how uncertainty is handled, and how
+                responsibility is assigned when decisions carry real human and financial consequences. These experiences have pushed my work toward
+                understanding not just whether AI can help, but when it should, and when it should not.
               </p>
               <p>
-                That realization shifted the work from a product to a living case study on evidence ambiguity, responsibility, and decision risk. I use
-                system design to surface where AI decision support can mislead, overstep, or quietly shift responsibility onto staff with limited time
-                and capacity.
+                EdGrantAI emerged from this trajectory as a concrete case study: an attempt to apply AI to a real decision bottleneck and, in doing so,
+                surface the risks that arise when automation meets ambiguous evidence and limited capacity.
               </p>
               <p>
-                I am particularly interested in evidence-informed decision support, responsible AI, and how organizations design systems that
-                acknowledge uncertainty rather than obscure it.
+                Going forward, my goal is to continue working on evidence-informed decision support and responsible AI implementation, helping
+                organizations design systems that make uncertainty explicit, preserve human judgment, and allocate resources more equitably rather than
+                simply more efficiently.
               </p>
 
               {/* Intro divider with social icons */}
