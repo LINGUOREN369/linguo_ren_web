@@ -10,7 +10,6 @@ import StravaWidget from './StravaWidget';
 import InformalScienceEducation from './InformalScienceEducation';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/linguo4.JPG';
-const profilePhotoPlaceholder = process.env.PUBLIC_URL + '/docs/linguo4_low.jpg';
 const favicon = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const edgrantaiCover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 const maineEducatorsHero = process.env.PUBLIC_URL + '/docs/ise-maine-educators.svg';
@@ -282,12 +281,8 @@ function AppContent() {
         {showHeader && location.pathname === '/' && (
           <section
             className={`home-hero${heroLoaded ? ' is-loaded' : ' is-loading'}`}
-            style={{
-              '--home-hero-image': `url(${profilePhoto})`,
-              '--home-hero-placeholder': `url(${profilePhotoPlaceholder})`
-            }}
+            style={{ '--home-hero-image': `url(${profilePhoto})` }}
           >
-            <span className="home-hero-placeholder" aria-hidden="true" />
             <div className="home-hero-content">
               {/* Text Section */}
               <div className="home-hero-panel">

@@ -51,19 +51,6 @@ body {
   background-color: rgba(2, 6, 23, 0.72);
 }
 
-.home-hero-placeholder {
-  position: absolute;
-  inset: 0;
-  background-image: var(--home-hero-placeholder);
-  background-size: 125%;
-  background-position: 10% center;
-  background-repeat: no-repeat;
-  filter: grayscale(100%) contrast(1.08) brightness(0.85);
-  transform: scale(1.12);
-  z-index: 0;
-  opacity: 1;
-}
-
 .home-hero::before {
   content: '';
   position: absolute;
@@ -71,16 +58,17 @@ body {
   background-image: var(--home-hero-image);
   background-size: 125%;
   background-position: 10% center;
-  filter: grayscale(100%) contrast(1.08) brightness(0.85) blur(10px);
-  transform: scale(1.2);
+  filter: grayscale(100%) contrast(1.05) brightness(0.9);
+  transform: scale(1.1);
   opacity: 0;
-  clip-path: inset(0 100% 0 0);
-  will-change: opacity, clip-path, filter, transform;
+  transition: opacity 1.8s ease-out, transform 2.4s ease-out;
+  will-change: opacity, transform;
   z-index: 1;
 }
 
 .home-hero.is-loaded::before {
-  animation: home-hero-scan 2.6s steps(18, end) forwards, home-hero-fade 4.4s ease-out forwards;
+  opacity: 1;
+  transform: scale(1.14);
 }
 
 .home-hero.is-loading::before {
@@ -236,7 +224,6 @@ body {
 @media (max-width: 900px) {
   .home-hero-panel { max-width: 100%; padding: 0 20px 12px 20px; }
   .home-hero-name { letter-spacing: 0.14em; }
-  .home-hero-placeholder { display: none; }
   .home-hero::before {
     display: none;
     background-image: none;
@@ -253,37 +240,10 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .home-hero.is-loaded::before {
-    animation: none;
+    transition: none;
     opacity: 1;
-    clip-path: inset(0 0 0 0);
     filter: grayscale(100%) contrast(1.05) brightness(0.9);
     transform: scale(1.1);
-  }
-}
-
-@keyframes home-hero-scan {
-  0% {
-    clip-path: inset(0 100% 0 0);
-  }
-  100% {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-@keyframes home-hero-fade {
-  0% {
-    opacity: 0;
-    filter: grayscale(100%) contrast(1.1) brightness(0.78) blur(14px);
-    transform: scale(1.22);
-  }
-  55% {
-    opacity: 0.88;
-    filter: grayscale(100%) contrast(1.06) brightness(0.86) blur(6px);
-  }
-  100% {
-    opacity: 1;
-    filter: grayscale(100%) contrast(1.05) brightness(0.9) blur(0);
-    transform: scale(1.14);
   }
 }
 
