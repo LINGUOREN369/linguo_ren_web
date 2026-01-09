@@ -1,7 +1,6 @@
 .edg-container {
   position: relative;
   isolation: isolate;
-  overflow-x: hidden;
   padding: 48px 0 88px;
   font-family: inherit;
   color: var(--edg-ink);
@@ -189,6 +188,77 @@
 }
 
 .edg-hero-card { position: relative; overflow: hidden; }
+
+.edg-layout {
+  display: grid;
+  gap: 32px;
+  align-items: start;
+  padding-top: 64px;
+}
+
+.edg-side-nav {
+  position: sticky;
+  top: 110px;
+  align-self: start;
+  padding: 18px 16px;
+  border-radius: 18px;
+  background: var(--edg-panel);
+  border: 1px solid var(--edg-border);
+  box-shadow: var(--edg-card-shadow);
+  z-index: 10;
+}
+
+.edg-side-title {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--edg-muted);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.edg-side-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.edg-side-link {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  color: var(--edg-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.edg-side-link:hover,
+.edg-side-link:focus-visible {
+  color: var(--edg-ink);
+  background: var(--edg-surface);
+  border-color: var(--edg-border);
+  outline: none;
+}
+
+.edg-side-link.is-active {
+  color: var(--edg-ink);
+  background: rgba(15, 118, 110, 0.12);
+  border-color: rgba(15, 118, 110, 0.3);
+  font-weight: 600;
+}
+
+.theme-dark .edg-side-link.is-active {
+  background: rgba(34, 211, 238, 0.18);
+  border-color: rgba(34, 211, 238, 0.35);
+}
+
+.edg-main { min-width: 0; }
+
+.edg-main > .edg-section:first-child { margin-top: 0; }
 
 .edg-stat {
   margin-top: 16px;
@@ -583,6 +653,23 @@
   .edg-two-col-list { columns: 2; column-gap: 28px; }
   .edg-principles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .edg-structure-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
+}
+
+@media (min-width: 1100px) {
+  .edg-layout { grid-template-columns: minmax(200px, 240px) minmax(0, 1fr); }
+}
+
+@media (max-width: 1099px) {
+  .edg-layout { grid-template-columns: 1fr; }
+  .edg-side-nav { top: 24px; }
+  .edg-side-list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+  .edg-side-link { white-space: nowrap; }
 }
 
 @media (max-width: 700px) {

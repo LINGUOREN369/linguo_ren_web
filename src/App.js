@@ -11,7 +11,7 @@ import InformalScienceEducation from './InformalScienceEducation';
 const profilePhoto = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const favicon = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const edgrantaiCover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
-const maineTreeFlag = process.env.PUBLIC_URL + '/docs/maine_tree_flag.svg';
+const maineEducatorsHero = process.env.PUBLIC_URL + '/docs/ise-maine-educators.svg';
 
 
 function AppContent() {
@@ -49,8 +49,8 @@ function AppContent() {
         break;
       case '/informal-science-education':
         document.title = 'Informal STEM Education for Maine';
-        shareImage = maineTreeFlag;
-        shareAlt = 'Maine tree flag illustration';
+        shareImage = maineEducatorsHero;
+        shareAlt = 'Maine informal science education illustration';
         break;
       default:
         document.title = "Linguo's Projects";

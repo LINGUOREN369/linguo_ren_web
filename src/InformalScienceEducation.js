@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/InformalScienceEducation.css';
 
 const whyInterestImage = process.env.PUBLIC_URL + '/docs/ise-why-interest.svg';
 const whyIdentityImage = process.env.PUBLIC_URL + '/docs/ise-why-identity.svg';
 const educatorsHeroImage = process.env.PUBLIC_URL + '/docs/ise-maine-educators.svg';
+
+const navSections = [
+  { id: 'why-informal-stem-education', label: 'Why informal STEM education' },
+  { id: 'resources-for-maine-educators', label: 'Resources for Maine educators' },
+  { id: 'reference-list', label: 'Reference list' },
+];
 
 const infoItems = [
   'Citizen and community science projects',
@@ -374,6 +380,48 @@ const educatorSections = [
 ];
 
 export default function InformalScienceEducation() {
+  const [activeSection, setActiveSection] = useState(navSections[0]?.id || '');
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const sections = navSections
+      .map((section) => document.getElementById(section.id))
+      .filter(Boolean);
+
+    if (sections.length === 0) {
+      return undefined;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      setActiveSection(navSections[0]?.id || '');
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (visible.length === 0) {
+          return;
+        }
+        const best = visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (best && best.target && best.target.id) {
+          setActiveSection(best.target.id);
+        }
+      },
+      {
+        rootMargin: '-30% 0px -55% 0px',
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="container ise-container">
       <header className="ise-hero">
@@ -408,100 +456,121 @@ export default function InformalScienceEducation() {
         </div>
       </header>
 
-      <section className="ise-subpage" id="why-informal-stem-education">
-        <div className="ise-subpage-header">
-          <h2 className="ise-subpage-title">Why Infomral STEM Education</h2>
-        </div>
-        {whySections.map((section) => (
-          <article
-            key={section.title}
-            className={`ise-subsection${section.image ? ' ise-subsection--media' : ''}`}
-          >
-            <div className="ise-subsection-copy">
-              <h3>{section.title}</h3>
-              {section.quote && <p className="ise-quote">{section.quote}</p>}
-              {section.paragraphs.map((paragraph, index) => (
-                <p key={`${section.title}-${index}`}>{paragraph}</p>
-              ))}
-              {section.link && (
-                <p>
-                  {section.link.prefix}{' '}
-                  <a href={section.link.href} target="_blank" rel="noopener noreferrer">
-                    {section.link.text}
-                  </a>
-                  .
-                </p>
-              )}
-            </div>
-            {section.image && (
-              <img src={section.image} alt={section.title} loading="lazy" />
-            )}
-          </article>
-        ))}
-      </section>
+      <div className="ise-layout">
+        <nav className="ise-side-nav" aria-label="Informal STEM education navigation">
+          <div className="ise-side-title">On this page</div>
+          <ul className="ise-side-list">
+            {navSections.map((section) => (
+              <li key={section.id}>
+                <a
+                  className={`ise-side-link${activeSection === section.id ? ' is-active' : ''}`}
+                  href={`#${section.id}`}
+                  aria-current={activeSection === section.id ? 'location' : undefined}
+                >
+                  {section.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-      <section className="ise-subpage" id="resources-for-maine-educators">
-        <div className="ise-subpage-header">
-          <h2 className="ise-subpage-title">Resources for Maine Educators</h2>
-          <p className="ise-subpage-subtitle">Informal STEM EDUCATION in Maine</p>
-        </div>
-        <img
-          className="ise-banner"
-          src={educatorHeroImage}
-          alt="Informal STEM education in Maine"
-          loading="lazy"
-        />
-        <div className="ise-resource-sections">
-          {educatorSections.map((section) => (
-            <article className="ise-resource-section" key={section.title}>
-              <h3 className="ise-resource-title">{section.title}</h3>
-              {section.intro.map((paragraph, index) => (
-                <p key={`${section.title}-intro-${index}`}>{paragraph}</p>
-              ))}
-              {section.introList && (
-                <ol className="ise-resource-list">
-                  {section.introList.map((item, index) => (
-                    <li key={`${section.title}-list-${index}`}>{item}</li>
+        <div className="ise-main">
+          <section className="ise-subpage" id="why-informal-stem-education">
+            <div className="ise-subpage-header">
+              <h2 className="ise-subpage-title">Why Infomral STEM Education</h2>
+            </div>
+            {whySections.map((section) => (
+              <article
+                key={section.title}
+                className={`ise-subsection${section.image ? ' ise-subsection--media' : ''}`}
+              >
+                <div className="ise-subsection-copy">
+                  <h3>{section.title}</h3>
+                  {section.quote && <p className="ise-quote">{section.quote}</p>}
+                  {section.paragraphs.map((paragraph, index) => (
+                    <p key={`${section.title}-${index}`}>{paragraph}</p>
                   ))}
-                </ol>
-              )}
-              {section.groups.map((group) => (
-                <div className="ise-resource-group" key={group.heading}>
-                  <h4>{group.heading}</h4>
-                  {group.entries.map((entry) => (
-                    <div className="ise-resource-entry" key={entry.name}>
-                      <p className="ise-resource-entry-title">
-                        <a href={entry.href} target="_blank" rel="noopener noreferrer">
-                          {entry.name}
-                        </a>
-                      </p>
-                      {entry.paragraphs.map((paragraph, index) => (
-                        <p key={`${entry.name}-${index}`}>{paragraph}</p>
+                  {section.link && (
+                    <p>
+                      {section.link.prefix}{' '}
+                      <a href={section.link.href} target="_blank" rel="noopener noreferrer">
+                        {section.link.text}
+                      </a>
+                      .
+                    </p>
+                  )}
+                </div>
+                {section.image && (
+                  <img src={section.image} alt={section.title} loading="lazy" />
+                )}
+              </article>
+            ))}
+          </section>
+
+          <section className="ise-subpage" id="resources-for-maine-educators">
+            <div className="ise-subpage-header">
+              <h2 className="ise-subpage-title">Resources for Maine Educators</h2>
+              <p className="ise-subpage-subtitle">Informal STEM EDUCATION in Maine</p>
+            </div>
+            <img
+              className="ise-banner"
+              src={educatorHeroImage}
+              alt="Informal STEM education in Maine"
+              loading="lazy"
+            />
+            <div className="ise-resource-sections">
+              {educatorSections.map((section) => (
+                <article className="ise-resource-section" key={section.title}>
+                  <h3 className="ise-resource-title">{section.title}</h3>
+                  {section.intro.map((paragraph, index) => (
+                    <p key={`${section.title}-intro-${index}`}>{paragraph}</p>
+                  ))}
+                  {section.introList && (
+                    <ol className="ise-resource-list">
+                      {section.introList.map((item, index) => (
+                        <li key={`${section.title}-list-${index}`}>{item}</li>
+                      ))}
+                    </ol>
+                  )}
+                  {section.groups.map((group) => (
+                    <div className="ise-resource-group" key={group.heading}>
+                      <h4>{group.heading}</h4>
+                      {group.entries.map((entry) => (
+                        <div className="ise-resource-entry" key={entry.name}>
+                          <p className="ise-resource-entry-title">
+                            <a href={entry.href} target="_blank" rel="noopener noreferrer">
+                              {entry.name}
+                            </a>
+                          </p>
+                          {entry.paragraphs.map((paragraph, index) => (
+                            <p key={`${entry.name}-${index}`}>{paragraph}</p>
+                          ))}
+                        </div>
                       ))}
                     </div>
                   ))}
-                </div>
+                </article>
               ))}
-            </article>
-          ))}
-        </div>
-      </section>
+            </div>
+          </section>
 
-      <section className="ise-subpage" id="reference-list">
-        <div className="ise-subpage-header">
-          <h2 className="ise-subpage-title">Reference List</h2>
+          <section className="ise-subpage" id="reference-list">
+            <div className="ise-subpage-header">
+              <h2 className="ise-subpage-title">Reference List</h2>
+            </div>
+            <ol className="ise-citation-list">
+              {citations.map((citation) => (
+                <li key={citation.href}>
+                  {citation.prefix}{' '}
+                  <a href={citation.href} target="_blank" rel="noopener noreferrer">
+                    {citation.href}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
         </div>
-        <ol className="ise-citation-list">
-          {citations.map((citation) => (
-            <li key={citation.href}>
-              {citation.prefix}{' '}
-              <a href={citation.href} target="_blank" rel="noopener noreferrer">
-                {citation.href}
-              </a>
-            </li>
-          ))}
-        </ol>
-      </section>
+      </div>
 
       <div className="ise-footer-nav">
         <Link to="/project" className="portfolio-button" aria-label="Back to projects">

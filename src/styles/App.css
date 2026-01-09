@@ -3,6 +3,7 @@ body {
   font-family: var(--font-sans);
   background-color: #f7f7f7;
   color: #333;
+  overflow-x: hidden;
   /* Offset fixed navbar; include iOS safe-area when available */
   padding-top: 64px; /* base fallback */
   padding-top: calc(56px + constant(safe-area-inset-top));
