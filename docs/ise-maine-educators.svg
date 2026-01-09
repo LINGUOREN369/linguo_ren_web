@@ -1,0 +1,42 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-maine" x1="0" y1="0" x2="1280" y2="720" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e0f2fe"/>
+      <stop offset="0.45" stop-color="#fef3c7"/>
+      <stop offset="1" stop-color="#d1fae5"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg-maine)"/>
+  <circle cx="1020" cy="170" r="80" fill="#fde68a"/>
+  <path d="M0 500C200 460 360 520 560 500C820 480 1060 430 1280 460V720H0V500Z" fill="#a7f3d0"/>
+  <path d="M0 580C220 540 420 600 640 585C900 570 1080 520 1280 550V720H0V580Z" fill="url(#water)"/>
+  <g transform="translate(160 360)">
+    <rect x="0" y="40" width="20" height="120" fill="#0f172a"/>
+    <polygon points="10,0 60,80 -40,80" fill="#166534"/>
+    <polygon points="10,20 50,90 -30,90" fill="#14532d"/>
+  </g>
+  <g transform="translate(280 380)">
+    <rect x="0" y="50" width="16" height="100" fill="#0f172a"/>
+    <polygon points="8,10 50,80 -34,80" fill="#15803d"/>
+    <polygon points="8,30 40,90 -24,90" fill="#166534"/>
+  </g>
+  <g transform="translate(420 350)">
+    <rect x="0" y="50" width="18" height="110" fill="#0f172a"/>
+    <polygon points="9,0 60,90 -42,90" fill="#0f766e"/>
+    <polygon points="9,25 52,100 -34,100" fill="#0f766e"/>
+  </g>
+  <g transform="translate(840 380)">
+    <rect x="0" y="50" width="16" height="100" fill="#0f172a"/>
+    <polygon points="8,10 50,80 -34,80" fill="#16a34a"/>
+    <polygon points="8,30 40,90 -24,90" fill="#15803d"/>
+  </g>
+  <g opacity="0.35">
+    <circle cx="240" cy="620" r="30" fill="#38bdf8"/>
+    <circle cx="320" cy="640" r="18" fill="#7dd3fc"/>
+    <circle cx="400" cy="615" r="22" fill="#60a5fa"/>
+  </g>
+</svg>

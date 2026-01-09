@@ -1,0 +1,36 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-interest" x1="0" y1="0" x2="1280" y2="720" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fef3c7"/>
+      <stop offset="0.55" stop-color="#e0f2fe"/>
+      <stop offset="1" stop-color="#ede9fe"/>
+    </linearGradient>
+    <linearGradient id="spark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#ef4444"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg-interest)"/>
+  <circle cx="980" cy="160" r="90" fill="#fde68a"/>
+  <circle cx="980" cy="160" r="60" fill="#fbbf24"/>
+  <path d="M0 520C220 460 380 520 640 500C900 480 1060 430 1280 450V720H0V520Z" fill="#bae6fd"/>
+  <path d="M0 580C220 520 420 580 640 560C900 540 1060 500 1280 520V720H0V580Z" fill="#a5b4fc"/>
+  <g transform="translate(140 150)">
+    <circle cx="160" cy="160" r="120" fill="#ffffff" opacity="0.9"/>
+    <path d="M160 80C128 80 104 106 104 138C104 168 124 190 148 198L148 230H172L172 198C196 190 216 168 216 138C216 106 192 80 160 80Z" fill="#111827"/>
+    <rect x="134" y="230" width="52" height="18" rx="6" fill="#111827"/>
+    <rect x="142" y="252" width="36" height="10" rx="5" fill="#111827"/>
+    <g stroke="url(#spark)" stroke-width="8" stroke-linecap="round">
+      <line x1="160" y1="10" x2="160" y2="40"/>
+      <line x1="90" y1="40" x2="110" y2="60"/>
+      <line x1="230" y1="40" x2="210" y2="60"/>
+      <line x1="60" y1="110" x2="90" y2="120"/>
+      <line x1="260" y1="110" x2="230" y2="120"/>
+    </g>
+  </g>
+  <g opacity="0.35">
+    <circle cx="220" cy="640" r="40" fill="#0ea5e9"/>
+    <circle cx="320" cy="610" r="24" fill="#38bdf8"/>
+    <circle cx="420" cy="650" r="30" fill="#60a5fa"/>
+  </g>
+</svg>
