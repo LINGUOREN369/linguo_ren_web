@@ -17,6 +17,19 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:image" content="%PUBLIC_URL%/docs/edgrantai_cover.png" />
     <meta property="og:url" content="https://linguoren.com" />
+    <script>
+      (function() {
+        var l = window.location;
+        if (l.search && l.search.startsWith('?/')) {
+          var decoded = l.search
+            .slice(2)
+            .split('&')
+            .map(function(s) { return s.replace(/~and~/g, '&'); })
+            .join('?');
+          window.history.replaceState(null, '', l.pathname + decoded + l.hash);
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

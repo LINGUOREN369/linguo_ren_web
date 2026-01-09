@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { HashRouter as Router, Route, Routes, Link, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, useLocation, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Project from './Project';
@@ -34,6 +34,9 @@ function AppContent() {
       case '/project':
         document.title = "Linguo's Projects";
         break;
+      case '/webpage':
+        document.title = "Linguo's Projects";
+        break;
       case '/edgrantai':
         document.title = 'EdGrantAI — Evidence-aware grant decisions';
         shareImage = edgrantaiCover;
@@ -66,7 +69,7 @@ function AppContent() {
 
   // Ensure the home header shows whenever route is '/'
   useEffect(() => {
-    setShowHeader(location.pathname === '/');
+    setShowHeader(location.pathname === '/' || location.pathname === '/webpage');
   }, [location.pathname]);
 
   // Determine last updated based on document last modified time
