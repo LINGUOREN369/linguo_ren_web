@@ -769,33 +769,25 @@
   .edg-step { grid-template-columns: 1fr; }
   .edg-step-index { margin-left: 8px; }
   .edg-timeline::before { left: 24px; }
-  .edg-pair { grid-template-columns: 1fr; }
-  .edg-pair-arrow {
-    width: auto;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    border-radius: 0;
-    border: 0;
+  .edg-pair-grid { gap: 16px; }
+  .edg-pair {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid var(--edg-border);
+    background: var(--edg-surface);
+  }
+  .edg-pair-arrow { display: none; }
+  .edg-pair > .edg-card {
+    padding: 14px 16px;
     background: transparent;
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-    font-weight: 600;
-    text-transform: none;
-    letter-spacing: 0;
-    font-size: 0.8rem;
+    border: 0;
+    box-shadow: none;
   }
-  .edg-pair-arrow::before {
-    content: "Maps to";
-    font-size: 0.8rem;
-    color: var(--edg-muted);
-  }
-  .edg-pair-arrow::after {
-    content: "->";
-    font-size: 0.85rem;
-    color: var(--edg-accent);
+  .edg-pair > .edg-card + .edg-card {
+    border-top: 1px dashed var(--edg-border);
+    padding-top: 16px;
   }
   .edg-structure-figure { height: auto; }
   .edg-structure-copy {
