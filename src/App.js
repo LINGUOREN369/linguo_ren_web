@@ -10,6 +10,7 @@ import StravaWidget from './StravaWidget';
 import InformalScienceEducation from './InformalScienceEducation';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/linguo4.JPG';
+const profilePhotoPlaceholder = process.env.PUBLIC_URL + '/docs/linguo4_low.jpg';
 const favicon = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const edgrantaiCover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 const maineEducatorsHero = process.env.PUBLIC_URL + '/docs/ise-maine-educators.svg';
@@ -17,6 +18,7 @@ const maineEducatorsHero = process.env.PUBLIC_URL + '/docs/ise-maine-educators.s
 
 function AppContent() {
   const [showHeader, setShowHeader] = useState(true);
+  const [heroLoaded, setHeroLoaded] = useState(false);
   const location = useLocation();
   const navigate = useNavigate(); // For navigation
   const projectSectionRef = useRef(null); // Reference for the projects section
@@ -165,6 +167,13 @@ function AppContent() {
     }, 100);
   };
 
+  useEffect(() => {
+    const img = new Image();
+    img.src = profilePhoto;
+    img.onload = () => setHeroLoaded(true);
+    img.onerror = () => setHeroLoaded(true);
+  }, [profilePhoto]);
+
   // Email copying removed; using mailto link instead
   
   return (
@@ -272,9 +281,13 @@ function AppContent() {
       <div className="container mt-4" id="main-content">
         {showHeader && location.pathname === '/' && (
           <section
-            className="home-hero"
-            style={{ '--home-hero-image': `url(${profilePhoto})` }}
+            className={`home-hero${heroLoaded ? ' is-loaded' : ' is-loading'}`}
+            style={{
+              '--home-hero-image': `url(${profilePhoto})`,
+              '--home-hero-placeholder': `url(${profilePhotoPlaceholder})`
+            }}
           >
+            <span className="home-hero-placeholder" aria-hidden="true" />
             <div className="home-hero-content">
               {/* Text Section */}
               <div className="home-hero-panel">
