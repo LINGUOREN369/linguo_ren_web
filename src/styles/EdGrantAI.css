@@ -752,6 +752,12 @@
 }
 
 @media (max-width: 700px) {
+  .edg-container { padding: 32px 0 64px; }
+  .edg-container::before,
+  .edg-container::after {
+    display: none;
+  }
+
   .edg-panel { padding: 22px; }
   .edg-title { font-size: 2.1rem; }
   .edg-layout { padding-top: 48px; }
@@ -761,35 +767,75 @@
   .edg-timeline::before { left: 24px; }
   .edg-pair { grid-template-columns: 1fr; }
   .edg-pair-arrow {
-    width: 100%;
+    width: auto;
     height: auto;
     margin: 0;
-    padding: 8px 14px;
-    border-radius: 999px;
-    border-style: dashed;
-    background: var(--edg-panel);
-    display: flex;
+    padding: 0;
+    border-radius: 0;
+    border: 0;
+    background: transparent;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 0;
+    justify-content: flex-start;
+    gap: 8px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.8rem;
   }
   .edg-pair-arrow::before {
-    content: "maps to";
-    font-size: 0.65rem;
+    content: "Maps to";
+    font-size: 0.8rem;
     color: var(--edg-muted);
   }
   .edg-pair-arrow::after {
     content: "->";
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: var(--edg-accent);
   }
   .edg-structure-figure { height: auto; }
   .edg-structure-copy {
     min-height: auto;
     justify-content: flex-start;
+  }
+
+  .edg-cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .edg-cta .portfolio-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .edg-side-nav {
+    position: static;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .edg-side-list {
+    padding: 0 0 8px;
+  }
+
+  .edg-side-link {
+    border: 1px solid var(--edg-border);
+    background: transparent;
+  }
+
+  .edg-panel,
+  .edg-card,
+  .edg-summary {
+    border-radius: 16px;
+    box-shadow: none;
+  }
+
+  .edg-stagger > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
