@@ -23,7 +23,27 @@ body {
   color: #93c5fd;
 }
 
-.App { min-height: 100vh; }
+.App {
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+}
+
+.App::before {
+  content: '';
+  position: absolute;
+  top: -320px;
+  left: -320px;
+  width: 760px;
+  height: 760px;
+  background: radial-gradient(closest-side, rgba(14, 165, 164, 0.2), transparent 72%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.theme-dark .App::before {
+  background: radial-gradient(closest-side, rgba(34, 211, 238, 0.16), transparent 72%);
+}
 
 /* Lift hero photo on large screens to align with intro text */
 @media (min-width: 992px) {
