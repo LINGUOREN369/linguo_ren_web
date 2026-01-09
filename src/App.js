@@ -5,6 +5,7 @@ import './styles/App.css';
 import Project from './Project';
 import EdGrantAI from './EdGrantAI';
 import EdGrantAIChat from './EdGrantAIChat';
+import EdGrantAIGrants from './EdGrantAIGrants';
 import StravaWidget from './StravaWidget';
 import InformalScienceEducation from './InformalScienceEducation';
 
@@ -44,6 +45,11 @@ function AppContent() {
         break;
       case '/edgrantai-chat':
         document.title = 'EdGrantAI — Live recommendations';
+        shareImage = edgrantaiCover;
+        shareAlt = 'EdGrantAI cover image';
+        break;
+      case '/edgrantai-grants':
+        document.title = 'EdGrantAI — Grant database';
         shareImage = edgrantaiCover;
         shareAlt = 'EdGrantAI cover image';
         break;
@@ -450,6 +456,7 @@ function AppContent() {
             <Route path="/edgrantai" element={<EdGrantAI />} />
             <Route path="/edgrant" element={<Navigate to="/edgrantai" replace />} />
             <Route path="/edgrantai-chat" element={<EdGrantAIChat />} />
+            <Route path="/edgrantai-grants" element={<EdGrantAIGrants />} />
             <Route path="/informal-science-education" element={<InformalScienceEducation />} />
           </Routes>
         </div>

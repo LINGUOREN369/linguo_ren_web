@@ -339,21 +339,25 @@ export default function EdGrantAIChat() {
           <p className="edg-chat-kicker">EdGrantAI Live Recommendations</p>
           <h1 className="edg-chat-title">Mission to Recommendations</h1>
           <p className="edg-chat-subtitle">
-            Describe your mission in plain language. The recommendation engine returns ranked grants, eligibility signals,
-            and short explanations you can review with your team.
+            Describe your mission in plain language. This live demo currently targets NSF solicitations and related nonprofit
+            STEM education work. The recommendation engine returns ranked grants, eligibility signals, and short explanations
+            you can review with your team.
           </p>
           <div className="edg-chat-hero-actions">
             <Link to="/edgrantai" className="portfolio-button portfolio-button--secondary">
              Project Overview & Case Study
             </Link>
             <a
-              className="portfolio-button"
+              className="portfolio-button portfolio-button--secondary"
               href="https://github.com/LINGUOREN369/EdGrantAI"
               target="_blank"
               rel="noopener noreferrer"
             >
               GitHub Repository
             </a>
+            <Link to="/edgrantai-grants" className="portfolio-button portfolio-button--secondary">
+              Current Grant Database
+            </Link>
           </div>
         </div>
 
