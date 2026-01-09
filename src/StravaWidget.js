@@ -20,20 +20,38 @@ export default function StravaWidget() {
     return () => { cancelled = true; };
   }, []);
 
-  const fmt = (n, digits = 1) => n.toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits });
   const status = stats?.status;
   const statusMessage = stats?.message;
   const isPlaceholder = status === 'placeholder';
   const isErrored = status === 'error';
 
-  const renderTotals = (label, obj) => (
-    <div className="strava-row">
-      <div className="strava-label">{label}</div>
-      <div className="strava-values">
-        <span className="strava-chip">{fmt(metersToMiles(obj.distance_m || 0))} mi</span>
-        <span className="strava-chip">{fmt(secondsToHours(obj.moving_time_s || 0))} h</span>
-        <span className="strava-chip">{fmt(metersToFeet(obj.elevation_gain_m || 0))} ft</span>
-      </div>
+  const formatNumber = (value, digits) =>
+    value.toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits });
+  const formatMiles = (meters) => {
+    const miles = metersToMiles(meters || 0);
+    const digits = miles >= 1000 ? 0 : 1;
+    return formatNumber(miles, digits);
+  };
+  const formatHours = (seconds) => {
+    const hours = secondsToHours(seconds || 0);
+    const digits = hours >= 100 ? 0 : 1;
+    return formatNumber(hours, digits);
+  };
+  const formatFeet = (meters) => {
+    const feet = Math.round(metersToFeet(meters || 0));
+    if (feet >= 10000) {
+      return `${Math.round(feet / 1000).toLocaleString()}k`;
+    }
+    return feet.toLocaleString();
+  };
+
+  const renderBlock = (label, obj) => (
+    <div className="strava-block">
+      <span className="strava-block-label">{label}</span>
+      <span className="strava-block-main">{formatMiles(obj.distance_m || 0)} mi</span>
+      <span className="strava-block-sub">
+        {formatHours(obj.moving_time_s || 0)} h · {formatFeet(obj.elevation_gain_m || 0)} ft
+      </span>
     </div>
   );
 
@@ -42,7 +60,9 @@ export default function StravaWidget() {
       <div className="strava-header">
         <span className="strava-title">Strava Snapshot</span>
         {stats && stats.fetched_at && (
-          <span className="strava-sub">Updated {new Date(stats.fetched_at).toLocaleDateString()}</span>
+          <span className="strava-sub">
+            Updated {new Date(stats.fetched_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+          </span>
         )}
       </div>
       {!stats && !error && <div className="strava-loading">Loading…</div>}
@@ -53,18 +73,25 @@ export default function StravaWidget() {
         </div>
       )}
       {stats && !(isPlaceholder || isErrored) && (
-        <div className="strava-body">
-          <div className="strava-section">
-            <div className="strava-section-title">Year to Date</div>
-            {renderTotals('Running', stats.ytd_run || {})}
-            {renderTotals('Cycling', stats.ytd_ride || {})}
-          </div>
-          {/* Previous Year section intentionally removed for a simpler snapshot */}
-          <div className="strava-section">
-            <div className="strava-section-title">All‑Time</div>
-            {renderTotals('Running', stats.all_run || {})}
-            {renderTotals('Cycling', stats.all_ride || {})}
-          </div>
+        <div className="strava-panels">
+          <article className="strava-panel">
+            <div className="strava-panel-title">
+              <span className="strava-panel-icon" aria-hidden="true">🏃</span>
+              <span>Running</span>
+            </div>
+            {renderBlock('YTD', stats.ytd_run || {})}
+            <div className="strava-divider" aria-hidden="true" />
+            {renderBlock('All-Time', stats.all_run || {})}
+          </article>
+          <article className="strava-panel">
+            <div className="strava-panel-title">
+              <span className="strava-panel-icon" aria-hidden="true">🚴</span>
+              <span>Cycling</span>
+            </div>
+            {renderBlock('YTD', stats.ytd_ride || {})}
+            <div className="strava-divider" aria-hidden="true" />
+            {renderBlock('All-Time', stats.all_ride || {})}
+          </article>
         </div>
       )}
       <div className="strava-footer">
