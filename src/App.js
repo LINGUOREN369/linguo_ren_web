@@ -301,7 +301,7 @@ function AppContent() {
       {/* Email popup removed; mailto opens the default email app */}
 
       {/* Main Content */}
-      <div className="container mt-4" id="main-content">
+      <div className="container" id="main-content">
         {showHeader && location.pathname === '/' && (
           <section
             className={`home-hero${heroLoaded ? ' is-loaded' : ' is-loading'}`}
