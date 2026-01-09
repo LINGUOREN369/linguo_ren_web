@@ -172,7 +172,7 @@ function AppContent() {
     img.src = profilePhoto;
     img.onload = () => setHeroLoaded(true);
     img.onerror = () => setHeroLoaded(true);
-  }, [profilePhoto]);
+  }, []);
 
   // Email copying removed; using mailto link instead
   
