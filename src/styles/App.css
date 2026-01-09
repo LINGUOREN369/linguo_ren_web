@@ -169,10 +169,13 @@ body {
 .home-hero-panel p {
   line-height: 1.75;
   color: rgba(248, 250, 252, 0.85);
+  font-size: 1.5rem;
 }
 
 .home-hero .lead {
   color: rgba(248, 250, 252, 0.95);
+  font-size: inherit;
+  font-weight: 400;
 }
 
 .home-hero .strava-intro {
