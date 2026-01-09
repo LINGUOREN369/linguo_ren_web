@@ -365,7 +365,7 @@ export default function EdGrantAIChat() {
           <ol className="edg-chat-steps">
             <li>Paste your organization profile or mission statement into the Mission statement field. (If you want an example, click Load example case.)</li>
             <li>Optional: add an organization name so results are labeled clearly.</li>
-            <li>Click Generate recommendations and wait a few seconds.</li>
+            <li>Click Generate recommendations and wait a minute.</li>
             <li>After results load, review the ranked grants.</li>
             <li>JSON exports explain the output: Organization (JSON) shows the processed org profile (extracted phrases and tags), Match Report (JSON) shows scores, reasons, and the full ranked list. Each grant also links to Grant Info page and Grant Profile (JSON) (processed grant profile).</li>
           </ol>
@@ -454,7 +454,7 @@ export default function EdGrantAIChat() {
             ))}
             {isLoading && (
               <div className="edg-chat-bubble edg-chat-bubble--assistant">
-                <p>Working on the match... this usually takes a few seconds.</p>
+                <p>Working on the match... this usually takes 1-2 minutes.</p>
               </div>
             )}
             {recommendations.length > 0 && (
