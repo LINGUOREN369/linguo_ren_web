@@ -1,24 +1,25 @@
 /* Lightweight card for Strava summary */
 .strava-card {
   margin-top: 18px;
-  border: 1px solid #e5e7eb;
-  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(248, 250, 252, 0.22);
+  background: rgba(15, 23, 42, 0.35);
   border-radius: 18px;
   padding: 16px;
-  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
 }
 .theme-dark .strava-card {
-  border-color: rgba(148, 163, 184, 0.25);
-  background: rgba(15, 23, 42, 0.6);
+  border-color: rgba(248, 250, 252, 0.22);
+  background: rgba(15, 23, 42, 0.35);
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
 }
 
 .home-hero .strava-card {
-  border-color: rgba(248, 250, 252, 0.2);
-  background: rgba(15, 23, 42, 0.45);
+  border-color: rgba(248, 250, 252, 0.18);
+  background: rgba(15, 23, 42, 0.25);
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
 }
 
 .strava-wrapper { margin-top: 12px; }
@@ -47,22 +48,22 @@
 }
 
 .strava-panel {
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(248, 250, 252, 0.2);
   border-radius: 14px;
   padding: 14px;
-  background: rgba(248, 250, 252, 0.9);
+  background: rgba(15, 23, 42, 0.25);
   display: grid;
   gap: 12px;
 }
 
 .theme-dark .strava-panel {
-  border-color: rgba(148, 163, 184, 0.25);
-  background: rgba(15, 23, 42, 0.55);
+  border-color: rgba(248, 250, 252, 0.18);
+  background: rgba(15, 23, 42, 0.25);
 }
 
 .home-hero .strava-panel {
-  border-color: rgba(248, 250, 252, 0.18);
-  background: rgba(15, 23, 42, 0.4);
+  border-color: rgba(248, 250, 252, 0.16);
+  background: rgba(15, 23, 42, 0.18);
 }
 
 .strava-panel-title {
