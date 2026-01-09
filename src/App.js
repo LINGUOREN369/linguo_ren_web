@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useLocation, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Project from './Project';
@@ -448,6 +448,7 @@ function AppContent() {
           <Routes>
             <Route path="/project" element={<Project />} />
             <Route path="/edgrantai" element={<EdGrantAI />} />
+            <Route path="/edgrant" element={<Navigate to="/edgrantai" replace />} />
             <Route path="/edgrantai-chat" element={<EdGrantAIChat />} />
             <Route path="/informal-science-education" element={<InformalScienceEducation />} />
           </Routes>
