@@ -47,7 +47,7 @@ body {
 
 /* Lift hero photo on large screens to align with intro text */
 @media (min-width: 992px) {
-  .hero-photo-col { margin-top: -300px; }
+  .hero-photo-col { margin-top: -360px; }
 }
 
 .navbar-brand {
