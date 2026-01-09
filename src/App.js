@@ -36,13 +36,13 @@ function AppContent() {
 
     switch (location.pathname) {
       case '/':
-        document.title = 'Linguo Ren Professional Portfolio';
+        document.title = "Linguo's Professional Portfolio";
         break;
       case '/project':
         document.title = "Linguo's Projects";
         break;
       case '/webpage':
-        document.title = 'Linguo Ren Professional Portfolio';
+        document.title = "Linguo's Professional Portfolio";
         break;
       case '/edgrantai':
         document.title = 'EdGrantAI — Evidence-aware grant decisions';
