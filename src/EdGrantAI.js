@@ -374,7 +374,7 @@ export default function EdGrantAI() {
       <section className="edg-section edg-panel" id="security">
         <div className="edg-section-header">
           <span className="edg-kicker">Security</span>
-          <h2 className="edg-h2">API Security Overview (EdGrantAI Chat)</h2>
+          <h2 className="edg-h2">API Security Overview</h2>
           <p className="edg-intro">
             This section explains how the EdGrantAI chat endpoint is protected end-to-end, from the browser to the matching backend.
           </p>
