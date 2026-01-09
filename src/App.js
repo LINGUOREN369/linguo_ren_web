@@ -9,7 +9,7 @@ import EdGrantAIGrants from './EdGrantAIGrants';
 import StravaWidget from './StravaWidget';
 import InformalScienceEducation from './InformalScienceEducation';
 
-const profilePhoto = process.env.PUBLIC_URL + '/docs/profile_photo.png';
+const profilePhoto = process.env.PUBLIC_URL + '/docs/linguo4.JPG';
 const favicon = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const edgrantaiCover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 const maineEducatorsHero = process.env.PUBLIC_URL + '/docs/ise-maine-educators.svg';
@@ -17,7 +17,6 @@ const maineEducatorsHero = process.env.PUBLIC_URL + '/docs/ise-maine-educators.s
 
 function AppContent() {
   const [showHeader, setShowHeader] = useState(true);
-  const [theme, setTheme] = useState(() => localStorage.getItem('theme-preference') || 'dark');
   const location = useLocation();
   const navigate = useNavigate(); // For navigation
   const projectSectionRef = useRef(null); // Reference for the projects section
@@ -147,26 +146,13 @@ function AppContent() {
     }
   };
 
-  // Theme: apply class to html based on preference and system
+  // Force dark theme only.
   useEffect(() => {
-    const mql = window.matchMedia('(prefers-color-scheme: dark)');
-    const applyTheme = (pref) => {
-      const isDark = pref === 'dark' || (pref === 'system' && mql.matches);
-      const root = document.documentElement;
-      root.classList.remove('theme-light', 'theme-dark');
-      root.classList.add(isDark ? 'theme-dark' : 'theme-light');
-      root.setAttribute('data-theme', isDark ? 'dark' : 'light');
-    };
-    applyTheme(theme);
-    const handler = () => theme === 'system' && applyTheme('system');
-    mql.addEventListener('change', handler);
-    return () => mql.removeEventListener('change', handler);
-  }, [theme]);
-
-  const handleThemeSet = (value) => {
-    setTheme(value);
-    localStorage.setItem('theme-preference', value);
-  };
+    const root = document.documentElement;
+    root.classList.remove('theme-light');
+    root.classList.add('theme-dark');
+    root.setAttribute('data-theme', 'dark');
+  }, []);
 
   const scrollToProjects = () => {
     // Hide the home header when entering the Projects page
@@ -275,45 +261,6 @@ function AppContent() {
                   Email
                 </a>
               </li>
-              <li className="nav-item ms-3">
-                <div className="btn-group btn-group-sm theme-toggle" role="group" aria-label="Theme selection">
-                  <button
-                    type="button"
-                    className={`btn ${theme === 'system' ? 'active' : ''}`}
-                    onClick={() => handleThemeSet('system')}
-                    title="System"
-                    aria-label="Use system theme"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z" stroke="currentColor" strokeWidth="2"/>
-                      <path d="M8 20h8" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    className={`btn ${theme === 'light' ? 'active' : ''}`}
-                    onClick={() => handleThemeSet('light')}
-                    title="Light"
-                    aria-label="Use light theme"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Z" stroke="currentColor" strokeWidth="2"/>
-                      <path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.364-7.364-1.414 1.414M8.05 17.95l-1.414 1.414m12.728 0-1.414-1.414M8.05 6.05 6.636 4.636" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                    </svg>
-                  </button>
-                  <button
-                    type="button"
-                    className={`btn ${theme === 'dark' ? 'active' : ''}`}
-                    onClick={() => handleThemeSet('dark')}
-                    title="Dark"
-                    aria-label="Use dark theme"
-                  >
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" stroke="currentColor" strokeWidth="2"/>
-                    </svg>
-                  </button>
-                </div>
-              </li>
             </ul>
           </div>
         </div>
@@ -324,33 +271,33 @@ function AppContent() {
       {/* Main Content */}
       <div className="container mt-4" id="main-content">
         {showHeader && location.pathname === '/' && (
-          <header className="row align-items-center">
-            <div className="col-lg-4 text-center hero-photo-col">
-              <img
-                src={profilePhoto}
-                alt="Linguo Ren"
-                className="profile-image img-fluid"
-              />
-            </div>
-            {/* Text Section */}
-            <div className="col-lg-8">
+          <section
+            className="home-hero"
+            style={{ '--home-hero-image': `url(${profilePhoto})` }}
+          >
+            <div className="home-hero-content">
+              {/* Text Section */}
+              <div className="home-hero-panel">
               
-              <h1>Hey, I'm Linguo!</h1>
-              <div className="pronounce-inline">
-                <button
-                  type="button"
-                  className="pronounce-inline-btn"
-                  onClick={pronounceName}
-                  aria-label="Hear how to pronounce my name"
-                  title="Hear pronunciation"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M4 10h3l4-3v10l-4-3H4v-4Z" fill="currentColor" />
-                    <path d="M16.5 8a5 5 0 0 1 0 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M19 5a9 9 0 0 1 0 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                  <span className="pronounce-text">Hear my name</span>
-                </button>
+              <div className="home-hero-heading">
+                <div className="home-hero-name-row">
+                  <h1 className="home-hero-name">Linguo Ren</h1>
+                  <button
+                    type="button"
+                    className="pronounce-inline-btn home-hero-pronounce-btn"
+                    onClick={pronounceName}
+                    aria-label="Hear how to pronounce my name"
+                    title="Hear pronunciation"
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M4 10h3l4-3v10l-4-3H4v-4Z" fill="currentColor" />
+                      <path d="M16.5 8a5 5 0 0 1 0 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                      <path d="M19 5a9 9 0 0 1 0 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                  </button>
+                </div>
+                <p className="home-hero-role">Public-interest technologist |  Responsible AI</p>
+                <div className="home-hero-rule" aria-hidden="true" />
               </div>
               {(PRONOUNCE_IPA || PRONOUNCE_BILINGUAL) && (
                 <div className="pronounce-details" aria-label="Name pronunciation details">
@@ -370,15 +317,12 @@ function AppContent() {
               <p>
                 Across consulting, research, and system-building work with nonprofits, I have repeatedly seen that the hardest problems are rarely
                 technical. Organizations struggle less with access to tools than with how judgments are made, how uncertainty is handled, and how
-                responsibility is assigned when decisions carry real human and financial consequences. These experiences have pushed my work toward
-                understanding not just whether AI can help, but when it should, and when it should not.
+                responsibility is assigned when decisions carry real human and financial consequences. 
               </p>
+              
               <p>
-                EdGrantAI emerged from this trajectory as a concrete case study: an attempt to apply AI to a real decision bottleneck and, in doing so,
-                surface the risks that arise when automation meets ambiguous evidence and limited capacity.
-              </p>
-              <p>
-                Going forward, my goal is to continue working on evidence-informed decision support and responsible AI implementation, helping
+                These experiences have pushed my work toward
+                understanding not just whether AI can help, but when it should, and when it should not.My goal is to continue working on evidence-informed decision support and responsible AI implementation, helping
                 organizations design systems that make uncertainty explicit, preserve human judgment, and allocate resources more equitably rather than
                 simply more efficiently.
               </p>
@@ -450,7 +394,8 @@ function AppContent() {
               </p>
               <StravaWidget />
             </div>
-          </header>
+            </div>
+          </section>
         )}
         
         <div ref={projectSectionRef}>
