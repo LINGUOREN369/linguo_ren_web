@@ -177,6 +177,10 @@ body {
   font-weight: 400;
 }
 
+.home-hero .home-hero-intro {
+  font-size: 1.3rem;
+}
+
 .home-hero .strava-intro {
   color: rgba(248, 250, 252, 0.75);
 }

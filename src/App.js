@@ -341,18 +341,18 @@ function AppContent() {
                   )}
                 </div>
               )}
-              <p className="lead">
+              <p className="lead home-hero-intro">
                 I am a public-interest technologist focused on how AI and data systems shape real decisions in education and social-impact organizations.
                 My work centers on the intersection of evidence, accountability, and decision-making under constraint, especially in environments where
                 time, funding, and responsibility are unevenly distributed.
               </p>
-              <p>
+              <p className="home-hero-intro">
                 Across consulting, research, and system-building work with nonprofits, I have repeatedly seen that the hardest problems are rarely
                 technical. Organizations struggle less with access to tools than with how judgments are made, how uncertainty is handled, and how
                 responsibility is assigned when decisions carry real human and financial consequences.
               </p>
               
-              <p>
+              <p className="home-hero-intro">
                 These experiences have pushed my work toward understanding not just whether AI can help, but when it should, and when it should not.
                 My goal is to continue working on evidence-informed decision support and responsible AI implementation, helping organizations design
                 systems that make uncertainty explicit, preserve human judgment, and allocate resources more equitably rather than simply more efficiently.
