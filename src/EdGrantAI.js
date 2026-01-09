@@ -385,7 +385,7 @@ export default function EdGrantAI() {
               <div className="edg-step-block">
                 <span className="edg-label">Components</span>
                 <ul>
-                  <li>Frontend: https://linguoren.com/#/edgrantai-chat</li>
+                  <li>Frontend: https://linguoren.com/edgrantai-chat</li>
                   <li>Cloudflare Worker (edge gateway): https://edgrantai-proxy.lren-31b.workers.dev/recommend</li>
                   <li>Render API (backend): https://edgrantai-api.onrender.com/recommend</li>
                 </ul>

@@ -5,7 +5,7 @@ from the browser to the matching backend.
 
 ## Components
 
-- Frontend: `https://linguoren.com/#/edgrantai-chat`
+- Frontend: `https://linguoren.com/edgrantai-chat`
 - Cloudflare Worker (edge gateway): `https://edgrantai-proxy.lren-31b.workers.dev/recommend`
 - Render API (backend): `https://edgrantai-api.onrender.com/recommend`
 
