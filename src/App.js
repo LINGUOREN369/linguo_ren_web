@@ -10,6 +10,7 @@ import StravaWidget from './StravaWidget';
 import InformalScienceEducation from './InformalScienceEducation';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/linguo4.JPG';
+const profileShareImage = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const favicon = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const edgrantaiCover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 const maineEducatorsHero = process.env.PUBLIC_URL + '/docs/ise-maine-educators.svg';
@@ -29,16 +30,19 @@ function AppContent() {
   const PRONOUNCE_BILINGUAL = '';
 
   useEffect(() => {
-    let shareImage = profilePhoto;
+    let shareImage = profileShareImage;
     let shareAlt = 'Linguo Ren profile photo';
     let faviconImage = favicon;
 
     switch (location.pathname) {
+      case '/':
+        document.title = 'Linguo Ren - Public-interest technologist';
+        break;
       case '/project':
         document.title = "Linguo's Projects";
         break;
       case '/webpage':
-        document.title = "Linguo's Projects";
+        document.title = 'Linguo Ren - Public-interest technologist';
         break;
       case '/edgrantai':
         document.title = 'EdGrantAI — Evidence-aware grant decisions';
