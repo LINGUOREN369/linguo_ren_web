@@ -349,14 +349,13 @@ function AppContent() {
               <p>
                 Across consulting, research, and system-building work with nonprofits, I have repeatedly seen that the hardest problems are rarely
                 technical. Organizations struggle less with access to tools than with how judgments are made, how uncertainty is handled, and how
-                responsibility is assigned when decisions carry real human and financial consequences. 
+                responsibility is assigned when decisions carry real human and financial consequences.
               </p>
               
               <p>
-                These experiences have pushed my work toward
-                understanding not just whether AI can help, but when it should, and when it should not.My goal is to continue working on evidence-informed decision support and responsible AI implementation, helping
-                organizations design systems that make uncertainty explicit, preserve human judgment, and allocate resources more equitably rather than
-                simply more efficiently.
+                These experiences have pushed my work toward understanding not just whether AI can help, but when it should, and when it should not.
+                My goal is to continue working on evidence-informed decision support and responsible AI implementation, helping organizations design
+                systems that make uncertainty explicit, preserve human judgment, and allocate resources more equitably rather than simply more efficiently.
               </p>
 
               {/* Intro divider with social icons */}

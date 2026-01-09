@@ -760,8 +760,12 @@
 
   .edg-panel { padding: 22px; }
   .edg-title { font-size: 2.1rem; }
-  .edg-layout { padding-top: 48px; }
-  .edg-section { scroll-margin-top: 140px; }
+  .edg-subtitle { font-size: 0.98rem; }
+  .edg-layout { padding-top: 24px; }
+  .edg-section { scroll-margin-top: 110px; margin-top: 44px; }
+  .edg-section-header { margin-bottom: 18px; }
+  .edg-hero { margin-bottom: 24px; }
+  .edg-hero-copy { max-width: 100%; }
   .edg-step { grid-template-columns: 1fr; }
   .edg-step-index { margin-left: 8px; }
   .edg-timeline::before { left: 24px; }
@@ -809,22 +813,7 @@
     justify-content: center;
   }
 
-  .edg-side-nav {
-    position: static;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  .edg-side-list {
-    padding: 0 0 8px;
-  }
-
-  .edg-side-link {
-    border: 1px solid var(--edg-border);
-    background: transparent;
-  }
+  .edg-side-nav { display: none; }
 
   .edg-panel,
   .edg-card,
@@ -838,4 +827,22 @@
     opacity: 1;
     transform: none;
   }
+
+  .edg-card { padding: 18px; }
+  .edg-card--accent {
+    background: var(--edg-surface);
+    border-color: var(--edg-border);
+  }
+
+  .edg-structure-figure,
+  .edg-comparison-figure {
+    padding: 12px;
+  }
+
+  .edg-structure-image,
+  .edg-comparison-image {
+    border-radius: 12px;
+  }
+
+  .edg-pill { font-size: 0.75rem; padding: 5px 10px; }
 }
