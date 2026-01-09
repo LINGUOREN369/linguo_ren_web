@@ -463,7 +463,11 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
-.edg-step-block ul { margin: 8px 0 0; padding-left: 1.2rem; }
+.edg-step-block ul,
+.edg-step-block ol {
+  margin: 8px 0 0;
+  padding-left: 1.2rem;
+}
 
 .edg-code-list {
   list-style: none;

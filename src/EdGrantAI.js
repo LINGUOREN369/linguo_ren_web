@@ -368,35 +368,59 @@ export default function EdGrantAI() {
             </div>
           </article>
 
-          <article className="edg-step">
-            <div className="edg-step-index">5</div>
-            <div className="edg-step-body edg-card">
-              <h3 className="edg-card-title">Security After Matching and Recommendations</h3>
-              <div className="edg-step-grid">
-                <div className="edg-step-block">
-                  <span className="edg-label">Alignment choices</span>
-                  <ul>
-                    <li>Only mission text is sent to the API; no keys live in the browser.</li>
-                    <li>Requests include a short-lived Turnstile token, not user credentials.</li>
-                    <li>Payloads are minimized to what is needed for matching.</li>
-                  </ul>
-                </div>
-                <div className="edg-step-block">
-                  <span className="edg-label">Guardrails</span>
-                  <ul>
-                    <li>Origin allowlist blocks requests from unapproved sites.</li>
-                    <li>Rate limiting throttles abuse and automated scraping.</li>
-                    <li>Backend auth tokens restrict access to the matching API.</li>
-                  </ul>
-                </div>
-                <div className="edg-step-block">
-                  <span className="edg-label">Why it matters</span>
-                  <ul>
-                    <li>Protects organization data during evaluation.</li>
-                    <li>Prevents key leakage or direct abuse of the model.</li>
-                    <li>Keeps the system available and safe for real users.</li>
-                  </ul>
-                </div>
+        </div>
+      </section>
+
+      <section className="edg-section edg-panel" id="security">
+        <div className="edg-section-header">
+          <span className="edg-kicker">Security</span>
+          <h2 className="edg-h2">API Security Overview (EdGrantAI Chat)</h2>
+          <p className="edg-intro">
+            This section explains how the EdGrantAI chat endpoint is protected end-to-end, from the browser to the matching backend.
+          </p>
+        </div>
+        <div className="edg-grid edg-grid-1 edg-stagger">
+          <article className="edg-card">
+            <div className="edg-step-grid">
+              <div className="edg-step-block">
+                <span className="edg-label">Components</span>
+                <ul>
+                  <li>Frontend: https://linguoren.com/#/edgrantai-chat</li>
+                  <li>Cloudflare Worker (edge gateway): https://edgrantai-proxy.lren-31b.workers.dev/recommend</li>
+                  <li>Render API (backend): https://edgrantai-api.onrender.com/recommend</li>
+                </ul>
+              </div>
+              <div className="edg-step-block">
+                <span className="edg-label">Request flow</span>
+                <ol>
+                  <li>User submits a mission in the browser.</li>
+                  <li>Turnstile runs in the browser and returns a short-lived token.</li>
+                  <li>Browser sends mission + Turnstile token to the Worker.</li>
+                  <li>Worker validates Origin, Turnstile token, and rate limits the client.</li>
+                  <li>Worker injects EDGRANT_API_TOKEN and forwards to Render.</li>
+                  <li>Render validates the token and uses OPENAI_API_KEY for matching.</li>
+                  <li>Recommendations flow back to the browser.</li>
+                </ol>
+              </div>
+            </div>
+            <div className="edg-step-grid">
+              <div className="edg-step-block">
+                <span className="edg-label">Secrets and where they live</span>
+                <ul>
+                  <li>OPENAI_API_KEY: Render only.</li>
+                  <li>EDGRANT_API_TOKEN: Worker + Render only.</li>
+                  <li>TURNSTILE_SECRET: Worker only.</li>
+                  <li>TURNSTILE_SITE_KEY: Frontend (public by design).</li>
+                </ul>
+              </div>
+              <div className="edg-step-block">
+                <span className="edg-label">Protections in place</span>
+                <ul>
+                  <li>Origin allowlist: only https://linguoren.com (and https://www.linguoren.com) are accepted.</li>
+                  <li>Turnstile verification: blocks spoofed requests without a valid browser token.</li>
+                  <li>Rate limiting: throttles abusive traffic per IP.</li>
+                  <li>Backend auth: Render accepts only requests with a valid token.</li>
+                </ul>
               </div>
             </div>
           </article>
@@ -503,6 +527,7 @@ export default function EdGrantAI() {
               <li>Keep outputs auditable with a trace from evidence to tag to score.</li>
               <li>Make human judgment the final checkpoint, not the model.</li>
               <li>Measure real impact: time saved, reduced rejections, and quality of matches.</li>
+              <li>Protect AI endpoints like public APIs: keep keys server-side, enforce origin checks and rate limits, and require human verification to deter abuse.</li>
             </ol>
           </article>
           <article className="edg-card edg-card--soft">
