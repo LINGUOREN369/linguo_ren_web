@@ -443,7 +443,10 @@ function AppContent() {
               </div>
               <div className="mt-4"></div>
               <p className="strava-intro">
-                Outside of work, I explore New England on foot and by bike. This Strava snapshot updates daily via a lightweight API integration.
+                Outside of work, I explore New England on foot and by bike. 
+              </p>
+              <p className = "strava-intro">
+                This Strava snapshot updates daily via a lightweight API integration.
               </p>
               <StravaWidget />
             </div>
