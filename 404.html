@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <meta name="robots" content="noindex" />
+    <script>
+      (function() {
+        var l = window.location;
+        var path = l.pathname.slice(1);
+        var search = l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '';
+        var target = l.protocol + '//' + l.host + '/?/' + path.replace(/&/g, '~and~') + search + l.hash;
+        l.replace(target);
+      })();
+    </script>
+  </head>
+  <body>
+    <p>Redirecting…</p>
+  </body>
+</html>
