@@ -386,6 +386,53 @@
 }
 
 @media (max-width: 700px) {
-  .ise-layout { padding-top: 2.5rem; }
-  .ise-subpage { scroll-margin-top: 150px; }
+  .ise-container { padding: 2rem 0 4rem; }
+  .ise-hero { gap: 1.5rem; margin-bottom: 2rem; }
+  .ise-title { font-size: 2.1rem; }
+  .ise-subtitle { font-size: 1.1rem; margin-bottom: 1rem; }
+  .ise-hero-body {
+    padding: 1.25rem;
+    border-radius: 16px;
+    box-shadow: none;
+  }
+
+  .ise-layout { padding-top: 1.5rem; }
+  .ise-side-nav { display: none; }
+  .ise-subpage {
+    scroll-margin-top: 110px;
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
+  }
+  .ise-subpage-header { margin-bottom: 1rem; }
+  .ise-banner {
+    margin-bottom: 1.25rem;
+    border-radius: 16px;
+  }
+  .ise-resource-sections {
+    gap: 1.75rem;
+    margin-top: 2rem;
+  }
+  .ise-resource-section {
+    padding: 1.25rem;
+    border-radius: 16px;
+    box-shadow: none;
+  }
+  .ise-resource-group {
+    padding: 1rem;
+    border-radius: 14px;
+    margin-top: 1.2rem;
+  }
+  .ise-subsection {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+    border-radius: 16px;
+    gap: 16px;
+    margin-bottom: 1.5rem;
+  }
+  .ise-subsection img { border-radius: 12px; }
+  .ise-footer-nav { margin-top: 2rem; }
+  .ise-footer-nav .portfolio-button {
+    width: 100%;
+    justify-content: center;
+  }
 }
