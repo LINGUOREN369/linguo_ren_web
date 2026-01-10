@@ -36,7 +36,7 @@ function Project() {
     {
       title: "HFT Anomaly Detection",
       description: "Unsupervised TCN autoencoder for anomalies in high‑frequency stock data; clustering surfaces irregular trading patterns.",
-      link: "https://github.com/LINGUOREN369/Anomaly_Detection",
+      route: "/hft-anomaly-detection",
       image: fml_cover,
       tags: ["Python", "Data Analysis", "Machine Learning & Deep Learning", "R"],
     },

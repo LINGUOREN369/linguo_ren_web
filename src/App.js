@@ -8,6 +8,7 @@ import EdGrantAIChat from './EdGrantAIChat';
 import EdGrantAIGrants from './EdGrantAIGrants';
 import StravaWidget from './StravaWidget';
 import InformalScienceEducation from './InformalScienceEducation';
+import HftAnomalyDetection from './HftAnomalyDetection';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/linguo4.JPG';
 const profileShareImage = process.env.PUBLIC_URL + '/docs/profile_photo.png';
@@ -15,6 +16,7 @@ const favicon = process.env.PUBLIC_URL + '/docs/profile_photo.png';
 const edgrantaiCover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 const maineEducatorsHero = process.env.PUBLIC_URL + '/docs/ise-maine-educators.svg';
 const informalScienceFavicon = process.env.PUBLIC_URL + '/docs/maine_tree_flag.svg';
+const hftCover = process.env.PUBLIC_URL + '/docs/fml_cover.png';
 
 
 function AppContent() {
@@ -73,6 +75,12 @@ function AppContent() {
         shareImage = maineEducatorsHero;
         shareAlt = 'Maine informal science education illustration';
         faviconImage = informalScienceFavicon;
+        break;
+      case '/hft-anomaly-detection':
+        document.title = 'HFT Anomaly Detection';
+        shareImage = hftCover;
+        shareAlt = 'HFT Anomaly Detection cover image';
+        faviconImage = hftCover;
         break;
       default:
         document.title = "Linguo's Projects";
@@ -430,6 +438,7 @@ function AppContent() {
             <Route path="/edgrantai-chat" element={<EdGrantAIChat />} />
             <Route path="/edgrantai-grants" element={<EdGrantAIGrants />} />
             <Route path="/informal-science-education" element={<InformalScienceEducation />} />
+            <Route path="/hft-anomaly-detection" element={<HftAnomalyDetection />} />
           </Routes>
         </div>
       </div>
