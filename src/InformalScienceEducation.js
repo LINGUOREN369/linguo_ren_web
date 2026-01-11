@@ -2,16 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/InformalScienceEducation.css';
 
-const whyInterestImage = process.env.PUBLIC_URL + '/docs/ise-why-interest.svg';
-const whyIdentityImage = process.env.PUBLIC_URL + '/docs/ise-why-identity.svg';
-const educatorsHeroImage = process.env.PUBLIC_URL + '/docs/ise-maine-educators.svg';
-
-const navSections = [
-  { id: 'why-informal-stem-education', label: 'Why informal STEM education' },
-  { id: 'resources-for-maine-educators', label: 'Resources for Maine educators' },
-  { id: 'reference-list', label: 'Reference list' },
-];
-
 const infoItems = [
   'Citizen and community science projects',
   'Technology-enhanced learning',
@@ -35,7 +25,6 @@ const whySections = [
         'Learn more about how fostering interest in STEM through informal STEM education by visiting this',
       text: 'article',
     },
-    image: whyInterestImage,
   },
   {
     title: 'Foster Science Identity',
@@ -49,7 +38,6 @@ const whySections = [
         'Learn more about how fostering STEM identity through informal STEM education by visiting this',
       text: 'article',
     },
-    image: whyIdentityImage,
   },
   {
     title: 'Among Underrepresented Minorities & Young Women',
@@ -67,8 +55,6 @@ const whySections = [
     },
   },
 ];
-
-const educatorHeroImage = educatorsHeroImage;
 
 const citations = [
   {
@@ -379,24 +365,49 @@ const educatorSections = [
   },
 ];
 
+const toSlug = (value) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
+const getResourceId = (title) => `resources-${toSlug(title)}`;
+
+const resourceNavItems = educatorSections.map((section) => ({
+  id: getResourceId(section.title),
+  label: section.title,
+}));
+
+const resourceIdSet = new Set(resourceNavItems.map((item) => item.id));
+
+const navSections = [
+  { id: 'why-informal-stem-education', label: 'Why informal STEM education' },
+  { id: 'resources-for-maine-educators', label: 'Resources for Maine educators' },
+  { id: 'reference-list', label: 'Reference list' },
+];
+
 export default function InformalScienceEducation() {
   const [activeSection, setActiveSection] = useState(navSections[0]?.id || '');
+  const resourcesActive =
+    activeSection === 'resources-for-maine-educators' || resourceIdSet.has(activeSection);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
       return undefined;
     }
 
-    const sections = navSections
-      .map((section) => document.getElementById(section.id))
-      .filter(Boolean);
+    const sectionIds = [
+      ...navSections.map((section) => section.id),
+      ...resourceNavItems.map((section) => section.id),
+    ];
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
 
     if (sections.length === 0) {
       return undefined;
     }
 
     if (!('IntersectionObserver' in window)) {
-      setActiveSection(navSections[0]?.id || '');
+      setActiveSection(sectionIds[0] || '');
       return undefined;
     }
 
@@ -460,17 +471,36 @@ export default function InformalScienceEducation() {
         <nav className="ise-side-nav" aria-label="Informal STEM education navigation">
           <div className="ise-side-title">On this page</div>
           <ul className="ise-side-list">
-            {navSections.map((section) => (
-              <li key={section.id}>
-                <a
-                  className={`ise-side-link${activeSection === section.id ? ' is-active' : ''}`}
-                  href={`#${section.id}`}
-                  aria-current={activeSection === section.id ? 'location' : undefined}
-                >
-                  {section.label}
-                </a>
-              </li>
-            ))}
+            {navSections.map((section) => {
+              const isResources = section.id === 'resources-for-maine-educators';
+              const isActive = isResources ? resourcesActive : activeSection === section.id;
+              return (
+                <li key={section.id}>
+                  <a
+                    className={`ise-side-link${isActive ? ' is-active' : ''}`}
+                    href={`#${section.id}`}
+                    aria-current={isActive ? 'location' : undefined}
+                  >
+                    {section.label}
+                  </a>
+                  {isResources && (
+                    <ul className="ise-side-sublist">
+                      {resourceNavItems.map((item) => (
+                        <li key={item.id}>
+                          <a
+                            className={`ise-side-sublink${activeSection === item.id ? ' is-active' : ''}`}
+                            href={`#${item.id}`}
+                            aria-current={activeSection === item.id ? 'location' : undefined}
+                          >
+                            {item.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
@@ -500,9 +530,6 @@ export default function InformalScienceEducation() {
                     </p>
                   )}
                 </div>
-                {section.image && (
-                  <img src={section.image} alt={section.title} loading="lazy" />
-                )}
               </article>
             ))}
           </section>
@@ -512,15 +539,13 @@ export default function InformalScienceEducation() {
               <h2 className="ise-subpage-title">Resources for Maine Educators</h2>
               <p className="ise-subpage-subtitle">Informal STEM EDUCATION in Maine</p>
             </div>
-            <img
-              className="ise-banner"
-              src={educatorHeroImage}
-              alt="Informal STEM education in Maine"
-              loading="lazy"
-            />
             <div className="ise-resource-sections">
               {educatorSections.map((section) => (
-                <article className="ise-resource-section" key={section.title}>
+                <article
+                  className="ise-resource-section"
+                  key={section.title}
+                  id={getResourceId(section.title)}
+                >
                   <h3 className="ise-resource-title">{section.title}</h3>
                   {section.intro.map((paragraph, index) => (
                     <p key={`${section.title}-intro-${index}`}>{paragraph}</p>
