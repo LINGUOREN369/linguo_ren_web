@@ -4,8 +4,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Project from './Project';
 import EdGrantAI from './EdGrantAI';
+import EdGrantAIAlgorithm from './EdGrantAIAlgorithm';
 import EdGrantAIChat from './EdGrantAIChat';
 import EdGrantAIGrants from './EdGrantAIGrants';
+import EdGrantAITaxonomy from './EdGrantAITaxonomy';
 import StravaWidget from './StravaWidget';
 import InformalScienceEducation from './InformalScienceEducation';
 import HftAnomalyDetection from './HftAnomalyDetection';
@@ -64,8 +66,20 @@ function AppContent() {
         shareAlt = 'EdGrantAI cover image';
         faviconImage = edgrantaiCover;
         break;
+      case '/edgrantai-algorithm':
+        document.title = 'EdGrantAI — Matching algorithm';
+        shareImage = edgrantaiCover;
+        shareAlt = 'EdGrantAI cover image';
+        faviconImage = edgrantaiCover;
+        break;
       case '/edgrantai-grants':
         document.title = 'EdGrantAI — Grant database';
+        shareImage = edgrantaiCover;
+        shareAlt = 'EdGrantAI cover image';
+        faviconImage = edgrantaiCover;
+        break;
+      case '/edgrantai-taxonomy':
+        document.title = 'EdGrantAI — Taxonomy';
         shareImage = edgrantaiCover;
         shareAlt = 'EdGrantAI cover image';
         faviconImage = edgrantaiCover;
@@ -436,7 +450,9 @@ function AppContent() {
             <Route path="/edgrantai" element={<EdGrantAI />} />
             <Route path="/edgrant" element={<Navigate to="/edgrantai" replace />} />
             <Route path="/edgrantai-chat" element={<EdGrantAIChat />} />
+            <Route path="/edgrantai-algorithm" element={<EdGrantAIAlgorithm />} />
             <Route path="/edgrantai-grants" element={<EdGrantAIGrants />} />
+            <Route path="/edgrantai-taxonomy" element={<EdGrantAITaxonomy />} />
             <Route path="/informal-science-education" element={<InformalScienceEducation />} />
             <Route path="/hft-anomaly-detection" element={<HftAnomalyDetection />} />
           </Routes>

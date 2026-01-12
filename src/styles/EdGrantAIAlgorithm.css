@@ -1,0 +1,47 @@
+.edg-algorithm .edg-math-block {
+  margin: 12px 0 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--edg-border);
+  background: var(--edg-surface);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  word-break: break-word;
+}
+
+.edg-algorithm .edg-math-block .katex-display {
+  margin: 0;
+}
+
+.edg-algorithm .edg-math-block .katex {
+  font-size: 1rem;
+}
+
+.edg-algorithm .edg-algorithm-note {
+  margin-top: 12px;
+  color: var(--edg-muted);
+  line-height: 1.6;
+}
+
+.edg-algorithm .edg-card-title {
+  margin-bottom: 10px;
+}
+
+.edg-algorithm code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.edg-algorithm p code,
+.edg-algorithm li code {
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--edg-border);
+  background: rgba(15, 23, 42, 0.06);
+  font-size: 0.85rem;
+}
+
+.theme-dark .edg-algorithm p code,
+.theme-dark .edg-algorithm li code {
+  background: rgba(148, 163, 184, 0.14);
+}

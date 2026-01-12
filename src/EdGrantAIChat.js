@@ -358,6 +358,12 @@ export default function EdGrantAIChat() {
             <Link to="/edgrantai-grants" className="portfolio-button portfolio-button--secondary">
               Current Grant Database
             </Link>
+            <Link to="/edgrantai-taxonomy" className="portfolio-button portfolio-button--secondary">
+              Current Taxonomy
+            </Link>
+            <Link to="/edgrantai-algorithm" className="portfolio-button portfolio-button--secondary">
+              Matching Algorithm
+            </Link>
           </div>
         </div>
 
