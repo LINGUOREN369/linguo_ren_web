@@ -188,6 +188,9 @@ export default function EdGrantAIAlgorithm() {
                 The system reads the organization text and the grant text. It extracts key phrases and keeps them verbatim.
                 These phrases are the raw inputs for tagging.
               </p>
+              <p className="edg-algorithm-note"><strong>Why:</strong> Short phrases are easier to map to clean tags than full paragraphs.</p>
+              <p className="edg-algorithm-note"><strong>Output:</strong> A list of verbatim phrases with their source text.</p>
+              <p className="edg-algorithm-note"><strong>Next:</strong> Map each phrase to a taxonomy tag.</p>
             </div>
           </article>
 
@@ -205,6 +208,13 @@ export default function EdGrantAIAlgorithm() {
               <p className="edg-algorithm-note">
                 A threshold is the minimum similarity score needed for a phrase to map to a tag.
               </p>
+              <p className="edg-algorithm-note">
+                This step uses embeddings + cosine similarity to turn phrase text into tag confidence. It is still profile
+                building, not org-vs-grant matching.
+              </p>
+              <p className="edg-algorithm-note"><strong>Why:</strong> Standard tags make org and grant profiles comparable.</p>
+              <p className="edg-algorithm-note"><strong>Output:</strong> Candidate tags with confidence scores.</p>
+              <p className="edg-algorithm-note"><strong>Next:</strong> Keep the best confidence per tag to build canonical lists.</p>
               <div className="edg-step-grid">
                 <div className="edg-step-block">
                   <span className="edg-label">Strict thresholds</span>
@@ -229,6 +239,10 @@ export default function EdGrantAIAlgorithm() {
                   </ul>
                 </div>
               </div>
+              <p className="edg-callout">
+                <strong>Cosine happens twice:</strong> first here (phrase -&gt; tag, to get confidence). Then again in Step 4
+                (org tag -&gt; grant tag, to get match similarity).
+              </p>
             </div>
           </article>
 
@@ -240,6 +254,9 @@ export default function EdGrantAIAlgorithm() {
                 For each taxonomy, the system keeps the best match per tag and stores its confidence (0 to 1). Duplicate
                 tags keep the highest confidence. This becomes the canonical tag list.
               </p>
+              <p className="edg-algorithm-note"><strong>Why:</strong> A clean tag list avoids double counting and noise.</p>
+              <p className="edg-algorithm-note"><strong>Output:</strong> Canonical tag lists with confidence per taxonomy.</p>
+              <p className="edg-algorithm-note"><strong>Next:</strong> Compare org tags to grant tags to measure similarity.</p>
             </div>
           </article>
 
@@ -248,12 +265,19 @@ export default function EdGrantAIAlgorithm() {
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Compute tag similarity</h3>
               <p>
-                Mission and population tags use embeddings and cosine similarity. Org type and geography use exact match
-                (geography also accepts us_national). Similarities below <code>{'T_{match}'}</code> are ignored.
+                This is the org-vs-grant matching step. Mission and population tags use embeddings and cosine similarity.
+                Org type and geography use exact match (geography also accepts us_national). Similarities below
+                <code>{'T_{match}'}</code> are ignored. The results are the <code>{'s_{ij}'}</code> values used later.
               </p>
               <LaTeXBlock formula={cosineFormula} />
               <LaTeXBlock formula={matchThresholdFormula} />
               <LaTeXBlock formula={matchThresholdValueFormula} />
+              <p className="edg-algorithm-note">
+                This is the second cosine. The first cosine was in Step 2 during profile building.
+              </p>
+              <p className="edg-algorithm-note"><strong>Why:</strong> Similarity scores tell how close the org and grant tags are.</p>
+              <p className="edg-algorithm-note"><strong>Output:</strong> A set of tag-pair similarities (or exact matches).</p>
+              <p className="edg-algorithm-note"><strong>Next:</strong> Turn those similarities into overlap scores per taxonomy.</p>
             </div>
           </article>
 
@@ -273,6 +297,9 @@ export default function EdGrantAIAlgorithm() {
                 <li><code>{'s_{ij}'}</code> = similarity between tags</li>
                 <li><code>O_m</code>, <code>O_p</code>, <code>O_o</code>, <code>O_g</code> = overlaps</li>
               </ul>
+              <p className="edg-algorithm-note"><strong>Why:</strong> Overlap compresses many tag pairs into one score per taxonomy.</p>
+              <p className="edg-algorithm-note"><strong>Output:</strong> Four overlap values: mission, population, org type, geography.</p>
+              <p className="edg-algorithm-note"><strong>Next:</strong> Combine overlaps with weights to get one final score.</p>
             </div>
           </article>
 
@@ -296,6 +323,9 @@ export default function EdGrantAIAlgorithm() {
                 <li>Avoid if score &lt; 0.40</li>
                 <li>Hard red-flag rule violated: score = 0</li>
               </ul>
+              <p className="edg-algorithm-note"><strong>Why:</strong> One score makes it easy to rank many grants.</p>
+              <p className="edg-algorithm-note"><strong>Output:</strong> Final score plus bucket (Apply/Maybe/Avoid).</p>
+              <p className="edg-algorithm-note"><strong>Next:</strong> Sort results and return them to the UI.</p>
             </div>
           </article>
 
@@ -309,6 +339,9 @@ export default function EdGrantAIAlgorithm() {
                 <li>Grant URL and profile JSON for transparency.</li>
                 <li>Deadlines, funding amounts, and synopsis when available.</li>
               </ul>
+              <p className="edg-algorithm-note"><strong>Why:</strong> The output is designed for human review, not automation.</p>
+              <p className="edg-algorithm-note"><strong>Output:</strong> Ranked recommendations with evidence and context.</p>
+              <p className="edg-algorithm-note"><strong>Next:</strong> The frontend displays cards and exports JSON.</p>
             </div>
           </article>
         </div>
@@ -347,6 +380,10 @@ export default function EdGrantAIAlgorithm() {
                   </ul>
                 </div>
               </div>
+              <p className="edg-algorithm-note">
+                <strong>Why:</strong> These are the exact inputs to matching. <strong>Output:</strong> Two tag lists.
+                <strong>Next:</strong> Compute mission tag similarities.
+              </p>
             </div>
           </article>
 
@@ -373,6 +410,10 @@ export default function EdGrantAIAlgorithm() {
               <p className="edg-algorithm-note">
                 If the embedding model or taxonomy embeddings are updated, these similarity numbers can change.
               </p>
+              <p className="edg-algorithm-note">
+                <strong>Why:</strong> Similarity tells how close the mission tags are. <strong>Output:</strong> The
+                mission similarity list. <strong>Next:</strong> Compute mission overlap.
+              </p>
             </div>
           </article>
 
@@ -381,6 +422,10 @@ export default function EdGrantAIAlgorithm() {
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Mission overlap</h3>
               <LaTeXBlock formula={missionStepFormula} />
+              <p className="edg-algorithm-note">
+                <strong>Why:</strong> Mission overlap is the biggest weight. <strong>Output:</strong> <code>O_m</code>.
+                <strong>Next:</strong> Compute population overlap.
+              </p>
             </div>
           </article>
 
@@ -389,6 +434,10 @@ export default function EdGrantAIAlgorithm() {
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Population overlap</h3>
               <LaTeXBlock formula={populationStepFormula} />
+              <p className="edg-algorithm-note">
+                <strong>Why:</strong> Population alignment is critical for eligibility. <strong>Output:</strong>
+                <code>O_p</code>. <strong>Next:</strong> Compute org type and geography overlap.
+              </p>
             </div>
           </article>
 
@@ -398,6 +447,10 @@ export default function EdGrantAIAlgorithm() {
               <h3 className="edg-card-title">Org type and geography overlap</h3>
               <LaTeXBlock formula={orgTypeStepFormula} />
               <LaTeXBlock formula={geographyStepFormula} />
+              <p className="edg-algorithm-note">
+                <strong>Why:</strong> These can enforce eligibility constraints. <strong>Output:</strong> <code>O_o</code>
+                and <code>O_g</code>. <strong>Next:</strong> Combine all overlaps into the final score.
+              </p>
             </div>
           </article>
 
@@ -409,6 +462,10 @@ export default function EdGrantAIAlgorithm() {
               <LaTeXBlock formula={finalScorePenaltyFormula} />
               <p>
                 With no red flags, the score is 0.83583, which lands in the Apply bucket (score &gt;= 0.60).
+              </p>
+              <p className="edg-algorithm-note">
+                <strong>Why:</strong> One score makes ranking easy. <strong>Output:</strong> Final score + bucket.
+                <strong>Next:</strong> Rank against other grants.
               </p>
             </div>
           </article>
