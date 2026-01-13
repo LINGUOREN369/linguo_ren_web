@@ -7,24 +7,44 @@ const API_ENDPOINT = process.env.REACT_APP_EDGRANT_API_URL
 const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITE_KEY
   || '0x4AAAAAACK9_1Q5N9HOGc3h';
 const PROCESSED_GRANT_BASE_URL = 'https://raw.githubusercontent.com/LINGUOREN369/EdGrantAI/main/data/processed_grants';
-const EXAMPLE_CASE_ORG = 'Utopia Math & Science Association (UMSA)';
-const EXAMPLE_CASE_TEXT = `Utopia Math & Science Association -- Organizational Profile (For Grant-Matching Test)
+const EXAMPLE_CASE_ORG = 'Applied Learning & Teaching Lab (ALTL)';
+const EXAMPLE_CASE_TEXT = `Core Program Areas
 
-The Utopia Math & Science Association (UMSA) is a nonprofit STEM education organization dedicated to improving how science, technology, engineering, and mathematics are taught and experienced by learners across diverse communities. Founded in 2004 with early support from regional education funders and national STEM initiatives, UMSA has grown into a recognized leader in designing innovative STEM learning models, strengthening educator capacity, and advancing research-informed improvements in STEM instruction.
+1. Teacher Professional Learning
+- Designs and delivers sustained professional learning for K-12 STEM teachers
+- Focus on math and science instructional practices aligned with state standards
+- Coaching, workshops, and online learning communities
 
-Since its founding, UMSA has received more than $18 million in grants and philanthropic funding to support its work. The organization collaborates with K-12 schools, school districts, state and local agencies, higher education institutions, and national partners to expand access to high-quality STEM learning opportunities and to scale effective instructional practices.
+2. Research-Practice Partnerships (RPPs)
+- Collaborates with university researchers and school districts
+- Conducts implementation and efficacy studies of STEM instructional interventions
+- Emphasis on continuous improvement and classroom applicability
 
-UMSA's mission is to inspire meaningful and engaging STEM learning experiences so that all youth--regardless of background, geography, or circumstance--can become the innovators, problem-solvers, and contributors of tomorrow's workforce and civic life.
+3. Curriculum & Instructional Materials
+- Develops open-access STEM curriculum modules and assessments
+- Supports districts in adapting materials for local contexts
+- Integrates computational thinking and data literacy
 
-UMSA's work spans three interconnected strategic functions. First, the organization designs and delivers high-quality STEM professional development for educators, supporting teachers in implementing inquiry-based, student-centered instruction and building confidence and pedagogical skill across K-12 classrooms. Second, UMSA conducts research and evaluation focused on STEM learning experiences, assessing education initiatives to identify effective models and translating findings into actionable insights for educators, schools, and education systems. Third, UMSA prioritizes relationship and network building by fostering partnerships at the local, regional, and national levels, developing educator networks that sustain long-term STEM improvement, and supporting community-based and rural STEM engagement efforts.
+4. Broadening Participation
+- Works with Title I schools and rural districts
+- Supports teachers serving historically underrepresented student populations
+- Focus on inclusive instructional design and access
 
-UMSA was established as a 501(c)(3) nonprofit organization in 2004 and has steadily expanded its reach through multi-year professional learning initiatives, applied research projects, and cross-sector STEM collaborations. Over the past two decades, the organization has built a strong reputation for combining practical educator support with evidence-informed research and systems-level impact.
+Populations Served
+- K-12 students
+- K-12 STEM teachers
+- School and district instructional leaders
 
-Equity and accessibility are central to UMSA's approach. The organization is committed to ensuring that all students--particularly those in rural, underserved, or historically marginalized communities--have meaningful opportunities to engage in high-quality STEM learning. UMSA integrates principles of diversity, equity, inclusion, and accessibility (DEIA) into its programs, partnerships, and organizational decision-making.
+Organizational Type
+- 501(c)(3) nonprofit organization
+- Does not award degrees
+- Functions as an intermediary and implementation partner
 
-For grant-matching and testing purposes, UMSA seeks funding to scale educator training, expand STEM access in rural and underserved communities, and strengthen research and evaluation efforts that support systemic improvement in STEM education. Grant funding would enable the organization to develop new research-backed professional development programs, refine and evaluate STEM teaching models, expand regional and statewide educator networks, and disseminate tools, findings, and best practices.
-
-In summary, UMSA requests funding to expand research-backed STEM professional development for K-12 educators, with a targeted focus on rural and underserved communities. Grant support will allow UMSA to design and deliver inquiry-based training, provide sustained coaching and evaluation, and strengthen educator networks that translate evidence-based practices into classroom implementation. By pairing high-quality professional learning with applied research and dissemination, this investment will increase educator capacity, improve STEM instruction at scale, and ensure that students--regardless of geography or background--gain equitable access to engaging, high-impact STEM learning experiences.`;
+Evidence & Capacity
+- Experience managing multi-year federally funded projects
+- Prior NSF-style evaluation activities (logic models, formative evaluation)
+- Data collection on teacher practice and student learning outcomes
+- Partnerships with higher education institutions`;
 const MAX_MESSAGE_PREVIEW = 240;
 
 const formatGrantName = (rec) => {
@@ -374,18 +394,18 @@ export default function EdGrantAIChat() {
           <h2 id="edg-chat-inputs" className="edg-chat-card-title">How to use this tool</h2>
           <ol className="edg-chat-steps">
             <li>Paste your organization profile or mission statement into the Mission statement field. (If you want an example, click Load example case.)</li>
-            <li>Optional: add an organization name so results are labeled clearly.</li>
+            <li>Add an organization name so results are labeled clearly.</li>
             <li>Click Generate recommendations and wait a minute.</li>
             <li>After results load, review the ranked grants.</li>
             <li>JSON exports explain the output: Organization (JSON) shows the processed org profile (extracted phrases and tags), Match Report (JSON) shows scores, reasons, and the full ranked list. Each grant also links to Grant Info page and Grant Profile (JSON) (processed grant profile).</li>
           </ol>
           <form onSubmit={submitMission} className="edg-chat-form">
-            <label className="edg-chat-label" htmlFor="org-name">Organization name (optional)</label>
+            <label className="edg-chat-label" htmlFor="org-name">Organization name</label>
             <input
               id="org-name"
               type="text"
               className="edg-chat-input"
-              placeholder="Utopia Math & Science Association"
+              placeholder="Applied Learning & Teaching Lab (ALTL)"
               value={orgName}
               onChange={(event) => setOrgName(event.target.value)}
             />
@@ -395,7 +415,7 @@ export default function EdGrantAIChat() {
               id="mission"
               className="edg-chat-textarea"
               rows="6"
-              placeholder="The Utopia Math & Science Association (UMSA) is a nonprofit STEM education organization dedicated to improving how science, technology, engineering, and mathematics are taught and experienced by learners across diverse communities..."
+              placeholder="Core Program Areas: Teacher Professional Learning, Research-Practice Partnerships (RPPs), Curriculum & Instructional Materials, Broadening Participation..."
               value={mission}
               onChange={(event) => setMission(event.target.value)}
             />
@@ -409,7 +429,7 @@ export default function EdGrantAIChat() {
             <div className="edg-chat-example edg-chat-advanced">
               <div className="edg-chat-example-header">
                 <div>
-                  <p className="edg-chat-example-title">Example case: Utopia Math & Science Association</p>
+                  <p className="edg-chat-example-title">Example case: Applied Learning & Teaching Lab (ALTL)</p>
                   <p className="edg-chat-example-subtitle">Use this organizational profile to test grant matching.</p>
                 </div>
                 <button
