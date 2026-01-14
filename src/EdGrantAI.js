@@ -68,7 +68,7 @@ export default function EdGrantAI() {
           <div className="edg-hero-copy">
             <span className="edg-eyebrow">EdGantAI: Responsible AI Case Study</span>
             <h1 className="edg-title">EdGrantAI: Evidence-Bound AI for High-Stakes Nonprofit Decisions</h1>
-            <p className="edg-subtitle">Why reliable decision support requires constraints, refusal, and human oversight</p>
+            <p className="edg-subtitle">Evidence-gated decision support with guardrails, restraint, and human oversight</p>
             <div className="edg-cta">
               <a
                 href="https://github.com/LINGUOREN369/EdGrantAI"
@@ -108,10 +108,10 @@ export default function EdGrantAI() {
                 For small education nonprofits, the grant landscape is often inequitable. Large institutions have dedicated teams to parse complex solicitation documents (RFPs), while smaller organizations rely on overworked staff who lose 10–100 hours on a single proposal depending on the size of the grant and often for grants they were never eligible for in the first place.
               </p>
               <p>
-                EdGrantAI was built to solve this specific problem. It is an evidence-bound decision engine that converts complex NSF solicitations into clear, actionable intelligence. 
+                EdGrantAI is a decision support system, not a one-click matcher. It acts as an evidence gate: it assigns tags only when the source text clearly supports them and stays silent when evidence is thin. The goal is to narrow scope so humans can focus.
               </p>
               <p>
-                This case study shows how nonprofits can move beyond experimental ChatGPT use to build purpose-built, transparent AI tools that address mission-critical needs. It highlights how to distinguish between tasks that require model reasoning and those that demand deterministic control—ensuring AI is used efficiently, responsibly, and in ways that strengthen, rather than obscure, human decision-making.
+                This case study shows how LLMs can be used responsibly when guardrails and explicit brakes prevent unexplainable hallucinations, making limits visible and keeping accountability with human decision-makers.
               </p>
             </div>
           </div>
@@ -163,8 +163,7 @@ export default function EdGrantAI() {
                   </li>
                 </ol>
                 <p className="edg-callout">
-                  <strong>Our Vision:</strong> A tool that acts as a digital "Grant Officer" - one that does not sleep, does not guess, and shows its work for
-                  every recommendation.
+                  <strong>Our Vision:</strong> A decision-support tool that narrows the scope, shows its evidence, and leaves the final decision to people.
                 </p>
               </article>
               <figure className="edg-card edg-comparison-figure">
@@ -196,7 +195,7 @@ export default function EdGrantAI() {
               <span className="edg-kicker">Alignment goals</span>
               <h2 className="edg-h2">Alignment Goals and Responsible AI Design</h2>
               <p className="edg-intro">
-                Each goal maps directly to a design choice in the repo, so you can see how the system stays evidence-bound in practice.
+                Each goal maps directly to a design choice in the repo, so you can see how the evidence gate keeps the system conservative in practice.
               </p>
             </div>
             <div className="edg-pair-grid edg-stagger">
@@ -209,7 +208,7 @@ export default function EdGrantAI() {
                 <div className="edg-pair-arrow" aria-hidden="true">-&gt;</div>
                 <div className="edg-card">
                   <span className="edg-label">Design implementation</span>
-                  <p>Evidence over creativity: everything traces to extracted text and curated taxonomy tags.</p>
+                  <p>Evidence over creativity: tags appear only when they trace to extracted text and curated taxonomy terms.</p>
                 </div>
               </article>
               <article className="edg-pair">
@@ -233,7 +232,7 @@ export default function EdGrantAI() {
                 <div className="edg-pair-arrow" aria-hidden="true">-&gt;</div>
                 <div className="edg-card">
                   <span className="edg-label">Design implementation</span>
-                  <p>Strict thresholds and guarded embedding fallback keep weak matches from surfacing.</p>
+                  <p>Strict thresholds and guarded embedding fallback keep weak matches from surfacing, so silence is the correct output when evidence is thin.</p>
                 </div>
               </article>
               <article className="edg-pair">
@@ -261,6 +260,19 @@ export default function EdGrantAI() {
                 </div>
               </article>
             </div>
+            <div className="edg-card edg-card--accent edg-stagger">
+              <span className="edg-label">Responsible decision-support principle</span>
+              <h3 className="edg-card-title">Decision support as an evidence gate</h3>
+              <p>
+                In a responsible AI context, the goal is not to label everything. EdGrantAI uses LLMs to assist, but the gate is strict:
+                it assigns tags only when there is clear, traceable support in the source text and stays silent when evidence is thin or ambiguous.
+              </p>
+              <p>
+                This restraint is intentional: each tag implies a judgment, and in high-stakes work that can shift
+                accountability to the system. Sparse output is a design choice that makes limits visible, reduces automation bias,
+                and keeps responsibility with people.
+              </p>
+            </div>
           </section>
 
           <section className="edg-section edg-panel" id="system-structure">
@@ -277,19 +289,18 @@ export default function EdGrantAI() {
                   be compared consistently over time.
                 </p>
                 <p>
-                  The profile builder turns evidence into two comparable JSON profiles, and the matching engine scores overlap with explicit penalties and
-                  eligibility blocks. That algorithm is chosen because it is symmetric, deterministic, and auditable—so it can be inspected, tuned, and
-                  defended. Explanations are optional and come last, only after a match clears a confidence gate.
+                  The profile builder stores only supported tags with their source snippets. The decision-support stage compares only those supported
+                  tags and ignores anything below confidence thresholds. Explanations are optional and come last, only after the gate clears.
                 </p>
                 <p>
-                  In short, the structure exists to reduce hallucinations, enforce fairness in comparison, and keep humans in control of final decisions.
+                  In short, the structure exists to prevent overreach, make uncertainty visible, and keep humans in control of final decisions.
                 </p>
               </div>
               <figure className="edg-card edg-structure-figure">
                 <img
                   className="edg-structure-image"
                   src={structureImage}
-                  alt="EdGrantAI system structure from organization and grant text through keyphrase extraction, mapping, profiling, matching, and recommendations."
+                  alt="EdGrantAI system structure from organization and grant text through keyphrase extraction, mapping, profiling, evidence-gated scoring, and recommendations."
                   loading="lazy"
                 />
               </figure>
@@ -343,7 +354,7 @@ export default function EdGrantAI() {
                       <span className="edg-label">Alignment choices</span>
                       <ul>
                         <li>Dictionary-first mapping for high-precision terms and synonyms.</li>
-                        <li>Embedding fallback is used only when dictionary matching fails.</li>
+                        <li>Embedding fallback is used only when dictionary mapping fails.</li>
                         <li>Section provenance restricts what can map to mission or red flags.</li>
                         <li>Guardrails prevent common failure modes.</li>
                       </ul>
@@ -405,16 +416,17 @@ export default function EdGrantAI() {
               <article className="edg-step">
                 <div className="edg-step-index">4</div>
                 <div className="edg-step-body edg-card">
-                  <h3 className="edg-card-title">Matching and Recommendations</h3>
+                  <h3 className="edg-card-title">Decision Support and Recommendations</h3>
                   <div className="edg-step-grid">
                     <div className="edg-step-block">
                       <span className="edg-label">Alignment choices</span>
                       <ul>
-                        <li>Confidence-weighted, symmetric overlap avoids bias from tag count.</li>
+                        <li>Evidence-gated scoring runs only on supported tags; weak tags are dropped before scoring.</li>
+                        <li>Confidence-weighted, symmetric overlap prevents over-tagging and tag-count bias.</li>
                         <li>Red flags can hard-block if eligibility is unmet.</li>
                         <li>Explanation generation is gated (top-K or minimum score).</li>
                         <li>Deadline and funding extraction are re-checked against source text.</li>
-                        <li>Embeddings drive mission/population similarity; other tags use exact match.</li>
+                        <li>Similarity scoring is restricted to mission/population; org type and geography require exact match.</li>
                       </ul>
                     </div>
                     <div className="edg-step-block">
@@ -429,7 +441,7 @@ export default function EdGrantAI() {
                     <div className="edg-step-block">
                       <span className="edg-label">Why it matters</span>
                       <ul>
-                        <li>Prevents overconfident recommendations.</li>
+                        <li>Prevents overconfident recommendations and keeps silence when evidence is weak.</li>
                         <li>Adds safety rails around eligibility and deadlines.</li>
                         <li>Keeps explanations concise and grounded.</li>
                         <li>Stops tag spam from inflating match scores.</li>
@@ -447,7 +459,7 @@ export default function EdGrantAI() {
               <span className="edg-kicker">Security</span>
               <h2 className="edg-h2">API Security Overview</h2>
               <p className="edg-intro">
-                This section explains how the EdGrantAI chat endpoint is protected end-to-end, from the browser to the matching backend.
+                This section explains how the EdGrantAI chat endpoint is protected end-to-end, from the browser to the decision-support backend.
               </p>
             </div>
             <div className="edg-security-grid edg-stagger">
@@ -459,7 +471,7 @@ export default function EdGrantAI() {
                   <li>Browser sends mission + Turnstile token to the edge gateway.</li>
                   <li>Edge gateway validates origin, Turnstile token, and rate limits the client.</li>
                   <li>Edge gateway injects a server-side API token and forwards to the backend.</li>
-                  <li>Backend validates the token and uses a server-only LLM API key for matching.</li>
+                  <li>Backend validates the token and uses a server-only LLM API key for decision support.</li>
                   <li>Recommendations flow back to the browser.</li>
                 </ol>
               </article>
@@ -475,7 +487,7 @@ export default function EdGrantAI() {
                     <span className="edg-security-detail">Cloudflare Worker</span>
                   </li>
                   <li>
-                    <span className="edg-security-term">Matching backend</span>
+                    <span className="edg-security-term">Decision-support backend</span>
                     <span className="edg-security-detail">Render API</span>
                   </li>
                 </ul>
@@ -634,8 +646,8 @@ export default function EdGrantAI() {
             <div className="edg-summary">
               <h2 className="edg-h2">Summary</h2>
               <p>
-                EdGrantAI is not a general chatbot. It is a constrained, evidence-driven system with explicit guardrails and human oversight. That
-                combination makes it safer, more transparent, and more useful in nonprofit decision workflows.
+                EdGrantAI is not a general chatbot. It is a decision-support evidence gate that stays silent when support is weak, backed by explicit
+                guardrails and human oversight. That combination makes it safer, more transparent, and more useful in nonprofit decision workflows.
               </p>
             </div>
           </section>

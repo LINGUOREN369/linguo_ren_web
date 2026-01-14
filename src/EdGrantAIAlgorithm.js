@@ -98,6 +98,10 @@ const penaltyFormula = String.raw`
 \text{final score} = \text{score} \times penalty_{redflag}
 `;
 
+const penaltyValueFormula = String.raw`
+penalty_{redflag} = 0.95
+`;
+
 const cosineFormula = String.raw`
 \text{cosine}(a,b) = \frac{a \cdot b}{\|a\|\|b\|}
 `;
@@ -150,7 +154,7 @@ const finalScoreStepFormula = String.raw`
 `;
 
 const finalScorePenaltyFormula = String.raw`
-\text{final score} = 0.83583 \times 0.85 = 0.710
+\text{final score} = 0.83583 \times 0.95 = 0.794
 `;
 
 export default function EdGrantAIAlgorithm() {
@@ -344,6 +348,7 @@ export default function EdGrantAIAlgorithm() {
               <LaTeXBlock formula={scoreFormula} />
               <LaTeXBlock formula={weightFormula} />
               <LaTeXBlock formula={penaltyFormula} />
+              <LaTeXBlock formula={penaltyValueFormula} />
               <p className="edg-algorithm-note">
                 <strong>Why these numbers:</strong> Mission is most important, population and org type are close behind
                 because they affect eligibility, and geography is a lighter filter. The weights are relative, so they do
