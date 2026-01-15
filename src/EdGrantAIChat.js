@@ -46,7 +46,10 @@ Evidence & Capacity
 - Data collection on teacher practice and student learning outcomes
 - Partnerships with higher education institutions`;
 const MAX_MESSAGE_PREVIEW = 240;
-const MAX_MISSION_CHARS = 6000;
+const MAX_MISSION_TOKENS = 10000;
+const CHARS_PER_TOKEN = 4;
+const WORDS_PER_TOKEN = 0.75;
+const MAX_MISSION_WORDS = Math.floor(MAX_MISSION_TOKENS * WORDS_PER_TOKEN);
 
 const formatGrantName = (rec) => {
   const raw = rec.title || rec.name || rec.program || rec.grant_profile || 'Grant';
@@ -124,8 +127,13 @@ export default function EdGrantAIChat() {
   const [processedOrgProfileJson, setProcessedOrgProfileJson] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const missionCharCount = mission.trim().length;
-  const missionOverLimit = missionCharCount > MAX_MISSION_CHARS;
+  const trimmedMission = mission.trim();
+  const missionCharCount = trimmedMission.length;
+  const missionTokenEstimate = Math.ceil(missionCharCount / CHARS_PER_TOKEN);
+  const missionWordCount = trimmedMission ? trimmedMission.split(/\s+/).length : 0;
+  const missionOverLimit = missionTokenEstimate > MAX_MISSION_TOKENS;
+  const missionTokenOverage = missionOverLimit ? (missionTokenEstimate - MAX_MISSION_TOKENS) : 0;
+  const missionWordOverage = missionWordCount > MAX_MISSION_WORDS ? (missionWordCount - MAX_MISSION_WORDS) : 0;
   const feedRef = useRef(null);
   const turnstileRef = useRef(null);
   const turnstileWidgetRef = useRef(null);
@@ -262,13 +270,13 @@ export default function EdGrantAIChat() {
 
   const submitMission = async (event) => {
     event.preventDefault();
-    const trimmed = mission.trim();
+    const trimmed = trimmedMission;
     if (!trimmed) {
       setError('Please enter a mission statement.');
       return;
     }
-    if (trimmed.length > MAX_MISSION_CHARS) {
-      setError(`Mission statement is too long (${trimmed.length} characters). Please shorten to ${MAX_MISSION_CHARS} or fewer characters.`);
+    if (missionTokenEstimate > MAX_MISSION_TOKENS) {
+      setError(`Mission statement is too long (${missionTokenEstimate} tokens est). Limit is ${MAX_MISSION_TOKENS} tokens (~${MAX_MISSION_WORDS} words).`);
       return;
     }
     if (!API_ENDPOINT) {
@@ -281,7 +289,6 @@ export default function EdGrantAIChat() {
     setOrgProfileFile('');
     setProcessedOrgProfileJson(null);
     setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
-    setMission('');
 
     try {
       const payload = { mission: trimmed, explain: true };
@@ -438,10 +445,10 @@ export default function EdGrantAIChat() {
             <div className={`edg-chat-counter${missionOverLimit ? ' edg-chat-counter--warn' : ''}`}>
               <span>
                 {missionOverLimit
-                  ? `Over limit by ${missionCharCount - MAX_MISSION_CHARS} characters.`
-                  : `Limit ${MAX_MISSION_CHARS} characters.`}
+                  ? `Over limit by ${missionTokenOverage} tokens (~${missionWordOverage} words).`
+                  : `Token cap: ${MAX_MISSION_TOKENS} (~${MAX_MISSION_WORDS} words). Token estimate uses ~${CHARS_PER_TOKEN} chars/token.`}
               </span>
-              <span>{missionCharCount}/{MAX_MISSION_CHARS}</span>
+              <span>{missionTokenEstimate}/{MAX_MISSION_TOKENS} tokens est | {missionWordCount}/{MAX_MISSION_WORDS} words</span>
             </div>
 
             <div className="edg-chat-actions">

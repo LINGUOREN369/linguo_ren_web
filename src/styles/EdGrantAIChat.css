@@ -250,6 +250,8 @@
 .edg-chat-counter {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
   font-size: 0.8rem;
   color: var(--chat-muted);
 }
