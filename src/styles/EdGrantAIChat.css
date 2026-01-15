@@ -247,6 +247,22 @@
   gap: 12px;
 }
 
+.edg-chat-counter {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--chat-muted);
+}
+
+.edg-chat-counter--warn {
+  color: #b91c1c;
+  font-weight: 600;
+}
+
+.theme-dark .edg-chat-counter--warn {
+  color: #fecaca;
+}
+
 .edg-chat-turnstile {
   display: flex;
   flex-direction: column;

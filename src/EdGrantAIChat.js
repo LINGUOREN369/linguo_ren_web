@@ -46,6 +46,7 @@ Evidence & Capacity
 - Data collection on teacher practice and student learning outcomes
 - Partnerships with higher education institutions`;
 const MAX_MESSAGE_PREVIEW = 240;
+const MAX_MISSION_CHARS = 6000;
 
 const formatGrantName = (rec) => {
   const raw = rec.title || rec.name || rec.program || rec.grant_profile || 'Grant';
@@ -123,6 +124,8 @@ export default function EdGrantAIChat() {
   const [processedOrgProfileJson, setProcessedOrgProfileJson] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const missionCharCount = mission.trim().length;
+  const missionOverLimit = missionCharCount > MAX_MISSION_CHARS;
   const feedRef = useRef(null);
   const turnstileRef = useRef(null);
   const turnstileWidgetRef = useRef(null);
@@ -264,6 +267,10 @@ export default function EdGrantAIChat() {
       setError('Please enter a mission statement.');
       return;
     }
+    if (trimmed.length > MAX_MISSION_CHARS) {
+      setError(`Mission statement is too long (${trimmed.length} characters). Please shorten to ${MAX_MISSION_CHARS} or fewer characters.`);
+      return;
+    }
     if (!API_ENDPOINT) {
       setError('API endpoint not configured.');
       return;
@@ -298,7 +305,16 @@ export default function EdGrantAIChat() {
 
       if (!response.ok) {
         const text = await response.text();
-        throw new Error(text || 'Request failed');
+        let message = text || 'Request failed';
+        try {
+          const parsed = JSON.parse(text);
+          if (parsed && typeof parsed.error === 'string') {
+            message = parsed.error;
+          }
+        } catch (parseError) {
+          // Fallback to raw text.
+        }
+        throw new Error(message);
       }
 
       const data = await response.json();
@@ -419,6 +435,14 @@ export default function EdGrantAIChat() {
               value={mission}
               onChange={(event) => setMission(event.target.value)}
             />
+            <div className={`edg-chat-counter${missionOverLimit ? ' edg-chat-counter--warn' : ''}`}>
+              <span>
+                {missionOverLimit
+                  ? `Over limit by ${missionCharCount - MAX_MISSION_CHARS} characters.`
+                  : `Limit ${MAX_MISSION_CHARS} characters.`}
+              </span>
+              <span>{missionCharCount}/{MAX_MISSION_CHARS}</span>
+            </div>
 
             <div className="edg-chat-actions">
               <button type="submit" className="portfolio-button" disabled={isLoading}>
