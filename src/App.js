@@ -12,6 +12,7 @@ import StravaWidget from './StravaWidget';
 import InformalScienceEducation from './InformalScienceEducation';
 import HftAnomalyDetection from './HftAnomalyDetection';
 import NescacPostseasonPolicy from './NescacPostseasonPolicy';
+import ChicagoCrimeInsights from './ChicagoCrimeInsights';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/linguo4.JPG';
 const profileShareImage = process.env.PUBLIC_URL + '/docs/profile_photo.png';
@@ -21,6 +22,7 @@ const maineEducatorsHero = process.env.PUBLIC_URL + '/docs/ise-maine-educators.s
 const informalScienceFavicon = process.env.PUBLIC_URL + '/docs/maine_tree_flag.svg';
 const hftCover = process.env.PUBLIC_URL + '/docs/fml_cover.png';
 const nescacCover = process.env.PUBLIC_URL + '/docs/nescac_cover.png';
+const chicagoCover = process.env.PUBLIC_URL + '/docs/chicago_cover.png';
 
 
 function AppContent() {
@@ -103,6 +105,12 @@ function AppContent() {
         shareImage = nescacCover;
         shareAlt = 'NESCAC Postseason Policy cover image';
         faviconImage = nescacCover;
+        break;
+      case '/chicago-crime-insights':
+        document.title = 'Chicago Crime Insights';
+        shareImage = chicagoCover;
+        shareAlt = 'Chicago Crime Insights cover image';
+        faviconImage = chicagoCover;
         break;
       default:
         document.title = "Linguo's Projects";
@@ -464,6 +472,7 @@ function AppContent() {
             <Route path="/informal-science-education" element={<InformalScienceEducation />} />
             <Route path="/hft-anomaly-detection" element={<HftAnomalyDetection />} />
             <Route path="/nescac-postseason-policy" element={<NescacPostseasonPolicy />} />
+            <Route path="/chicago-crime-insights" element={<ChicagoCrimeInsights />} />
           </Routes>
         </div>
       </div>

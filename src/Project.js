@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/Project.css';
 
-const chicago_crime = process.env.PUBLIC_URL + '/docs/chicago.html';
 const chicago_cover = process.env.PUBLIC_URL + '/docs/chicago_cover.png';
 const nescac_cover = process.env.PUBLIC_URL + '/docs/nescac_cover.png';
 // const webpage_cover = process.env.PUBLIC_URL + '/docs/webpage_cover.png'; // unused
@@ -81,7 +80,7 @@ function Project() {
     {
       title: "Chicago Crime Insights",
       description: "R‑based analysis and mapping of 2.5M Chicago crime records (2013–2022).",
-      link: chicago_crime,
+      route: "/chicago-crime-insights",
       image: chicago_cover,
       tags: ["Data Analysis", "R"],
     },

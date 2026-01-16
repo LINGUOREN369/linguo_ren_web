@@ -1,0 +1,142 @@
+.chicago-container {
+  --edg-accent: #b91c1c;
+  --edg-accent-strong: #ef4444;
+  --edg-accent-warm: #f59e0b;
+  --edg-accent-ink: #111827;
+}
+
+.theme-dark .chicago-container {
+  --edg-accent: #f87171;
+  --edg-accent-strong: #fb7185;
+  --edg-accent-warm: #fbbf24;
+  --edg-accent-ink: #e2e8f0;
+}
+
+.chicago-container::before {
+  background: radial-gradient(1000px 420px at 14% 20%, rgba(239, 68, 68, 0.25), transparent 60%),
+    radial-gradient(900px 420px at 92% 0%, rgba(245, 158, 11, 0.2), transparent 55%);
+}
+
+.theme-dark .chicago-container::before {
+  background: radial-gradient(1000px 420px at 12% 20%, rgba(248, 113, 113, 0.2), transparent 60%),
+    radial-gradient(900px 420px at 92% 0%, rgba(251, 191, 36, 0.18), transparent 55%);
+}
+
+.chicago-container .edg-card--accent {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.16), rgba(245, 158, 11, 0.18));
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.theme-dark .chicago-container .edg-card--accent {
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.18), rgba(251, 191, 36, 0.2));
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+.chicago-hero { margin-bottom: 36px; }
+
+.chicago-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.chicago-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--edg-surface);
+  border: 1px solid var(--edg-border);
+  color: var(--edg-muted);
+}
+
+.chicago-meta-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--edg-muted);
+  font-weight: 600;
+}
+
+.chicago-meta-value {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--edg-ink);
+}
+
+.chicago-hero-card p + p { margin-top: 12px; }
+
+.chicago-cover-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.chicago-cover-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
+.chicago-side-cta { margin-top: 16px; }
+
+.chicago-side-button {
+  width: 100%;
+  text-align: center;
+}
+
+.chicago-summary-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.chicago-grid {
+  align-items: stretch;
+}
+
+.chicago-figure-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.chicago-figure-card {
+  padding: 16px;
+}
+
+.chicago-figure-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--edg-border);
+  background: #ffffff;
+}
+
+.theme-dark .chicago-figure-image {
+  background: #0f172a;
+}
+
+.chicago-figure-caption {
+  margin-top: 12px;
+  color: var(--edg-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.chicago-figure-title {
+  display: block;
+  font-weight: 600;
+  color: var(--edg-ink);
+  margin-bottom: 6px;
+}
+
+@media (max-width: 700px) {
+  .chicago-hero { margin-bottom: 26px; }
+  .chicago-meta { grid-template-columns: 1fr; }
+  .chicago-summary-grid { grid-template-columns: 1fr; }
+  .chicago-figure-grid { grid-template-columns: 1fr; }
+}
