@@ -4,7 +4,6 @@ import './styles/Project.css';
 
 const chicago_crime = process.env.PUBLIC_URL + '/docs/chicago.html';
 const chicago_cover = process.env.PUBLIC_URL + '/docs/chicago_cover.png';
-const nescac_policy = process.env.PUBLIC_URL + '/docs/nescac_policy.pdf';
 const nescac_cover = process.env.PUBLIC_URL + '/docs/nescac_cover.png';
 // const webpage_cover = process.env.PUBLIC_URL + '/docs/webpage_cover.png'; // unused
 const portfolio_cover = process.env.PUBLIC_URL + '/docs/portfolio_cover.svg';
@@ -32,6 +31,13 @@ function Project() {
       image: maine_tree_flag,
       route: "/informal-science-education",
       tags: ["Education", "Web Development"],
+    },
+    {
+      title: "NESCAC Postseason Policy",
+      description: "Historical analysis of NESCAC’s 1993 postseason policy shift and its academic–athletic impacts.",
+      route: "/nescac-postseason-policy",
+      image: nescac_cover,
+      tags: ["Education"],
     },
     {
       title: "HFT Anomaly Detection",
@@ -79,13 +85,7 @@ function Project() {
       image: chicago_cover,
       tags: ["Data Analysis", "R"],
     },
-    {
-      title: "NESCAC Postseason Policy",
-      description: "Historical analysis of NESCAC’s 1993 postseason policy shift and its academic–athletic impacts.",
-      link: nescac_policy,
-      image: nescac_cover,
-      tags: ["Education"],
-    },
+    
 
   ];
 

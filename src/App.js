@@ -11,6 +11,7 @@ import EdGrantAITaxonomy from './EdGrantAITaxonomy';
 import StravaWidget from './StravaWidget';
 import InformalScienceEducation from './InformalScienceEducation';
 import HftAnomalyDetection from './HftAnomalyDetection';
+import NescacPostseasonPolicy from './NescacPostseasonPolicy';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/linguo4.JPG';
 const profileShareImage = process.env.PUBLIC_URL + '/docs/profile_photo.png';
@@ -19,6 +20,7 @@ const edgrantaiCover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 const maineEducatorsHero = process.env.PUBLIC_URL + '/docs/ise-maine-educators.svg';
 const informalScienceFavicon = process.env.PUBLIC_URL + '/docs/maine_tree_flag.svg';
 const hftCover = process.env.PUBLIC_URL + '/docs/fml_cover.png';
+const nescacCover = process.env.PUBLIC_URL + '/docs/nescac_cover.png';
 
 
 function AppContent() {
@@ -95,6 +97,12 @@ function AppContent() {
         shareImage = hftCover;
         shareAlt = 'HFT Anomaly Detection cover image';
         faviconImage = hftCover;
+        break;
+      case '/nescac-postseason-policy':
+        document.title = 'NESCAC Postseason Policy';
+        shareImage = nescacCover;
+        shareAlt = 'NESCAC Postseason Policy cover image';
+        faviconImage = nescacCover;
         break;
       default:
         document.title = "Linguo's Projects";
@@ -455,6 +463,7 @@ function AppContent() {
             <Route path="/edgrantai-taxonomy" element={<EdGrantAITaxonomy />} />
             <Route path="/informal-science-education" element={<InformalScienceEducation />} />
             <Route path="/hft-anomaly-detection" element={<HftAnomalyDetection />} />
+            <Route path="/nescac-postseason-policy" element={<NescacPostseasonPolicy />} />
           </Routes>
         </div>
       </div>
