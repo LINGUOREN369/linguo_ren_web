@@ -372,7 +372,7 @@ function AppContent() {
                 </div>
               )}
               <p className="lead home-hero-intro">
-                I am a public-interest technologist studying how AI and data systems shape decisions in education and social-impact organizations.
+                I am a full-stack developer and public-interest technologist studying how AI and data systems shape decisions in education and social-impact organizations.
                 My work centers on evidence, accountability, and decision-making under constraint where time, funding, and responsibility are unequally distributed.
               </p>
               <p className="home-hero-intro">
