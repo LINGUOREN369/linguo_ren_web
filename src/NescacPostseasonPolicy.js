@@ -15,7 +15,6 @@ const navSections = [
 
 export default function NescacPostseasonPolicy() {
   const pdfUrl = process.env.PUBLIC_URL + '/docs/nescac_policy.pdf';
-  const coverImage = process.env.PUBLIC_URL + '/docs/nescac_cover.png';
   const [activeSection, setActiveSection] = useState(navSections[0]?.id || '');
 
   useEffect(() => {
@@ -110,18 +109,15 @@ export default function NescacPostseasonPolicy() {
             <div className="edg-card edg-card--accent nescac-hero-card">
               <span className="edg-label">At a glance</span>
               <ul className="nescac-glance">
-                <li>NESCAC founded in 1971 to align athletics with academic priorities.</li>
-                <li>Postseason ban lifted in 1993 after sustained internal and external pressure.</li>
-                <li>121 Division III national titles as of April 1, 2024.</li>
+                <li>Founded in 1971 with 11 liberal arts colleges in Northeast America.</li>
+                <li>Chose "Conference" (not "League") to avoid championship pressure and arms races.</li>
+                <li>Early rules limited practices, season length, recruiting, travel, budgets, and postseason play.</li>
+                <li>Postseason ban lasted 22 years; lifted in 1993 as a three-year experiment.</li>
+                <li>Individuals could qualify with waivers while team sports were barred, raising equity concerns.</li>
+                <li>Title IX and national visibility arguments added momentum for NCAA postseason participation.</li>
+                <li>121 Division III national titles as of Apr 1, 2024; second-highest nationally (+49 over third).</li>
               </ul>
             </div>
-            <figure className="edg-card nescac-cover-card">
-              <img
-                src={coverImage}
-                alt="NESCAC Postseason Policy cover"
-                className="nescac-cover-image"
-              />
-            </figure>
           </div>
         </div>
       </header>
