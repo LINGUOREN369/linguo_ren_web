@@ -7,6 +7,7 @@ const navSections = [
   { id: 'summary', label: 'Executive Summary' },
   { id: 'dataset', label: 'Dataset & Questions' },
   { id: 'results', label: 'Results Overview' },
+  { id: 'insights', label: 'So What' },
   { id: 'spatial', label: 'Geography & Volume' },
   { id: 'arrests', label: 'Arrest Patterns' },
   { id: 'time', label: 'Time of Day' },
@@ -318,6 +319,14 @@ export default function ChicagoCrimeInsights() {
                   <li>Bootstrap tests compare arrested vs non-arrested proportions.</li>
                 </ul>
               </article>
+              <article className="edg-card">
+                <p className="edg-label">So what</p>
+                <ul>
+                  <li>Arrest ratios are highest for prostitution, gambling, and narcotics, and lowest for theft, battery, and criminal damage.</li>
+                  <li>Crime volume peaks around midnight and lunch hours, while arrest ratios peak around 7-8 pm.</li>
+                  <li>Bootstrap tests show meaningful differences by hour and crime type, but not across districts.</li>
+                </ul>
+              </article>
             </div>
           </section>
 
@@ -361,9 +370,45 @@ export default function ChicagoCrimeInsights() {
               </article>
               <article className="edg-card">
                 <p>
-                  Arrest ratios show sharp spatial and temporal variation. Districts, crime types, and hours do not share
-                  a single consistent enforcement profile, which motivates the bootstrap tests below.
+                  Arrest ratios diverge by crime type and time of day, with the highest ratios for prostitution, gambling,
+                  and narcotics, and the lowest for theft, battery, and criminal damage. Bootstrap tests show significant
+                  differences by hour and crime type, but not across districts.
                 </p>
+              </article>
+            </div>
+          </section>
+
+          <section className="edg-section edg-panel" id="insights">
+            <div className="edg-section-header">
+              <span className="edg-kicker">So what</span>
+              <h2 className="edg-h2">What the patterns imply</h2>
+              <p className="edg-intro">
+                The data suggests enforcement outcomes depend more on time-of-day and crime type than on district-level
+                differences in arrest proportions.
+              </p>
+            </div>
+            <div className="chicago-summary-grid">
+              <article className="edg-card">
+                <p className="edg-label">Crime type signal</p>
+                <ul>
+                  <li>High arrest ratios: prostitution, gambling, narcotics.</li>
+                  <li>Low arrest ratios: theft, battery, criminal damage.</li>
+                </ul>
+              </article>
+              <article className="edg-card">
+                <p className="edg-label">Time-of-day mismatch</p>
+                <ul>
+                  <li>Crime volume is highest around midnight and lunch hours.</li>
+                  <li>Arrest ratios peak around 7-8 pm, not at crime peaks.</li>
+                </ul>
+              </article>
+              <article className="edg-card">
+                <p className="edg-label">Statistical tests</p>
+                <ul>
+                  <li>No significant differences in arrest proportions across districts.</li>
+                  <li>Significant differences across hours and crime types.</li>
+                  <li>Implication: prioritize time and type signals over district-only comparisons.</li>
+                </ul>
               </article>
             </div>
           </section>
@@ -398,8 +443,9 @@ export default function ChicagoCrimeInsights() {
               <article className="edg-card">
                 <p>
                   The analysis shows that crime volume, arrest rates, and enforcement outcomes are uneven across space and
-                  time. These patterns can inform how public-safety resources are allocated, where prevention efforts are
-                  focused, and how accountability metrics are interpreted.
+                  time. Arrest ratios differ most by crime type and hour, while district-level arrest proportions are not
+                  statistically distinct in bootstrap tests. These patterns can inform how public-safety resources are
+                  allocated, where prevention efforts are focused, and how accountability metrics are interpreted.
                 </p>
                 <p>
                   This project also demonstrates how combining exploratory analysis with bootstrap testing can help
