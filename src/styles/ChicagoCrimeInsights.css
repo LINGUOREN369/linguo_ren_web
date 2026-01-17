@@ -33,6 +33,8 @@
 }
 
 .chicago-hero { margin-bottom: 36px; }
+.chicago-hero .edg-hero-grid { align-items: start; }
+.chicago-hero-focus { margin-top: 18px; }
 
 .chicago-meta {
   display: grid;
@@ -100,7 +102,11 @@
 .chicago-figure-grid {
   display: grid;
   gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.chicago-figure-grid--single {
+  grid-template-columns: 1fr;
 }
 
 .chicago-figure-card {
@@ -125,6 +131,25 @@
   color: var(--edg-muted);
   line-height: 1.6;
   font-size: 0.95rem;
+}
+
+.chicago-figure-summary {
+  margin: 0;
+}
+
+.chicago-figure-notes {
+  margin-top: 10px;
+  display: grid;
+  gap: 6px;
+}
+
+.chicago-figure-note {
+  margin: 0;
+}
+
+.chicago-figure-note-label {
+  font-weight: 600;
+  color: var(--edg-ink);
 }
 
 .chicago-figure-title {

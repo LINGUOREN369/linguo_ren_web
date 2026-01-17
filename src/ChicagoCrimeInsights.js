@@ -24,91 +24,127 @@ const figures = [
     title: 'Crime density heatmap',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-01.png',
     caption: 'Crime incidents cluster in the Loop/downtown and south/west corridors; red indicates higher density.',
+    observation: 'Hotspots concentrate downtown and along south/west corridors rather than evenly across the city.',
+    insight: 'Place-based interventions should prioritize these corridors and nearby community areas.',
   },
   {
     title: 'Total crimes by year',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-02.png',
     caption: 'Overall crime volume trends downward from 2013-2022 with visible year-to-year shifts.',
+    observation: 'The decade shows an overall decline with a few short-term bumps.',
+    insight: 'Use multi-year averages for policy evaluation rather than single-year swings.',
   },
   {
     title: 'Top crime types by district',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-03.png',
     caption: 'Theft, battery, and criminal damage dominate across districts.',
+    observation: 'The same three categories dominate most districts, even where totals differ.',
+    insight: 'Citywide prevention efforts should target these categories before niche offenses.',
   },
   {
     title: 'Crimes vs arrests by district',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-04.png',
     caption: 'District totals show uneven crime volume and arrest counts relative to the city average.',
+    observation: 'High-volume districts do not always show proportional arrest counts.',
+    insight: 'Volume alone is a poor proxy for enforcement outcomes; pair volume with ratios.',
   },
   {
     title: 'Arrest-to-crime ratio by district',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-05.png',
     caption: 'Arrest conversion rates vary widely across districts.',
+    observation: 'Some districts have consistently higher arrest-to-crime ratios than peers.',
+    insight: 'Investigate operational differences or case mix driving the ratio spread.',
   },
   {
     title: 'Arrest ratio by crime type',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-06.png',
     caption: 'Some crime categories show consistently higher arrest ratios than others.',
+    observation: 'Narcotics, prostitution, and gambling stand out with higher ratios than property crimes.',
+    insight: 'Enforcement intensity is type-dependent; policy changes should account for category mix.',
   },
   {
     title: 'Arrest ratios: Districts 1, 7, 11 vs total',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-07.png',
     caption: 'Selected districts show distinct arrest profiles compared with citywide totals.',
+    observation: 'Districts 1, 7, and 11 depart from the city pattern in specific categories.',
+    insight: 'Use district-level deviations to tailor localized strategies instead of blanket approaches.',
   },
   {
     title: 'Crime and arrest mix by type',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-08.png',
     caption: 'The crime mix and arrest mix diverge by type, showing enforcement concentration.',
+    observation: 'Arrests are disproportionately concentrated in a smaller set of categories.',
+    insight: 'The arrest portfolio reflects prioritization; assess whether it matches public-safety goals.',
   },
   {
     title: 'Crimes by hour',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-09.png',
     caption: 'Incidents peak during midday and early evening; lowest late night and early morning.',
+    observation: 'The highest volume occurs around lunch and evening, with troughs pre-dawn.',
+    insight: 'Preventive presence should align with peak incident windows.',
   },
   {
     title: 'Hourly crime trends by year',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-10.png',
     caption: 'Diurnal patterns remain similar year-to-year with modest shifts in volume.',
+    observation: 'The daily shape is stable across years even when totals change.',
+    insight: 'Time-of-day scheduling can stay consistent while scaling staffing to yearly volume.',
   },
   {
     title: 'Arrest ratio by hour',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-11.png',
     caption: 'Arrest ratios do not mirror crime volume hour-by-hour.',
+    observation: 'Arrest ratios peak later in the day than crime volume.',
+    insight: 'Enforcement outcomes depend on more than incident volume; consider staffing and reporting lags.',
   },
   {
     title: 'Hourly arrest ratio by year',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-12.png',
     caption: 'Hourly arrest ratios remain stable across years with localized variation.',
+    observation: 'Hourly ratio curves are broadly consistent year to year with minor deviations.',
+    insight: 'Persistent hour effects suggest structural patterns rather than one-off anomalies.',
   },
   {
     title: 'Heatmap: arrest ratio by district and hour',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-13.png',
-    caption: 'Arrest ratios shift by district and time of day.',
+    caption: 'Arrest ratios shift by district and time of day; darker cells indicate hours where arrests are disproportionately high or low compared with the district baseline.',
+    observation: 'Many districts show higher arrest ratios in the evening blocks (around 7-8 pm), with early morning windows consistently lower.',
+    insight: 'Time-of-day effects look more consistent than district effects, so shift timing may matter more than location alone.',
   },
   {
     title: 'Heatmap: arrest ratio by district and crime type',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-14.png',
-    caption: 'Districts show distinct arrest patterns for specific crime types.',
+    caption: 'Districts show distinct arrest patterns for specific crime types, revealing which areas concentrate enforcement on narcotics, prostitution, or theft relative to other categories.',
+    observation: 'High-ratio categories (narcotics, prostitution, gambling) stay elevated across many districts, while theft and battery remain low.',
+    insight: 'Crime type appears to drive arrest likelihood more than district, pointing to type-specific policy levers.',
   },
   {
     title: 'Heatmap: arrest ratio by crime type and hour',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-15.png',
-    caption: 'Arrest rates change across both crime type and hour.',
+    caption: 'Arrest rates change across both crime type and hour, highlighting time windows where certain offenses see markedly higher or lower arrest likelihood.',
+    observation: 'Some offense types show distinct time windows with elevated arrest ratios, while common property crimes stay consistently lower.',
+    insight: 'Pairing time-of-day with offense type reveals the highest-contrast enforcement opportunities.',
   },
   {
     title: 'Bootstrap test: by district',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-16.png',
-    caption: 'Bootstrap tests compare arrested vs non-arrested proportions within districts.',
+    caption: 'Bootstrap tests compare arrested vs non-arrested proportions within districts; confidence intervals that overlap suggest no statistically distinct district-level differences.',
+    observation: 'Confidence intervals overlap across most districts, indicating limited statistical separation.',
+    insight: 'District comparisons alone are weak evidence; avoid over-interpreting district-level "performance."',
   },
   {
     title: 'Bootstrap test: by hour',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-17.png',
-    caption: 'Bootstrap tests by hour quantify differences in arrest likelihood across the day.',
+    caption: 'Bootstrap tests by hour quantify differences in arrest likelihood across the day, isolating time blocks where arrest proportions diverge beyond sampling noise.',
+    observation: 'Several hours diverge from the overall average beyond bootstrap noise, confirming real time-of-day differences.',
+    insight: 'Staffing and deterrence strategies should be tuned by hour, not just by area.',
   },
   {
     title: 'Bootstrap test: by crime type',
     image: process.env.PUBLIC_URL + '/docs/chicago_figures/figure-18.png',
-    caption: 'Bootstrap tests by crime type highlight statistically distinct arrest proportions.',
+    caption: 'Bootstrap tests by crime type highlight statistically distinct arrest proportions, showing which offenses drive the largest gaps between arrest and incident counts.',
+    observation: 'Crime types separate clearly, with some categories well above or below the overall arrest rate.',
+    insight: 'Focus interventions on low-ratio categories while recognizing high-ratio categories reflect targeted enforcement.',
   },
 ];
 
@@ -236,10 +272,7 @@ export default function ChicagoCrimeInsights() {
               <span className="edg-pill">Bootstrap testing</span>
               <span className="edg-pill">Policy insights</span>
             </div>
-          </div>
-
-          <div className="edg-hero-panel edg-stagger">
-            <div className="edg-card edg-card--accent chicago-hero-card">
+            <div className="edg-card edg-card--accent chicago-hero-card chicago-hero-focus">
               <span className="edg-label">Project focus</span>
               <p>
                 This analysis surfaces where and when crime concentrates in Chicago, how arrest ratios vary by district and
@@ -250,6 +283,9 @@ export default function ChicagoCrimeInsights() {
                 public safety strategy.
               </p>
             </div>
+          </div>
+
+          <div className="edg-hero-panel edg-stagger">
             <figure className="edg-card chicago-cover-card">
               <img
                 src={coverImage}
@@ -420,13 +456,29 @@ export default function ChicagoCrimeInsights() {
                 <h2 className="edg-h2">{group.title}</h2>
                 <p className="edg-intro">{group.subtitle}</p>
               </div>
-              <div className="chicago-figure-grid">
+              <div
+                className={`chicago-figure-grid${
+                  group.id === 'heatmaps' || group.id === 'testing' ? ' chicago-figure-grid--single' : ''
+                }`}
+              >
                 {group.items.map((figure) => (
                   <figure className="edg-card chicago-figure-card" key={figure.title}>
                     <img src={figure.image} alt={figure.title} className="chicago-figure-image" />
                     <figcaption className="chicago-figure-caption">
                       <span className="chicago-figure-title">{figure.title}</span>
-                      {figure.caption}
+                      <p className="chicago-figure-summary">{figure.caption}</p>
+                      {figure.observation && (
+                        <div className="chicago-figure-notes">
+                          <p className="chicago-figure-note">
+                            <span className="chicago-figure-note-label">Observation:</span> {figure.observation}
+                          </p>
+                          {figure.insight && (
+                            <p className="chicago-figure-note">
+                              <span className="chicago-figure-note-label">Insight:</span> {figure.insight}
+                            </p>
+                          )}
+                        </div>
+                      )}
                     </figcaption>
                   </figure>
                 ))}
