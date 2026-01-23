@@ -12,6 +12,7 @@ import StravaWidget from './StravaWidget';
 import InformalScienceEducation from './InformalScienceEducation';
 import HftAnomalyDetection from './HftAnomalyDetection';
 import NescacPostseasonPolicy from './NescacPostseasonPolicy';
+import ArchiveAssessment from './ArchiveAssessment';
 import ChicagoCrimeInsights from './ChicagoCrimeInsights';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/linguo4.JPG';
@@ -22,6 +23,7 @@ const maineEducatorsHero = process.env.PUBLIC_URL + '/docs/ise-maine-educators.s
 const informalScienceFavicon = process.env.PUBLIC_URL + '/docs/maine_tree_flag.svg';
 const hftCover = process.env.PUBLIC_URL + '/docs/fml_cover.png';
 const nescacCover = process.env.PUBLIC_URL + '/docs/nescac_cover.png';
+const archiveCover = process.env.PUBLIC_URL + '/docs/archive_assessment_cover.jpg';
 const chicagoCover = process.env.PUBLIC_URL + '/docs/chicago_cover.png';
 
 
@@ -105,6 +107,12 @@ function AppContent() {
         shareImage = nescacCover;
         shareAlt = 'NESCAC Postseason Policy cover image';
         faviconImage = nescacCover;
+        break;
+      case '/archive-assessment':
+        document.title = 'Archival Research in Higher Education';
+        shareImage = archiveCover;
+        shareAlt = 'Archival Research in Higher Education cover image';
+        faviconImage = archiveCover;
         break;
       case '/chicago-crime-insights':
         document.title = 'Chicago Crime Insights';
@@ -472,6 +480,7 @@ function AppContent() {
             <Route path="/informal-science-education" element={<InformalScienceEducation />} />
             <Route path="/hft-anomaly-detection" element={<HftAnomalyDetection />} />
             <Route path="/nescac-postseason-policy" element={<NescacPostseasonPolicy />} />
+            <Route path="/archive-assessment" element={<ArchiveAssessment />} />
             <Route path="/chicago-crime-insights" element={<ChicagoCrimeInsights />} />
           </Routes>
         </div>

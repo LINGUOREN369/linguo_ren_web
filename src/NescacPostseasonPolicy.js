@@ -62,23 +62,8 @@ export default function NescacPostseasonPolicy() {
       <header className="edg-hero nescac-hero">
         <div className="edg-hero-grid">
           <div className="edg-hero-copy">
-            <span className="edg-eyebrow">Research paper</span>
             <h1 className="edg-title">NESCAC Postseason Policy</h1>
             <p className="edg-subtitle">Balancing Academic Excellence and Athletic Competition</p>
-            <div className="nescac-meta">
-              <div className="nescac-meta-item">
-                <span className="nescac-meta-label">Author</span>
-                <span className="nescac-meta-value">Linguo Ren</span>
-              </div>
-              <div className="nescac-meta-item">
-                <span className="nescac-meta-label">Institution</span>
-                <span className="nescac-meta-value">Bowdoin College</span>
-              </div>
-              <div className="nescac-meta-item">
-                <span className="nescac-meta-label">Date</span>
-                <span className="nescac-meta-value">May 13, 2024</span>
-              </div>
-            </div>
             <div className="edg-cta">
               <a
                 href={pdfUrl}
@@ -96,12 +81,6 @@ export default function NescacPostseasonPolicy() {
               >
                 Back to Projects
               </Link>
-            </div>
-            <div className="edg-pill-row">
-              <span className="edg-pill">Higher education</span>
-              <span className="edg-pill">Division III athletics</span>
-              <span className="edg-pill">Policy history</span>
-              <span className="edg-pill">Institutional change</span>
             </div>
           </div>
 

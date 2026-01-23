@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles/EdGrantAI.css';
 import './styles/HftAnomalyDetection.css';
 
@@ -41,6 +42,13 @@ export default function HftAnomalyDetection() {
               >
                 Open Poster
               </a>
+              <Link
+                to="/project"
+                className="portfolio-button portfolio-button--secondary"
+                aria-label="Back to project list"
+              >
+                Back to Projects
+              </Link>
             </div>
             <div className="edg-pill-row">
               <span className="edg-pill">Unsupervised learning</span>

@@ -181,6 +181,9 @@ export default function EdGrantAIAlgorithm() {
               >
                 Source doc (matching algorithm)
               </a>
+              <Link to="/project" className="portfolio-button portfolio-button--secondary">
+                Back to Projects
+              </Link>
             </div>
           </div>
 

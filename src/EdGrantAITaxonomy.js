@@ -167,6 +167,9 @@ export default function EdGrantAITaxonomy() {
           >
             View Repository
           </a>
+          <Link to="/project" className="portfolio-button portfolio-button--secondary">
+            Back to Projects
+          </Link>
         </div>
       </header>
 

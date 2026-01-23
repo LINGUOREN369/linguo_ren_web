@@ -428,6 +428,10 @@
   align-items: center;
 }
 
+.edg-card--spaced {
+  margin-top: 24px;
+}
+
 .edg-card-title {
   font-size: 1.05rem;
   margin: 0 0 8px;
@@ -534,6 +538,10 @@
   color: var(--edg-muted);
   font-weight: 600;
   margin-bottom: 8px;
+}
+
+.edg-label--roomy {
+  margin-bottom: 14px;
 }
 
 .edg-callout {

@@ -407,6 +407,9 @@ export default function EdGrantAIChat() {
             <Link to="/edgrantai-algorithm" className="portfolio-button portfolio-button--secondary">
               Matching Algorithm
             </Link>
+            <Link to="/project" className="portfolio-button portfolio-button--secondary">
+              Back to Projects
+            </Link>
           </div>
         </div>
 

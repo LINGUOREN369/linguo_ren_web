@@ -4,6 +4,7 @@ import './styles/Project.css';
 
 const chicago_cover = process.env.PUBLIC_URL + '/docs/chicago_cover.png';
 const nescac_cover = process.env.PUBLIC_URL + '/docs/nescac_cover.png';
+const archive_assessment_cover = process.env.PUBLIC_URL + '/docs/archive_assessment_cover.jpg';
 // const webpage_cover = process.env.PUBLIC_URL + '/docs/webpage_cover.png'; // unused
 const portfolio_cover = process.env.PUBLIC_URL + '/docs/portfolio_cover.svg';
 const gopro_cover = process.env.PUBLIC_URL + '/docs/gopro_cover.png';
@@ -36,6 +37,13 @@ function Project() {
       description: "Historical analysis of NESCAC’s 1993 postseason policy shift and its academic–athletic impacts.",
       route: "/nescac-postseason-policy",
       image: nescac_cover,
+      tags: ["Education"],
+    },
+    {
+      title: "Archival Research in Higher Education",
+      description: "Critical assessment of archival sources in higher education, covering evidentiary value, limitations, and ethics.",
+      route: "/archive-assessment",
+      image: archive_assessment_cover,
       tags: ["Education"],
     },
     {

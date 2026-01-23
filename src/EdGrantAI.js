@@ -92,6 +92,13 @@ export default function EdGrantAI() {
               >
                 Try Live Recommendations
               </Link>
+              <Link
+                to="/project"
+                className="portfolio-button portfolio-button--secondary"
+                aria-label="Back to project list"
+              >
+                Back to Projects
+              </Link>
             </div>
             <div className="edg-pill-row">
               <span className="edg-pill">Evidence-bound</span>
@@ -260,8 +267,8 @@ export default function EdGrantAI() {
                 </div>
               </article>
             </div>
-            <div className="edg-card edg-card--accent edg-stagger">
-              <span className="edg-label">Responsible decision-support principle</span>
+            <div className="edg-card edg-card--accent edg-card--spaced edg-stagger">
+              <span className="edg-label edg-label--roomy">Responsible decision-support principle</span>
               <h3 className="edg-card-title">Decision support as an evidence gate</h3>
               <p>
                 In a responsible AI context, the goal is not to label everything. EdGrantAI uses LLMs to assist, but the gate is strict:
