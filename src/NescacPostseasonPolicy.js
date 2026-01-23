@@ -63,7 +63,7 @@ export default function NescacPostseasonPolicy() {
         <div className="edg-hero-grid">
           <div className="edg-hero-copy">
             <h1 className="edg-title">NESCAC Postseason Policy</h1>
-            <p className="edg-subtitle">Balancing Academic Excellence and Athletic Competition</p>
+            <p className="edg-subtitle">An iceberg analysis of institutional change, stakeholder complexity, and academic–athletic constraints in liberal arts colleges</p>
             <div className="edg-cta">
               <a
                 href={pdfUrl}

@@ -66,8 +66,8 @@ export default function EdGrantAI() {
       <header className="edg-hero">
         <div className="edg-hero-grid">
           <div className="edg-hero-copy">
-            <span className="edg-eyebrow">EdGantAI: Responsible AI Case Study</span>
-            <h1 className="edg-title">EdGrantAI: Evidence-Bound AI for High-Stakes Nonprofit Decisions</h1>
+            <h1 className="edg-title">  Evidence-Bound
+AI for High-Stakes Nonprofit Decision-Making</h1>
             <p className="edg-subtitle">Evidence-gated decision support with guardrails, restraint, and human oversight</p>
             <div className="edg-cta">
               <a

@@ -20,35 +20,35 @@ function Project() {
   const projects = [
     {
       title: "EdGrantAI",
-      description: "Architected a decision‑support system designed to help nonprofits identify, prioritize, and understand funding opportunities with transparency and auditability.",
+      description: "Architected a decision‑support system designed to help nonprofits identify, prioritize, and understand funding opportunities with transparency and auditability",
       image: edgrantai_cover,
       route: "/edgrantai",
       tags: ["Python", "Education", "NLP", "Machine Learning & Deep Learning"],
     },
     {
       title: "Informal Science Education",
-      description: "Helps Maine K‑12 educators connect with informal science education providers, opportunities, and resources.",
+      description: "Helps Maine K‑12 educators connect with informal science education providers, opportunities, and resources",
       image: maine_tree_flag,
       route: "/informal-science-education",
       tags: ["Education", "Web Development"],
     },
     {
       title: "NESCAC Postseason Policy",
-      description: "Historical analysis of NESCAC’s 1993 postseason policy shift and its academic–athletic impacts.",
+      description: "An iceberg analysis of institutional change, stakeholder complexity, and academic–athletic constraints in liberal arts colleges",
       route: "/nescac-postseason-policy",
       image: nescac_cover,
       tags: ["Education"],
     },
     {
-      title: "Archival Research in Higher Education",
-      description: "Critical assessment of archival sources in higher education, covering evidentiary value, limitations, and ethics.",
+      title: "Institutional Archives",
+      description: "Critical assessment of archival sources in higher education, covering evidentiary value, limitations, and ethics",
       route: "/archive-assessment",
       image: archive_assessment_cover,
       tags: ["Education"],
     },
     {
       title: "HFT Anomaly Detection",
-      description: "Unsupervised TCN autoencoder for anomalies in high‑frequency stock data; clustering surfaces irregular trading patterns.",
+      description: "Unsupervised TCN autoencoder for anomaly detection in high-frequency trading data; clustering reveals suspicious trading patterns",
       route: "/hft-anomaly-detection",
       image: fml_cover,
       tags: ["Python", "Data Analysis", "Machine Learning & Deep Learning", "R"],
@@ -56,38 +56,24 @@ function Project() {
     
     {
       title: "Vinyl Recognition AI",
-      description: "Computer vision + deep learning tool that recognizes vinyl releases and aggregates metadata for radio DJs.",
+      description: "A deep learning image classifier for Bowdoin College’s radio station to recognize vinyl records and automatically retrieve structured metadata for DJs",
       link: "https://github.com/mdrxy/album-wiz",
       image: album_wiz,
       tags: ["Python", "Web Development", "Machine Learning & Deep Learning", "Data Analysis",],
     },
-    {
-      link: "https://github.com/LINGUOREN369/ATR-Sigma_RVOL_Strategy?tab=readme-ov-file#intraday_handlerpy--intraday-data-processing",
-      title: "ATR‑Sigma RVOL Pipeline",
-      description: "Processes intraday and daily trading data, computes ATR and RVOL indicators, and prepares datasets for ATR‑Sigma RVOL strategy backtesting.",
-      image: atr_rvol_candles,
-      tags: ["Python", "Data Analysis"],
-    },
 
     {
       title: "Portfolio Website",
-      description: "Responsive React portfolio with tag‑based project filtering.",
+      description: "Responsive React portfolio with tag‑based project filtering",
       link: "https://github.com/LINGUOREN369/linguo_ren_web",
       image: portfolio_cover,
       tags: ["Web Development"],
     },
     
-    {
-      link: gopro_analysis,
-      title: "GoPro Acquisition Strategy",
-      description: "Strategic analysis of a GoPro acquisition: brand, market, technology, and growth opportunities.",
-      image: gopro_cover,
-      tags: ["Business Analysis", "Data Analysis"],
-    },
 
     {
       title: "Chicago Crime Insights",
-      description: "R‑based analysis and mapping of 2.5M Chicago crime records (2013–2022).",
+      description: "Large-scale EDA and geospatial analysis in R on 2.5M Chicago crime records (2013–2022)",
       route: "/chicago-crime-insights",
       image: chicago_cover,
       tags: ["Data Analysis", "R"],

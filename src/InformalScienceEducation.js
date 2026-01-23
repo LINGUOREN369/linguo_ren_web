@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './styles/EdGrantAI.css';
 import './styles/InformalScienceEducation.css';
 
 const infoItems = [
@@ -381,9 +382,10 @@ const resourceNavItems = educatorSections.map((section) => ({
 const resourceIdSet = new Set(resourceNavItems.map((item) => item.id));
 
 const navSections = [
-  { id: 'why-informal-stem-education', label: 'Why informal STEM education' },
-  { id: 'resources-for-maine-educators', label: 'Resources for Maine educators' },
-  { id: 'reference-list', label: 'Reference list' },
+  { id: 'what-is-informal-science-education', label: 'What Is Informal Science Education' },
+  { id: 'why-informal-stem-education', label: 'Why Informal STEM Education' },
+  { id: 'resources-for-maine-educators', label: 'Resources for Maine Educators' },
+  { id: 'reference-list', label: 'Reference List' },
 ];
 
 export default function InformalScienceEducation() {
@@ -434,36 +436,34 @@ export default function InformalScienceEducation() {
   }, []);
 
   return (
-    <div className="container ise-container">
-      <header className="ise-hero">
-        <div className="ise-hero-head">
-          <p className="ise-byline">Linguo Ren</p>
-          <h1 className="ise-title">Informal STEM Education</h1>
-          <h2 className="ise-subtitle">For Maine</h2>
-        </div>
-        <div className="ise-hero-body">
-          <p className="ise-lede">
-            Informal STEM education refers to lifelong learning in science, technology,
-            engineering, and math (STEM) that happens outside traditional classrooms. It
-            includes a broad range of experiences, settings, and programs designed by
-            trained practitioners to promote STEM learning across all ages.
-          </p>
-          <ul className="ise-list">
-            {infoItems.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-          <p className="ise-more">
-            Learn more about informal STEM education from{' '}
-            <a
-              href="https://informalscience.org/what-is-informal-stem-ed/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              InformalScience.org
-            </a>
-            .
-          </p>
+    <div className="container edg-container ise-container">
+      <header className="edg-hero ise-hero">
+        <div className="edg-hero-grid">
+          <div className="edg-hero-copy">
+            <h1 className="edg-title">Informal STEM Education for Maine</h1>
+            <p className="edg-subtitle">
+              A curated guide to informal STEM learning pathways and resource networks supporting Maine educators and communities.
+            </p>
+            <div className="edg-cta">
+              <Link
+                to="/project"
+                className="portfolio-button portfolio-button--secondary"
+                aria-label="Back to project list"
+              >
+                Back to Projects
+              </Link>
+            </div>
+          </div>
+          <div className="edg-hero-panel ise-hero-panel edg-stagger">
+            <div className="edg-card edg-card--accent ise-hero-card">
+              <span className="edg-label">At a glance</span>
+              <ul className="ise-glance">
+                {infoItems.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -505,9 +505,26 @@ export default function InformalScienceEducation() {
         </nav>
 
         <div className="ise-main">
+          <section className="ise-subpage" id="what-is-informal-science-education">
+            <div className="ise-subpage-header">
+              <h2 className="ise-subpage-title">What is Informal Science Education</h2>
+            </div>
+            <div className="ise-prose">
+              <p>
+                Informal STEM education refers to lifelong learning in science, technology, engineering, and math (STEM) that
+                happens outside traditional classrooms. It includes a broad range of experiences, settings, and programs designed
+                by trained practitioners to promote STEM learning across all ages.
+              </p>
+              <ul className="ise-list">
+                {infoItems.map((item) => (
+                  <li key={`definition-${item}`}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </section>
           <section className="ise-subpage" id="why-informal-stem-education">
             <div className="ise-subpage-header">
-              <h2 className="ise-subpage-title">Why Infomral STEM Education</h2>
+              <h2 className="ise-subpage-title">Why Informal STEM Education</h2>
             </div>
             {whySections.map((section) => (
               <article
@@ -595,12 +612,6 @@ export default function InformalScienceEducation() {
             </ol>
           </section>
         </div>
-      </div>
-
-      <div className="ise-footer-nav">
-        <Link to="/project" className="portfolio-button" aria-label="Back to projects">
-          Back to Projects
-        </Link>
       </div>
     </div>
   );
