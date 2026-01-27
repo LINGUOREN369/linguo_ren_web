@@ -22,8 +22,11 @@ const outFile = path.join(outDir, 'stats.json');
 
 const RUN_TYPES = new Set([
   'Run',
+  'RaceRun',
   'TrailRun',
-  'VirtualRun'
+  'VirtualRun',
+  'Walk',
+  'Hike'
 ]);
 
 const RIDE_TYPES = new Set([
