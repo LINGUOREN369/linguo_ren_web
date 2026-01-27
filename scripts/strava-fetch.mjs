@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 /*
-  Fetch Strava athlete stats and write to public/strava/stats.json
+  Fetch Strava activities and aggregate stats into public/strava/stats.json
   Required env vars (GitHub Secrets):
     STRAVA_CLIENT_ID
     STRAVA_CLIENT_SECRET
     STRAVA_REFRESH_TOKEN
-    STRAVA_ATHLETE_ID
+  Notes:
+    - Private activities require scope: activity:read_all
 */
 import fs from 'node:fs/promises';
 import path from 'node:path';
@@ -13,12 +14,90 @@ import path from 'node:path';
 const {
   STRAVA_CLIENT_ID,
   STRAVA_CLIENT_SECRET,
-  STRAVA_REFRESH_TOKEN,
-  STRAVA_ATHLETE_ID
+  STRAVA_REFRESH_TOKEN
 } = process.env;
 
 const outDir = path.join(process.cwd(), 'public', 'strava');
 const outFile = path.join(outDir, 'stats.json');
+
+const RUN_TYPES = new Set([
+  'Run',
+  'TrailRun',
+  'VirtualRun'
+]);
+
+const RIDE_TYPES = new Set([
+  'Ride',
+  'VirtualRide',
+  'MountainBikeRide',
+  'GravelRide',
+  'EBikeRide',
+  'EMountainBikeRide',
+  'Handcycle',
+  'Velomobile'
+]);
+
+const blankTotals = () => ({
+  distance_m: 0,
+  moving_time_s: 0,
+  elevation_gain_m: 0
+});
+
+const addActivityTotals = (totals, activity) => {
+  totals.distance_m += Number(activity?.distance) || 0;
+  totals.moving_time_s += Number(activity?.moving_time) || 0;
+  totals.elevation_gain_m += Number(activity?.total_elevation_gain) || 0;
+};
+
+const getActivityType = (activity) => activity?.sport_type || activity?.type;
+
+async function fetchAndAggregateActivities(accessToken, ytdStartMs) {
+  const ytd_run = blankTotals();
+  const ytd_ride = blankTotals();
+  const all_run = blankTotals();
+  const all_ride = blankTotals();
+  const perPage = 200;
+  let page = 1;
+
+  while (true) {
+    const url = new URL('https://www.strava.com/api/v3/athlete/activities');
+    url.searchParams.set('page', String(page));
+    url.searchParams.set('per_page', String(perPage));
+
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${accessToken}` } });
+    if (!res.ok) {
+      const t = await res.text();
+      throw new Error(`Activities fetch failed: ${res.status} ${t}`);
+    }
+    const activities = await res.json();
+    if (!Array.isArray(activities) || activities.length === 0) break;
+
+    for (const activity of activities) {
+      const type = getActivityType(activity);
+      const isRun = RUN_TYPES.has(type);
+      const isRide = RIDE_TYPES.has(type);
+      if (!isRun && !isRide) continue;
+
+      const startedAt = activity?.start_date || activity?.start_date_local;
+      const startMs = startedAt ? Date.parse(startedAt) : NaN;
+      const isYtd = Number.isFinite(startMs) && startMs >= ytdStartMs;
+
+      if (isRun) {
+        addActivityTotals(all_run, activity);
+        if (isYtd) addActivityTotals(ytd_run, activity);
+      }
+      if (isRide) {
+        addActivityTotals(all_ride, activity);
+        if (isYtd) addActivityTotals(ytd_ride, activity);
+      }
+    }
+
+    if (activities.length < perPage) break;
+    page += 1;
+  }
+
+  return { ytd_run, ytd_ride, all_run, all_ride };
+}
 
 async function main() {
   if (!STRAVA_CLIENT_ID || !STRAVA_CLIENT_SECRET || !STRAVA_REFRESH_TOKEN) {
@@ -53,45 +132,27 @@ async function main() {
   }
   const tokenJson = await tokenRes.json();
   const accessToken = tokenJson.access_token;
-
-  // 2) Resolve athlete ID if not provided
-  let athleteId = STRAVA_ATHLETE_ID;
-  if (!athleteId) {
-    const meRes = await fetch('https://www.strava.com/api/v3/athlete', {
-      headers: { Authorization: `Bearer ${accessToken}` }
-    });
-    if (!meRes.ok) {
-      const t = await meRes.text();
-      throw new Error(`Athlete fetch failed: ${meRes.status} ${t}`);
-    }
-    const me = await meRes.json();
-    athleteId = me?.id;
-    if (!athleteId) throw new Error('Could not determine athlete ID');
+  const scope = tokenJson?.scope || '';
+  const scopeSet = new Set(scope.split(',').map(s => s.trim()).filter(Boolean));
+  const hasPrivateScope = scopeSet.has('activity:read_all');
+  let warning = null;
+  if (!hasPrivateScope) {
+    warning = 'Token scope missing activity:read_all; private activities are excluded from totals.';
+    console.warn('Strava scope warning:', warning);
   }
 
-  // 3) Use Athlete Stats endpoint (does not require activity:read), which aggregates
-  //    totals Strava-side. Virtual rides are included under Ride; Trail runs under Run.
-  const statsUrl = `https://www.strava.com/api/v3/athletes/${encodeURIComponent(athleteId)}/stats`;
-  const statsRes = await fetch(statsUrl, { headers: { Authorization: `Bearer ${accessToken}` } });
-  if (!statsRes.ok) {
-    const t = await statsRes.text();
-    throw new Error(`Stats fetch failed: ${statsRes.status} ${t}`);
-  }
-  const s = await statsRes.json();
-
-  const pick = (obj) => ({
-    distance_m: obj?.distance ?? 0,
-    moving_time_s: obj?.moving_time ?? 0,
-    elevation_gain_m: obj?.elevation_gain ?? 0
-  });
+  const now = new Date();
+  const ytdStartMs = Date.UTC(now.getUTCFullYear(), 0, 1);
+  const totals = await fetchAndAggregateActivities(accessToken, ytdStartMs);
 
   const out = {
     fetched_at: new Date().toISOString(),
-    ytd_run: pick(s.ytd_run_totals),
-    ytd_ride: pick(s.ytd_ride_totals),
-    all_run: pick(s.all_run_totals),
-    all_ride: pick(s.all_ride_totals)
+    ytd_run: totals.ytd_run,
+    ytd_ride: totals.ytd_ride,
+    all_run: totals.all_run,
+    all_ride: totals.all_ride
   };
+  if (warning) out.warning = warning;
 
   await fs.mkdir(outDir, { recursive: true });
   await fs.writeFile(outFile, JSON.stringify(out, null, 2));
