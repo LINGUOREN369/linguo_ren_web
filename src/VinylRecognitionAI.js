@@ -14,11 +14,9 @@ export default function VinylRecognitionAI() {
       <header className="edg-hero">
         <div className="edg-hero-grid">
           <div className="edg-hero-copy">
-            <span className="edg-eyebrow">WBOR Project</span>
             <h1 className="edg-title">Vinyl Recognition AI</h1>
             <p className="edg-subtitle">
-              A computer vision tool that helps WBOR DJs identify vinyl records and pull metadata fast,
-              keeping live show logging smooth.
+              A computer vision tool that helps WBOR DJs identify vinyl records and pull metadata fast
             </p>
             <div className="edg-cta">
               <a
@@ -52,17 +50,19 @@ export default function VinylRecognitionAI() {
           </div>
 
           <div className="edg-hero-panel vinyl-hero-panel">
-            <div className="edg-card edg-card--accent vinyl-hero-card">
-              <span className="edg-label">At a glance</span>
-              <p>
-                Built for WBOR&apos;s vinyl catalog, this model recognizes album covers from quick camera
-                snapshots and returns record metadata so DJs can log tracks without breaking their flow.
-              </p>
-              <ul className="vinyl-highlights">
-                <li>Album cover recognition tuned for the station&apos;s library.</li>
-                <li>Top matches help DJs confirm similar-looking sleeves.</li>
-                <li>Outputs record title and artist metadata for fast logging.</li>
-              </ul>
+            <div className="edg-grid edg-grid-1">
+              <article className="edg-card">
+                <p>
+                  Companion tool for radio DJs to help facilitate exploration and discovery with physical collections
+                  of vinyl records. By leveraging computer vision, deep learning, and metadata aggregation, this tool
+                  reduces the time needed to retrieve relevant information about a given release.
+                </p>
+                <p>
+                  The project is containerized with Docker to simplify setup and deployment, with a React frontend,
+                  FastAPI backend for recognition and metadata aggregation, PostgreSQL + pgvector for similarity search,
+                  and an Nginx reverse proxy for routing.
+                </p>
+              </article>
             </div>
           </div>
         </div>

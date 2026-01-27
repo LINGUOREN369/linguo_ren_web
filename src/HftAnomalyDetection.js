@@ -12,7 +12,6 @@ export default function HftAnomalyDetection() {
       <header className="edg-hero">
         <div className="edg-hero-grid">
           <div className="edg-hero-copy">
-            <span className="edg-eyebrow">HFT Anomaly Detection</span>
             <h1 className="edg-title">Abnormality Detection in High-Frequency Trading</h1>
             <p className="edg-subtitle">
               Unsupervised temporal convolutional autoencoder that learns baseline market behavior and surfaces anomalies
@@ -58,10 +57,6 @@ export default function HftAnomalyDetection() {
             </div>
           </div>
           <div className="edg-hero-panel hft-overview">
-            <div className="edg-section-header">
-              <span className="edg-kicker">Overview</span>
-              <h2 className="edg-h2">Detecting irregular trading patterns</h2>
-            </div>
             <div className="edg-grid edg-grid-1">
               <article className="edg-card">
                 <p>
