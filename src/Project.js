@@ -32,7 +32,7 @@ function Project() {
     
     {
       title: "Vinyl Recognition AI",
-      description: "A deep learning image classifier for Bowdoin College’s radio station to recognize vinyl records and automatically retrieve metadata for DJs",
+      description: "A deep learning image classifier for College’s radio station to recognize vinyl records and retrieve metadata for DJs",
       link: "https://github.com/mdrxy/album-wiz",
       image: album_wiz,
       tags: ["Computer Vision", "Deep Learning", "Image Classification", "CNNs", "Transfer Learning", "Python"],
