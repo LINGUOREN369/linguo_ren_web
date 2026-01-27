@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-01-27T14:21:21.716Z",
+  "fetched_at": "2026-01-27T14:25:51.954Z",
   "ytd_run": {
     "distance_m": 80960.69999999998,
     "moving_time_s": 45195,
@@ -10,6 +10,11 @@
     "moving_time_s": 48622,
     "elevation_gain_m": 3390
   },
+  "ytd_row": {
+    "distance_m": 0,
+    "moving_time_s": 0,
+    "elevation_gain_m": 0
+  },
   "all_run": {
     "distance_m": 3776528.6999999974,
     "moving_time_s": 1541697,
@@ -19,6 +24,11 @@
     "distance_m": 10708965.2,
     "moving_time_s": 1613815,
     "elevation_gain_m": 96357.5
+  },
+  "all_row": {
+    "distance_m": 1139621.1000000003,
+    "moving_time_s": 387661,
+    "elevation_gain_m": 5143.099999999999
   },
   "warning": "Token scope missing activity:read_all; private activities are excluded from totals."
 }
