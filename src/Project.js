@@ -32,8 +32,8 @@ function Project() {
     
     {
       title: "Vinyl Recognition AI",
-      description: "A deep learning image classifier for College’s radio station to recognize vinyl records and retrieve metadata for DJs",
-      link: "https://github.com/mdrxy/album-wiz",
+      description: "A deep learning image classifier for WBOR's radio station to recognize vinyl records and retrieve metadata for DJs",
+      route: "/vinyl-recognition-ai",
       image: album_wiz,
       tags: ["Computer Vision", "Deep Learning", "Image Classification", "CNNs", "Transfer Learning", "Python"],
     },

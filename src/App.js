@@ -14,6 +14,7 @@ import HftAnomalyDetection from './HftAnomalyDetection';
 import NescacPostseasonPolicy from './NescacPostseasonPolicy';
 import ArchiveAssessment from './ArchiveAssessment';
 import ChicagoCrimeInsights from './ChicagoCrimeInsights';
+import VinylRecognitionAI from './VinylRecognitionAI';
 
 const profilePhoto = process.env.PUBLIC_URL + '/docs/linguo4.JPG';
 const profileShareImage = process.env.PUBLIC_URL + '/docs/profile_photo.png';
@@ -25,6 +26,7 @@ const hftCover = process.env.PUBLIC_URL + '/docs/fml_cover.png';
 const nescacCover = process.env.PUBLIC_URL + '/docs/nescac_cover.png';
 const archiveCover = process.env.PUBLIC_URL + '/docs/archive_assessment_cover.jpg';
 const chicagoCover = process.env.PUBLIC_URL + '/docs/chicago_cover.png';
+const vinylCover = process.env.PUBLIC_URL + '/docs/album-wiz_cover.png';
 
 
 function AppContent() {
@@ -119,6 +121,12 @@ function AppContent() {
         shareImage = chicagoCover;
         shareAlt = 'Chicago Crime Insights cover image';
         faviconImage = chicagoCover;
+        break;
+      case '/vinyl-recognition-ai':
+        document.title = 'Vinyl Recognition AI - WBOR';
+        shareImage = vinylCover;
+        shareAlt = 'Vinyl Recognition AI cover image';
+        faviconImage = vinylCover;
         break;
       default:
         document.title = "Linguo's Projects";
@@ -482,6 +490,7 @@ function AppContent() {
             <Route path="/nescac-postseason-policy" element={<NescacPostseasonPolicy />} />
             <Route path="/archive-assessment" element={<ArchiveAssessment />} />
             <Route path="/chicago-crime-insights" element={<ChicagoCrimeInsights />} />
+            <Route path="/vinyl-recognition-ai" element={<VinylRecognitionAI />} />
           </Routes>
         </div>
       </div>
