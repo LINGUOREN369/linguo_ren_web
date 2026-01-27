@@ -6,6 +6,7 @@ import './styles/VinylRecognitionAI.css';
 const demoVideoMp4 = process.env.PUBLIC_URL + '/docs/wbor_demo.mp4';
 const demoVideoWbor = process.env.PUBLIC_URL + '/docs/wbor_demo2.mp4';
 const coverImage = process.env.PUBLIC_URL + '/docs/album-wiz_cover.png';
+const slidesPdf = process.env.PUBLIC_URL + '/docs/album_wiz.pdf';
 const repoUrl = 'https://github.com/mdrxy/album-wiz';
 
 export default function VinylRecognitionAI() {
@@ -32,6 +33,15 @@ export default function VinylRecognitionAI() {
                   </svg>
                 </span>
                 <span>View on GitHub</span>
+              </a>
+              <a
+                href={slidesPdf}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="portfolio-button portfolio-button--secondary"
+                aria-label="Open Vinyl Recognition AI project slides"
+              >
+                View Project Slides
               </a>
               <Link
                 to="/project"
