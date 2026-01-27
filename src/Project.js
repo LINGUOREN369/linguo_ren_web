@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles/Project.css';
 
@@ -20,35 +20,14 @@ function Project() {
       description: "Architected a decision‑support system designed to help nonprofits identify, prioritize, and understand funding opportunities with transparency and auditability",
       image: edgrantai_cover,
       route: "/edgrantai",
-      tags: ["Python", "Education", "NLP", "Machine Learning & Deep Learning"],
-    },
-    {
-      title: "Informal Science Education",
-      description: "Helps Maine K‑12 educators connect with informal science education providers, opportunities, and resources",
-      image: maine_tree_flag,
-      route: "/informal-science-education",
-      tags: ["Education", "Web Development"],
-    },
-    {
-      title: "NESCAC Postseason Policy",
-      description: "An iceberg analysis of institutional change, stakeholder complexity, and academic–athletic constraints in liberal arts colleges",
-      route: "/nescac-postseason-policy",
-      image: nescac_cover,
-      tags: ["Education"],
-    },
-    {
-      title: "Institutional Archives",
-      description: "Critical assessment of archival sources in higher education, covering evidentiary value, limitations, and ethics",
-      route: "/archive-assessment",
-      image: archive_assessment_cover,
-      tags: ["Education"],
+      tags: ["Responsible AI", "Decision Support", "Natural Language Processing", "LLMs", "Information Retrieval", "Education Nonprofits"],
     },
     {
       title: "HFT Anomaly Detection",
       description: "Unsupervised TCN autoencoder for anomaly detection in high-frequency trading data; clustering reveals suspicious trading patterns",
       route: "/hft-anomaly-detection",
       image: fml_cover,
-      tags: ["Python", "Data Analysis", "Machine Learning & Deep Learning", "R"],
+      tags: ["Machine Learning", "Deep Learning", "TCN Autoencoder", "Time Series", "Anomaly Detection", "Finance"],
     },
     
     {
@@ -56,15 +35,37 @@ function Project() {
       description: "A deep learning image classifier for Bowdoin College’s radio station to recognize vinyl records and automatically retrieve structured metadata for DJs",
       link: "https://github.com/mdrxy/album-wiz",
       image: album_wiz,
-      tags: ["Python", "Web Development", "Machine Learning & Deep Learning", "Data Analysis",],
+      tags: ["Computer Vision", "Deep Learning", "Image Classification", "CNNs", "Transfer Learning", "Python"],
     },
-
+{
+      title: "NESCAC Postseason Policy",
+      description: "An iceberg analysis of institutional change, stakeholder complexity, and academic–athletic constraints in liberal arts colleges",
+      route: "/nescac-postseason-policy",
+      image: nescac_cover,
+      tags: ["Higher Education", "Policy Analysis", "Institutional Change", "Stakeholder Analysis", "Academic Athletics", "Qualitative Research"],
+    },
+    {
+      title: "Informal Science Education",
+      description: "Helps Maine K‑12 educators connect with informal science education providers, opportunities, and resources",
+      image: maine_tree_flag,
+      route: "/informal-science-education",
+      tags: ["STEM Education", "Informal Learning", "Community Partnerships", "React", "JavaScript", "Frontend"],
+    },
+    
+    {
+      title: "Institutional Archives",
+      description: "Critical assessment of archival sources in higher education, covering evidentiary value, limitations, and ethics",
+      route: "/archive-assessment",
+      image: archive_assessment_cover,
+      tags: ["Archival Research", "Higher Education", "Ethics", "Historical Analysis", "Primary Sources", "Sociology"],
+    },
+    
     {
       title: "Portfolio Website",
-      description: "Responsive React portfolio with tag‑based project filtering",
+      description: "Responsive React portfolio with colorful project tag pills",
       link: "https://github.com/LINGUOREN369/linguo_ren_web",
       image: portfolio_cover,
-      tags: ["Web Development"],
+      tags: ["React", "JavaScript", "CSS", "Responsive Design", "UI/UX", "GitHub Pages"],
     },
     
 
@@ -73,66 +74,44 @@ function Project() {
       description: "Large-scale EDA and geospatial analysis in R on 2.5M Chicago crime records (2013–2022)",
       route: "/chicago-crime-insights",
       image: chicago_cover,
-      tags: ["Data Analysis", "R"],
+      tags: ["Data Analysis", "R", "Geospatial Analysis", "Data Visualization", "Statistical Testing", "Public Safety"],
     },
     
 
   ];
 
-  const [selectedTags, setSelectedTags] = useState([]); // empty means "All"
-
-  const allTags = ["All", ...new Set(projects.flatMap((project) => project.tags))];
-
-  const filteredProjects =
-    selectedTags.length === 0
-      ? projects
-      : projects.filter((project) =>
-          selectedTags.every((tag) => project.tags.includes(tag))
-        );
+  const TAG_HUES = [210, 190, 165, 135, 95, 35, 20, 285];
+  const tagHue = (label) => {
+    let hash = 0;
+    for (let i = 0; i < label.length; i += 1) {
+      hash = (hash << 5) - hash + label.charCodeAt(i);
+      hash |= 0;
+    }
+    return TAG_HUES[Math.abs(hash) % TAG_HUES.length];
+  };
 
   // descriptions are concise; no read-more toggle needed
 
   return (
     <div className="portfolio">
-      {/* Tag Selection Bar */}
-      <div className="tag-selection-bar">
-        {allTags.map((tag) => {
-          const isActive =
-            (tag === "All" && selectedTags.length === 0) ||
-            selectedTags.includes(tag);
-          const handleClick = () => {
-            if (tag === "All") {
-              setSelectedTags([]);
-            } else {
-              setSelectedTags((prev) =>
-                prev.includes(tag)
-                  ? prev.filter((t) => t !== tag)
-                  : [...prev, tag]
-              );
-            }
-          };
-          return (
-            <button
-              key={tag}
-              className={`tag-button ${isActive ? "active" : ""}`}
-              onClick={handleClick}
-            >
-              {tag}
-            </button>
-          );
-        })}
-      </div>
-      
-      <p className="hint-text">Select tags to show projects that match ALL selected tags (click All to clear)</p>
-      {/* concise descriptions; no read-more */}
-
       {/* Projects Display */}
       <div className="project-grid">
-        {filteredProjects.map((project) => (
+        {projects.map((project) => (
           <div className="project-card" key={project.title}>
             <img src={project.image} alt={project.title} className="project-image" />
             <h5>{project.title}</h5>
             <p>{project.description}</p>
+            <div className="tags-container" aria-label={`Tags for ${project.title}`}>
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="tag-bubble"
+                  style={{ '--tag-hue': tagHue(tag) }}
+                >
+                  <span>{tag}</span>
+                </span>
+              ))}
+            </div>
             {project.route || project.repo ? (
               <div className="project-actions">
                 {project.route && (

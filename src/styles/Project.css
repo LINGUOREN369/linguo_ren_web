@@ -5,64 +5,6 @@
   min-height: auto; /* Let page height be natural to prevent background overlap */
 }
 
-.tag-selection-bar {
-  position: auto;
-  top: 0; /* Keeps it aligned with the top of the viewport */
-  width: 100%; /* Spans the width of the container */
-  display: flex;
-  justify-content: left; /* Align tags horizontally */
-  flex-wrap: wrap;
-  gap: 10px; /* Adjust spacing between tags */
-  z-index: 100; /* Ensure it stays above other elements */
-  background-color: white;
-  padding: 5px 0; /* Reduce top and bottom padding */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
-}
-
-.theme-dark .tag-selection-bar {
-  background-color: #0b1220;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-}
-
-.tag-button {
-  background-color: #f0f0f0;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s;
-  margin-left: 5px;
-}
-
-.tag-button:hover {
-  background-color: #e6e6e6;
-  color: #007bff;
-}
-
-.tag-button.active {
-  background-color: #007bff;
-  color: white;
-}
-
-.theme-dark .tag-button {
-  background-color: #1f2937;
-  color: #e5e7eb;
-  border: 1px solid #374151;
-}
-.theme-dark .tag-button:hover {
-  background-color: #374151;
-  color: #93c5fd;
-}
-.theme-dark .tag-button.active {
-  background-color: #2563eb;
-  color: white;
-}
-
-.tag-button:focus {
-  outline: 2px solid #007bff;
-}
-
 .project-grid {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -120,35 +62,37 @@
 }
 
 .tags-container {
-  margin-top: 6px;
+  margin-top: 10px;
+  margin-bottom: 8px;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  color: #94a3b8; /* slate-400 */
-  font-size: 12px;
+  gap: 5px;
 }
 
 .tag-bubble {
-  background: none;
-  color: #6b7280;
-  padding: 0;
-  border: 0;
-  box-shadow: none;
-  margin-top: 0;
+  --tag-hue: 210;
   display: inline-flex;
   align-items: center;
+  gap: 2px;
+  padding: 1px 4px;
+  border-radius: 999px;
+  border: 1px solid hsl(var(--tag-hue), 45%, 78%);
+  background: hsl(var(--tag-hue), 55%, 92%);
+  color: hsl(var(--tag-hue), 35%, 28%);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
 }
 
-/* Dot separator between tags */
-.tag-bubble + .tag-bubble::before {
-  content: "";
-  display: inline-block;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #e2e8f0; /* slate-200 */
-  margin: 0 8px;
+.theme-dark .tag-bubble {
+  border-color: hsl(var(--tag-hue), 25%, 35%);
+  background: hsl(var(--tag-hue), 25%, 22%);
+  color: hsl(var(--tag-hue), 40%, 82%);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
 }
+
 
 
 .read-more-button {
@@ -163,17 +107,6 @@
 
 .read-more-button:hover {
   color: #0056b3;
-}
-
-.hint-text {
-  font-size: 14px;
-  color: #666; /* Subtle text color */
-  margin: 10px 0;
-  text-align: center; /* Center-align the hint */
-}
-
-.theme-dark .hint-text {
-  color: #9ca3af;
 }
 
 /* Fancy View Project button */
