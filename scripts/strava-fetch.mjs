@@ -40,6 +40,12 @@ const RIDE_TYPES = new Set([
   'Velomobile'
 ]);
 
+const ROW_TYPES = new Set([
+  'Rowing',
+  'VirtualRow',
+  'IndoorRowing'
+]);
+
 const blankTotals = () => ({
   distance_m: 0,
   moving_time_s: 0,
@@ -57,8 +63,10 @@ const getActivityType = (activity) => activity?.sport_type || activity?.type;
 async function fetchAndAggregateActivities(accessToken, ytdStartMs) {
   const ytd_run = blankTotals();
   const ytd_ride = blankTotals();
+  const ytd_row = blankTotals();
   const all_run = blankTotals();
   const all_ride = blankTotals();
+  const all_row = blankTotals();
   const perPage = 200;
   let page = 1;
 
@@ -79,7 +87,8 @@ async function fetchAndAggregateActivities(accessToken, ytdStartMs) {
       const type = getActivityType(activity);
       const isRun = RUN_TYPES.has(type);
       const isRide = RIDE_TYPES.has(type);
-      if (!isRun && !isRide) continue;
+      const isRow = ROW_TYPES.has(type);
+      if (!isRun && !isRide && !isRow) continue;
 
       const startedAt = activity?.start_date || activity?.start_date_local;
       const startMs = startedAt ? Date.parse(startedAt) : NaN;
@@ -93,13 +102,17 @@ async function fetchAndAggregateActivities(accessToken, ytdStartMs) {
         addActivityTotals(all_ride, activity);
         if (isYtd) addActivityTotals(ytd_ride, activity);
       }
+      if (isRow) {
+        addActivityTotals(all_row, activity);
+        if (isYtd) addActivityTotals(ytd_row, activity);
+      }
     }
 
     if (activities.length < perPage) break;
     page += 1;
   }
 
-  return { ytd_run, ytd_ride, all_run, all_ride };
+  return { ytd_run, ytd_ride, ytd_row, all_run, all_ride, all_row };
 }
 
 async function main() {
@@ -112,8 +125,10 @@ async function main() {
       fetched_at: null,
       ytd_run: { distance_m: 0, moving_time_s: 0, elevation_gain_m: 0 },
       ytd_ride: { distance_m: 0, moving_time_s: 0, elevation_gain_m: 0 },
+      ytd_row: { distance_m: 0, moving_time_s: 0, elevation_gain_m: 0 },
       all_run: { distance_m: 0, moving_time_s: 0, elevation_gain_m: 0 },
-      all_ride: { distance_m: 0, moving_time_s: 0, elevation_gain_m: 0 }
+      all_ride: { distance_m: 0, moving_time_s: 0, elevation_gain_m: 0 },
+      all_row: { distance_m: 0, moving_time_s: 0, elevation_gain_m: 0 }
     }, null, 2));
     return;
   }
@@ -152,8 +167,10 @@ async function main() {
     fetched_at: new Date().toISOString(),
     ytd_run: totals.ytd_run,
     ytd_ride: totals.ytd_ride,
+    ytd_row: totals.ytd_row,
     all_run: totals.all_run,
-    all_ride: totals.all_ride
+    all_ride: totals.all_ride,
+    all_row: totals.all_row
   };
   if (warning) out.warning = warning;
 

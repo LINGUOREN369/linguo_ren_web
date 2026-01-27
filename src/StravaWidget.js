@@ -56,7 +56,7 @@ export default function StravaWidget() {
   );
 
   return (
-    <section className="strava-card" aria-label="Strava running and riding stats">
+    <section className="strava-card" aria-label="Strava running, riding, and rowing stats">
       <div className="strava-header">
         <span className="strava-title">Strava Snapshot</span>
         {stats && stats.fetched_at && (
@@ -91,6 +91,15 @@ export default function StravaWidget() {
             {renderBlock('YTD', stats.ytd_ride || {})}
             <div className="strava-divider" aria-hidden="true" />
             {renderBlock('All-Time', stats.all_ride || {})}
+          </article>
+          <article className="strava-panel">
+            <div className="strava-panel-title">
+              <span className="strava-panel-icon" aria-hidden="true">🚣</span>
+              <span>Rowing</span>
+            </div>
+            {renderBlock('YTD', stats.ytd_row || {})}
+            <div className="strava-divider" aria-hidden="true" />
+            {renderBlock('All-Time', stats.all_row || {})}
           </article>
         </div>
       )}
