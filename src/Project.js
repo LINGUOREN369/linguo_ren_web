@@ -17,7 +17,7 @@ function Project() {
   const projects = [
     {
       title: "EdGrantAI",
-      description: "Architected a decision‑support system designed to help nonprofits identify, prioritize, and understand funding opportunities with transparency and auditability",
+      description: "A decision‑support system designed to help nonprofits identify, prioritize, and understand funding opportunities with transparency and auditability",
       image: edgrantai_cover,
       route: "/edgrantai",
       tags: ["Responsible AI", "Decision Support", "Natural Language Processing", "LLMs", "Information Retrieval", "Education Nonprofits"],
@@ -32,7 +32,7 @@ function Project() {
     
     {
       title: "Vinyl Recognition AI",
-      description: "A deep learning image classifier for Bowdoin College’s radio station to recognize vinyl records and automatically retrieve structured metadata for DJs",
+      description: "A deep learning image classifier for Bowdoin College’s radio station to recognize vinyl records and automatically retrieve metadata for DJs",
       link: "https://github.com/mdrxy/album-wiz",
       image: album_wiz,
       tags: ["Computer Vision", "Deep Learning", "Image Classification", "CNNs", "Transfer Learning", "Python"],
@@ -46,7 +46,7 @@ function Project() {
     },
     {
       title: "Informal Science Education",
-      description: "Helps Maine K‑12 educators connect with informal science education providers, opportunities, and resources",
+      description: "A resource hub that helps Maine K‑12 educators connect with informal science education providers, opportunities, and resources",
       image: maine_tree_flag,
       route: "/informal-science-education",
       tags: ["STEM Education", "Informal Learning", "Community Partnerships", "React", "JavaScript", "Frontend"],
