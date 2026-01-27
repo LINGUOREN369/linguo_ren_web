@@ -97,10 +97,10 @@ function Project() {
       {/* Projects Display */}
       <div className="project-grid">
         {projects.map((project) => (
-          <div className="project-card" key={project.title}>
-            <img src={project.image} alt={project.title} className="project-image" />
+            <div className="project-card" key={project.title}>
+              <img src={project.image} alt={project.title} className="project-image" />
             <h5>{project.title}</h5>
-            <p>{project.description}</p>
+            <p className="project-desc">{project.description}</p>
             <div className="tags-container" aria-label={`Tags for ${project.title}`}>
               {project.tags.map((tag) => (
                 <span
