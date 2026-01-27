@@ -457,7 +457,7 @@ function AppContent() {
               </div>
               <div className="mt-4"></div>
               <p className="strava-intro">
-                Outside of work, I explore New England on foot and by bike. 
+                As a former rower, I explore New England on foot, by bike, and on the water.
               </p>
               <p className = "strava-intro">
                 This Strava snapshot updates daily via a lightweight API integration.
