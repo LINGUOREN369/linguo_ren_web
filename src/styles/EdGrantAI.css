@@ -111,9 +111,18 @@
 
 .edg-cta {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  flex-wrap: nowrap;
+  gap: 10px;
   margin-bottom: 18px;
+}
+
+.edg-cta .portfolio-button {
+  padding: 12px 16px;
+  font-size: 0.95rem;
+}
+
+.edg-cta .portfolio-button + .portfolio-button {
+  margin-left: 0;
 }
 
 .edg-button-primary.portfolio-button {
@@ -757,6 +766,10 @@
     padding-bottom: 6px;
   }
   .edg-side-link { white-space: nowrap; }
+}
+
+@media (max-width: 900px) {
+  .edg-cta { flex-wrap: wrap; }
 }
 
 @media (max-width: 700px) {
