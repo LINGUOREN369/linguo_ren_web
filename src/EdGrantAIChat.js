@@ -591,7 +591,8 @@ export default function EdGrantAIChat() {
                   const score = typeof rec.score === 'number' ? rec.score : null;
                   const showExplanation = idx < 3 || (score !== null && score >= 0.6);
                   const grantId = rec.grant_profile || rec.title || rec.name || 'unknown';
-                  const currentFeedback = feedbackSent[grantId] || null;
+                  const feedbackState = feedbackComment[grantId];
+                  const currentFeedback = feedbackSent[grantId] || feedbackState?.signal || null;
                   return (
                     <article key={`${rec.grant_profile || rec.title}-${idx}`} className="edg-rec-card">
                       <header className="edg-rec-header">
@@ -672,17 +673,17 @@ export default function EdGrantAIChat() {
                               <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10zM17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" />
                             </svg>
                           </button>
-                          {currentFeedback && !feedbackComment[grantId]?.sent && <span className="edg-feedback-thanks">Thanks</span>}
-                          {feedbackComment[grantId]?.sent && <span className="edg-feedback-thanks">Feedback sent</span>}
+                          {currentFeedback && !feedbackState?.sent && <span className="edg-feedback-thanks">Thanks</span>}
+                          {feedbackState?.sent && <span className="edg-feedback-thanks">Feedback sent</span>}
                         </span>
                       </div>
-                      {currentFeedback && feedbackComment[grantId] && !feedbackComment[grantId].sent && (
+                      {feedbackState && !feedbackState.sent && (
                         <div className="edg-feedback-comment">
                           <textarea
                             className="edg-feedback-textarea"
                             rows="2"
                             placeholder="Any additional feedback? (optional)"
-                            value={feedbackComment[grantId]?.text || ''}
+                            value={feedbackState.text || ''}
                             onChange={(e) =>
                               setFeedbackComment((prev) => ({
                                 ...prev,
@@ -695,11 +696,11 @@ export default function EdGrantAIChat() {
                             <button
                               type="button"
                               className="edg-feedback-send"
-                              disabled={!feedbackComment[grantId]?.text?.trim()}
+                              disabled={!feedbackState.text?.trim()}
                               onClick={() => {
-                                const text = feedbackComment[grantId]?.text || '';
+                                const text = feedbackState.text || '';
                                 if (text.trim()) {
-                                  submitFeedback(rec, feedbackComment[grantId].signal, text);
+                                  submitFeedback(rec, feedbackState.signal, text);
                                 }
                                 setFeedbackComment((prev) => ({
                                   ...prev,
