@@ -131,6 +131,7 @@ export default function EdGrantAIChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [feedbackSent, setFeedbackSent] = useState({});
+  const [feedbackComment, setFeedbackComment] = useState({});
   const trimmedMission = mission.trim();
   const missionCharCount = trimmedMission.length;
   const missionTokenEstimate = Math.ceil(missionCharCount / CHARS_PER_TOKEN);
@@ -149,7 +150,7 @@ export default function EdGrantAIChat() {
     setError('');
   };
 
-  const submitFeedback = async (rec, signal) => {
+  const submitFeedback = async (rec, signal, comment) => {
     const grantId = rec.grant_profile || rec.title || rec.name || 'unknown';
     // Optimistic update
     setFeedbackSent((prev) => ({ ...prev, [grantId]: signal }));
@@ -162,15 +163,20 @@ export default function EdGrantAIChat() {
         if (token) headers['CF-Turnstile-Token'] = token;
       }
 
+      const payload = {
+        grant_id: grantId,
+        score: rec.score ?? null,
+        bucket: rec.bucket ?? null,
+        signal,
+      };
+      if (comment && comment.trim()) {
+        payload.comment = comment.trim();
+      }
+
       await fetch(FEEDBACK_ENDPOINT, {
         method: 'POST',
         headers,
-        body: JSON.stringify({
-          grant_id: grantId,
-          score: rec.score ?? null,
-          bucket: rec.bucket ?? null,
-          signal,
-        }),
+        body: JSON.stringify(payload),
       });
     } catch {
       // Feedback is best-effort — don't block the UI
@@ -319,6 +325,7 @@ export default function EdGrantAIChat() {
     setIsLoading(true);
     setRecommendations([]);
     setFeedbackSent({});
+    setFeedbackComment({});
     setOrgProfileFile('');
     setProcessedOrgProfileJson(null);
     setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
@@ -640,7 +647,10 @@ export default function EdGrantAIChat() {
                           <button
                             type="button"
                             className={`edg-feedback-btn${currentFeedback === 'up' ? ' is-active' : ''}`}
-                            onClick={() => submitFeedback(rec, 'up')}
+                            onClick={() => {
+                              submitFeedback(rec, 'up');
+                              setFeedbackComment((prev) => ({ ...prev, [grantId]: { signal: 'up', text: '', sent: false } }));
+                            }}
                             aria-label="Helpful recommendation"
                             aria-pressed={currentFeedback === 'up'}
                           >
@@ -651,7 +661,10 @@ export default function EdGrantAIChat() {
                           <button
                             type="button"
                             className={`edg-feedback-btn edg-feedback-btn--down${currentFeedback === 'down' ? ' is-active' : ''}`}
-                            onClick={() => submitFeedback(rec, 'down')}
+                            onClick={() => {
+                              submitFeedback(rec, 'down');
+                              setFeedbackComment((prev) => ({ ...prev, [grantId]: { signal: 'down', text: '', sent: false } }));
+                            }}
                             aria-label="Not helpful recommendation"
                             aria-pressed={currentFeedback === 'down'}
                           >
@@ -659,9 +672,58 @@ export default function EdGrantAIChat() {
                               <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10zM17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" />
                             </svg>
                           </button>
-                          {currentFeedback && <span className="edg-feedback-thanks">Thanks</span>}
+                          {currentFeedback && !feedbackComment[grantId]?.sent && <span className="edg-feedback-thanks">Thanks</span>}
+                          {feedbackComment[grantId]?.sent && <span className="edg-feedback-thanks">Feedback sent</span>}
                         </span>
                       </div>
+                      {currentFeedback && feedbackComment[grantId] && !feedbackComment[grantId].sent && (
+                        <div className="edg-feedback-comment">
+                          <textarea
+                            className="edg-feedback-textarea"
+                            rows="2"
+                            placeholder="Any additional feedback? (optional)"
+                            value={feedbackComment[grantId]?.text || ''}
+                            onChange={(e) =>
+                              setFeedbackComment((prev) => ({
+                                ...prev,
+                                [grantId]: { ...prev[grantId], text: e.target.value },
+                              }))
+                            }
+                            maxLength={1000}
+                          />
+                          <div className="edg-feedback-comment-actions">
+                            <button
+                              type="button"
+                              className="edg-feedback-send"
+                              disabled={!feedbackComment[grantId]?.text?.trim()}
+                              onClick={() => {
+                                const text = feedbackComment[grantId]?.text || '';
+                                if (text.trim()) {
+                                  submitFeedback(rec, feedbackComment[grantId].signal, text);
+                                }
+                                setFeedbackComment((prev) => ({
+                                  ...prev,
+                                  [grantId]: { ...prev[grantId], sent: true },
+                                }));
+                              }}
+                            >
+                              Send
+                            </button>
+                            <button
+                              type="button"
+                              className="edg-feedback-skip"
+                              onClick={() =>
+                                setFeedbackComment((prev) => ({
+                                  ...prev,
+                                  [grantId]: { ...prev[grantId], sent: true },
+                                }))
+                              }
+                            >
+                              Skip
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </article>
                   );
                 })}

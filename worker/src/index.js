@@ -147,7 +147,7 @@ async function handleFeedback(request, env) {
     return json({ error: 'Invalid JSON' }, 400, request);
   }
 
-  const { grant_id, score, bucket, signal } = body;
+  const { grant_id, score, bucket, signal, comment } = body;
 
   if (!grant_id || typeof grant_id !== 'string') {
     return json({ error: 'grant_id is required' }, 400, request);
@@ -155,6 +155,11 @@ async function handleFeedback(request, env) {
   if (!signal || !['up', 'down'].includes(signal)) {
     return json({ error: 'signal must be "up" or "down"' }, 400, request);
   }
+
+  // Validate comment if provided
+  const safeComment = (typeof comment === 'string' && comment.trim().length > 0)
+    ? comment.trim().slice(0, 1000)
+    : null;
 
   const sessionHash = await hashIp(ip);
 
@@ -166,15 +171,15 @@ async function handleFeedback(request, env) {
   if (existing) {
     // Update existing feedback (user changed their mind)
     await env.DB.prepare(
-      'UPDATE feedback SET signal = ?, score = ?, bucket = ?, created_at = datetime(\'now\') WHERE id = ?'
-    ).bind(signal, score ?? null, bucket ?? null, existing.id).run();
+      'UPDATE feedback SET signal = ?, score = ?, bucket = ?, comment = ?, created_at = datetime(\'now\') WHERE id = ?'
+    ).bind(signal, score ?? null, bucket ?? null, safeComment, existing.id).run();
     return json({ ok: true, updated: true }, 200, request);
   }
 
   // Insert new feedback
   await env.DB.prepare(
-    'INSERT INTO feedback (grant_id, score, bucket, signal, session_hash) VALUES (?, ?, ?, ?, ?)'
-  ).bind(grant_id, score ?? null, bucket ?? null, signal, sessionHash).run();
+    'INSERT INTO feedback (grant_id, score, bucket, signal, session_hash, comment) VALUES (?, ?, ?, ?, ?, ?)'
+  ).bind(grant_id, score ?? null, bucket ?? null, signal, sessionHash, safeComment).run();
 
   return json({ ok: true }, 201, request);
 }
