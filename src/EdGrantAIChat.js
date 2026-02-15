@@ -2,8 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './styles/EdGrantAIChat.css';
 
+const WORKER_BASE = process.env.REACT_APP_EDGRANT_WORKER_URL
+  || 'https://edgrantai-proxy.lren-31b.workers.dev';
 const API_ENDPOINT = process.env.REACT_APP_EDGRANT_API_URL
-  || 'https://edgrantai-proxy.lren-31b.workers.dev/recommend';
+  || `${WORKER_BASE}/recommend`;
+const FEEDBACK_ENDPOINT = `${WORKER_BASE}/feedback`;
 const TURNSTILE_SITE_KEY = process.env.REACT_APP_TURNSTILE_SITE_KEY
   || '0x4AAAAAACK9_1Q5N9HOGc3h';
 const PROCESSED_GRANT_BASE_URL = 'https://raw.githubusercontent.com/LINGUOREN369/EdGrantAI/main/data/processed_grants';
@@ -127,6 +130,7 @@ export default function EdGrantAIChat() {
   const [processedOrgProfileJson, setProcessedOrgProfileJson] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [feedbackSent, setFeedbackSent] = useState({});
   const trimmedMission = mission.trim();
   const missionCharCount = trimmedMission.length;
   const missionTokenEstimate = Math.ceil(missionCharCount / CHARS_PER_TOKEN);
@@ -143,6 +147,34 @@ export default function EdGrantAIChat() {
     setOrgName(EXAMPLE_CASE_ORG);
     setMission(EXAMPLE_CASE_TEXT);
     setError('');
+  };
+
+  const submitFeedback = async (rec, signal) => {
+    const grantId = rec.grant_profile || rec.title || rec.name || 'unknown';
+    // Optimistic update
+    setFeedbackSent((prev) => ({ ...prev, [grantId]: signal }));
+
+    try {
+      const headers = { 'Content-Type': 'application/json' };
+      // Reuse Turnstile token if available
+      if (TURNSTILE_SITE_KEY && window.turnstile && turnstileWidgetRef.current) {
+        const token = window.turnstile.getResponse(turnstileWidgetRef.current);
+        if (token) headers['CF-Turnstile-Token'] = token;
+      }
+
+      await fetch(FEEDBACK_ENDPOINT, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+          grant_id: grantId,
+          score: rec.score ?? null,
+          bucket: rec.bucket ?? null,
+          signal,
+        }),
+      });
+    } catch {
+      // Feedback is best-effort — don't block the UI
+    }
   };
 
   const openJsonTab = (payload) => {
@@ -286,6 +318,7 @@ export default function EdGrantAIChat() {
     setError('');
     setIsLoading(true);
     setRecommendations([]);
+    setFeedbackSent({});
     setOrgProfileFile('');
     setProcessedOrgProfileJson(null);
     setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
@@ -550,6 +583,8 @@ export default function EdGrantAIChat() {
                   const profileUrl = grantProfileUrl(rec);
                   const score = typeof rec.score === 'number' ? rec.score : null;
                   const showExplanation = idx < 3 || (score !== null && score >= 0.6);
+                  const grantId = rec.grant_profile || rec.title || rec.name || 'unknown';
+                  const currentFeedback = feedbackSent[grantId] || null;
                   return (
                     <article key={`${rec.grant_profile || rec.title}-${idx}`} className="edg-rec-card">
                       <header className="edg-rec-header">
@@ -601,6 +636,31 @@ export default function EdGrantAIChat() {
                         >
                           Grant Profile (JSON)
                         </button>
+                        <span className="edg-feedback" role="group" aria-label="Rate this recommendation">
+                          <button
+                            type="button"
+                            className={`edg-feedback-btn${currentFeedback === 'up' ? ' is-active' : ''}`}
+                            onClick={() => submitFeedback(rec, 'up')}
+                            aria-label="Helpful recommendation"
+                            aria-pressed={currentFeedback === 'up'}
+                          >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                              <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" />
+                            </svg>
+                          </button>
+                          <button
+                            type="button"
+                            className={`edg-feedback-btn edg-feedback-btn--down${currentFeedback === 'down' ? ' is-active' : ''}`}
+                            onClick={() => submitFeedback(rec, 'down')}
+                            aria-label="Not helpful recommendation"
+                            aria-pressed={currentFeedback === 'down'}
+                          >
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                              <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10zM17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17" />
+                            </svg>
+                          </button>
+                          {currentFeedback && <span className="edg-feedback-thanks">Thanks</span>}
+                        </span>
                       </div>
                     </article>
                   );

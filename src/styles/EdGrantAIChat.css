@@ -601,6 +601,58 @@
 .theme-dark .edg-badge--maybe { color: #fde68a; }
 .theme-dark .edg-badge--avoid { color: #fecaca; }
 
+/* Feedback buttons */
+.edg-feedback {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.edg-feedback-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--chat-panel-border);
+  background: transparent;
+  color: var(--chat-muted);
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.edg-feedback-btn:hover {
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.4);
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.edg-feedback-btn--down:hover {
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.edg-feedback-btn.is-active {
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.5);
+  background: rgba(34, 197, 94, 0.12);
+}
+
+.edg-feedback-btn--down.is-active {
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.5);
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.edg-feedback-thanks {
+  font-size: 0.75rem;
+  color: var(--chat-muted);
+  margin-left: 4px;
+}
+
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
