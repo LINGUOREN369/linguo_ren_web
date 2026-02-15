@@ -12,14 +12,14 @@
 
 .hft-poster-frame {
   margin-top: 12px;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--edg-border);
-  background: #ffffff;
+  background: var(--color-panel);
 }
 
 .theme-dark .hft-poster-frame {
-  background: #0f172a;
+  background: var(--color-panel);
   border-color: rgba(148, 163, 184, 0.25);
 }
 
@@ -39,6 +39,6 @@
 
 @media (max-width: 700px) {
   .hft-container .edg-hero { margin-bottom: 28px; }
-  .hft-poster-frame { border-radius: 12px; }
+  .hft-poster-frame { border-radius: var(--radius-md); }
   .hft-poster-object { height: 360px; }
 }

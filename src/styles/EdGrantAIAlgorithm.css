@@ -1,7 +1,7 @@
 .edg-algorithm .edg-math-block {
   margin: 12px 0 0;
   padding: 14px 16px;
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--edg-border);
   background: var(--edg-surface);
   font-size: 0.95rem;
@@ -41,7 +41,7 @@
 .edg-algorithm p code,
 .edg-algorithm li code {
   padding: 1px 6px;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   border: 1px solid var(--edg-border);
   background: rgba(15, 23, 42, 0.06);
   font-size: 0.85rem;

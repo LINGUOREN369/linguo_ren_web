@@ -84,19 +84,19 @@
 
 .edg-grants-state {
   padding: 16px;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   border: 1px dashed var(--edg-border);
   color: var(--edg-muted);
 }
 
 .edg-grants-state--error {
-  color: #b91c1c;
+  color: var(--color-error);
   border-color: rgba(185, 28, 28, 0.3);
   background: rgba(185, 28, 28, 0.06);
 }
 
 .theme-dark .edg-grants-state--error {
-  color: #fca5a5;
+  color: var(--color-error);
   border-color: rgba(248, 113, 113, 0.4);
   background: rgba(248, 113, 113, 0.12);
 }

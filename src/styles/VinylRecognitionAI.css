@@ -50,10 +50,10 @@
 
 .vinyl-demo-frame {
   margin-top: 12px;
-  border-radius: 18px;
+  border-radius: var(--radius-xl);
   overflow: hidden;
   border: 1px solid var(--edg-border);
-  background: #ffffff;
+  background: var(--color-panel);
 }
 
 .theme-dark .vinyl-demo-frame {
@@ -84,5 +84,5 @@
 }
 
 @media (max-width: 700px) {
-  .vinyl-demo-frame { border-radius: 12px; }
+  .vinyl-demo-frame { border-radius: var(--radius-md); }
 }

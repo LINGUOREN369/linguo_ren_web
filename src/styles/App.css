@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background-color: #f7f7f7;
+  background-color: var(--color-bg);
   color: #333;
   overflow-x: hidden;
   /* Offset fixed navbar; include iOS safe-area when available */
@@ -14,12 +14,12 @@ body {
 :root { color-scheme: dark; }
 
 .theme-dark body {
-  background-color: #0b1220; /* deep slate */
-  color: #e5e7eb; /* text */
+  background-color: var(--color-bg); /* deep slate */
+  color: var(--color-ink-light); /* text */
 }
 
 .theme-dark header a {
-  color: #93c5fd;
+  color: var(--color-focus);
 }
 
 .App {
@@ -42,9 +42,9 @@ body {
   margin-right: calc(50% - 50vw);
   padding: clamp(28px, 6vw, 72px) 0;
   margin-bottom: 32px;
-  background-color: #f8fafc;
+  background-color: var(--color-surface);
   overflow: hidden;
-  color: #f8fafc;
+  color: var(--color-surface);
 }
 
 .theme-dark .home-hero {
@@ -156,13 +156,13 @@ body {
   border: 1px solid rgba(248, 250, 252, 0.35);
   color: #f8fafc;
   background: transparent;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   padding: 6px;
 }
 
 .home-hero-pronounce-btn:hover,
 .home-hero-pronounce-btn:focus-visible {
-  color: #ffffff;
+  color: var(--color-panel);
   border-color: rgba(248, 250, 252, 0.65);
 }
 
@@ -199,12 +199,12 @@ body {
 .home-hero .intro-social-btn:hover,
 .home-hero .intro-social-btn:focus-visible {
   background: rgba(15, 23, 42, 0.72);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  box-shadow: var(--shadow-md);
 }
 
 .home-hero .portfolio-button {
-  background: #f8fafc;
-  color: #0f172a;
+  background: var(--color-surface);
+  color: var(--color-ink);
   border: 2px solid rgba(248, 250, 252, 0.95);
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -212,12 +212,12 @@ body {
   padding: 16px 40px;
   min-width: 260px;
   justify-content: center;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.25) inset;
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255,255,255,0.25) inset;
 }
 
 .home-hero .portfolio-button:hover,
 .home-hero .portfolio-button:focus-visible {
-  background: #ffffff;
+  background: var(--color-panel);
   transform: translateY(-2px);
   box-shadow: 0 16px 30px rgba(0,0,0,0.4);
 }
@@ -269,11 +269,11 @@ body {
 .pronounce-btn svg { display: block; width: 22px; height: 22px; }
 .pronounce-btn:hover,
 .pronounce-btn:focus-visible {
-  color: #93c5fd;
+  color: var(--color-focus);
 }
 .theme-dark .pronounce-btn:hover,
 .theme-dark .pronounce-btn:focus-visible {
-  color: #93c5fd;
+  color: var(--color-focus);
 }
 
 /* Inline pronunciation control under heading */
@@ -286,14 +286,14 @@ body {
   background: transparent;
   border: 0;
   padding: 4px 6px;
-  border-radius: 6px;
+  border-radius: var(--radius-xs);
   cursor: pointer;
 }
 .pronounce-inline-btn svg { width: 24px; height: 24px; display: block; }
 .pronounce-inline-btn .pronounce-text { font-style: normal; }
-.pronounce-inline-btn:focus-visible { outline: 2px solid #93c5fd; outline-offset: 2px; }
+.pronounce-inline-btn:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
 .theme-dark .pronounce-inline-btn:hover,
-.theme-dark .pronounce-inline-btn:focus-visible { color: #93c5fd; }
+.theme-dark .pronounce-inline-btn:focus-visible { color: var(--color-focus); }
 
 
 
@@ -303,8 +303,8 @@ body {
   font-size: 0.95rem;
 }
 .pronounce-details .pronounce-row { margin-top: 2px; }
-.pronounce-details .label { color: #64748b; margin-right: 6px; }
-.theme-dark .pronounce-details .label { color: #9ca3af; }
+.pronounce-details .label { color: var(--color-muted-2); margin-right: 6px; }
+.theme-dark .pronounce-details .label { color: var(--color-muted-2); }
 
 .nav-icon { margin-right: 0; display: inline-flex; }
 
@@ -313,7 +313,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   padding: 6px 10px;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
@@ -336,7 +336,7 @@ body {
 }
 /* Unified nav link hover/focus text color across all items */
 .theme-dark .navbar .nav-link:hover,
-.theme-dark .navbar .nav-link:focus-visible { color: #93c5fd; }
+.theme-dark .navbar .nav-link:focus-visible { color: var(--color-focus); }
 
 header h1 {
   font-size: 2.5rem;
@@ -362,10 +362,10 @@ header p {
 
 .so-what {
   font-weight: 600;
-  color: #0f172a;
+  color: var(--color-ink);
   margin-top: 6px;
 }
-.theme-dark .so-what { color: #e5e7eb; }
+.theme-dark .so-what { color: var(--color-ink-light); }
 
 header a {
   color: #084f75;
@@ -406,8 +406,8 @@ header a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--color-panel);
+  border: 1px solid var(--color-border-2);
   color: #334155;
   transition: transform 0.12s ease, background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
@@ -415,30 +415,30 @@ header a:hover {
 .intro-social-btn:hover,
 .intro-social-btn:focus-visible {
   transform: translateY(-1px);
-  background: #f8fafc;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
 }
-.intro-linkedin:hover, .intro-linkedin:focus-visible { color: #0A66C2; }
-.intro-github:hover, .intro-github:focus-visible { color: #24292e; }
-.intro-email:hover, .intro-email:focus-visible { color: #2563eb; }
+.intro-linkedin:hover, .intro-linkedin:focus-visible { color: var(--color-linkedin); }
+.intro-github:hover, .intro-github:focus-visible { color: var(--color-github); }
+.intro-email:hover, .intro-email:focus-visible { color: var(--color-email); }
 
 .theme-dark .intro-divider::before,
 .theme-dark .intro-divider::after {
   background: linear-gradient(90deg, rgba(255,255,255,0.25), rgba(255,255,255,0.08));
 }
 .theme-dark .intro-social-btn {
-  background: #0f172a;
-  border-color: #1f2937;
-  color: #e5e7eb;
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  color: var(--color-ink-light);
 }
 .theme-dark .intro-social-btn:hover,
 .theme-dark .intro-social-btn:focus-visible {
-  background: #1f2937;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  background: var(--color-ink-light);
+  box-shadow: var(--shadow-sm);
 }
-.theme-dark .intro-github:hover, .theme-dark .intro-github:focus-visible { color: #f0f6fc; }
+.theme-dark .intro-github:hover, .theme-dark .intro-github:focus-visible { color: var(--color-github); }
 .theme-dark .intro-linkedin:hover, .theme-dark .intro-linkedin:focus-visible { color: #60a5fa; }
-.theme-dark .intro-email:hover, .theme-dark .intro-email:focus-visible { color: #93c5fd; }
+.theme-dark .intro-email:hover, .theme-dark .intro-email:focus-visible { color: var(--color-focus); }
 /* Skip link (visible on focus) */
 .skip-link {
   position: fixed;
@@ -447,7 +447,7 @@ header a:hover {
   background: #111827;
   color: #fff;
   padding: 8px 12px;
-  border-radius: 6px;
+  border-radius: var(--radius-xs);
   z-index: 2000;
   transform: translateY(-200%);
 }
@@ -457,9 +457,9 @@ header a:hover {
 
 /* Improve focus for nav links */
 .navbar .nav-link:focus-visible {
-  outline: 2px solid #93c5fd;
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: var(--radius-xs);
 }
 
 .nav-emoji { margin-right: 6px; }
@@ -471,16 +471,16 @@ header a:hover {
   gap: 10px;
   padding: 14px 22px;
   font-size: 17px;
-  color: #0f172a;
-  background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 9999px;
+  color: var(--color-ink);
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-border-2);
+  border-radius: var(--radius-full);
   cursor: pointer;
   transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
   text-decoration: none;
 }
 
-.portfolio-button:visited { color: #0f172a; text-decoration: none; }
+.portfolio-button:visited { color: var(--color-ink); text-decoration: none; }
 .portfolio-button:hover,
 .portfolio-button:focus,
 .portfolio-button:active,
@@ -495,31 +495,31 @@ header a:hover {
   color: #fff; /* White text color */
   background-color: #ae5a5a; /* Red background */
   border: none; /* Removes border */
-  border-radius: 5px; /* Rounded corners */
+  border-radius: var(--radius-xs); /* Rounded corners */
   cursor: pointer; /* Changes the cursor to a pointer on hover */
 }
 
 .portfolio-button:hover,
 .portfolio-button:focus-visible {
-  background-color: #f8fafc;
+  background-color: var(--color-surface);
   border-color: #d1d5db;
   transform: translateY(-1px);
 }
 
 .portfolio-button:focus-visible {
-  outline: 2px solid #93c5fd;
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }
 
 .theme-dark .portfolio-button {
-  background-color: #0f172a;
-  color: #e5e7eb;
-  border-color: #374151;
+  background-color: var(--color-surface);
+  color: var(--color-ink-light);
+  border-color: var(--color-border-2);
 }
-.theme-dark .portfolio-button:visited { color: #e5e7eb; }
+.theme-dark .portfolio-button:visited { color: var(--color-ink-light); }
 .theme-dark .portfolio-button:hover,
 .theme-dark .portfolio-button:focus-visible {
-  background-color: #1f2937;
+  background-color: var(--color-ink-light);
   border-color: #4b5563;
 }
 
@@ -545,20 +545,20 @@ header a:hover {
 
 /* Secondary variant for EdGrantAI */
 .portfolio-button--secondary {
-  color: #2563eb;
-  border-color: #93c5fd;
+  color: var(--color-email);
+  border-color: var(--color-focus);
 }
-.portfolio-button--secondary:visited { color: #2563eb; }
+.portfolio-button--secondary:visited { color: var(--color-email); }
 .portfolio-button--secondary:hover,
 .portfolio-button--secondary:focus-visible {
   background-color: #eff6ff;
   border-color: #60a5fa;
 }
 .theme-dark .portfolio-button--secondary {
-  color: #93c5fd;
-  border-color: #475569;
+  color: var(--color-focus);
+  border-color: var(--color-muted);
 }
-.theme-dark .portfolio-button--secondary:visited { color: #93c5fd; }
+.theme-dark .portfolio-button--secondary:visited { color: var(--color-focus); }
 .theme-dark .portfolio-button--secondary:hover,
 .theme-dark .portfolio-button--secondary:focus-visible {
   background-color: #111827;
@@ -570,21 +570,6 @@ header a:hover {
 }
 
 
-.profile-image {
-  width: 300px; /* Set width for the image */
-  height: 300px; /* Set height for the image */
-  border-radius: 50%; /* Make the image circular */
-  border: 3px solid #4da8da; /* Add a border with a theme color */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-  display: block; /* Ensures the image behaves like a block element */
-  margin: 0 auto; /* Centers the image horizontally */
-  margin-top: -40px !important; /* Lower photo by 20px */
-}
-
-.theme-dark .profile-image {
-  border-color: #60a5fa;
-}
-
 .email-copied-popup {
   position: fixed;
   top: 50%; /* Position vertically in the center */
@@ -593,16 +578,16 @@ header a:hover {
   background-color: #333;
   color: #fff;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: var(--radius-xs);
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-sm);
   animation: fade-in-out 3s ease-in-out;
   text-align: center; /* Center align the text */
 }
 
 .theme-dark .email-copied-popup {
   background-color: #111827;
-  color: #e5e7eb;
+  color: var(--color-ink-light);
 }
 
 /* Optional animation for smoother appearance and disappearance */
@@ -627,12 +612,6 @@ header a:hover {
 
 /* Theme toggle removed (dark-only site) */
 
-/* Mobile-specific adjustments */
-@media (max-width: 576px) {
-  /* Lower profile image by another 40px on phones */
-  .profile-image { margin-top: 0 !important; }
-}
-
 /* Footer */
 .site-footer {
   margin-top: 16px;
@@ -650,8 +629,8 @@ header a:hover {
   margin-top: 6px;
   text-align: left;
   font-size: 0.95rem;
-  color: #64748b;
+  color: var(--color-muted-2);
 }
 .theme-dark .ai-notice {
-  color: #9ca3af;
+  color: var(--color-muted-2);
 }

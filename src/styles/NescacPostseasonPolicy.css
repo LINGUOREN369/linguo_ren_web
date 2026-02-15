@@ -48,7 +48,7 @@
   flex-direction: column;
   gap: 4px;
   padding: 10px 12px;
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   background: var(--edg-surface);
   border: 1px solid var(--edg-border);
   color: var(--edg-muted);
@@ -132,7 +132,7 @@
 .nescac-quote {
   margin: 16px 0;
   padding: 16px 18px;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--edg-border);
   border-left: 4px solid var(--edg-accent);
   background: var(--edg-surface);

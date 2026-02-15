@@ -48,7 +48,7 @@
   flex-direction: column;
   gap: 4px;
   padding: 10px 12px;
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   background: var(--edg-surface);
   border: 1px solid var(--edg-border);
   color: var(--edg-muted);
@@ -117,13 +117,13 @@
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--edg-border);
-  background: #ffffff;
+  background: var(--color-panel);
 }
 
 .theme-dark .chicago-figure-image {
-  background: #0f172a;
+  background: var(--color-panel);
 }
 
 .chicago-figure-caption {
