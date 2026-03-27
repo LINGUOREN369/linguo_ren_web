@@ -1,14 +1,14 @@
 {
-  "fetched_at": "2026-03-26T07:39:23.194Z",
+  "fetched_at": "2026-03-27T07:38:48.425Z",
   "ytd_run": {
     "distance_m": 264638.2,
     "moving_time_s": 136306,
     "elevation_gain_m": 3989.1
   },
   "ytd_ride": {
-    "distance_m": 750803.2000000001,
-    "moving_time_s": 104476,
-    "elevation_gain_m": 7320
+    "distance_m": 789590.5000000001,
+    "moving_time_s": 109575,
+    "elevation_gain_m": 7682
   },
   "ytd_row": {
     "distance_m": 0,
@@ -21,9 +21,9 @@
     "elevation_gain_m": 46527.20000000002
   },
   "all_ride": {
-    "distance_m": 11094434.5,
-    "moving_time_s": 1669669,
-    "elevation_gain_m": 100287.50000000001
+    "distance_m": 11133221.799999999,
+    "moving_time_s": 1674768,
+    "elevation_gain_m": 100649.50000000001
   },
   "all_row": {
     "distance_m": 1139621.1000000003,
