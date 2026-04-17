@@ -17,7 +17,7 @@ function Project() {
   const projects = [
     {
       title: "EdGrantAI",
-      description: "A decision‑support system designed to help nonprofits identify, prioritize, and understand funding opportunities with transparency and auditability",
+      description: "A decision‑support system designed to help nonprofits identify, prioritize, and understand funding opportunities with transparency",
       image: edgrantai_cover,
       route: "/edgrantai",
       tags: ["Responsible AI", "Decision Support", "Natural Language Processing", "LLMs", "Information Retrieval", "Education Nonprofits"],

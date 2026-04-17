@@ -233,7 +233,7 @@ export default function EdGrantAI() {
           <h2 className="edg-h2">Risks and Mitigations</h2>
           <div className="edg-risk-grid">
             <div>
-              <h3 className="edg-card-title">Risk: False Eligibility Recommendation</h3>
+              <h3 className="edg-card-title">False Eligibility Recommendation</h3>
               <ul className="edg-check-list">
                 <li>Hard-block rules for eligibility red flags</li>
                 <li>Guardrails and strict thresholds</li>
@@ -242,7 +242,7 @@ export default function EdGrantAI() {
             </div>
 
             <div>
-              <h3 className="edg-card-title">Risk: Biased or Incomplete Taxonomy</h3>
+              <h3 className="edg-card-title">Biased or Incomplete Taxonomy</h3>
               <ul className="edg-check-list">
                 <li>Human curation and change review</li>
                 <li>Versioning for reproducibility</li>
@@ -251,7 +251,7 @@ export default function EdGrantAI() {
             </div>
 
             <div>
-              <h3 className="edg-card-title">Risk: Over-Reliance on AI Explanations</h3>
+              <h3 className="edg-card-title">Over-Reliance on AI Explanations</h3>
               <ul className="edg-check-list">
                 <li>Explanation gating</li>
                 <li>Evidence linked to tags and reasons</li>

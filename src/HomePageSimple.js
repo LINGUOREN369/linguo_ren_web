@@ -57,7 +57,6 @@ export default function HomePageSimple() {
           </div>
 
           <section className="simple-home-section" aria-labelledby="simple-home-strava-title">
-            <h2 id="simple-home-strava-title" className="simple-home-section-title">Strava Snapshot</h2>
             <p className="simple-home-section-intro">
               A quiet record of the miles in between projects.
             </p>

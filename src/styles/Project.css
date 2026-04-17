@@ -205,3 +205,17 @@
 .project-footer-nav .portfolio-button {
   text-decoration: none;
 }
+
+/* Mobile: center and stack project card buttons */
+@media (max-width: 576px) {
+  .project-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .view-project-btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+}
