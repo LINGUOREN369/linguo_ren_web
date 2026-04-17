@@ -161,55 +161,76 @@ export default function EdGrantAIAlgorithm() {
   return (
     <div className="container edg-container edg-algorithm">
       <header className="edg-hero">
-        <div className="edg-hero-grid">
-          <div className="edg-hero-copy">
-            <span className="edg-eyebrow">Matching algorithm</span>
-            <h1 className="edg-title">How EdGrantAI Scores a Match</h1>
-            <p className="edg-subtitle">
-              This page is a single, step-by-step story from raw text to final score. It keeps each definition and formula
-              right next to the step that uses it.
-            </p>
-            <div className="edg-cta">
-              <Link to="/edgrantai-chat" className="portfolio-button">
-                Back to Live Recommendations
-              </Link>
-              <a
-                className="portfolio-button portfolio-button--secondary"
-                href="https://github.com/LINGUOREN369/EdGrantAI/blob/main/docs/03_matching_algorithm_and_formula.md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Source doc (matching algorithm)
-              </a>
-              <Link to="/project" className="portfolio-button portfolio-button--secondary">
-                Back to Projects
-              </Link>
-            </div>
-          </div>
+        <h1 className="edg-title">Matching Algorithm</h1>
+        <p className="edg-subtitle">
+          A step-by-step walkthrough of how EdGrantAI transforms text into scored, ranked grant recommendations
+        </p>
 
-          <div className="edg-hero-panel edg-stagger">
-            <div className="edg-card edg-card--accent">
-              <span className="edg-label">Big idea</span>
-              <ul className="edg-check-list">
-                <li>Turn messy text into clean tags.</li>
-                <li>Compare tags only within the same category.</li>
-                <li>Combine overlaps into one score.</li>
-                <li>Return ranked results with evidence.</li>
-              </ul>
-            </div>
+        <div className="edg-cta">
+          <Link to="/edgrantai" className="portfolio-button">
+            Back to EdGrantAI
+          </Link>
+          <a
+            className="portfolio-button portfolio-button--secondary"
+            href="https://github.com/LINGUOREN369/EdGrantAI/blob/main/docs/03_matching_algorithm_and_formula.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Source Documentation
+          </a>
+          <Link to="/project" className="portfolio-button portfolio-button--secondary">
+            Back to Projects
+          </Link>
+        </div>
+
+        <div className="edg-hero-panel">
+          <div className="edg-grid edg-grid-1">
+            <article className="edg-card">
+              <p>
+                EdGrantAI uses a transparent, evidence-based algorithm to match organizations with grants. The system extracts
+                tags from text, compares them within categories (mission, population, org type, geography), and combines weighted
+                overlaps into a single score.
+              </p>
+              <p>
+                This page shows the full algorithm: from raw text to final ranking, with formulas and a worked example.
+              </p>
+            </article>
           </div>
         </div>
       </header>
 
-      <section className="edg-section edg-panel">
-        <div className="edg-section-header">
-          <span className="edg-kicker">Algorithm</span>
-          <h2 className="edg-h2">Step-by-step algorithm</h2>
-          <p className="edg-intro">
-            Follow the numbered steps in order. Each step lists why it exists, what it outputs, and how it feeds the next.
-          </p>
-        </div>
-        <div className="edg-timeline edg-stagger">
+      <div className="edg-layout">
+        <nav className="edg-toc" aria-label="Table of contents">
+          <div className="edg-toc-title">Contents</div>
+          <ol className="edg-toc-list">
+            <li><a href="#overview" className="edg-toc-link">Overview</a></li>
+            <li><a href="#steps" className="edg-toc-link">Algorithm Steps</a></li>
+            <li><a href="#example" className="edg-toc-link">Worked Example</a></li>
+          </ol>
+        </nav>
+
+        <div className="edg-main">
+
+        <section className="edg-section" id="overview">
+          <h2 className="edg-h2">How It Works</h2>
+
+          <article className="edg-card">
+            <h3 className="edg-card-title">The Big Idea</h3>
+            <ol>
+              <li><strong>Extract phrases:</strong> Pull short phrases from organization and grant text</li>
+              <li><strong>Map to taxonomy:</strong> Match phrases to standardized tags with confidence scores</li>
+              <li><strong>Compute similarity:</strong> Compare tags within categories using embeddings or exact match</li>
+              <li><strong>Calculate overlap:</strong> Weight and combine similarities into category scores</li>
+              <li><strong>Generate final score:</strong> Combine weighted overlaps, apply penalties, assign bucket</li>
+              <li><strong>Return results:</strong> Rank grants with evidence and transparency</li>
+            </ol>
+          </article>
+        </section>
+
+        <section className="edg-section" id="steps">
+          <h2 className="edg-h2">Algorithm Steps</h2>
+
+          <div className="edg-timeline">
           <article className="edg-step">
             <div className="edg-step-index">1</div>
             <div className="edg-step-body edg-card">
@@ -394,18 +415,19 @@ export default function EdGrantAIAlgorithm() {
               <p className="edg-algorithm-note"><strong>Next:</strong> The frontend displays cards and exports JSON.</p>
             </div>
           </article>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <section className="edg-section edg-panel">
-        <div className="edg-section-header">
-          <span className="edg-kicker">Worked example</span>
-          <h2 className="edg-h2">Worked example from the docs</h2>
-          <p className="edg-intro">
-            Same algorithm, now with the exact example values from the EdGrantAI documentation.
-          </p>
-        </div>
-        <div className="edg-timeline edg-stagger">
+        <section className="edg-section" id="example">
+          <h2 className="edg-h2">Worked Example</h2>
+
+          <article className="edg-card">
+            <p>
+              This example uses the exact values from the EdGrantAI documentation to show how the algorithm computes a final score.
+            </p>
+          </article>
+
+          <div className="edg-timeline">
           <article className="edg-step">
             <div className="edg-step-index">1</div>
             <div className="edg-step-body edg-card">
@@ -522,8 +544,10 @@ export default function EdGrantAIAlgorithm() {
               <p className="edg-algorithm-note"><strong>Next:</strong> Rank against other grants.</p>
             </div>
           </article>
+          </div>
+        </section>
         </div>
-      </section>
+      </div>
 
       <footer className="edg-footer">
         <Link to="/project" className="portfolio-button">Back to Projects</Link>
