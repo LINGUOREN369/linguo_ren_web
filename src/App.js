@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, useLocation, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Project from './Project';
@@ -30,7 +30,6 @@ const vinylCover = process.env.PUBLIC_URL + '/docs/album-wiz_cover.png';
 
 function AppContent() {
   const location = useLocation();
-  const navigate = useNavigate();
   const [lastUpdated, setLastUpdated] = useState('');
 
   useEffect(() => {

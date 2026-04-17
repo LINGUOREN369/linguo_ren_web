@@ -6,12 +6,12 @@ import './styles/Project.css';
 const nescac_cover = process.env.PUBLIC_URL + '/docs/nescac_cover.png';
 // const archive_assessment_cover = process.env.PUBLIC_URL + '/docs/archive_assessment_cover.jpg';
 // const webpage_cover = process.env.PUBLIC_URL + '/docs/webpage_cover.png'; // unused
-const portfolio_cover = process.env.PUBLIC_URL + '/docs/portfolio_cover.svg';
+// const portfolio_cover = process.env.PUBLIC_URL + '/docs/portfolio_cover.svg';
 const fml_cover = process.env.PUBLIC_URL + '/docs/fml_cover.png';
 const album_wiz = process.env.PUBLIC_URL + '/docs/album-wiz_cover.png';
 // const RVOL_ATR_cover = process.env.PUBLIC_URL + '/docs/RVOL_ATR_cover.png'; // unused
 const edgrantai_cover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
-const maine_tree_flag = process.env.PUBLIC_URL + '/docs/maine_tree_flag.svg';
+// const maine_tree_flag = process.env.PUBLIC_URL + '/docs/maine_tree_flag.svg';
 
 function Project() {
   const projects = [
