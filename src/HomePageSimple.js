@@ -27,9 +27,7 @@ export default function HomePageSimple() {
             Some beliefs: evidence matters more than hype. Good systems make uncertainty legible. AI should support
             judgment, not replace responsibility.
           </p>
-          <p>
-            Former rower. Outside work, I move through New England on foot, by bike, and on the water.
-          </p>
+          
 
           <div className="simple-home-cta">
             <Link to="/project" className="portfolio-button">
@@ -57,8 +55,8 @@ export default function HomePageSimple() {
           </div>
 
           <section className="simple-home-section" aria-labelledby="simple-home-strava-title">
-            <p className="simple-home-section-intro">
-              A quiet record of the miles in between projects.
+            <p>
+              Outside work, I move through New England on foot, by bike, and on the water.
             </p>
             <StravaWidget variant="minimal" />
           </section>
