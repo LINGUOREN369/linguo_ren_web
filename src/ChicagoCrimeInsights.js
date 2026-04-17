@@ -508,6 +508,10 @@ export default function ChicagoCrimeInsights() {
           </section>
         </main>
       </div>
+
+      <footer className="edg-footer">
+        <Link to="/project" className="portfolio-button">Back to Projects</Link>
+      </footer>
     </div>
   );
 }

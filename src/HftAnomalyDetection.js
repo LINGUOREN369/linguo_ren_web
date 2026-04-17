@@ -67,6 +67,10 @@ export default function HftAnomalyDetection() {
           </div>
         </div>
       </header>
+
+      <footer className="edg-footer">
+        <Link to="/project" className="portfolio-button">Back to Projects</Link>
+      </footer>
     </div>
   );
 }

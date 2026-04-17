@@ -123,6 +123,10 @@ export default function VinylRecognitionAI() {
           </article>
         </div>
       </section>
+
+      <footer className="edg-footer">
+        <Link to="/project" className="portfolio-button">Back to Projects</Link>
+      </footer>
     </div>
   );
 }

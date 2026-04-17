@@ -613,6 +613,10 @@ export default function InformalScienceEducation() {
           </section>
         </div>
       </div>
+
+      <footer className="edg-footer">
+        <Link to="/project" className="portfolio-button">Back to Projects</Link>
+      </footer>
     </div>
   );
 }

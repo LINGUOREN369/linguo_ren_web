@@ -524,6 +524,10 @@ export default function EdGrantAIAlgorithm() {
           </article>
         </div>
       </section>
+
+      <footer className="edg-footer">
+        <Link to="/project" className="portfolio-button">Back to Projects</Link>
+      </footer>
     </div>
   );
 }

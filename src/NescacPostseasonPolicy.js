@@ -587,6 +587,10 @@ export default function NescacPostseasonPolicy() {
           </section>
         </main>
       </div>
+
+      <footer className="edg-footer">
+        <Link to="/project" className="portfolio-button">Back to Projects</Link>
+      </footer>
     </div>
   );
 }
