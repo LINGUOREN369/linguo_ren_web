@@ -1,8 +1,8 @@
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background-color: var(--color-bg);
-  color: #333;
+  background-color: #fff;
+  color: #000;
   overflow-x: hidden;
   /* Offset fixed navbar; include iOS safe-area when available */
   padding-top: 64px; /* base fallback */
@@ -14,8 +14,8 @@ body {
 :root { color-scheme: dark; }
 
 .theme-dark body {
-  background-color: var(--color-bg); /* deep slate */
-  color: var(--color-ink-light); /* text */
+  background-color: #000;
+  color: #fff;
 }
 
 .theme-dark header a {
@@ -26,6 +26,144 @@ body {
   min-height: 100vh;
   position: relative;
   isolation: isolate;
+}
+
+.landing-simple body {
+  padding-top: 0;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.04), transparent 26%),
+    #060606;
+  color: #f3f1eb;
+}
+
+.landing-simple .App {
+  background: transparent;
+}
+
+.landing-simple .skip-link {
+  background: #f3f1eb;
+  color: #060606;
+}
+
+.simple-home-layout {
+  width: 100%;
+}
+
+.simple-home {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #f3f1eb;
+}
+
+.simple-home-body {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 56px 24px 48px;
+  line-height: 1.75;
+}
+
+.simple-home-header {
+  margin: 0 0 34px;
+}
+
+.simple-home-name {
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(243, 241, 235, 0.82);
+  color: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.simple-home-main p {
+  margin: 0 0 14px;
+  color: inherit;
+  font-size: 1rem;
+}
+
+.simple-home-main a {
+  text-decoration: none;
+}
+
+.simple-home-main a:hover {
+  opacity: 0.7;
+}
+
+.simple-home-cta {
+  display: flex;
+  gap: 16px;
+  margin: 32px 0;
+  flex-wrap: wrap;
+}
+
+.simple-home-cta .portfolio-button {
+  text-decoration: none;
+}
+
+.simple-home-cta .portfolio-button:hover,
+.simple-home-cta .portfolio-button:visited {
+  text-decoration: none;
+}
+
+.simple-home-section {
+  margin-top: 38px;
+}
+
+.simple-home-section-title {
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(243, 241, 235, 0.18);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.simple-home-section-intro {
+  margin: 12px 0 0;
+  color: rgba(243, 241, 235, 0.7);
+}
+
+.simple-home a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.simple-home a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.simple-home-footer {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(243, 241, 235, 0.82);
+}
+
+.simple-home-footer a {
+  display: inline-block;
+  margin-right: 1em;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 576px) {
+  .simple-home-body {
+    padding: 36px 16px 28px;
+  }
+
+  .simple-home-cta {
+    flex-direction: column;
+  }
+
+  .simple-home-cta .portfolio-button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
 }
 
 /* Global background accent removed by request */
@@ -223,7 +361,7 @@ body {
 }
 
 .home-hero .portfolio-button:focus-visible {
-  outline: 3px solid #fbbf24;
+  outline: 3px solid rgba(245, 245, 244, 0.8);
   outline-offset: 3px;
 }
 
@@ -253,11 +391,36 @@ body {
   }
 }
 
+/* Navbar - Clean Black & White Theme */
+.navbar {
+  background: #fff !important;
+  border-bottom: 1px solid #000;
+  box-shadow: none !important;
+}
+
+.theme-dark .navbar {
+  background: #000 !important;
+  border-bottom-color: #fff;
+}
+
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  color: #000 !important;
+}
+
+.theme-dark .navbar-brand {
+  color: #fff !important;
+}
+
+.navbar .nav-link {
+  color: #000 !important;
+}
+
+.theme-dark .navbar .nav-link {
+  color: #fff !important;
 }
 
 .navbar-brand-wrap { gap: 4px; }
@@ -329,14 +492,41 @@ body {
   display: block; /* remove baseline gap */
 }
 
+/* Navbar toggler */
+.navbar-toggler {
+  border-color: #000 !important;
+}
+
+.theme-dark .navbar-toggler {
+  border-color: #fff !important;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.theme-dark .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
 /* Hover backgrounds for better visibility */
+.navbar .nav-link:hover,
+.navbar .nav-link:focus-visible {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
 .theme-dark .navbar .nav-link:hover,
 .theme-dark .navbar .nav-link:focus-visible {
   background-color: rgba(255, 255, 255, 0.08);
 }
-/* Unified nav link hover/focus text color across all items */
-.theme-dark .navbar .nav-link:hover,
-.theme-dark .navbar .nav-link:focus-visible { color: var(--color-focus); }
+
+.pronounce-btn {
+  color: #000 !important;
+}
+
+.theme-dark .pronounce-btn {
+  color: #fff !important;
+}
 
 header h1 {
   font-size: 2.5rem;
@@ -368,7 +558,7 @@ header p {
 .theme-dark .so-what { color: var(--color-ink-light); }
 
 header a {
-  color: #084f75;
+  color: inherit;
   text-decoration: none;
 }
 
@@ -408,7 +598,7 @@ header a:hover {
   justify-content: center;
   background: var(--color-panel);
   border: 1px solid var(--color-border-2);
-  color: #334155;
+  color: #000;
   transition: transform 0.12s ease, background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
 }
 .intro-social-btn svg { width: 24px; height: 24px; }
@@ -437,17 +627,17 @@ header a:hover {
   box-shadow: var(--shadow-sm);
 }
 .theme-dark .intro-github:hover, .theme-dark .intro-github:focus-visible { color: var(--color-github); }
-.theme-dark .intro-linkedin:hover, .theme-dark .intro-linkedin:focus-visible { color: #60a5fa; }
+.theme-dark .intro-linkedin:hover, .theme-dark .intro-linkedin:focus-visible { color: #f5f5f4; }
 .theme-dark .intro-email:hover, .theme-dark .intro-email:focus-visible { color: var(--color-focus); }
 /* Skip link (visible on focus) */
 .skip-link {
   position: fixed;
   top: 8px;
   left: 8px;
-  background: #111827;
+  background: #000;
   color: #fff;
   padding: 8px 12px;
-  border-radius: var(--radius-xs);
+  border-radius: 0;
   z-index: 2000;
   transform: translateY(-200%);
 }
@@ -471,16 +661,26 @@ header a:hover {
   gap: 10px;
   padding: 14px 22px;
   font-size: 17px;
-  color: var(--color-ink);
-  background-color: var(--color-panel);
-  border: 1px solid var(--color-border-2);
-  border-radius: var(--radius-full);
+  color: #fff;
+  background-color: #000;
+  border: 1px solid #000;
+  border-radius: 0;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  transition: opacity 0.2s ease;
   text-decoration: none;
 }
 
-.portfolio-button:visited { color: var(--color-ink); text-decoration: none; }
+.github-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.github-icon svg {
+  display: block;
+}
+
+.portfolio-button:visited { color: #fff; text-decoration: none; }
 .portfolio-button:hover,
 .portfolio-button:focus,
 .portfolio-button:active,
@@ -490,37 +690,41 @@ header a:hover {
 .portfolio-button + .portfolio-button { margin-left: 10px; }
 
 .portfolio-button2 {
-  padding: 10px 20px; /* Adds padding inside the button */
-  font-size: 16px; /* Sets font size for the button text */
-  color: #fff; /* White text color */
-  background-color: #ae5a5a; /* Red background */
-  border: none; /* Removes border */
-  border-radius: var(--radius-xs); /* Rounded corners */
-  cursor: pointer; /* Changes the cursor to a pointer on hover */
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #000;
+  border: 1px solid #000;
+  border-radius: 0;
+  cursor: pointer;
 }
 
 .portfolio-button:hover,
 .portfolio-button:focus-visible {
-  background-color: var(--color-surface);
-  border-color: #d1d5db;
-  transform: translateY(-1px);
+  opacity: 0.7;
 }
 
 .portfolio-button:focus-visible {
-  outline: 2px solid var(--color-focus);
+  outline: 2px solid #000;
   outline-offset: 2px;
 }
 
 .theme-dark .portfolio-button {
-  background-color: var(--color-surface);
-  color: var(--color-ink-light);
-  border-color: var(--color-border-2);
+  background-color: #fff;
+  color: #000;
+  border-color: #fff;
 }
-.theme-dark .portfolio-button:visited { color: var(--color-ink-light); }
+.theme-dark .portfolio-button:visited { color: #000; }
 .theme-dark .portfolio-button:hover,
 .theme-dark .portfolio-button:focus-visible {
-  background-color: var(--color-ink-light);
-  border-color: #4b5563;
+  opacity: 0.7;
+}
+.theme-dark .portfolio-button:focus-visible {
+  outline-color: #fff;
+}
+
+.portfolio-button2:hover {
+  opacity: 0.7;
 }
 
 /* Mobile: center CTA buttons in a vertical stack */
@@ -545,28 +749,24 @@ header a:hover {
 
 /* Secondary variant for EdGrantAI */
 .portfolio-button--secondary {
-  color: var(--color-email);
-  border-color: var(--color-focus);
+  background-color: transparent;
+  color: #000;
+  border-color: #000;
 }
-.portfolio-button--secondary:visited { color: var(--color-email); }
+.portfolio-button--secondary:visited { color: #000; }
 .portfolio-button--secondary:hover,
 .portfolio-button--secondary:focus-visible {
-  background-color: #eff6ff;
-  border-color: #60a5fa;
+  opacity: 0.7;
 }
 .theme-dark .portfolio-button--secondary {
-  color: var(--color-focus);
-  border-color: var(--color-muted);
+  background-color: transparent;
+  color: #fff;
+  border-color: #fff;
 }
-.theme-dark .portfolio-button--secondary:visited { color: var(--color-focus); }
+.theme-dark .portfolio-button--secondary:visited { color: #fff; }
 .theme-dark .portfolio-button--secondary:hover,
 .theme-dark .portfolio-button--secondary:focus-visible {
-  background-color: #111827;
-  border-color: #64748b;
-}
-
-.portfolio-button2:hover {
-  background-color: #c80b63; /* Darker red color on hover */
+  opacity: 0.7;
 }
 
 
@@ -575,19 +775,20 @@ header a:hover {
   top: 50%; /* Position vertically in the center */
   left: 50%; /* Position horizontally in the center */
   transform: translate(-50%, -50%); /* Offset to truly center the element */
-  background-color: #333;
+  background-color: #000;
   color: #fff;
   padding: 20px;
-  border-radius: var(--radius-xs);
+  border-radius: 0;
   z-index: 1000;
-  box-shadow: var(--shadow-sm);
+  border: 1px solid #fff;
   animation: fade-in-out 3s ease-in-out;
   text-align: center; /* Center align the text */
 }
 
 .theme-dark .email-copied-popup {
-  background-color: #111827;
-  color: var(--color-ink-light);
+  background-color: #fff;
+  color: #000;
+  border-color: #000;
 }
 
 /* Optional animation for smoother appearance and disappearance */

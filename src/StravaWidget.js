@@ -7,9 +7,10 @@ function metersToMiles(m) { return (m / 1609.344); }
 function metersToFeet(m) { return (m * 3.28084); }
 function secondsToHours(s) { return (s / 3600); }
 
-export default function StravaWidget() {
+export default function StravaWidget({ variant = 'default' }) {
   const [stats, setStats] = useState(null);
   const [error, setError] = useState(null);
+  const isMinimal = variant === 'minimal';
 
   useEffect(() => {
     let cancelled = false;
@@ -24,6 +25,12 @@ export default function StravaWidget() {
   const statusMessage = stats?.message;
   const isPlaceholder = status === 'placeholder';
   const isErrored = status === 'error';
+  const placeholderMessage = isMinimal
+    ? 'Daily Strava stats will appear here once the feed has synced.'
+    : 'Stats not configured yet';
+  const emptyStateMessage = isErrored
+    ? (statusMessage || 'Stats unavailable')
+    : (isMinimal ? placeholderMessage : (statusMessage || placeholderMessage));
 
   const formatNumber = (value, digits) =>
     value.toLocaleString(undefined, { maximumFractionDigits: digits, minimumFractionDigits: digits });
@@ -56,7 +63,10 @@ export default function StravaWidget() {
   );
 
   return (
-    <section className="strava-card" aria-label="Strava running and riding stats">
+    <section
+      className={`strava-card${isMinimal ? ' strava-card--minimal' : ''}`}
+      aria-label="Strava running and riding stats"
+    >
       <div className="strava-header">
         <span className="strava-title">Strava Snapshot</span>
         {stats && stats.fetched_at && (
@@ -69,14 +79,14 @@ export default function StravaWidget() {
       {error && <div className="strava-error">Stats unavailable</div>}
       {stats && (isPlaceholder || isErrored) && (
         <div className={isErrored ? 'strava-error' : 'strava-loading'}>
-          {statusMessage || (isErrored ? 'Stats unavailable' : 'Stats not configured yet')}
+          {emptyStateMessage}
         </div>
       )}
       {stats && !(isPlaceholder || isErrored) && (
         <div className="strava-panels">
           <article className="strava-panel">
             <div className="strava-panel-title">
-              <span className="strava-panel-icon" aria-hidden="true">🏃</span>
+              {!isMinimal && <span className="strava-panel-icon" aria-hidden="true">🏃</span>}
               <span>Running</span>
             </div>
             {renderBlock('YTD', stats.ytd_run || {})}
@@ -85,7 +95,7 @@ export default function StravaWidget() {
           </article>
           <article className="strava-panel">
             <div className="strava-panel-title">
-              <span className="strava-panel-icon" aria-hidden="true">🚴</span>
+              {!isMinimal && <span className="strava-panel-icon" aria-hidden="true">🚴</span>}
               <span>Cycling</span>
             </div>
             {renderBlock('YTD', stats.ytd_ride || {})}

@@ -1,19 +1,16 @@
+/* EdGrantAI Grants - Simple High Aesthetic (inherits from EdGrantAI.css) */
+
+/* Minimal overrides - inherits all EdGrantAI base styles */
+
 .edg-grants {
   padding-bottom: 72px;
 }
 
-.edg-grants-hero {
-  display: grid;
-  gap: 20px;
-  align-items: start;
-  margin-bottom: 36px;
-}
-
 .edg-grants-subtitle {
-  color: var(--edg-muted);
   line-height: 1.7;
   margin: 12px 0 18px;
   max-width: 620px;
+  opacity: 0.7;
 }
 
 .edg-grants-actions {
@@ -25,6 +22,7 @@
 .edg-grants-panel {
   display: grid;
   gap: 20px;
+  margin-top: 48px;
 }
 
 .edg-grants-panel-header {
@@ -36,28 +34,32 @@
 .edg-grants-grid {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 20px 0 0;
   display: grid;
-  gap: 16px;
+  gap: 24px;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .edg-grants-item {
   display: grid;
-  gap: 12px;
-  height: 100%;
+  gap: 8px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.theme-dark .edg-grants-item {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 .edg-grants-name {
   margin: 0 0 6px;
   font-weight: 600;
-  color: var(--edg-ink);
 }
 
 .edg-grants-file {
   margin: 0;
   font-size: 0.85rem;
-  color: var(--edg-muted);
+  opacity: 0.7;
   word-break: break-word;
 }
 
@@ -67,43 +69,36 @@
 }
 
 .edg-grants-link {
-  color: var(--edg-accent);
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: underline;
+  color: inherit;
 }
 
 .edg-grants-link:hover,
 .edg-grants-link:focus-visible {
-  text-decoration: underline;
+  opacity: 0.7;
 }
 
 .edg-grants-link--muted {
-  color: var(--edg-muted);
   font-weight: 500;
+  opacity: 0.7;
 }
 
 .edg-grants-state {
   padding: 16px;
-  border-radius: var(--radius-lg);
-  border: 1px dashed var(--edg-border);
-  color: var(--edg-muted);
+  border: 1px dashed rgba(0, 0, 0, 0.2);
+  opacity: 0.7;
+}
+
+.theme-dark .edg-grants-state {
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .edg-grants-state--error {
-  color: var(--color-error);
-  border-color: rgba(185, 28, 28, 0.3);
-  background: rgba(185, 28, 28, 0.06);
+  border-color: rgba(0, 0, 0, 0.3);
+  opacity: 1;
 }
 
 .theme-dark .edg-grants-state--error {
-  color: var(--color-error);
-  border-color: rgba(248, 113, 113, 0.4);
-  background: rgba(248, 113, 113, 0.12);
-}
-
-@media (min-width: 900px) {
-  .edg-grants-hero {
-    grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
-    align-items: center;
-  }
+  border-color: rgba(255, 255, 255, 0.3);
 }

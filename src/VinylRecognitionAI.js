@@ -51,12 +51,6 @@ export default function VinylRecognitionAI() {
                 Back to Projects
               </Link>
             </div>
-            <div className="edg-pill-row">
-              <span className="edg-pill">Computer vision</span>
-              <span className="edg-pill">Deep learning</span>
-              <span className="edg-pill">Metadata lookup</span>
-              <span className="edg-pill">WBOR</span>
-            </div>
           </div>
 
           <div className="edg-hero-panel vinyl-hero-panel">

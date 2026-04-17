@@ -49,12 +49,6 @@ export default function HftAnomalyDetection() {
                 Back to Projects
               </Link>
             </div>
-            <div className="edg-pill-row">
-              <span className="edg-pill">Unsupervised learning</span>
-              <span className="edg-pill">TCN autoencoder</span>
-              <span className="edg-pill">Clustering</span>
-              <span className="edg-pill">HFT data</span>
-            </div>
           </div>
           <div className="edg-hero-panel hft-overview">
             <div className="edg-grid edg-grid-1">
@@ -73,30 +67,6 @@ export default function HftAnomalyDetection() {
           </div>
         </div>
       </header>
-
-      <section className="edg-section">
-        <div className="edg-grid edg-grid-1">
-          <article className="edg-card edg-card--accent hft-poster-card">
-            <span className="edg-label">Project poster</span>
-            <div className="hft-poster-frame">
-              <object
-                className="hft-poster-object"
-                data={posterPdf}
-                type="application/pdf"
-                aria-label="HFT Anomaly Detection poster"
-              >
-                <p className="hft-poster-fallback">
-                  Poster preview unavailable.{' '}
-                  <a href={posterPdf} target="_blank" rel="noopener noreferrer">
-                    Open the poster PDF
-                  </a>
-                  .
-                </p>
-              </object>
-            </div>
-          </article>
-        </div>
-      </section>
     </div>
   );
 }

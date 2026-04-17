@@ -1,18 +1,30 @@
-/* Lightweight card for Strava summary */
+/* Strava Widget - Simple High Aesthetic */
+
 .strava-card {
   margin-top: 18px;
-  border: 1px solid rgba(248, 250, 252, 0.22);
-  background: rgba(15, 23, 42, 0.35);
-  border-radius: var(--radius-xl);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.02);
   padding: 16px;
-  box-shadow: var(--shadow-xl);
-  backdrop-filter: blur(12px);
 }
+
 .theme-dark .strava-card {
-  border-color: rgba(248, 250, 252, 0.22);
-  background: rgba(15, 23, 42, 0.35);
-  box-shadow: var(--shadow-xl);
-  backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.strava-card--minimal {
+  margin-top: 18px;
+  border: 0;
+  border-top: 1px solid rgba(243, 241, 235, 0.82);
+  border-bottom: 1px solid rgba(243, 241, 235, 0.18);
+  padding: 18px 0 20px;
+  background: transparent;
+}
+
+.theme-dark .strava-card--minimal {
+  border-top-color: rgba(243, 241, 235, 0.82);
+  border-bottom-color: rgba(243, 241, 235, 0.18);
+  background: transparent;
 }
 
 .home-hero .strava-card {
@@ -22,29 +34,74 @@
   margin-top: calc(18px * var(--strava-scale));
   border-color: rgba(248, 250, 252, 0.18);
   background: rgba(15, 23, 42, 0.25);
-  border-radius: calc(18px * var(--strava-scale));
   padding: calc(16px * var(--strava-scale));
-  box-shadow: 0 calc(18px * var(--strava-scale)) calc(36px * var(--strava-scale)) rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(14px);
 }
 
-.strava-wrapper { margin-top: 12px; }
-.strava-wrapper .strava-intro { margin-bottom: 10px; line-height: 1.6; }
+.strava-wrapper {
+  margin-top: 12px;
+}
+
+.strava-wrapper .strava-intro {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
 
 .strava-intro {
   margin-top: 8px;
-  color: var(--color-muted);
+  opacity: 0.7;
 }
-.theme-dark .strava-intro { color: var(--color-muted-2); }
 
-.strava-header { display: flex; gap: 10px; align-items: baseline; justify-content: space-between; }
-.strava-title { font-weight: 700; color: var(--color-ink); font-size: 1.05rem; }
-.theme-dark .strava-title { color: var(--color-ink-light); }
-.strava-sub { font-size: 12px; color: var(--color-muted-2); }
-.theme-dark .strava-sub { color: var(--color-muted-2); }
+.strava-header {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  justify-content: space-between;
+}
 
-.strava-loading, .strava-error { font-size: 14px; color: var(--color-muted-2); }
-.theme-dark .strava-loading, .theme-dark .strava-error { color: var(--color-muted-2); }
+.strava-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.strava-sub {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.strava-card--minimal .strava-header {
+  gap: 14px;
+  align-items: end;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(243, 241, 235, 0.12);
+}
+
+.strava-card--minimal .strava-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f3f1eb;
+}
+
+.strava-card--minimal .strava-sub {
+  color: rgba(243, 241, 235, 0.58);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.strava-loading,
+.strava-error {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.strava-card--minimal .strava-loading,
+.strava-card--minimal .strava-error {
+  margin-top: 16px;
+  color: rgba(243, 241, 235, 0.64);
+}
 
 .strava-panels {
   display: grid;
@@ -54,17 +111,34 @@
 }
 
 .strava-panel {
-  border: 1px solid rgba(248, 250, 252, 0.2);
-  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 14px;
-  background: rgba(15, 23, 42, 0.25);
+  background: rgba(0, 0, 0, 0.02);
   display: grid;
   gap: 12px;
 }
 
 .theme-dark .strava-panel {
-  border-color: rgba(248, 250, 252, 0.18);
-  background: rgba(15, 23, 42, 0.25);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.strava-card--minimal .strava-panels {
+  margin-top: 0;
+  gap: 0;
+}
+
+.strava-card--minimal .strava-panel {
+  border: 0;
+  padding: 18px 0 0;
+  background: transparent;
+  gap: 14px;
+}
+
+.strava-card--minimal .strava-panel + .strava-panel {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(243, 241, 235, 0.12);
 }
 
 .home-hero .strava-panel {
@@ -77,24 +151,28 @@
   gap: 8px;
   align-items: center;
   font-weight: 700;
-  color: var(--color-ink);
 }
 
-.theme-dark .strava-panel-title { color: var(--color-ink-light); }
+.strava-card--minimal .strava-panel-title {
+  color: rgba(243, 241, 235, 0.7);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
 
 .strava-panel-icon {
   width: 24px;
   height: 24px;
   display: grid;
   place-items: center;
-  border-radius: var(--radius-sm);
-  background: var(--color-panel);
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .theme-dark .strava-panel-icon {
-  background: rgba(15, 23, 42, 0.8);
-  border-color: #334155;
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .strava-block {
@@ -106,66 +184,138 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--color-muted-2);
+  opacity: 0.7;
   font-weight: 600;
 }
 
-.theme-dark .strava-block-label { color: var(--color-subtle); }
+.strava-card--minimal .strava-block-label {
+  color: rgba(243, 241, 235, 0.52);
+}
 
 .strava-block-main {
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--color-ink);
 }
 
-.theme-dark .strava-block-main { color: var(--color-ink); }
+.strava-card--minimal .strava-block-main {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.5rem, 3.6vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: #f3f1eb;
+}
 
 .strava-block-sub {
   font-size: 0.9rem;
-  color: var(--color-muted);
+  opacity: 0.7;
 }
 
-.theme-dark .strava-block-sub { color: var(--color-subtle); }
+.strava-card--minimal .strava-block-sub {
+  color: rgba(243, 241, 235, 0.68);
+}
 
 .strava-divider {
   width: 100%;
   height: 1px;
-  background: var(--color-border);
+  background: rgba(0, 0, 0, 0.1);
 }
 
-.theme-dark .strava-divider { background: #334155; }
+.theme-dark .strava-divider {
+  background: rgba(255, 255, 255, 0.1);
+}
 
-.strava-footer { margin-top: 10px; display: flex; justify-content: flex-end; }
-.strava-note { font-size: 12px; color: var(--color-subtle); }
-.theme-dark .strava-note { color: var(--color-muted-2); }
+.strava-card--minimal .strava-divider {
+  background: rgba(243, 241, 235, 0.12);
+}
 
-.home-hero .strava-card .strava-header { gap: calc(10px * var(--strava-scale)); }
-.home-hero .strava-card .strava-title { font-size: calc(1.05rem * var(--strava-scale)); }
-.home-hero .strava-card .strava-sub { font-size: calc(12px * var(--strava-scale)); }
+.strava-footer {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.strava-note {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.strava-card--minimal .strava-footer {
+  justify-content: flex-start;
+  margin-top: 16px;
+}
+
+.strava-card--minimal .strava-note {
+  color: rgba(243, 241, 235, 0.52);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Scaled hero variant - keep the intentional calc pattern */
+.home-hero .strava-card .strava-header {
+  gap: calc(10px * var(--strava-scale));
+}
+.home-hero .strava-card .strava-title {
+  font-size: calc(1.05rem * var(--strava-scale));
+}
+.home-hero .strava-card .strava-sub {
+  font-size: calc(12px * var(--strava-scale));
+}
 .home-hero .strava-card .strava-loading,
-.home-hero .strava-card .strava-error { font-size: calc(14px * var(--strava-scale)); }
+.home-hero .strava-card .strava-error {
+  font-size: calc(14px * var(--strava-scale));
+}
 .home-hero .strava-card .strava-panels {
   gap: calc(16px * var(--strava-scale));
   margin-top: calc(12px * var(--strava-scale));
 }
 .home-hero .strava-card .strava-panel {
-  border-radius: calc(14px * var(--strava-scale));
   padding: calc(14px * var(--strava-scale));
   gap: calc(12px * var(--strava-scale));
 }
-.home-hero .strava-card .strava-panel-title { gap: calc(8px * var(--strava-scale)); }
+.home-hero .strava-card .strava-panel-title {
+  gap: calc(8px * var(--strava-scale));
+}
 .home-hero .strava-card .strava-panel-icon {
   width: calc(24px * var(--strava-scale));
   height: calc(24px * var(--strava-scale));
-  border-radius: calc(8px * var(--strava-scale));
 }
-.home-hero .strava-card .strava-block { gap: calc(4px * var(--strava-scale)); }
-.home-hero .strava-card .strava-block-label { font-size: calc(0.7rem * var(--strava-scale)); }
-.home-hero .strava-card .strava-block-main { font-size: calc(1.4rem * var(--strava-scale)); }
-.home-hero .strava-card .strava-block-sub { font-size: calc(0.9rem * var(--strava-scale)); }
-.home-hero .strava-card .strava-footer { margin-top: calc(10px * var(--strava-scale)); }
-.home-hero .strava-card .strava-note { font-size: calc(12px * var(--strava-scale)); }
+.home-hero .strava-card .strava-block {
+  gap: calc(4px * var(--strava-scale));
+}
+.home-hero .strava-card .strava-block-label {
+  font-size: calc(0.7rem * var(--strava-scale));
+}
+.home-hero .strava-card .strava-block-main {
+  font-size: calc(1.4rem * var(--strava-scale));
+}
+.home-hero .strava-card .strava-block-sub {
+  font-size: calc(0.9rem * var(--strava-scale));
+}
+.home-hero .strava-card .strava-footer {
+  margin-top: calc(10px * var(--strava-scale));
+}
+.home-hero .strava-card .strava-note {
+  font-size: calc(12px * var(--strava-scale));
+}
 
 @media (min-width: 700px) {
-  .strava-panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .strava-panels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .strava-card--minimal .strava-panels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .strava-card--minimal .strava-panel:first-child {
+    padding-right: 24px;
+  }
+
+  .strava-card--minimal .strava-panel + .strava-panel {
+    margin-top: 0;
+    padding-top: 18px;
+    padding-left: 24px;
+    border-top: 0;
+    border-left: 1px solid rgba(243, 241, 235, 0.12);
+  }
 }
