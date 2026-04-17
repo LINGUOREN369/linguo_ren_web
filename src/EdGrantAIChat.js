@@ -406,6 +406,36 @@ export default function EdGrantAIChat() {
 
   return (
     <div className="container edg-chat">
+      {/* Service Suspended Overlay - Always Visible */}
+      <div className="edg-error-overlay" role="alert" aria-live="assertive">
+        <div className="edg-error-card">
+          <p className="edg-error-title">Service Suspended</p>
+          <p className="edg-error-message">
+            This service has been suspended by its owner.
+          </p>
+          <p className="edg-error-message" style={{ marginTop: '1rem' }}>
+            To request access, contact{' '}
+            <a
+              href="mailto:linguoren2001@gmail.com"
+              style={{ color: 'var(--chat-accent)', textDecoration: 'underline' }}
+            >
+              linguoren2001@gmail.com
+            </a>
+          </p>
+          <p className="edg-error-message" style={{ marginTop: '1rem' }}>
+            Or watch the{' '}
+            <a
+              href="/docs/edgrantai_demo_video.mov"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'var(--chat-accent)', textDecoration: 'underline' }}
+            >
+              demo video
+            </a>
+          </p>
+        </div>
+      </div>
+
       {error && (
         <div className="edg-error-overlay" role="alert" aria-live="assertive">
           <div className="edg-error-card">

@@ -232,7 +232,6 @@ export default function EdGrantAIAlgorithm() {
 
           <div className="edg-timeline">
           <article className="edg-step">
-            <div className="edg-step-index">1</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Extract phrases</h3>
               <p>
@@ -245,7 +244,6 @@ export default function EdGrantAIAlgorithm() {
           </article>
 
           <article className="edg-step">
-            <div className="edg-step-index">2</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Map phrases to taxonomy tags</h3>
               <p>
@@ -285,7 +283,6 @@ export default function EdGrantAIAlgorithm() {
           </article>
 
           <article className="edg-step">
-            <div className="edg-step-index">3</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Build canonical tag lists</h3>
               <p>
@@ -299,7 +296,6 @@ export default function EdGrantAIAlgorithm() {
           </article>
 
           <article className="edg-step">
-            <div className="edg-step-index">4</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Compute tag similarity (org vs grant)</h3>
               <p>
@@ -321,7 +317,6 @@ export default function EdGrantAIAlgorithm() {
           </article>
 
           <article className="edg-step">
-            <div className="edg-step-index">5</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Compute overlap per taxonomy</h3>
               <p>
@@ -363,7 +358,6 @@ export default function EdGrantAIAlgorithm() {
           </article>
 
           <article className="edg-step">
-            <div className="edg-step-index">6</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Compute final score and bucket</h3>
               <p>
@@ -401,7 +395,6 @@ export default function EdGrantAIAlgorithm() {
           </article>
 
           <article className="edg-step">
-            <div className="edg-step-index">7</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Return results</h3>
               <ul>
@@ -429,7 +422,6 @@ export default function EdGrantAIAlgorithm() {
 
           <div className="edg-timeline">
           <article className="edg-step">
-            <div className="edg-step-index">1</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Example tags (after thresholds)</h3>
               <div className="edg-step-grid">
@@ -459,7 +451,6 @@ export default function EdGrantAIAlgorithm() {
           </article>
 
           <article className="edg-step">
-            <div className="edg-step-index">2</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Mission similarity scores</h3>
               <ul>
@@ -490,7 +481,6 @@ export default function EdGrantAIAlgorithm() {
           </article>
 
           <article className="edg-step">
-            <div className="edg-step-index">3</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Mission overlap</h3>
               <LaTeXBlock formula={missionStepFormula} />
@@ -503,7 +493,6 @@ export default function EdGrantAIAlgorithm() {
           </article>
 
           <article className="edg-step">
-            <div className="edg-step-index">4</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Population overlap</h3>
               <LaTeXBlock formula={populationStepFormula} />
@@ -516,7 +505,6 @@ export default function EdGrantAIAlgorithm() {
           </article>
 
           <article className="edg-step">
-            <div className="edg-step-index">5</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Org type and geography overlap</h3>
               <LaTeXBlock formula={orgTypeStepFormula} />
@@ -531,7 +519,6 @@ export default function EdGrantAIAlgorithm() {
           </article>
 
           <article className="edg-step">
-            <div className="edg-step-index">6</div>
             <div className="edg-step-body edg-card">
               <h3 className="edg-card-title">Final score and bucket</h3>
               <LaTeXBlock formula={finalScoreStepFormula} />
