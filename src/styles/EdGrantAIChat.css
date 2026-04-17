@@ -1,7 +1,7 @@
 /* EdGrantAI Chat - Simple High Aesthetic (inherits from EdGrantAI.css) */
 
 .edg-chat {
-  padding: 24px 0 48px;
+  padding: 0 0 48px;
 }
 
 /* Error overlay */
@@ -71,7 +71,7 @@
   position: relative;
   display: grid;
   gap: 24px;
-  padding: 28px 0;
+  padding: 12px 0 28px;
   margin-bottom: 48px;
   border-bottom: 1px solid #000;
 }
@@ -723,7 +723,7 @@
 
 @media (max-width: 768px) {
   .edg-chat-hero {
-    padding: 22px 0;
+    padding: 8px 0 22px;
   }
   .edg-chat-title {
     font-size: 1.8rem;
