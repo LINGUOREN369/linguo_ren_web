@@ -1,10 +1,10 @@
 /* Strava Widget - Simple High Aesthetic */
 
 .strava-card {
-  margin-top: 18px;
+  margin-top: 12px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   background: rgba(0, 0, 0, 0.02);
-  padding: 16px;
+  padding: 12px;
 }
 
 .theme-dark .strava-card {
@@ -31,40 +31,40 @@
   --strava-scale: 0.92;
   width: calc(100% * var(--strava-scale));
   margin-right: auto;
-  margin-top: calc(18px * var(--strava-scale));
+  margin-top: calc(12px * var(--strava-scale));
   border-color: rgba(248, 250, 252, 0.18);
   background: rgba(15, 23, 42, 0.25);
-  padding: calc(16px * var(--strava-scale));
+  padding: calc(12px * var(--strava-scale));
 }
 
 .strava-wrapper {
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
 .strava-wrapper .strava-intro {
-  margin-bottom: 10px;
-  line-height: 1.6;
+  margin-bottom: 8px;
+  line-height: 1.5;
 }
 
 .strava-intro {
-  margin-top: 8px;
+  margin-top: 6px;
   opacity: 0.7;
 }
 
 .strava-header {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: baseline;
   justify-content: space-between;
 }
 
 .strava-title {
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
 }
 
 .strava-sub {
-  font-size: 12px;
+  font-size: 11px;
   opacity: 0.7;
 }
 
@@ -105,17 +105,17 @@
 
 .strava-panels {
   display: grid;
-  gap: 16px;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 10px;
   grid-template-columns: 1fr;
 }
 
 .strava-panel {
   border: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 14px;
+  padding: 10px;
   background: rgba(0, 0, 0, 0.02);
   display: grid;
-  gap: 12px;
+  gap: 8px;
 }
 
 .theme-dark .strava-panel {
@@ -148,9 +148,10 @@
 
 .strava-panel-title {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
   font-weight: 700;
+  font-size: 0.9rem;
 }
 
 .strava-card--minimal .strava-panel-title {
@@ -162,8 +163,8 @@
 }
 
 .strava-panel-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   display: grid;
   place-items: center;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -177,11 +178,11 @@
 
 .strava-block {
   display: grid;
-  gap: 4px;
+  gap: 3px;
 }
 
 .strava-block-label {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
   opacity: 0.7;
@@ -193,7 +194,7 @@
 }
 
 .strava-block-main {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
@@ -229,13 +230,13 @@
 }
 
 .strava-footer {
-  margin-top: 10px;
+  margin-top: 8px;
   display: flex;
   justify-content: flex-end;
 }
 
 .strava-note {
-  font-size: 12px;
+  font-size: 11px;
   opacity: 0.7;
 }
 
@@ -252,50 +253,50 @@
 
 /* Scaled hero variant - keep the intentional calc pattern */
 .home-hero .strava-card .strava-header {
-  gap: calc(10px * var(--strava-scale));
+  gap: calc(8px * var(--strava-scale));
 }
 .home-hero .strava-card .strava-title {
-  font-size: calc(1.05rem * var(--strava-scale));
+  font-size: calc(0.95rem * var(--strava-scale));
 }
 .home-hero .strava-card .strava-sub {
-  font-size: calc(12px * var(--strava-scale));
+  font-size: calc(11px * var(--strava-scale));
 }
 .home-hero .strava-card .strava-loading,
 .home-hero .strava-card .strava-error {
-  font-size: calc(14px * var(--strava-scale));
+  font-size: calc(13px * var(--strava-scale));
 }
 .home-hero .strava-card .strava-panels {
-  gap: calc(16px * var(--strava-scale));
-  margin-top: calc(12px * var(--strava-scale));
-}
-.home-hero .strava-card .strava-panel {
-  padding: calc(14px * var(--strava-scale));
-  gap: calc(12px * var(--strava-scale));
-}
-.home-hero .strava-card .strava-panel-title {
-  gap: calc(8px * var(--strava-scale));
-}
-.home-hero .strava-card .strava-panel-icon {
-  width: calc(24px * var(--strava-scale));
-  height: calc(24px * var(--strava-scale));
-}
-.home-hero .strava-card .strava-block {
-  gap: calc(4px * var(--strava-scale));
-}
-.home-hero .strava-card .strava-block-label {
-  font-size: calc(0.7rem * var(--strava-scale));
-}
-.home-hero .strava-card .strava-block-main {
-  font-size: calc(1.4rem * var(--strava-scale));
-}
-.home-hero .strava-card .strava-block-sub {
-  font-size: calc(0.9rem * var(--strava-scale));
-}
-.home-hero .strava-card .strava-footer {
+  gap: calc(10px * var(--strava-scale));
   margin-top: calc(10px * var(--strava-scale));
 }
+.home-hero .strava-card .strava-panel {
+  padding: calc(10px * var(--strava-scale));
+  gap: calc(8px * var(--strava-scale));
+}
+.home-hero .strava-card .strava-panel-title {
+  gap: calc(6px * var(--strava-scale));
+}
+.home-hero .strava-card .strava-panel-icon {
+  width: calc(20px * var(--strava-scale));
+  height: calc(20px * var(--strava-scale));
+}
+.home-hero .strava-card .strava-block {
+  gap: calc(3px * var(--strava-scale));
+}
+.home-hero .strava-card .strava-block-label {
+  font-size: calc(0.65rem * var(--strava-scale));
+}
+.home-hero .strava-card .strava-block-main {
+  font-size: calc(1.2rem * var(--strava-scale));
+}
+.home-hero .strava-card .strava-block-sub {
+  font-size: calc(0.85rem * var(--strava-scale));
+}
+.home-hero .strava-card .strava-footer {
+  margin-top: calc(8px * var(--strava-scale));
+}
 .home-hero .strava-card .strava-note {
-  font-size: calc(12px * var(--strava-scale));
+  font-size: calc(11px * var(--strava-scale));
 }
 
 @media (min-width: 700px) {
