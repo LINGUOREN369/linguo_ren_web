@@ -34,6 +34,8 @@ function AppContent() {
   const [lastUpdated, setLastUpdated] = useState('');
   const [easterEggClicks, setEasterEggClicks] = useState(0);
   const easterEggTimeoutRef = useRef(null);
+  const [emailEasterEggClicks, setEmailEasterEggClicks] = useState(0);
+  const emailEasterEggTimeoutRef = useRef(null);
   const [showEmailModal, setShowEmailModal] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
 
@@ -194,9 +196,32 @@ function AppContent() {
     handleNavigation();
   };
 
-  // Email modal handlers
+  // Email modal handlers with Easter egg
   const handleEmailClick = (e) => {
     e.preventDefault();
+
+    // Clear existing timeout
+    if (emailEasterEggTimeoutRef.current) {
+      clearTimeout(emailEasterEggTimeoutRef.current);
+    }
+
+    const newClicks = emailEasterEggClicks + 1;
+    setEmailEasterEggClicks(newClicks);
+
+    // Redirect to LinkedIn after 5 clicks
+    if (newClicks >= 5) {
+      window.open('https://www.linkedin.com/in/tammypyang/', '_blank', 'noopener,noreferrer');
+      setEmailEasterEggClicks(0);
+      handleNavigation();
+      return;
+    }
+
+    // Reset counter after 2 seconds of inactivity
+    emailEasterEggTimeoutRef.current = setTimeout(() => {
+      setEmailEasterEggClicks(0);
+    }, 2000);
+
+    // Show modal for clicks < 5
     setShowEmailModal(true);
     setEmailCopied(false);
     handleNavigation();
@@ -330,6 +355,7 @@ function AppContent() {
                   className="nav-link link-email"
                   aria-label="Email options"
                   onClick={handleEmailClick}
+                  title={emailEasterEggClicks > 0 ? `${emailEasterEggClicks}/5 clicks...` : undefined}
                 >
                   Email
                 </a>
@@ -373,8 +399,8 @@ function AppContent() {
       {/* Main Content */}
       <div className={isSimpleLanding ? 'simple-home-layout' : 'container'} id="main-content">
         <Routes>
-            <Route path="/" element={<HomePageSimple onEmailClick={handleEmailClick} />} />
-            <Route path="/simple-home" element={<HomePageSimple onEmailClick={handleEmailClick} />} />
+            <Route path="/" element={<HomePageSimple onEmailClick={handleEmailClick} emailEasterEggClicks={emailEasterEggClicks} />} />
+            <Route path="/simple-home" element={<HomePageSimple onEmailClick={handleEmailClick} emailEasterEggClicks={emailEasterEggClicks} />} />
             <Route path="/project" element={<Project />} />
             <Route path="/edgrantai" element={<EdGrantAI />} />
             <Route path="/edgrant" element={<Navigate to="/edgrantai" replace />} />

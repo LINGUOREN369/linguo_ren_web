@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import StravaWidget from './StravaWidget';
 
-export default function HomePageSimple({ onEmailClick }) {
+export default function HomePageSimple({ onEmailClick, emailEasterEggClicks }) {
   return (
     <section className="simple-home" aria-labelledby="simple-home-title">
       <div className="simple-home-body">
@@ -53,6 +53,7 @@ export default function HomePageSimple({ onEmailClick }) {
               href="#"
               className="portfolio-button portfolio-button--secondary"
               onClick={onEmailClick}
+              title={emailEasterEggClicks > 0 ? `${emailEasterEggClicks}/5 clicks...` : undefined}
             >
               Email
             </a>
