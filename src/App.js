@@ -34,6 +34,8 @@ function AppContent() {
   const [lastUpdated, setLastUpdated] = useState('');
   const [easterEggClicks, setEasterEggClicks] = useState(0);
   const easterEggTimeoutRef = useRef(null);
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
 
   useEffect(() => {
     let shareImage = profileShareImage;
@@ -192,6 +194,37 @@ function AppContent() {
     handleNavigation();
   };
 
+  // Email modal handlers
+  const handleEmailClick = (e) => {
+    e.preventDefault();
+    setShowEmailModal(true);
+    setEmailCopied(false);
+    handleNavigation();
+  };
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText('Linguoren2001@gmail.com');
+      setEmailCopied(true);
+      setTimeout(() => {
+        setShowEmailModal(false);
+        setEmailCopied(false);
+      }, 1500);
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+    }
+  };
+
+  const handleOpenEmailApp = () => {
+    window.location.href = 'mailto:Linguoren2001@gmail.com';
+    setShowEmailModal(false);
+  };
+
+  const handleCloseEmailModal = () => {
+    setShowEmailModal(false);
+    setEmailCopied(false);
+  };
+
   // Force dark theme only.
   useEffect(() => {
     const root = document.documentElement;
@@ -293,10 +326,10 @@ function AppContent() {
               </li>
               <li className="nav-item">
                 <a
-                  href="mailto:Linguoren2001@gmail.com"
+                  href="#"
                   className="nav-link link-email"
-                  aria-label="Send Email"
-                  onClick={handleNavigation}
+                  aria-label="Email options"
+                  onClick={handleEmailClick}
                 >
                   Email
                 </a>
@@ -307,13 +340,41 @@ function AppContent() {
       </nav>
       )}
 
-      {/* Email popup removed; mailto opens the default email app */}
+      {/* Email Modal */}
+      {showEmailModal && (
+        <div className="email-modal-overlay" onClick={handleCloseEmailModal}>
+          <div className="email-modal" onClick={(e) => e.stopPropagation()}>
+            <h2 className="email-modal-title">Contact Linguo</h2>
+            <p className="email-modal-email">Linguoren2001@gmail.com</p>
+            {emailCopied ? (
+              <>
+                <p className="email-modal-copied">✓ Email copied to clipboard!</p>
+                <button className="portfolio-button portfolio-button--secondary" onClick={handleCloseEmailModal}>
+                  Dismiss
+                </button>
+              </>
+            ) : (
+              <div className="email-modal-actions">
+                <button className="portfolio-button" onClick={handleCopyEmail}>
+                  Copy to Clipboard
+                </button>
+                <button className="portfolio-button portfolio-button--secondary" onClick={handleOpenEmailApp}>
+                  Open Email App
+                </button>
+                <button className="portfolio-button portfolio-button--secondary" onClick={handleCloseEmailModal}>
+                  Dismiss
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Main Content */}
       <div className={isSimpleLanding ? 'simple-home-layout' : 'container'} id="main-content">
         <Routes>
-            <Route path="/" element={<HomePageSimple />} />
-            <Route path="/simple-home" element={<HomePageSimple />} />
+            <Route path="/" element={<HomePageSimple onEmailClick={handleEmailClick} />} />
+            <Route path="/simple-home" element={<HomePageSimple onEmailClick={handleEmailClick} />} />
             <Route path="/project" element={<Project />} />
             <Route path="/edgrantai" element={<EdGrantAI />} />
             <Route path="/edgrant" element={<Navigate to="/edgrantai" replace />} />

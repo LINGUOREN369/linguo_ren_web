@@ -864,6 +864,110 @@ header a:hover {
   }
 }
 
+/* Email Modal */
+.email-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.theme-dark .email-modal-overlay {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.email-modal {
+  background: #fff;
+  border: 1px solid #000;
+  padding: 36px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.theme-dark .email-modal {
+  background: #000;
+  border-color: #fff;
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+}
+
+.email-modal-title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 1.75rem;
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+
+.email-modal-email {
+  font-size: 1.15rem;
+  margin: 0 0 28px;
+  color: var(--color-ink);
+  opacity: 0.8;
+  word-break: break-all;
+}
+
+.email-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+}
+
+.email-modal-actions .portfolio-button,
+.email-modal-actions .portfolio-button--secondary {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  margin: 0;
+}
+
+.email-modal-copied {
+  font-size: 1.15rem;
+  color: #2d7a3e;
+  font-weight: 600;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.theme-dark .email-modal-copied {
+  color: #4ade80;
+}
+
+.email-modal .portfolio-button--secondary {
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Theme toggle removed (dark-only site) */
 
 /* Footer */
