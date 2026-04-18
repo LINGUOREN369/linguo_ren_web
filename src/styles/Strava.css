@@ -194,7 +194,7 @@
 }
 
 .strava-block-main {
-  font-size: 0.96rem;
+  font-size: 0.67rem;
   font-weight: 700;
 }
 
@@ -287,7 +287,7 @@
   font-size: calc(0.52rem * var(--strava-scale));
 }
 .home-hero .strava-card .strava-block-main {
-  font-size: calc(0.96rem * var(--strava-scale));
+  font-size: calc(0.67rem * var(--strava-scale));
 }
 .home-hero .strava-card .strava-block-sub {
   font-size: calc(0.72rem * var(--strava-scale));
