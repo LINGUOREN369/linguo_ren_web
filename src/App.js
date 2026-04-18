@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useLocation, Navigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import Project from './Project';
@@ -30,7 +30,10 @@ const vinylCover = process.env.PUBLIC_URL + '/docs/album-wiz_cover.png';
 
 function AppContent() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [lastUpdated, setLastUpdated] = useState('');
+  const [easterEggClicks, setEasterEggClicks] = useState(0);
+  const easterEggTimeoutRef = useRef(null);
 
   useEffect(() => {
     let shareImage = profileShareImage;
@@ -160,6 +163,35 @@ function AppContent() {
     if (nav) nav.classList.remove('show');
   };
 
+  // Easter egg: Click "Projects" 7 times to unlock secret article
+  const handleEasterEggClick = (e) => {
+    // Clear existing timeout
+    if (easterEggTimeoutRef.current) {
+      clearTimeout(easterEggTimeoutRef.current);
+    }
+
+    const newClicks = easterEggClicks + 1;
+    setEasterEggClicks(newClicks);
+
+    // Navigate to Bowdoin article after 7 clicks
+    if (newClicks >= 7) {
+      e.preventDefault();
+      window.open('https://www.bowdoin.edu/cxd/student-stories/2023/davison-lab.html', '_blank', 'noopener,noreferrer');
+      setEasterEggClicks(0);
+      handleNavigation();
+      navigate('/project');
+      return;
+    }
+
+    // Reset counter after 2 seconds of inactivity
+    easterEggTimeoutRef.current = setTimeout(() => {
+      setEasterEggClicks(0);
+    }, 2000);
+
+    // Let the Link handle normal navigation for clicks < 7
+    handleNavigation();
+  };
+
   // Force dark theme only.
   useEffect(() => {
     const root = document.documentElement;
@@ -201,7 +233,12 @@ function AppContent() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="navbar-brand-wrap d-flex align-items-center">
-            <Link className="navbar-brand me-1" to="/" onClick={handleNavigation} aria-label="Linguo Ren Home">
+            <Link
+              className="navbar-brand me-1"
+              to="/"
+              onClick={handleNavigation}
+              aria-label="Linguo Ren Home"
+            >
               LINGUO REN
             </Link>
           </div>
@@ -220,9 +257,10 @@ function AppContent() {
               <li className="nav-item">
                 <Link
                   to="/project"
-                  onClick={handleNavigation}
+                  onClick={handleEasterEggClick}
                   className="nav-link"
                   aria-current={location.pathname === '/project' ? 'page' : undefined}
+                  title={easterEggClicks > 0 ? `${easterEggClicks}/7 clicks...` : undefined}
                 >
                   Projects
                 </Link>
