@@ -141,7 +141,25 @@ body {
 .simple-home-footer {
   margin-top: 40px;
   padding-top: 16px;
-  border-top: 1px solid rgba(243, 241, 235, 0.82);
+  border-top: 1px solid rgba(243, 241, 235, 0.18);
+  font-size: 0.85rem;
+  color: rgba(243, 241, 235, 0.7);
+}
+
+.simple-home-footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.simple-home-ai-notice {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: rgba(243, 241, 235, 0.58);
+  line-height: 1.5;
 }
 
 .simple-home-footer a {
@@ -411,6 +429,13 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: #000 !important;
+  transition: all 0.2s ease;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus-visible {
+  opacity: 0.7;
+  transform: translateY(-1px);
 }
 
 .theme-dark .navbar-brand {
@@ -480,7 +505,8 @@ body {
   gap: 0;
   border-radius: var(--radius-sm);
   padding: 6px 10px;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition: all 0.2s ease;
+  position: relative;
 }
 .navbar .nav-link .nav-icon {
   width: 16px;
@@ -514,12 +540,26 @@ body {
 /* Hover backgrounds for better visibility */
 .navbar .nav-link:hover,
 .navbar .nav-link:focus-visible {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.navbar .nav-link:hover::after,
+.navbar .nav-link:focus-visible::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background-color: currentColor;
+  opacity: 0.5;
 }
 
 .theme-dark .navbar .nav-link:hover,
 .theme-dark .navbar .nav-link:focus-visible {
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
 }
 
 .pronounce-btn {
@@ -668,7 +708,7 @@ header a:hover {
   border: 1px solid #000;
   border-radius: 0;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: all 0.2s ease;
   text-decoration: none;
 }
 
@@ -699,11 +739,14 @@ header a:hover {
   border: 1px solid #000;
   border-radius: 0;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .portfolio-button:hover,
 .portfolio-button:focus-visible {
-  opacity: 0.7;
+  opacity: 0.85;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .portfolio-button:focus-visible {
@@ -719,14 +762,18 @@ header a:hover {
 .theme-dark .portfolio-button:visited { color: #000; }
 .theme-dark .portfolio-button:hover,
 .theme-dark .portfolio-button:focus-visible {
-  opacity: 0.7;
+  opacity: 0.85;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
 }
 .theme-dark .portfolio-button:focus-visible {
   outline-color: #fff;
 }
 
 .portfolio-button2:hover {
-  opacity: 0.7;
+  opacity: 0.85;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Mobile: center CTA buttons in a vertical stack */
@@ -758,7 +805,9 @@ header a:hover {
 .portfolio-button--secondary:visited { color: #000; }
 .portfolio-button--secondary:hover,
 .portfolio-button--secondary:focus-visible {
-  opacity: 0.7;
+  opacity: 0.85;
+  transform: translateY(-2px);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 .theme-dark .portfolio-button--secondary {
   background-color: transparent;
@@ -768,7 +817,9 @@ header a:hover {
 .theme-dark .portfolio-button--secondary:visited { color: #fff; }
 .theme-dark .portfolio-button--secondary:hover,
 .theme-dark .portfolio-button--secondary:focus-visible {
-  opacity: 0.7;
+  opacity: 0.85;
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 
