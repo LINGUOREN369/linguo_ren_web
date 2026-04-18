@@ -350,15 +350,15 @@ function AppContent() {
                 </a>
               </li>
               <li className="nav-item">
-                <a
-                  href="#"
+                <button
+                  type="button"
                   className="nav-link link-email"
                   aria-label="Email options"
                   onClick={handleEmailClick}
                   title={emailEasterEggClicks > 0 ? `${emailEasterEggClicks}/5 clicks...` : undefined}
                 >
                   Email
-                </a>
+                </button>
               </li>
             </ul>
           </div>

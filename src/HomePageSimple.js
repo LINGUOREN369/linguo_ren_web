@@ -49,14 +49,14 @@ export default function HomePageSimple({ onEmailClick, emailEasterEggClicks }) {
             >
               GitHub
             </a>
-            <a
-              href="#"
+            <button
+              type="button"
               className="portfolio-button portfolio-button--secondary"
               onClick={onEmailClick}
               title={emailEasterEggClicks > 0 ? `${emailEasterEggClicks}/5 clicks...` : undefined}
             >
               Email
-            </a>
+            </button>
           </div>
 
           <section className="simple-home-section" aria-labelledby="simple-home-strava-title">
