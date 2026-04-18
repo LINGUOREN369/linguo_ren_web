@@ -71,7 +71,7 @@ export default function StravaWidget({ variant = 'default' }) {
         <span className="strava-title">Strava Snapshot</span>
         {stats && stats.fetched_at && (
           <span className="strava-sub">
-            Updated {new Date(stats.fetched_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+            Auto Updated {new Date(stats.fetched_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
           </span>
         )}
       </div>
@@ -104,9 +104,6 @@ export default function StravaWidget({ variant = 'default' }) {
           </article>
         </div>
       )}
-      <div className="strava-footer">
-        <span className="strava-note">Auto‑updated daily</span>
-      </div>
     </section>
   );
 }
