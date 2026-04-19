@@ -133,8 +133,8 @@ export default function NescacPostseasonPolicy() {
         <main className="edg-main nescac-main">
           <section className="edg-section edg-panel" id="abstract">
             <div className="edg-section-header">
-              <span className="edg-kicker">Abstract</span>
-              <h2 className="edg-h2">Balancing academic excellence and athletic competition</h2>
+              <h2 className="edg-h2">Abstract</h2>
+              <p className="edg-subtitle">Balancing academic excellence and athletic competition</p>
             </div>
             <div className="nescac-prose">
               <p>
@@ -154,8 +154,8 @@ export default function NescacPostseasonPolicy() {
 
           <section className="edg-section edg-panel" id="introduction">
             <div className="edg-section-header">
-              <span className="edg-kicker">Introduction</span>
-              <h2 className="edg-h2">From a postseason ban to national titles</h2>
+              <h2 className="edg-h2">Introduction</h2>
+              <p className="edg-subtitle">From a postseason ban to national titles</p>
             </div>
             <div className="nescac-prose">
               <p>
@@ -175,8 +175,8 @@ export default function NescacPostseasonPolicy() {
 
           <section className="edg-section edg-panel" id="literature-review">
             <div className="edg-section-header">
-              <span className="edg-kicker">Literature review</span>
-              <h2 className="edg-h2">Prestige, donors, and institutional change</h2>
+              <h2 className="edg-h2">Literature Review</h2>
+              <p className="edg-subtitle">Prestige, donors, and institutional change</p>
             </div>
             <div className="nescac-prose">
               <p>
@@ -225,8 +225,8 @@ export default function NescacPostseasonPolicy() {
 
           <section className="edg-section edg-panel" id="results">
             <div className="edg-section-header">
-              <span className="edg-kicker">Results</span>
-              <h2 className="edg-h2">Why NESCAC resisted postseason play</h2>
+              <h2 className="edg-h2">Results</h2>
+              <p className="edg-subtitle">Why NESCAC resisted postseason play</p>
             </div>
             <div className="nescac-prose">
               <h3 className="nescac-subhead">Founding principles and early restrictions</h3>
@@ -447,8 +447,8 @@ export default function NescacPostseasonPolicy() {
 
           <section className="edg-section edg-panel" id="discussion">
             <div className="edg-section-header">
-              <span className="edg-kicker">Discussion</span>
-              <h2 className="edg-h2">The hidden stakeholders beneath the surface</h2>
+              <h2 className="edg-h2">Discussion</h2>
+              <p className="edg-subtitle">The hidden stakeholders beneath the surface</p>
             </div>
             <div className="nescac-prose">
               <p>
@@ -486,8 +486,8 @@ export default function NescacPostseasonPolicy() {
 
           <section className="edg-section edg-panel" id="conclusion">
             <div className="edg-section-header">
-              <span className="edg-kicker">Conclusion</span>
-              <h2 className="edg-h2">Sources, gaps, and future research</h2>
+              <h2 className="edg-h2">Conclusion</h2>
+              <p className="edg-subtitle">Sources, gaps, and future research</p>
             </div>
             <div className="nescac-prose">
               <p>
@@ -510,8 +510,8 @@ export default function NescacPostseasonPolicy() {
 
           <section className="edg-section edg-panel" id="references">
             <div className="edg-section-header">
-              <span className="edg-kicker">References</span>
-              <h2 className="edg-h2">Sources cited</h2>
+              <h2 className="edg-h2">References</h2>
+              <p className="edg-subtitle">Sources cited</p>
             </div>
             <ol className="nescac-ref-list">
               <li>"Appendix E: NESCAC in the Media." Robert H. Edwards Administrative Records: A.01.02.13.03, b24, f2.</li>
