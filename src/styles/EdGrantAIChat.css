@@ -734,4 +734,30 @@
   .edg-chat-feed {
     min-height: 420px;
   }
+  .edg-chat-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .edg-chat-hero-actions .portfolio-button {
+    width: 100%;
+    text-align: center;
+  }
+  .edg-chat-example-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .edg-chat-example-header .portfolio-button {
+    width: 100%;
+  }
+  .edg-rec-tools {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .edg-rec-tools-actions {
+    flex-direction: column;
+  }
+  .edg-rec-tools-actions .edg-rec-action {
+    width: 100%;
+    justify-content: center;
+  }
 }
