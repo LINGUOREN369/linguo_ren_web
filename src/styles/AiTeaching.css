@@ -1,0 +1,387 @@
+/* AI in My Math Classroom (inherits from EdGrantAI.css) */
+
+.ait-container {
+  --ait-line: #000;
+  --ait-faint: rgba(0, 0, 0, 0.12);
+  --ait-red: #c62828;
+}
+
+.theme-dark .ait-container {
+  --ait-line: #fff;
+  --ait-faint: rgba(255, 255, 255, 0.16);
+  --ait-red: #ff6b6b;
+}
+
+.ait-lede {
+  max-width: 680px;
+}
+
+.ait-footnote {
+  margin-top: 16px;
+  font-size: 0.875rem;
+  opacity: 0.6;
+}
+
+/* Stats */
+.ait-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--ait-line);
+  margin-top: 48px;
+}
+
+@media (min-width: 768px) {
+  .ait-stats {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+.ait-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 16px 20px 0;
+  border-bottom: 1px solid var(--ait-faint);
+}
+
+.ait-stat-value {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.ait-stat-label {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  opacity: 0.7;
+}
+
+/* Tiles */
+.ait-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--ait-line);
+}
+
+@media (min-width: 768px) {
+  .ait-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 48px;
+  }
+}
+
+.ait-tile {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--ait-faint);
+}
+
+.ait-tile p {
+  margin: 0;
+  line-height: 1.7;
+  font-size: 1.0625rem;
+}
+
+/* Pipeline */
+.ait-pipeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--ait-line);
+}
+
+@media (min-width: 900px) {
+  .ait-pipeline {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.ait-pipe-step {
+  position: relative;
+  padding: 28px 24px 28px 0;
+  border-bottom: 1px solid var(--ait-faint);
+}
+
+@media (min-width: 900px) {
+  .ait-pipe-step:not(:last-child)::after {
+    content: '→';
+    position: absolute;
+    right: 8px;
+    top: 28px;
+    opacity: 0.4;
+  }
+}
+
+.ait-pipe-step p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Rules tree */
+.ait-tree {
+  margin: 32px 0 0;
+  padding: 20px 24px;
+  border: 1px solid var(--ait-line);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  overflow-x: auto;
+  color: inherit;
+  background: transparent;
+}
+
+.ait-subhead {
+  margin-top: 56px;
+}
+
+.ait-corrections {
+  border-top: 1px solid var(--ait-line);
+}
+
+.ait-correction {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--ait-faint);
+}
+
+@media (min-width: 768px) {
+  .ait-correction {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    gap: 32px;
+  }
+}
+
+.ait-correction p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.ait-said {
+  font-family: var(--font-serif);
+  font-style: italic;
+  opacity: 0.75;
+}
+
+/* Demo */
+.ait-demo-intro {
+  max-width: 680px;
+  line-height: 1.7;
+  margin: -16px 0 24px;
+}
+
+.ait-demo-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.ait-demo-tab {
+  border: 1px solid var(--ait-line);
+  background: transparent;
+  color: inherit;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.ait-demo-tab:hover {
+  background: var(--ait-faint);
+}
+
+.ait-demo-tab.is-active {
+  background: var(--ait-line);
+  color: #fff;
+}
+
+.theme-dark .ait-demo-tab.is-active {
+  color: #000;
+}
+
+.ait-demo-tab:focus-visible {
+  outline: 2px solid var(--ait-line);
+  outline-offset: 2px;
+}
+
+.ait-demo-panel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  border: 1px solid var(--ait-line);
+  padding: 28px;
+}
+
+@media (min-width: 900px) {
+  .ait-demo-panel {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 48px;
+  }
+}
+
+.ait-demo-col {
+  min-width: 0;
+}
+
+.ait-demo-col .edg-label {
+  display: block;
+  margin-top: 20px;
+}
+
+.ait-demo-col .edg-label:first-child {
+  margin-top: 0;
+}
+
+.ait-task {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  margin: 0;
+}
+
+.ait-reads,
+.ait-rules {
+  margin: 0;
+  padding-left: 1.2rem;
+  line-height: 1.6;
+}
+
+.ait-reads li,
+.ait-rules li {
+  margin-bottom: 6px;
+}
+
+.ait-reads code {
+  font-size: 0.875rem;
+  color: inherit;
+  background: var(--ait-faint);
+  padding: 2px 6px;
+}
+
+/* Sample paper */
+.ait-paper {
+  margin-top: 4px;
+  padding: 20px 22px;
+  background: #fff;
+  color: #111;
+  border: 1px solid var(--ait-faint);
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-serif);
+}
+
+.ait-paper p {
+  margin: 0 0 8px;
+}
+
+.ait-paper-head {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #111;
+  padding-bottom: 6px;
+  margin-bottom: 12px !important;
+}
+
+.ait-paper-q {
+  margin-bottom: 12px !important;
+}
+
+.ait-red {
+  color: #c62828;
+  padding-left: 20px;
+}
+
+.ait-red p {
+  margin-bottom: 4px;
+}
+
+.ait-boxed {
+  display: inline-block;
+  border: 1.5px solid #c62828;
+  padding: 2px 8px;
+  margin-top: 4px;
+}
+
+.ait-red-note {
+  font-style: italic;
+  font-size: 0.9rem;
+  margin-top: 8px !important;
+}
+
+.ait-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.ait-table th,
+.ait-table td {
+  border: 1px solid #bbb;
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.ait-table td:last-child,
+.ait-table th:last-child {
+  text-align: right;
+}
+
+.ait-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+}
+
+.ait-timeline li {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e5e5;
+  line-height: 1.5;
+}
+
+.ait-timeline li:last-child {
+  border-bottom: 0;
+}
+
+.ait-time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.ait-check {
+  margin-top: 20px;
+  padding-top: 4px;
+}
+
+/* Lessons */
+.ait-lessons {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.ait-lessons li {
+  margin-bottom: 16px;
+  line-height: 1.7;
+  font-size: 1.0625rem;
+}
+
+@media (max-width: 700px) {
+  .ait-demo-panel {
+    padding: 20px 16px;
+  }
+
+  .ait-stat-value {
+    font-size: 2rem;
+  }
+}

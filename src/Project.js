@@ -16,6 +16,12 @@ const edgrantai_cover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 function Project() {
   const projects = [
     {
+      title: "AI in My Math Classroom",
+      description: "A rule-driven AI curriculum system for teaching high school Precalculus and Algebra 2",
+      route: "/ai-teaching",
+      tags: ["Teaching", "Generative AI", "Claude Code", "Curriculum Design", "Obsidian", "Workflow Automation"],
+    },
+    {
       title: "EdGrantAI",
       description: "A decision‑support system designed to help nonprofits identify, prioritize, and understand funding opportunities with transparency",
       image: edgrantai_cover,

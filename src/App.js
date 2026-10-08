@@ -14,6 +14,7 @@ import NescacPostseasonPolicy from './NescacPostseasonPolicy';
 import ArchiveAssessment from './ArchiveAssessment';
 import ChicagoCrimeInsights from './ChicagoCrimeInsights';
 import VinylRecognitionAI from './VinylRecognitionAI';
+import AiTeaching from './AiTeaching';
 import HomePageSimple from './HomePageSimple';
 
 const profileShareImage = process.env.PUBLIC_URL + '/docs/profile_photo.png';
@@ -51,6 +52,9 @@ function AppContent() {
         break;
       case '/project':
         document.title = "Linguo's Projects";
+        break;
+      case '/ai-teaching':
+        document.title = 'AI in My Math Classroom';
         break;
       case '/edgrantai':
         document.title = 'EdGrantAI — Evidence-aware grant decisions';
@@ -414,6 +418,7 @@ function AppContent() {
             <Route path="/archive-assessment" element={<ArchiveAssessment />} />
             <Route path="/chicago-crime-insights" element={<ChicagoCrimeInsights />} />
             <Route path="/vinyl-recognition-ai" element={<VinylRecognitionAI />} />
+            <Route path="/ai-teaching" element={<AiTeaching />} />
           </Routes>
       </div>
       {/* Footer */}
