@@ -14,28 +14,43 @@ const stats = [
 
 const uses = [
   {
-    title: 'Curriculum building',
-    body: 'Turning a department folder of Word documents and scanned handouts into day-by-day lesson plans, class notes, homework, and a unit summary with a goal for each day.',
+    title: 'Lessons built from my actual class',
+    body: 'Lesson plans, class notes, and homework built from what this class did today, not from a generic textbook sequence, with time set aside to go back over what didn’t land.',
   },
   {
-    title: 'Assessments',
-    body: 'Quizzes, pop quizzes, review sheets, and exit tickets sized to a set number of points and minutes, with a rubric for every quiz.',
+    title: 'Feedback before it counts',
+    body: 'Low-stakes pop quizzes the day before a quiz, review sheets with two practice problems for every quiz problem, and exit tickets, so students know where they stand while there is still time to act on it.',
   },
   {
-    title: 'Answer keys',
-    body: 'Keys written in red on the original handout, the way a teacher marks up a copy, with every polynomial graphed and every answer checked by solving.',
+    title: 'Answer keys that show thinking',
+    body: 'Keys written in red on the original handout, with every step shown and every answer checked, so students can follow the reasoning and see exactly where theirs went differently.',
   },
   {
-    title: 'A thinking partner for the math',
-    body: 'Checking my own reasoning: why the square root of x squared is the absolute value of x, why the square root of −6 times the square root of −24 is not 12, what multiplicity means.',
+    title: 'More ways to explain it',
+    body: 'When an explanation doesn’t land, I use AI to think through other ways in: a different representation, a counterexample, or the misconception behind a common mistake. That way I can meet each student with an approach that fits how they think.',
   },
   {
-    title: 'Classroom design',
-    body: 'Testing ideas like a no-notes classroom built around group work at the whiteboards, and planning how to make them work.',
+    title: 'A classroom built on each other',
+    body: 'Planning a classroom built around group work at the whiteboards and peer mentoring, where students learn from each other and I can spend the period moving between groups and listening.',
+  },
+];
+
+const relational = [
+  {
+    title: 'Time moves into the room',
+    body: 'The hours I don’t spend typing keys and reformatting worksheets go to circulating during group work, listening to how students are thinking, and checking in with the ones who are quiet.',
   },
   {
-    title: 'Everyday writing',
-    body: 'Emails to students and colleagues, so I can spend that time on the lesson instead.',
+    title: 'Start from where the class is',
+    body: 'My planning sheet has a “Content Gap” column for what a class didn’t land. The next warm-up starts there, and homework is built from what that class actually did and sized for 9th and 10th graders.',
+  },
+  {
+    title: 'Students can check themselves',
+    body: 'Homework ends with answers to the odd-numbered problems only. Students get feedback the same night, and the even problems show me who needs a conversation the next day.',
+  },
+  {
+    title: 'Ask, don’t tell',
+    body: 'Every group problem comes with two or three hint questions, so I can meet a stuck student with a question that fits where they are instead of giving them the answer.',
   },
 ];
 
@@ -204,8 +219,8 @@ export default function AiTeaching() {
       <header className="edg-hero">
         <h1 className="edg-title">AI in My Math Classroom</h1>
         <p className="edg-subtitle">
-          How I turned an AI assistant into a rule-driven curriculum system for two high school math courses,
-          and what it changed about how I spend my time.
+          How I use an AI assistant to take on the paperwork of teaching math, so more of my time and attention
+          goes to students: knowing them, noticing where they are, and meeting them there.
         </p>
         <div className="edg-cta">
           <a href="#demo" className="portfolio-button edg-button-primary">Try the demo</a>
@@ -223,9 +238,9 @@ export default function AiTeaching() {
             collaborator. It reads my source materials, writes into my Obsidian notes, and builds the PDFs I print.
           </p>
           <p>
-            The interesting part isn’t that AI can write a worksheet. It’s what it took to make the output
-            <strong> consistent enough to hand to students</strong>: a single source of truth, written rules, and a habit
-            of turning every correction into one of those rules.
+            I teach at a school where relationships come first. So the question was never whether AI could write a
+            worksheet. It was whether it could <strong>give me back time and attention for students</strong> without
+            coming between us. The answer depended on keeping AI on the materials and keeping the people work human.
           </p>
         </article>
         <div className="ait-stats" role="list">
@@ -240,7 +255,19 @@ export default function AiTeaching() {
       </section>
 
       <section className="edg-section">
-        <h2 className="edg-h2">What I use it for</h2>
+        <h2 className="edg-h2">More time with students, not less</h2>
+        <div className="ait-grid">
+          {relational.map((r) => (
+            <article className="ait-tile" key={r.title}>
+              <h3 className="edg-card-title">{r.title}</h3>
+              <p>{r.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="edg-section">
+        <h2 className="edg-h2">Where AI helps</h2>
         <div className="ait-grid">
           {uses.map((u) => (
             <article className="ait-tile" key={u.title}>
@@ -331,23 +358,31 @@ _claude/
       </section>
 
       <section className="edg-section">
-        <h2 className="edg-h2">Guardrails</h2>
+        <h2 className="edg-h2">What stays human</h2>
         <div className="ait-grid">
           <article className="ait-tile">
+            <h3 className="edg-card-title">Conversations are mine</h3>
+            <p>Checking in, encouraging, and working through a hard moment with a student happen face to face, not through AI.</p>
+          </article>
+          <article className="ait-tile">
+            <h3 className="edg-card-title">Student information stays out</h3>
+            <p>AI works from curriculum materials: handouts, plans, and keys, not student records.</p>
+          </article>
+          <article className="ait-tile">
             <h3 className="edg-card-title">I stay the teacher</h3>
-            <p>The AI drafts. I decide what is taught, in what order, and how hard it is. Every plan and quiz goes through my revisions before it reaches a student.</p>
-          </article>
-          <article className="ait-tile">
-            <h3 className="edg-card-title">Every answer is solved</h3>
-            <p>Keys are checked by solving each problem and substituting back in. A source that looks wrong is re-read, not quietly “fixed.”</p>
-          </article>
-          <article className="ait-tile">
-            <h3 className="edg-card-title">Keys never leak</h3>
-            <p>Instructor files carry “(Instructor)” in their names, and the build script scans every student PDF for answer-key language before finishing.</p>
+            <p>AI drafts. I review everything before students see it, and I decide what is taught, in what order, and how hard it is, based on what I know about the students in front of me.</p>
           </article>
           <article className="ait-tile">
             <h3 className="edg-card-title">Students still do the thinking</h3>
-            <p>AI makes the materials. Class time goes to problems students haven’t seen, worked out together at the whiteboards.</p>
+            <p>Class time goes to problems students haven’t seen, worked out together at the whiteboards, with peers mentoring peers.</p>
+          </article>
+          <article className="ait-tile">
+            <h3 className="edg-card-title">I work every problem first</h3>
+            <p>Before any answer key or practice problem reaches students, I work through it myself. AI also checks each answer by solving it and substituting back in, because a wrong key costs a student’s trust.</p>
+          </article>
+          <article className="ait-tile">
+            <h3 className="edg-card-title">Keys never reach students by accident</h3>
+            <p>Instructor files carry “(Instructor)” in their names, and the build script scans every student copy for answer-key language.</p>
           </article>
         </div>
       </section>
@@ -358,7 +393,7 @@ _claude/
           <ol className="ait-lessons">
             <li><strong>Writing the first draft is rarely the hard part. Consistency is.</strong> Most of my feedback was about format and structure, not the math. Once that feedback was written into rule files, it stopped coming up.</li>
             <li><strong>Corrections add up.</strong> Each rule makes the next request easier. By the third unit, I was asking for a whole unit for both courses at once instead of building it file by file.</li>
-            <li><strong>The time goes back to students.</strong> Less time typing keys means more time designing good group problems and giving feedback.</li>
+            <li><strong>The best use of AI is giving back attention.</strong> It doesn’t replace knowing students. It clears enough of the paperwork that I have room to notice where each one is.</li>
           </ol>
         </article>
       </section>

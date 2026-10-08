@@ -17,9 +17,9 @@ function Project() {
   const projects = [
     {
       title: "AI in My Math Classroom",
-      description: "A rule-driven AI curriculum system for teaching high school Precalculus and Algebra 2",
+      description: "How AI takes on the paperwork of teaching math so more of my time goes to students",
       route: "/ai-teaching",
-      tags: ["Teaching", "Generative AI", "Claude Code", "Curriculum Design", "Obsidian", "Workflow Automation"],
+      tags: ["Relational Teaching", "Generative AI", "Claude Code", "Curriculum Design", "Formative Feedback", "Obsidian"],
     },
     {
       title: "EdGrantAI",
