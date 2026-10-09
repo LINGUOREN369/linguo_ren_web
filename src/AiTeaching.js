@@ -30,7 +30,7 @@ const uses = [
   },
   {
     title: 'Answer keys (just for me)',
-    body: 'It writes the solutions in red right on the original handout, the way I’d mark up a copy myself. In Precalc it graphs every polynomial too. Students never see these.',
+    body: 'It writes the solutions in red right on the original handout, the way I’d mark up a copy myself. In Precalc it graphs every polynomial too. I use them to check my own work, and students never see them.',
   },
   {
     title: 'Odd answers for students',
@@ -339,7 +339,7 @@ _claude/
         <div className="ait-grid">
           <article className="ait-tile">
             <h3 className="edg-card-title">I work every problem first</h3>
-            <p>Before an answer key or practice problem gets anywhere near students, I work it myself. The AI checks its answers by plugging them back in, but that doesn’t replace me doing it.</p>
+            <p>I always do the problems and the homework myself first, then check my answers against the AI’s key. If we disagree, I figure out why before anything goes to students.</p>
           </article>
           <article className="ait-tile">
             <h3 className="edg-card-title">I decide what gets taught</h3>
