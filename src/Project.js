@@ -16,10 +16,10 @@ const edgrantai_cover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 function Project() {
   const projects = [
     {
-      title: "AI in My Math Classroom",
-      description: "How AI takes on the paperwork of teaching math so more of my time goes to students",
+      title: "How I Use AI to Prep My Math Classes",
+      description: "Notes on using AI to prep two high school math courses: what I use it for, what I don’t, and what I’ve learned",
       route: "/ai-teaching",
-      tags: ["Relational Teaching", "Generative AI", "Claude Code", "Curriculum Design", "Formative Feedback", "Obsidian"],
+      tags: ["Teaching", "Generative AI", "Claude Code", "Curriculum Design", "Formative Feedback", "Obsidian"],
     },
     {
       title: "EdGrantAI",

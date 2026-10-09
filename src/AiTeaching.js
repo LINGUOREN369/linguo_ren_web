@@ -5,81 +5,57 @@ import './styles/AiTeaching.css';
 
 const stats = [
   { value: '2', label: 'courses: Precalculus and Accelerated Algebra 2' },
-  { value: '6', label: 'units built end to end' },
+  { value: '6', label: 'units built out' },
   { value: '63', label: 'lesson plans' },
   { value: '88', label: 'homework sets' },
   { value: '73', label: 'answer keys' },
   { value: '312', label: 'printable PDFs' },
 ];
 
-const uses = [
-  {
-    title: 'Lessons built from my actual class',
-    body: 'Lesson plans, class notes, and homework built from what this class did today, not from a generic textbook sequence, with time set aside to go back over what didn’t land.',
-  },
-  {
-    title: 'Feedback before it counts',
-    body: 'Low-stakes pop quizzes the day before a quiz, review sheets with two practice problems for every quiz problem, and exit tickets, so students know where they stand while there is still time to act on it.',
-  },
-  {
-    title: 'Answer keys that show thinking',
-    body: 'Keys written in red on the original handout, with every step shown and every answer checked, so students can follow the reasoning and see exactly where theirs went differently.',
-  },
-  {
-    title: 'More ways to explain it',
-    body: 'When an explanation doesn’t land, I use AI to think through other ways in: a different representation, a counterexample, or the misconception behind a common mistake. That way I can meet each student with an approach that fits how they think.',
-  },
-  {
-    title: 'A classroom built on each other',
-    body: 'Planning a classroom built around group work at the whiteboards and peer mentoring, where students learn from each other and I can spend the period moving between groups and listening.',
-  },
+const timeGoesTo = [
+  'Extra help and office hours',
+  'Actually reading student work and writing feedback',
+  'Advising and student activities',
+  'Thinking about how to teach something, instead of how to format it',
 ];
 
-const relational = [
+const uses = [
   {
-    title: 'Time moves into the room',
-    body: 'The hours I don’t spend typing keys and reformatting worksheets go to circulating during group work, listening to how students are thinking, and checking in with the ones who are quiet.',
+    title: 'Building out units',
+    body: 'I give it the department’s files for a unit, and it drafts lesson plans, class notes, and homework for each day. Then I go through and change whatever doesn’t fit my class.',
   },
   {
-    title: 'Start from where the class is',
-    body: 'My planning sheet has a “Content Gap” column for what a class didn’t land. The next warm-up starts there, and homework is built from what that class actually did and sized for 9th and 10th graders.',
+    title: 'Quizzes and reviews',
+    body: 'Quizzes, review sheets, exit tickets, and a short pop quiz the day before each quiz. I tell it the points and the minutes, and it includes a rubric.',
   },
   {
-    title: 'Students can check themselves',
-    body: 'Homework ends with answers to the odd-numbered problems only. Students get feedback the same night, and the even problems show me who needs a conversation the next day.',
+    title: 'Answer keys (just for me)',
+    body: 'It writes the solutions in red right on the original handout, the way I’d mark up a copy myself. In Precalc it graphs every polynomial too. Students never see these.',
   },
   {
-    title: 'Ask, don’t tell',
-    body: 'Every group problem comes with two or three hint questions, so I can meet a stuck student with a question that fits where they are instead of giving them the answer.',
+    title: 'Odd answers for students',
+    body: 'Homework ends with the answers to the odd problems only, so students can check themselves at home. The even ones are on them.',
+  },
+  {
+    title: 'Thinking out loud about teaching',
+    body: 'Sometimes I just ask how to approach a topic, like how to build factoring up from the greatest common factor, before I decide how I’ll teach it.',
   },
 ];
 
 const pipeline = [
-  {
-    step: 'Intake',
-    body: 'Department source files (Word documents, PDFs, scans). They are never edited or renamed.',
-  },
-  {
-    step: 'Vault',
-    body: 'An Obsidian vault is the single source of truth: planning sheets, lesson plans, worksheets, homework, and keys, all linked to each other.',
-  },
-  {
-    step: 'Rules',
-    body: 'A rules folder tells the AI how every document should look and how every task should be done. It is read before any work starts.',
-  },
-  {
-    step: 'Build',
-    body: 'A Python build script turns a unit into one folder of print-ready PDFs per teaching day, then checks every student copy for leaked answers.',
-  },
+  { step: 'The department’s files', body: 'Word docs, PDFs, and scans. I never edit the originals.' },
+  { step: 'My notes', body: 'Everything I make lives in one Obsidian vault: planning sheets, lesson plans, worksheets, homework, and keys.' },
+  { step: 'A rules folder', body: 'A few files that spell out how I want things to look and how each kind of task should go. The AI reads them before it starts.' },
+  { step: 'PDFs', body: 'A script turns a unit into print-ready PDFs, one folder per day, and checks that no answers slipped into a student copy.' },
 ];
 
 const corrections = [
-  { said: '“Don’t use abbreviations like LCD.”', rule: 'No unexplained abbreviations in any student document.' },
-  { said: '“Save time for homework review.”', rule: 'About 15 minutes of homework review after every homework day. Time blocks must fill the 60-minute class exactly.' },
-  { said: '“Give students the answers so they get feedback right away.”', rule: 'Homework ends with answers to the odd-numbered problems only. The even ones show me what students are missing.' },
-  { said: '“Keep the original format and write the answers in red.”', rule: 'Every key is a red-pen copy of the actual handout, never a separately typed document.' },
-  { said: '“Graph every polynomial in Precalc.”', rule: 'Every Precalculus key graphs each polynomial, marking the vertex, the intercepts, and the axis of symmetry.' },
-  { said: '“Don’t tell them to check for extraneous solutions.”', rule: 'No hints on quizzes. Recognizing the trap is part of the skill.' },
+  { said: '“Don’t use abbreviations like LCD.”', rule: 'No abbreviations students might not know.' },
+  { said: '“Save time for homework review.”', rule: 'About 15 minutes of homework review after a homework night, and the times in a lesson plan have to add up to exactly 60 minutes.' },
+  { said: '“Give them the answers so they get feedback right away.”', rule: 'Homework ends with answers to the odd problems only.' },
+  { said: '“Keep the original format and write the answers in red.”', rule: 'Every key is a red-pen copy of the actual handout.' },
+  { said: '“Graph every polynomial in Precalc.”', rule: 'Every Precalc key graphs each polynomial, with the vertex and intercepts marked.' },
+  { said: '“Don’t tell them to check for extraneous solutions.”', rule: 'No hints on quizzes. Spotting the trap is part of the skill.' },
 ];
 
 const demos = [
@@ -119,7 +95,6 @@ const demos = [
     rules: [
       'Homework was due today, so the plan opens with 15 minutes of homework review',
       'Groups work through problems they haven’t seen at the whiteboards, not lecture',
-      '2–3 hint questions per problem so the teacher guides without explaining',
       'Time blocks fill the 60 minutes with no gaps',
       'Fold last class’s “Content Gap” into the warm-up',
     ],
@@ -217,10 +192,10 @@ export default function AiTeaching() {
   return (
     <div className="container edg-container ait-container">
       <header className="edg-hero">
-        <h1 className="edg-title">AI in My Math Classroom</h1>
+        <h1 className="edg-title">How I Use AI to Prep My Math Classes</h1>
         <p className="edg-subtitle">
-          How I use an AI assistant to take on the paperwork of teaching math, so more of my time and attention
-          goes to students: knowing them, noticing where they are, and meeting them there.
+          Notes from my first two months teaching Precalculus and Algebra 2 with an AI assistant: what I use it for,
+          what I don’t, and what I’ve figured out so far.
         </p>
         <div className="edg-cta">
           <a href="#demo" className="portfolio-button edg-button-primary">Try the demo</a>
@@ -233,15 +208,15 @@ export default function AiTeaching() {
       <section className="edg-section">
         <article className="edg-card ait-lede">
           <p>
-            I teach Precalculus and Accelerated Algebra 2 to 9th and 10th graders, in 60-minute classes. Since August 2026
-            I have used Claude Code, an AI agent that works directly with files on my computer, as a curriculum
-            collaborator. It reads my source materials, writes into my Obsidian notes, and builds the PDFs I print.
+            This year I’m teaching Precalculus and Accelerated Algebra 2 to 9th and 10th graders. Since August, I’ve been
+            using Claude Code, an AI tool that can work directly with the files on my laptop, to help with prep. It reads
+            the department’s materials, writes into my notes in Obsidian, and makes the PDFs I print.
           </p>
           <p>
-            I teach at a school where relationships come first. So the question was never whether AI could write a
-            worksheet. It was whether it could <strong>give me back time and attention for students</strong> without
-            coming between us. The answer depended on keeping AI on the materials and keeping the people work human.
+            I want to be upfront about what this is and isn’t. The AI makes documents. It doesn’t teach, and it doesn’t
+            know my students. What it gives me is time back, and at a school where relationships come first, that matters.
           </p>
+          <p>Eight weeks in, here’s what’s in the folder:</p>
         </article>
         <div className="ait-stats" role="list">
           {stats.map((s) => (
@@ -251,23 +226,24 @@ export default function AiTeaching() {
             </div>
           ))}
         </div>
-        <p className="ait-footnote">Materials built for the 2026–27 school year in the first eight weeks, across about 200 requests.</p>
+        <p className="ait-footnote">That’s across about 200 requests, for both courses.</p>
       </section>
 
       <section className="edg-section">
-        <h2 className="edg-h2">More time with students, not less</h2>
-        <div className="ait-grid">
-          {relational.map((r) => (
-            <article className="ait-tile" key={r.title}>
-              <h3 className="edg-card-title">{r.title}</h3>
-              <p>{r.body}</p>
-            </article>
-          ))}
-        </div>
+        <h2 className="edg-h2">So where does the time go?</h2>
+        <article className="edg-card ait-lede">
+          <p>
+            Prep happens outside class: nights, weekends, free periods. I still do plenty of it, but less of it is typing up
+            answer keys and fixing the spacing on worksheets. That time goes to:
+          </p>
+          <ul>
+            {timeGoesTo.map((t) => <li key={t}>{t}</li>)}
+          </ul>
+        </article>
       </section>
 
       <section className="edg-section">
-        <h2 className="edg-h2">Where AI helps</h2>
+        <h2 className="edg-h2">What I actually use it for</h2>
         <div className="ait-grid">
           {uses.map((u) => (
             <article className="ait-tile" key={u.title}>
@@ -279,11 +255,11 @@ export default function AiTeaching() {
       </section>
 
       <section className="edg-section">
-        <h2 className="edg-h2">How it works</h2>
+        <h2 className="edg-h2">How it’s set up</h2>
         <ol className="ait-pipeline">
           {pipeline.map((p, i) => (
             <li className="ait-pipe-step" key={p.step}>
-              <span className="edg-label">Step {i + 1}</span>
+              <span className="edg-label">{i + 1}</span>
               <h3 className="edg-card-title">{p.step}</h3>
               <p>{p.body}</p>
             </li>
@@ -292,23 +268,24 @@ export default function AiTeaching() {
       </section>
 
       <section className="edg-section">
-        <h2 className="edg-h2">Rules, not prompts</h2>
+        <h2 className="edg-h2">Writing the rules down</h2>
         <article className="edg-card ait-lede">
           <p>
-            Early on I gave the same feedback again and again: more space between problems, no answers on the student
-            copy, keep my quiz format. A prompt is forgotten when the session ends. A rule file isn’t. So the vault has
-            one file for <strong>how things look</strong>, one file per <strong>task</strong> describing how to do it,
-            and an index that <strong>requires the AI to read the relevant files before every task</strong> and name
-            them before it starts.
+            For the first few weeks I kept saying the same things: more room between problems, no answers on the student
+            copy, keep my quiz format. The AI forgets all of that when a session ends. So I started writing it down.
+          </p>
+          <p>
+            Now there’s one file for how things should look, one file for each kind of task, and a main file that tells the
+            AI to read the right ones before it does anything, and to tell me which ones it read.
           </p>
         </article>
-        <pre className="ait-tree" aria-label="Rules folder structure">{`CLAUDE.md            index, plus the required reading rule
+        <pre className="ait-tree" aria-label="Rules folder structure">{`CLAUDE.md            the main file, plus "read the rules first"
 _claude/
-  format.md          the only place formatting rules live
+  format.md          how everything should look
   tasks/
     lesson-plan.md   homework.md   assessment.md
     answer-key.md    build-unit.md build-pdfs.md`}</pre>
-        <h3 className="edg-card-title ait-subhead">Every correction becomes a rule</h3>
+        <h3 className="edg-card-title ait-subhead">Things I kept saying, now written down</h3>
         <div className="ait-corrections">
           {corrections.map((c) => (
             <div className="ait-correction" key={c.rule}>
@@ -320,8 +297,8 @@ _claude/
       </section>
 
       <section className="edg-section" id="demo">
-        <h2 className="edg-h2">Demo: one request, step by step</h2>
-        <p className="ait-demo-intro">Pick a request to see which rule files the assistant reads, what it applies, and a sample of what it produces.</p>
+        <h2 className="edg-h2">Try it: what happens when I ask for something</h2>
+        <p className="ait-demo-intro">Pick a request. You’ll see which files it reads, which rules kick in, and a sample of what comes out.</p>
         <div className="ait-demo-tabs" role="tablist" aria-label="Sample requests">
           {demos.map((d) => (
             <button
@@ -338,62 +315,54 @@ _claude/
         </div>
         <div className="ait-demo-panel" role="tabpanel">
           <div className="ait-demo-col">
-            <span className="edg-label">1 · Identify the task</span>
+            <span className="edg-label">1 · What kind of task</span>
             <p className="ait-task">{demo.task}</p>
-            <span className="edg-label">2 · Read before starting</span>
+            <span className="edg-label">2 · Files it reads first</span>
             <ul className="ait-reads">
               {demo.reads.map((r) => <li key={r}><code>{r}</code></li>)}
             </ul>
-            <span className="edg-label">3 · Rules applied</span>
+            <span className="edg-label">3 · Rules that kick in</span>
             <ul className="ait-rules">
               {demo.rules.map((r) => <li key={r}>{r}</li>)}
             </ul>
           </div>
           <div className="ait-demo-col">
-            <span className="edg-label">4 · Output (sample)</span>
+            <span className="edg-label">4 · What comes out (sample)</span>
             <Preview kind={demo.preview} />
           </div>
         </div>
-        <p className="ait-footnote">The samples use made-up problems. Real assessments stay private.</p>
+        <p className="ait-footnote">These are made-up problems. My real quizzes stay private.</p>
       </section>
 
       <section className="edg-section">
-        <h2 className="edg-h2">What stays human</h2>
+        <h2 className="edg-h2">What I don’t hand off</h2>
         <div className="ait-grid">
           <article className="ait-tile">
-            <h3 className="edg-card-title">Conversations are mine</h3>
-            <p>Checking in, encouraging, and working through a hard moment with a student happen face to face, not through AI.</p>
-          </article>
-          <article className="ait-tile">
-            <h3 className="edg-card-title">Student information stays out</h3>
-            <p>AI works from curriculum materials: handouts, plans, and keys, not student records.</p>
-          </article>
-          <article className="ait-tile">
-            <h3 className="edg-card-title">I stay the teacher</h3>
-            <p>AI drafts. I review everything before students see it, and I decide what is taught, in what order, and how hard it is, based on what I know about the students in front of me.</p>
-          </article>
-          <article className="ait-tile">
-            <h3 className="edg-card-title">Students still do the thinking</h3>
-            <p>Class time goes to problems students haven’t seen, worked out together at the whiteboards, with peers mentoring peers.</p>
-          </article>
-          <article className="ait-tile">
             <h3 className="edg-card-title">I work every problem first</h3>
-            <p>Before any answer key or practice problem reaches students, I work through it myself. AI also checks each answer by solving it and substituting back in, because a wrong key costs a student’s trust.</p>
+            <p>Before an answer key or practice problem gets anywhere near students, I work it myself. The AI checks its answers by plugging them back in, but that doesn’t replace me doing it.</p>
           </article>
           <article className="ait-tile">
-            <h3 className="edg-card-title">Keys never reach students by accident</h3>
-            <p>Instructor files carry “(Instructor)” in their names, and the build script scans every student copy for answer-key language.</p>
+            <h3 className="edg-card-title">I decide what gets taught</h3>
+            <p>The AI drafts. I decide what we cover, in what order, and how hard. That depends on knowing the kids in the room, and it doesn’t.</p>
+          </article>
+          <article className="ait-tile">
+            <h3 className="edg-card-title">Keys stay with me</h3>
+            <p>Anything with answers has “(Instructor)” in the file name, and the build script checks every student copy for answer-key language before it finishes.</p>
+          </article>
+          <article className="ait-tile">
+            <h3 className="edg-card-title">No student records</h3>
+            <p>It only works with curriculum materials: handouts, plans, and keys. Not student records.</p>
           </article>
         </div>
       </section>
 
       <section className="edg-section">
-        <h2 className="edg-h2">What I’ve learned</h2>
+        <h2 className="edg-h2">What I’ve learned so far</h2>
         <article className="edg-card ait-lede">
           <ol className="ait-lessons">
-            <li><strong>Writing the first draft is rarely the hard part. Consistency is.</strong> Most of my feedback was about format and structure, not the math. Once that feedback was written into rule files, it stopped coming up.</li>
-            <li><strong>Corrections add up.</strong> Each rule makes the next request easier. By the third unit, I was asking for a whole unit for both courses at once instead of building it file by file.</li>
-            <li><strong>The best use of AI is giving back attention.</strong> It doesn’t replace knowing students. It clears enough of the paperwork that I have room to notice where each one is.</li>
+            <li><strong>The first draft was never the hard part.</strong> Getting things consistent was. Most of my early feedback was about format, not math. Once I wrote it down, I stopped having to repeat it.</li>
+            <li><strong>It gets easier.</strong> Every rule I add makes the next request go smoother. By the third unit I was asking for a whole unit for both classes at once.</li>
+            <li><strong>It’s good at documents, not at knowing kids.</strong> So I let it do the documents and try to protect my time for the students.</li>
           </ol>
         </article>
       </section>

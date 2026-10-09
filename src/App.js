@@ -54,7 +54,7 @@ function AppContent() {
         document.title = "Linguo's Projects";
         break;
       case '/ai-teaching':
-        document.title = 'AI in My Math Classroom';
+        document.title = 'How I Use AI to Prep My Math Classes';
         break;
       case '/edgrantai':
         document.title = 'EdGrantAI — Evidence-aware grant decisions';
