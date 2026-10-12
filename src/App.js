@@ -14,7 +14,7 @@ import NescacPostseasonPolicy from './NescacPostseasonPolicy';
 import ArchiveAssessment from './ArchiveAssessment';
 import ChicagoCrimeInsights from './ChicagoCrimeInsights';
 import VinylRecognitionAI from './VinylRecognitionAI';
-import AiTeaching from './AiTeaching';
+import CurriculumPipeline from './CurriculumPipeline';
 import HomePageSimple from './HomePageSimple';
 
 const profileShareImage = process.env.PUBLIC_URL + '/docs/profile_photo.png';
@@ -53,8 +53,8 @@ function AppContent() {
       case '/project':
         document.title = "Linguo's Projects";
         break;
-      case '/ai-teaching':
-        document.title = 'How I Use AI to Prep My Math Classes';
+      case '/curriculum-pipeline':
+        document.title = 'Curriculum Pipeline';
         break;
       case '/edgrantai':
         document.title = 'EdGrantAI — Evidence-aware grant decisions';
@@ -418,7 +418,8 @@ function AppContent() {
             <Route path="/archive-assessment" element={<ArchiveAssessment />} />
             <Route path="/chicago-crime-insights" element={<ChicagoCrimeInsights />} />
             <Route path="/vinyl-recognition-ai" element={<VinylRecognitionAI />} />
-            <Route path="/ai-teaching" element={<AiTeaching />} />
+            <Route path="/curriculum-pipeline" element={<CurriculumPipeline />} />
+            <Route path="/ai-teaching" element={<Navigate to="/curriculum-pipeline" replace />} />
           </Routes>
       </div>
       {/* Footer */}

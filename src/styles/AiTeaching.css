@@ -633,3 +633,321 @@
   opacity: 0.6;
   padding-top: 3px;
 }
+
+/* Arc demo */
+.ait-arc-section {
+  margin-top: 40px;
+}
+
+.ait-arc {
+  border: 1px solid var(--ait-line);
+  padding: 28px;
+}
+
+.ait-arc .edg-label {
+  display: block;
+}
+
+.ait-arc-course {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.ait-arc-unit {
+  flex: 1 1 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+  padding: 14px 16px;
+  border: 1px solid var(--ait-line);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.ait-arc-unit.is-muted {
+  border-style: dashed;
+  opacity: 0.7;
+}
+
+.ait-arc-unit.is-active {
+  background: var(--ait-line);
+  color: #fff;
+  opacity: 1;
+}
+
+.theme-dark .ait-arc-unit.is-active {
+  color: #000;
+}
+
+.ait-arc-unit-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.ait-arc-unit-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+}
+
+.ait-arc-arrow {
+  align-self: center;
+  opacity: 0.4;
+}
+
+@media (max-width: 700px) {
+  .ait-arc { padding: 20px 16px; }
+  .ait-arc-arrow { display: none; }
+}
+
+.ait-arc-threads {
+  margin: 0 0 28px;
+  padding-left: 1.2rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.ait-arc-threads li {
+  margin-bottom: 6px;
+}
+
+.ait-arc-unitview {
+  border-top: 1px solid var(--ait-faint);
+  padding-top: 24px;
+}
+
+.ait-arc-note {
+  margin: 0;
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+.ait-arc-oneline {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin: 0 0 24px;
+  max-width: 760px;
+}
+
+.ait-arc-stages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.ait-arc-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  padding: 10px 14px;
+  border: 1px solid var(--ait-line);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.ait-arc-stage.is-active {
+  background: var(--ait-faint);
+}
+
+.ait-arc-stage-days {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.ait-arc-days {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.ait-arc-day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 92px;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid var(--ait-faint);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.ait-arc-day.is-lit {
+  border-color: var(--ait-line);
+  background: var(--ait-faint);
+}
+
+.ait-arc-day.is-active {
+  border-color: var(--ait-line);
+  box-shadow: inset 0 0 0 1px var(--ait-line);
+}
+
+.ait-arc-day.is-key::after {
+  content: '★';
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 0.85rem;
+}
+
+.ait-arc-day-n {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.ait-arc-detail {
+  border-left: 2px solid var(--ait-line);
+  padding: 4px 0 4px 16px;
+  min-height: 72px;
+}
+
+.ait-arc-detail p {
+  margin: 0;
+  line-height: 1.65;
+  max-width: 760px;
+}
+
+.ait-arc button:focus-visible {
+  outline: 2px solid var(--ait-line);
+  outline-offset: 2px;
+}
+
+/* Arc: goals and upcoming units */
+.ait-arc-goals {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+@media (min-width: 900px) {
+  .ait-arc-goals { grid-template-columns: 1fr 1fr; }
+}
+
+.ait-arc-goal {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 8px;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid var(--ait-faint);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.ait-arc-goal.is-active {
+  border-color: var(--ait-line);
+  background: var(--ait-faint);
+}
+
+.ait-arc-goal-n {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  line-height: 1.1;
+}
+
+.ait-arc-course {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.ait-arc-unit.is-upcoming {
+  border-style: dotted;
+}
+
+.ait-arc-unit.is-dim {
+  opacity: 0.25;
+}
+
+.ait-arc-unit-goals {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin-top: auto;
+}
+
+.ait-arc-unit-title {
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.ait-arc-next {
+  margin: 0 0 12px;
+  font-size: 0.95rem;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.ait-prose-list {
+  padding-left: 1.2rem;
+  margin: 0 0 20px;
+}
+
+.ait-prose-list li {
+  margin-bottom: 14px;
+  line-height: 1.7;
+  font-size: 1.0625rem;
+}
+
+/* Arc threads (interactive) */
+.ait-arc-threads {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ait-arc-thread {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-left: 2px solid transparent;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 4px 10px;
+  cursor: pointer;
+  line-height: 1.55;
+}
+
+.ait-arc-thread:hover,
+.ait-arc-thread.is-active {
+  border-left-color: var(--ait-line);
+  background: var(--ait-faint);
+}
+
+.ait-arc-unit {
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ait-arc-unit.is-thread {
+  box-shadow: 0 0 0 2px var(--ait-line);
+}
+
+.ait-arc-section + .ait-prose {
+  margin-top: 40px;
+}

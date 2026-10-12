@@ -1,0 +1,64 @@
+/* Static pipeline diagram */
+
+.pd {
+  --pd-line: #000;
+  --pd-bg: #fff;
+  margin: 8px 0 40px;
+  max-width: 1000px;
+}
+
+.theme-dark .pd {
+  --pd-line: #fff;
+  --pd-bg: #000;
+}
+
+.pd svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.pd-narrow {
+  display: none !important;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .pd-wide { display: none !important; }
+  .pd-narrow { display: block !important; }
+}
+
+.pd-box {
+  fill: var(--pd-bg);
+  stroke: var(--pd-line);
+  stroke-width: 1.4;
+}
+
+.pd-title {
+  fill: var(--pd-line);
+  font-family: var(--font-serif);
+  font-size: 21px;
+}
+
+.pd-sub {
+  fill: var(--pd-line);
+  opacity: 0.65;
+  font-size: 13px;
+}
+
+.pd-line {
+  stroke: var(--pd-line);
+  stroke-width: 1.6;
+}
+
+.pd-headpath {
+  fill: var(--pd-line);
+}
+
+.pd-label {
+  fill: var(--pd-line);
+  opacity: 0.7;
+  font-size: 14px;
+}

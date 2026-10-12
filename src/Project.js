@@ -16,10 +16,10 @@ const edgrantai_cover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 function Project() {
   const projects = [
     {
-      title: "How I Use AI to Prep My Math Classes",
-      description: "Notes on using AI to prep two high school math courses: what I use it for, what I don’t, and what I’ve learned",
-      route: "/ai-teaching",
-      tags: ["Teaching", "Generative AI", "Claude Code", "Curriculum Design", "Formative Feedback", "Obsidian"],
+      title: "Curriculum Pipeline",
+      description: "A rule-driven agent pipeline that turns course materials into lesson plans, assessments, and verified answer keys",
+      route: "/curriculum-pipeline",
+      tags: ["LLM Agents", "Context Engineering", "Claude Code", "Obsidian", "Pandoc + LaTeX", "Python"],
     },
     {
       title: "EdGrantAI",
