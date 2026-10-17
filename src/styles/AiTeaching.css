@@ -951,3 +951,172 @@
 .ait-arc-section + .ait-prose {
   margin-top: 40px;
 }
+
+/* Planning layer (static) */
+.ait-levels {
+  max-width: 720px;
+  margin: 8px 0 40px;
+}
+
+.ait-level {
+  border: 1px solid var(--ait-line);
+  padding: 18px 22px;
+}
+
+.ait-level .ait-h3 {
+  margin: 0 0 8px;
+}
+
+.ait-level ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  line-height: 1.65;
+}
+
+.ait-level-arrow {
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 8px 0;
+  opacity: 0.6;
+}
+
+.ait-quote {
+  margin: 0 0 20px;
+  padding: 4px 0 4px 18px;
+  border-left: 2px solid var(--ait-line);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+.ait-table-wrap {
+  overflow-x: auto;
+  margin: 0 0 24px;
+}
+
+.ait-goals {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+}
+
+.ait-goals th,
+.ait-goals td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ait-faint);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.ait-goals th {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  border-bottom-color: var(--ait-line);
+}
+
+.ait-goals td:first-child {
+  width: 48px;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+}
+
+/* Rule files */
+.rf {
+  max-width: 820px;
+  margin: 0 0 24px;
+}
+
+.rf-group {
+  margin-bottom: 24px;
+}
+
+.rf-group .edg-label {
+  display: block;
+}
+
+.rf-file {
+  border-top: 1px solid var(--ait-faint);
+}
+
+.rf-file:last-child {
+  border-bottom: 1px solid var(--ait-faint);
+}
+
+.rf-file summary {
+  cursor: pointer;
+  padding: 12px 4px;
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  list-style: none;
+}
+
+.rf-file summary::-webkit-details-marker {
+  display: none;
+}
+
+.rf-file summary::before {
+  content: '+';
+  position: absolute;
+  margin-left: -18px;
+  opacity: 0.6;
+}
+
+.rf-file[open] summary::before {
+  content: '−';
+}
+
+.rf-file summary:hover .rf-path {
+  text-decoration: underline;
+}
+
+.rf {
+  padding-left: 18px;
+}
+
+.rf-path {
+  font-size: 0.9rem;
+  color: inherit;
+  background: transparent;
+  white-space: nowrap;
+}
+
+.rf-note {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.rf-body pre {
+  max-height: 520px;
+  overflow: auto;
+  margin: 0 0 8px;
+  padding: 16px 18px;
+  border: 1px solid var(--ait-line);
+  font-size: 0.8rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  color: inherit;
+  background: transparent;
+}
+
+.rf-raw,
+.rf-loading {
+  display: inline-block;
+  margin: 0 0 16px;
+  font-size: 0.85rem;
+  opacity: 0.75;
+  color: inherit;
+}
+
+@media (max-width: 700px) {
+  .rf-file summary {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

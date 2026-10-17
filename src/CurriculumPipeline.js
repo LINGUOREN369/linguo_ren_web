@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles/EdGrantAI.css';
 import './styles/AiTeaching.css';
 import PipelineDiagram from './PipelineDiagram';
+import RuleFiles from './RuleFiles';
 
 
 
@@ -63,7 +64,7 @@ python3 tools/build.py PC "Unit 2 - Polynomial and Rational Equations" --day 3`;
 
 const corrections = [
   { said: '“Don’t use abbreviations like LCD.”', rule: 'No abbreviations students might not know.' },
-  { said: '“Save time for homework review.”', rule: 'About 15 minutes of homework review after a homework night, and the times in a lesson plan have to add up to exactly 60 minutes.' },
+  { said: '“Have them redo the homework at the board.”', rule: 'After a homework night, the walkthrough opens with one or two homework problems, redone at the board from scratch.' },
   { said: '“Give them the answers so they get feedback right away.”', rule: 'Homework ends with answers to the odd problems only.' },
   { said: '“Keep the original format and write the answers in red.”', rule: 'Every key is a red-pen copy of the actual handout.' },
   { said: '“Graph every polynomial in Precalc.”', rule: 'Every Precalc key graphs each polynomial, with the vertex and intercepts marked.' },
@@ -103,250 +104,7 @@ const failures = [
 ];
 
 
-const course = {
-  name: 'Accelerated Algebra 2',
-  goals: [
-    'Manipulate and solve equations fluently and strategically, and know when an answer is valid',
-    'Treat functions as objects to read, combine, and invert across graphs, equations, and tables',
-    'Recognize the major families of functions and how they behave',
-    'Use them to model and reason about real situations',
-  ],
-  next: 'Precalculus picks up from Unit 6: polynomial and rational functions, then composition, inverses, and transformations.',
-  units: [
-    {
-      id: 'u1',
-      label: 'Unit 1',
-      title: 'Algebra Review',
-      days: 6,
-      goals: [1],
-      note: 'Built before I started writing unit summaries: solving equations and inequalities, absolute value, interval notation, factoring, and rational and radical equations.',
-    },
-    {
-      id: 'u2',
-      label: 'Unit 2',
-      title: 'Quadratics',
-      days: 6,
-      goals: [1, 3],
-      oneLine: 'Every quadratic can be solved. Build the full toolkit, then learn to pick the cheapest tool from the shape of the equation.',
-      keyBlock: { day: 3, text: 'Deriving the quadratic formula from ax² + bx + c = 0. It is the only place the formula stops being a magic string, and it explains what “no real solution” means. Never compress it.' },
-      stages: [
-        { name: 'Build the method', days: [1, 2, 3] },
-        { name: 'Choose the method', days: [3] },
-        { name: 'Extend and consolidate', days: [4, 5] },
-      ],
-      dayList: [
-        { n: 1, title: 'Square roots and completing the square', goal: 'Solve any quadratic whose squared quantity can be isolated, keeping both roots, and produce the constant that completes the square.' },
-        { n: 2, title: 'Completing the square practice', goal: 'Solve any x² + bx + c = 0 by completing the square, including odd b and equations that must be rearranged first.' },
-        { n: 3, title: 'Quadratic formula and choosing a method', goal: 'Complete the square when a ≠ 1, derive the quadratic formula, and pick the cheapest of five methods from an equation’s structure.' },
-        { n: 4, title: 'Systems and mixed practice', goal: 'Solve a system where at least one equation is quadratic, and choose a solving method without being told.' },
-        { n: 5, title: 'Partner problem set', goal: 'Apply each method once under a constraint, and recognize when the only candidate root is extraneous.' },
-        { n: 6, title: 'Quiz 2', goal: 'Assessment.' },
-      ],
-    },
-    {
-      id: 'u3',
-      label: 'Unit 3',
-      title: 'Systems and Functions',
-      days: 10,
-      goals: [1, 2],
-      oneLine: 'Read a function from its graph or its formula: what it accepts, what it outputs, where it rises and falls, and how functions combine.',
-      keyBlock: { day: 1, text: 'Telling “where” (x) from “what” (y), with open and closed endpoints. Every later graph question fails without it.' },
-      stages: [
-        { name: 'Read a function', days: [1, 2, 3] },
-        { name: 'Lines, systems, and Quiz 3', days: [4, 5, 6] },
-        { name: 'Work with functions', days: [7, 8, 9, 10] },
-      ],
-      dayList: [
-        { n: 1, title: 'Introduction to functions', goal: 'State where a graph increases, decreases, or is constant, and separate local from absolute extrema, endpoints included.' },
-        { n: 2, title: 'Function notation and graph stations', goal: 'Decide function-or-not from a set, table, or graph, and read f(a) and f(x) = k off a graph.' },
-        { n: 3, title: 'Domain from equations', goal: 'Find a domain from denominators and even roots, and count solutions of f(x) = k with a horizontal line.' },
-        { n: 4, title: 'Counting solutions and lines', goal: 'Say whether a system has 0, 1, 2, or infinitely many solutions without solving, and write a line in point-slope or slope-intercept form.' },
-        { n: 5, title: 'Perpendicular bisectors and spiral review', goal: 'Write a perpendicular bisector, and solve radical and polynomial equations without losing or keeping the wrong roots.' },
-        { n: 6, title: 'Quiz 3', goal: 'Assessment.' },
-        { n: 7, title: 'Domain, range, and inputs from outputs', goal: 'Solve f(x) = k algebraically and from a graph, and use the range to predict when no input exists.' },
-        { n: 8, title: 'Operations and composition', goal: 'Add, subtract, multiply, divide, and compose functions, and show f(g(x)) ≠ g(f(x)).' },
-        { n: 9, title: 'Even and odd symmetry', goal: 'Test even and odd symmetry algebraically and from a graph.' },
-        { n: 10, title: 'Functions review', goal: 'Do every Day 7–9 skill unprompted, including the domain of a composition.' },
-      ],
-    },
-    {
-      id: 'u4',
-      label: 'Unit 4',
-      title: 'Transformations',
-      upcoming: true,
-      goals: [2, 3],
-      topics: 'Parent functions and transformations of their graphs.',
-    },
-    {
-      id: 'u5',
-      label: 'Unit 5',
-      title: 'Quadratic Graphs + Word Problems',
-      upcoming: true,
-      goals: [1, 3, 4],
-      topics: 'Complex numbers, graphing quadratics, and quadratic word problems, ending with the semester test.',
-    },
-    {
-      id: 'u6',
-      label: 'Unit 6',
-      title: 'Polynomials',
-      upcoming: true,
-      goals: [2, 3],
-      topics: 'Graphing polynomials and writing their equations.',
-    },
-  ],
-  threads: [
-    { text: 'Unit 2 ends some equations at “no real solution.” Unit 5 gives those same equations complex solutions.', units: ['u2', 'u5'] },
-    { text: 'Unit 3 learns to read one function. Unit 4 moves whole families of them with transformations.', units: ['u3', 'u4'] },
-    { text: 'Extraneous roots start in Unit 1, come back on Unit 2 Day 5, and return in Unit 3’s spiral review.', units: ['u1', 'u2', 'u3'] },
-    { text: 'Quadratics in Units 2 and 5 grow into polynomials in Unit 6, which is where Precalculus picks up.', units: ['u2', 'u5', 'u6'] },
-  ],
-};
 
-function ArcDemo() {
-  const [unitId, setUnitId] = useState('u2');
-  const [goal, setGoal] = useState(null);
-  const [stageIdx, setStageIdx] = useState(null);
-  const [dayN, setDayN] = useState(null);
-  const [thread, setThread] = useState(null);
-  const unit = course.units.find((u) => u.id === unitId);
-  const threadUnits = thread !== null ? course.threads[thread].units : null;
-  const lit = stageIdx !== null && unit.stages ? unit.stages[stageIdx].days : [];
-  const day = unit.dayList && dayN ? unit.dayList.find((d) => d.n === dayN) : null;
-
-  const pickUnit = (id) => { setUnitId(id); setStageIdx(null); setDayN(null); };
-
-  return (
-    <div className="ait-arc">
-      <span className="edg-label">The course · {course.name} · click a goal</span>
-      <ol className="ait-arc-goals">
-        {course.goals.map((g, i) => (
-          <li key={g}>
-            <button
-              type="button"
-              className={`ait-arc-goal${goal === i + 1 ? ' is-active' : ''}`}
-              onClick={() => setGoal(goal === i + 1 ? null : i + 1)}
-            >
-              <span className="ait-arc-goal-n">{i + 1}</span>
-              <span>{g}</span>
-            </button>
-          </li>
-        ))}
-      </ol>
-
-      <span className="edg-label">The units · first semester</span>
-      <div className="ait-arc-course" role="tablist" aria-label="Units">
-        {course.units.map((u) => (
-          <button
-            key={u.id}
-            type="button"
-            role="tab"
-            aria-selected={unitId === u.id}
-            className={[
-              'ait-arc-unit',
-              unitId === u.id ? 'is-active' : '',
-              u.upcoming ? 'is-upcoming' : '',
-              !u.dayList && !u.upcoming ? 'is-muted' : '',
-              (goal && !u.goals.includes(goal)) || (threadUnits && !threadUnits.includes(u.id)) ? 'is-dim' : '',
-              threadUnits && threadUnits.includes(u.id) ? 'is-thread' : '',
-            ].join(' ')}
-            onClick={() => pickUnit(u.id)}
-          >
-            <span className="ait-arc-unit-label">{u.label}{u.days ? ` · ${u.days} days` : ' · coming up'}</span>
-            <span className="ait-arc-unit-title">{u.title}</span>
-            <span className="ait-arc-unit-goals">Goals {u.goals.join(', ')}</span>
-          </button>
-        ))}
-      </div>
-      <p className="ait-arc-next">→ {course.next}</p>
-      <span className="edg-label">Threads across units · hover or tap one</span>
-      <ul className="ait-arc-threads">
-        {course.threads.map((t, i) => (
-          <li key={t.text}>
-            <button
-              type="button"
-              className={`ait-arc-thread${thread === i ? ' is-active' : ''}`}
-              onMouseEnter={() => setThread(i)}
-              onMouseLeave={() => setThread(null)}
-              onFocus={() => setThread(i)}
-              onBlur={() => setThread(null)}
-              onClick={() => setThread(thread === i ? null : i)}
-            >
-              {t.text}
-            </button>
-          </li>
-        ))}
-      </ul>
-
-      <div className="ait-arc-unitview">
-        {unit.upcoming ? (
-          <>
-            <span className="edg-label">Not built yet · from the course materials</span>
-            <p className="ait-arc-oneline">{unit.topics}</p>
-          </>
-        ) : !unit.dayList ? (
-          <p className="ait-arc-note">{unit.note}</p>
-        ) : (
-          <>
-            <span className="edg-label">The unit in one line</span>
-            <p className="ait-arc-oneline">{unit.oneLine}</p>
-
-            <span className="edg-label">The arc · click a stage</span>
-            <div className="ait-arc-stages">
-              {unit.stages.map((st, i) => (
-                <button
-                  key={st.name}
-                  type="button"
-                  className={`ait-arc-stage${stageIdx === i ? ' is-active' : ''}`}
-                  onClick={() => setStageIdx(stageIdx === i ? null : i)}
-                >
-                  <span className="ait-arc-stage-days">
-                    {st.days.length > 1 ? `Days ${st.days[0]}–${st.days[st.days.length - 1]}` : `Day ${st.days[0]}`}
-                  </span>
-                  <span>{st.name}</span>
-                </button>
-              ))}
-            </div>
-
-            <span className="edg-label">Day by day · click a day</span>
-            <div className="ait-arc-days">
-              {unit.dayList.map((d) => (
-                <button
-                  key={d.n}
-                  type="button"
-                  className={[
-                    'ait-arc-day',
-                    lit.includes(d.n) ? 'is-lit' : '',
-                    dayN === d.n ? 'is-active' : '',
-                    unit.keyBlock.day === d.n ? 'is-key' : '',
-                  ].join(' ')}
-                  onClick={() => setDayN(dayN === d.n ? null : d.n)}
-                  aria-label={`Day ${d.n}: ${d.title}`}
-                >
-                  <span className="ait-arc-day-n">{d.n}</span>
-                  <span className="ait-arc-day-title">{d.title}</span>
-                </button>
-              ))}
-            </div>
-
-            <div className="ait-arc-detail">
-              {day ? (
-                <>
-                  <span className="edg-label">Day {day.n} goal: what a student can do by the end</span>
-                  <p>{day.goal}</p>
-                </>
-              ) : (
-                <>
-                  <span className="edg-label">★ Never compress · Day {unit.keyBlock.day}</span>
-                  <p>{unit.keyBlock.text}</p>
-                </>
-              )}
-            </div>
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
 
 
 export default function CurriculumPipeline() {
@@ -361,6 +119,7 @@ export default function CurriculumPipeline() {
         <div className="edg-cta">
           <a href="#architecture" className="portfolio-button edg-button-primary">See the architecture</a>
           <a href="#arc" className="portfolio-button portfolio-button--secondary">See the course arc</a>
+          <a href="#rules" className="portfolio-button portfolio-button--secondary">Read the rule files</a>
           <Link to="/project" className="portfolio-button portfolio-button--secondary" aria-label="Back to project list">
             Back to Projects
           </Link>
@@ -450,23 +209,112 @@ export default function CurriculumPipeline() {
 
 
       <article className="ait-prose">
-        <h2 className="ait-h2" id="arc">The planning layer: course, unit, day</h2>
+        <h2 className="ait-h2" id="arc">The planning layer: course → unit → day</h2>
         <p>
-          The most useful artifact isn’t a worksheet. When the agent builds a unit, it also writes a unit summary: the unit
-          in one line, the two or three stages it moves through, the one block that must never be compressed, and a goal
-          for every day, written as what a student should be able to do by the end. Those summaries sit under the course
-          goals, so the structure is course goal → unit → day.
+          The most useful thing the system produces isn’t a worksheet. It’s a written plan of what the course is for, and how
+          each unit and each day serves that. This is the hardest part of teaching for a new teacher, or for anyone teaching
+          a course for the first time: you can see this week’s topic, but not why it’s there, what it sets up, or which part
+          you can’t afford to rush. Without that, it’s easy to just deliver content. With it, every day can build fluency and
+          make the connections visible.
         </p>
         <p>
-          Because the agent can read the course materials for the whole year, not just the current unit, the planning layer
-          also shows what is coming. Threads between units become visible before I teach them. When “no real solution”
-          comes up in Unit 2, I already know Unit 5 brings in complex numbers. And because I also teach Precalculus, I can
-          see where Algebra 2 has to leave students. This is the Algebra 2 course as it stands now:
+          Because the agent can read a whole year of course materials, not just the current unit, it can write this down
+          before I teach any of it. There are three levels, each a short file:
         </p>
       </article>
-      <section className="edg-section ait-arc-section">
-        <ArcDemo />
-      </section>
+
+      <div className="ait-levels">
+        <div className="ait-level">
+          <span className="edg-label">Course summary · one per course</span>
+          <h3 className="ait-h3">What the course is for</h3>
+          <ul>
+            <li>Four course goals, written as what students can do</li>
+            <li>Every unit in the year, with the goals it serves</li>
+            <li>Threads that connect units, and where the course leads</li>
+          </ul>
+        </div>
+        <div className="ait-level-arrow" aria-hidden="true">↓</div>
+        <div className="ait-level">
+          <span className="edg-label">Unit summary · one per unit</span>
+          <h3 className="ait-h3">How the unit gets there</h3>
+          <ul>
+            <li>The unit in one line</li>
+            <li>Its two or three stages, and the one block never to compress</li>
+            <li>A goal for every day, written as a capability</li>
+          </ul>
+        </div>
+        <div className="ait-level-arrow" aria-hidden="true">↓</div>
+        <div className="ait-level">
+          <span className="edg-label">Lesson plan · one per day</span>
+          <h3 className="ait-h3">What happens in class</h3>
+          <ul>
+            <li>Opening Questions on the last class’s core topic</li>
+            <li>Problems in teaching order: what each teaches, what to watch for</li>
+            <li>Closing Questions on the big idea, answered in words</li>
+            <li>A practice sheet: the same skills across 8 sets</li>
+          </ul>
+        </div>
+      </div>
+
+      <article className="ait-prose">
+        <h3 className="ait-h3">A real example: Accelerated Algebra 2</h3>
+        <p><strong>Course goals.</strong> By the end of the course, students can:</p>
+        <ol className="ait-prose-list">
+          <li>manipulate and solve equations fluently and strategically, and know when an answer is valid;</li>
+          <li>treat functions as objects to read, combine, and invert across graphs, equations, and tables;</li>
+          <li>recognize the major families of functions and how they behave;</li>
+          <li>use them to model and reason about real situations.</li>
+        </ol>
+        <p><strong>Unit 2, Quadratics (serves goals 1 and 3).</strong> In one line:</p>
+        <blockquote className="ait-quote">
+          Every quadratic can be solved. Build the full toolkit, then learn to pick the cheapest tool from the shape of the
+          equation.
+        </blockquote>
+        <p>
+          It moves through three stages: build the method (Days 1–3), choose the method (Day 3), then extend and consolidate
+          (Days 4–5). The block never to compress is Day 3’s derivation of the quadratic formula, because it is the only place
+          the formula stops being a magic string, and it explains what “no real solution” means.
+        </p>
+        <div className="ait-table-wrap">
+          <table className="ait-goals">
+            <thead>
+              <tr><th>Day</th><th>Goal: what a student can do by the end</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>Solve any quadratic whose squared quantity can be isolated, keeping both roots</td></tr>
+              <tr><td>2</td><td>Complete the square for any x² + bx + c = 0, including odd b</td></tr>
+              <tr><td>3</td><td>Derive the quadratic formula, and pick the cheapest of five methods from an equation’s structure</td></tr>
+              <tr><td>4</td><td>Solve a system where one equation is quadratic, choosing the method without being told</td></tr>
+              <tr><td>5</td><td>Apply each method under a constraint, and recognize when the only candidate root is extraneous</td></tr>
+              <tr><td>6</td><td>Quiz</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Threads the course summary names</strong>, so they get said out loud when the earlier end comes up:</p>
+        <ul className="ait-prose-list">
+          <li>Unit 2 ends some equations at “no real solution.” Unit 5 gives those same equations complex solutions.</li>
+          <li>Extraneous roots start in Unit 1, come back on Unit 2 Day 5, and return in Unit 3’s spiral review.</li>
+          <li>Quadratics in Units 2 and 5 grow into polynomials in Unit 6, which is where Precalculus starts.</li>
+        </ul>
+
+        <h3 className="ait-h3">How it shows up every day</h3>
+        <ul className="ait-prose-list">
+          <li><strong>Fluency through retrieval.</strong> Each class opens with three questions on the previous class’s core topic.</li>
+          <li><strong>Fluency through varied repetition.</strong> The practice sheet repeats the same skills across 8 sets with new numbers.</li>
+          <li><strong>Connections, not procedures.</strong> Each class closes with a big-idea question answered in words, like “why does completing the square always work?”</li>
+          <li><strong>Focus when time is short.</strong> The unit summary says which block can’t be rushed, so that’s the last thing to cut.</li>
+          <li><strong>The course as one story.</strong> When a thread comes up, I can say where it goes next.</li>
+        </ul>
+      </article>
+
+      <article className="ait-prose">
+        <h2 className="ait-h2" id="rules">Read the rule files</h2>
+        <p>
+          These are the actual files the agent reads, published as they stood on October 16, 2026. File paths and names are
+          generalized, and the unit summary is an excerpt. Click any file to read it.
+        </p>
+      </article>
+      <RuleFiles />
 
       <article className="ait-prose">
         <h2 className="ait-h2">Build and output</h2>
@@ -534,16 +382,15 @@ export default function CurriculumPipeline() {
             visible, but doesn’t prevent them.
           </li>
           <li>
-            <strong>Correctness depends on two solvers:</strong> me and the model. A computer algebra check on every answer
-            would be a stronger third.
+            <strong>Correctness depends on two solvers:</strong> me and the model. Practice sheets can already be checked
+            with a computer algebra system (sympy); doing that for every key would add a third.
           </li>
           <li>
-            <strong>Some structural rules could be checked mechanically</strong> instead of trusted. Examples: time blocks
-            summing to 60, odd answers matching the key, unique note names.
+            <strong>Some structural rules could be checked mechanically</strong> instead of trusted. Examples: odd answers
+            matching the key, 8 practice sets with the same parts, unique note names.
           </li>
           <li>
-            <strong>Course goals live outside the files.</strong> The planning layer starts at the unit. A course summary
-            note would let the agent tie every unit back to the course goals on its own.
+            <strong>Only one course summary so far.</strong> Algebra 2 has one; Precalculus doesn’t yet.
           </li>
         </ul>
         <p>
