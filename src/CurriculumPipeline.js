@@ -466,7 +466,6 @@ export default function CurriculumPipeline() {
                 <li>Rules are written in plain language, so following them isn’t guaranteed. Listing the files it read makes misses visible, not impossible.</li>
                 <li>A computer algebra check on every key would add a third check after me and the model.</li>
                 <li>Some rules could be checked by a script instead of trusted, like odd answers matching the key.</li>
-                <li>Only Algebra 2 has a course summary so far.</li>
               </ul>
             </div>
           </section>
