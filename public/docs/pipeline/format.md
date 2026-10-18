@@ -174,9 +174,12 @@ attachments:                                every resource for the day (build.py
   - "<homework>" …
 ---
 # Unit <N> Day <N>: <Title>
-> **Unit:** … · **Duration:** 60 min · **Planning sheet:** <COURSE> Planning Sheet
+> **Unit:** … · **Duration:** 60 min · **Planning sheet:** <COURSE> Planning Sheet]]
 > **Practice sheet:** <practice sheet> · key <practice sheet key>
 
+## Lesson Goals                             "By the end of class, students can:" + 2–4 bullets
+## Key Concepts and Definitions             every term, definition, and formula the day needs
+| Concept | Definition or formula | Example |
 ## Opening Questions                        3, on the core topic of the previous class
 | # | Question | Answer | What it checks |
 ## Problem Walkthrough — Go Through in This Order
@@ -187,13 +190,20 @@ attachments:                                every resource for the day (build.py
 ## Notes                                    optional, teacher bookkeeping
 ```
 
-- **No `## Attachments` section, no Objectives, and no timed class-structure blocks** (Opening,
-  HW Review, Warm-Up, Wrap-Up, `(0–5 min)` headings). Opening and Closing Questions are question
-  lists, not timed blocks.
+- **Lesson Goals sit at the top**, right under the header lines: what a student can *do* by the
+  end of class, each starting with a verb ("Solve…", "Decide…", "Write…"), never a topic name.
+- **Key Concepts and Definitions** comes next: one row per term, definition, theorem, or formula
+  the day uses (new ones first, then earlier ones the day leans on), each with a short worked
+  example (§2).
+- **No `## Attachments` section, no old-style `Objectives` list (Lesson Goals replaces it), and no
+  timed class-structure blocks** (Opening, HW Review, Warm-Up, Wrap-Up, `(0–5 min)` headings).
+  Opening and Closing Questions are question lists, not timed blocks.
 - Answers in the walkthrough table are **final answers only**.
 - Lesson plans PDFs use `header-lp.tex` (smaller table text so the 5-column table fits).
 - **Assessment days:** no walkthrough table, no Answer column, no Common Questions (they would
-  sit next to the quiz in the vault), no practice sheet, and no Opening or Closing Questions.
+  sit next to the quiz in the vault), no practice sheet, and no Opening or Closing Questions. Keep
+  Lesson Goals (the skills the assessment checks) and Key Concepts and Definitions (what students
+  must know cold for it).
 
 ---
 
