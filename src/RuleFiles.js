@@ -24,7 +24,8 @@ const GROUPS = [
   {
     title: 'The planning layer',
     files: [
-      { path: 'A2A Course Summary.md', note: 'Course goals, the semester’s unit arc, threads between units, and how it’s used day to day.' },
+      { path: 'A2A Course Summary.md', note: 'Algebra 2: course goals, the semester’s unit arc, threads between units, and how it’s used day to day.' },
+      { path: 'PC Course Summary.md', note: 'Precalculus: course goals, the full year’s unit arc, and threads between units.' },
       { path: 'A2A Unit 2 Summary.md', note: 'One unit: its line, its arc, the block never to compress, and a goal for every day. (Excerpt.)' },
     ],
   },
