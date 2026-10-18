@@ -12,8 +12,17 @@ Read first: `_claude/format.md` §1 (naming), §2 (style), §6 (lesson plan layo
 3. Check the unit summary for this day's goal.
 
 ## Writing it
-Layout is `format.md` §6 (since 2026-10-15: walkthrough, Common Questions, Homework; no
-Attachments section, no Objectives, no timed blocks).
+Layout is `format.md` §6 (since 2026-10-15: Lesson Goals, Key Concepts and Definitions, Opening
+Questions, walkthrough, Common Questions, Closing Questions, Homework; no Attachments section, no
+timed blocks).
+- **Lesson Goals:** start from the day's goal in the unit summary and split it into 2–4
+  capabilities a student shows by the end of class ("Decide whether a system has 0, 1, or
+  infinitely many solutions without solving it"). Every goal is practised by at least one
+  walkthrough problem and one practice-sheet part, and every anchor problem serves a goal.
+- **Key Concepts and Definitions:** list every term, definition, theorem, and formula the
+  walkthrough uses: new ones first, then earlier ones the day leans on. Write definitions in
+  student language, precise but short, each with a small worked example. These are what the
+  Canvas notes must contain, since students don't take notes in class.
 - **Built for Mr. Ren's classroom (see `CLAUDE.md` → Classroom model):** class time is groups
   working **unseen problems at the whiteboards**, not lecture, with fast students mentoring.
   The plan is the problem list the groups work through, not a minute-by-minute script.
@@ -46,10 +55,13 @@ Attachments section, no Objectives, no timed blocks).
 
 ## Quiz day
 No walkthrough, answers, Common Questions, Opening or Closing Questions, or practice sheet. Put the quiz and its key in the
-`attachments:` property and give a short bullet list of skills covered. See
+`attachments:` property. Lesson Goals = the skills the quiz checks; Key Concepts and Definitions =
+what students must know cold for it. See
 `tasks/assessment.md`.
 
 ## Check before finishing
 - Every problem in the table and on the practice sheet solved and verified; build.py's leak
   check is clean on the practice sheet.
+- Lesson Goals and Key Concepts and Definitions are at the top, and each goal is practised in
+  the walkthrough and on the practice sheet.
 - Links resolve. The note name is unique in the vault.
