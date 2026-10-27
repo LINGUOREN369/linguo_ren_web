@@ -16,9 +16,9 @@ const edgrantai_cover = process.env.PUBLIC_URL + '/docs/edgrantai_cover.png';
 function Project() {
   const projects = [
     {
-      title: "Curriculum Pipeline",
-      description: "A rule-driven agent pipeline that turns course materials into lesson plans, assessments, and verified answer keys",
-      route: "/curriculum-pipeline",
+      title: "Supplemental Materials",
+      description: "A method for teachers to design personalized supplemental materials with an AI agent guided by written rules",
+      route: "/supplemental-materials",
       tags: ["LLM Agents", "Context Engineering", "Claude Code", "Obsidian", "Pandoc + LaTeX", "Python"],
     },
     {

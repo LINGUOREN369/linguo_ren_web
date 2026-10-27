@@ -35,34 +35,34 @@ export default function PipelineDiagram() {
   return (
     <figure className="pd">
       {/* Wide layout: matches the sketch */}
-      <svg className="pd-wide" viewBox="0 0 1080 300" role="img" aria-label="Class materials and Rules feed Claude Code, which writes to the Vault; build.py turns the Vault into PDFs.">
+      <svg className="pd-wide" viewBox="0 0 1080 300" role="img" aria-label="The teacher’s notes on student needs and the teacher’s guidelines guide Claude Code, which drafts materials into the Vault; build.py turns them into student and teacher copies.">
         <Head id="pd-head-w" />
-        <Box x={150} y={60} title="Class materials" sub="curated · read-only" />
-        <Box x={450} y={60} title="Claude Code" sub="the agent" />
-        <Box x={750} y={60} title="Rules" sub="CLAUDE.md · format.md · tasks/" />
+        <Box x={150} y={60} title="Student needs" sub="noted by the teacher" />
+        <Box x={450} y={60} title="Claude Code" sub="drafting assistant" />
+        <Box x={750} y={60} title="Guidelines" sub="the teacher’s approach" />
         <Box x={450} y={235} title="Vault" sub="Markdown · the only editable copy" />
         <Box x={690} y={235} title="build.py" sub="pandoc → XeLaTeX" />
-        <Box x={930} y={235} title="PDFs" sub="one folder per day" />
+        <Box x={930} y={235} title="Materials" sub="student + teacher copies" />
 
-        <Arrow head="pd-head-w" x1={252} y1={60} x2={346} y2={60} label="reads" lx={299} ly={50} />
-        <Arrow head="pd-head-w" x1={648} y1={60} x2={554} y2={60} label="loads" lx={601} ly={50} />
+        <Arrow head="pd-head-w" x1={252} y1={60} x2={346} y2={60} label="informs" lx={299} ly={50} />
+        <Arrow head="pd-head-w" x1={648} y1={60} x2={554} y2={60} label="guides" lx={601} ly={50} />
         <Arrow head="pd-head-w" x1={450} y1={97} x2={450} y2={196} label="writes" lx={462} ly={152} anchor="start" />
         <Arrow head="pd-head-w" x1={552} y1={235} x2={586} y2={235} />
         <Arrow head="pd-head-w" x1={792} y1={235} x2={826} y2={235} />
       </svg>
 
       {/* Narrow layout: same picture, stacked */}
-      <svg className="pd-narrow" viewBox="0 0 440 660" role="img" aria-label="Class materials and Rules feed Claude Code, which writes to the Vault; build.py turns the Vault into PDFs.">
+      <svg className="pd-narrow" viewBox="0 0 440 660" role="img" aria-label="The teacher’s notes on student needs and the teacher’s guidelines guide Claude Code, which drafts materials into the Vault; build.py turns them into student and teacher copies.">
         <Head id="pd-head-n" />
-        <Box x={110} y={50} title="Class materials" sub="curated · read-only" />
-        <Box x={330} y={50} title="Rules" sub="CLAUDE.md · format.md" />
-        <Box x={220} y={200} title="Claude Code" sub="the agent" />
+        <Box x={110} y={50} title="Student needs" sub="noted by the teacher" />
+        <Box x={330} y={50} title="Guidelines" sub="the teacher’s approach" />
+        <Box x={220} y={200} title="Claude Code" sub="drafting assistant" />
         <Box x={220} y={340} title="Vault" sub="the only editable copy" />
         <Box x={220} y={470} title="build.py" sub="pandoc → XeLaTeX" />
-        <Box x={220} y={600} title="PDFs" sub="one folder per day" />
+        <Box x={220} y={600} title="Materials" sub="student + teacher copies" />
 
-        <Arrow head="pd-head-n" x1={130} y1={87} x2={190} y2={162} label="reads" lx={150} ly={135} anchor="end" />
-        <Arrow head="pd-head-n" x1={310} y1={87} x2={250} y2={162} label="loads" lx={292} ly={135} anchor="start" />
+        <Arrow head="pd-head-n" x1={130} y1={87} x2={190} y2={162} label="informs" lx={150} ly={135} anchor="end" />
+        <Arrow head="pd-head-n" x1={310} y1={87} x2={250} y2={162} label="guides" lx={292} ly={135} anchor="start" />
         <Arrow head="pd-head-n" x1={220} y1={237} x2={220} y2={302} label="writes" lx={232} ly={275} anchor="start" />
         <Arrow head="pd-head-n" x1={220} y1={377} x2={220} y2={432} />
         <Arrow head="pd-head-n" x1={220} y1={507} x2={220} y2={562} />

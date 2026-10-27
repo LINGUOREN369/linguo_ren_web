@@ -53,8 +53,8 @@ function AppContent() {
       case '/project':
         document.title = "Linguo's Projects";
         break;
-      case '/curriculum-pipeline':
-        document.title = 'Curriculum Pipeline';
+      case '/supplemental-materials':
+        document.title = 'Supplemental Materials';
         break;
       case '/edgrantai':
         document.title = 'EdGrantAI — Evidence-aware grant decisions';
@@ -418,8 +418,9 @@ function AppContent() {
             <Route path="/archive-assessment" element={<ArchiveAssessment />} />
             <Route path="/chicago-crime-insights" element={<ChicagoCrimeInsights />} />
             <Route path="/vinyl-recognition-ai" element={<VinylRecognitionAI />} />
-            <Route path="/curriculum-pipeline" element={<CurriculumPipeline />} />
-            <Route path="/ai-teaching" element={<Navigate to="/curriculum-pipeline" replace />} />
+            <Route path="/supplemental-materials" element={<CurriculumPipeline />} />
+            <Route path="/curriculum-pipeline" element={<Navigate to="/supplemental-materials" replace />} />
+            <Route path="/ai-teaching" element={<Navigate to="/supplemental-materials" replace />} />
           </Routes>
       </div>
       {/* Footer */}
