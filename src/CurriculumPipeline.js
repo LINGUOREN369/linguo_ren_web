@@ -31,20 +31,6 @@ format.md → tasks/* → this file → everything else
 
 @format.md`;
 
-const folderTree = `vault/                       ← the single source of truth
-  CLAUDE.md                  ← index: routing table, precedence, invariants
-  _claude/
-    format.md                ← every rule about how output looks
-    tasks/                   ← one procedure per task type
-  needs/                     ← the teacher’s notes on what students need, by skill
-  <course>/
-    Course Summary.md        ← goals and the arc of units
-    Unit <n>/
-      Unit Summary.md        ← stages, protected block, daily goals
-      Lesson Plans/  Practice/  Assessments/  Keys/
-  tools/
-    build.py                 ← notes → PDFs (derived, never hand-edited)`;
-
 const answerBlock = `<problem as the student sees it>
 
    > [!answer]
@@ -223,7 +209,11 @@ export default function CurriculumPipeline() {
               </div>
               <div>
                 <span className="edg-label">What it produces</span>
-                <p>Lesson plans, practice, assessments, and answer keys shaped to where the students are, all agreeing with each other.</p>
+                <p>
+                  Lesson plans, practice, assessments, and answer keys shaped to where the students are, all agreeing with
+                  each other. These are supplemental materials that sit alongside a school’s curriculum, not a replacement
+                  for it.
+                </p>
               </div>
               <div>
                 <span className="edg-label">The core idea</span>
@@ -349,14 +339,9 @@ export default function CurriculumPipeline() {
               <h3 className="ait-h3">One note, two audiences</h3>
               <p>
                 Instructor-only content sits in a marked block under each problem. The build renders those blocks in red on the
-                instructor copy and strips them from the student copy, so the two can never drift apart. For an original PDF,
-                the agent records where each problem sits on the page and the build overlays the work there.
+                instructor copy and strips them from the student copy, so the two can never drift apart.
               </p>
               <pre className="ait-tree ait-code">{answerBlock}</pre>
-              <details className="cp-more">
-                <summary>Folder layout</summary>
-                <pre className="ait-tree ait-code">{folderTree}</pre>
-              </details>
             </div>
           </section>
 
