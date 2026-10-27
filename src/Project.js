@@ -17,9 +17,9 @@ function Project() {
   const projects = [
     {
       title: "Supplemental Materials",
-      description: "A method for teachers to design personalized supplemental materials with an AI agent guided by written rules",
+      description: "How a teacher can give students practice fitted to what they need, with an AI assistant working to the teacher’s own standards",
       route: "/supplemental-materials",
-      tags: ["LLM Agents", "Context Engineering", "Claude Code", "Obsidian", "Pandoc + LaTeX", "Python"],
+      tags: ["STEM Education", "Personalized Learning", "Curriculum Design", "LLM Agents", "Claude Code"],
     },
     {
       title: "EdGrantAI",

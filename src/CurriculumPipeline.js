@@ -39,30 +39,24 @@ const answerBlock = `<problem as the student sees it>
    > <grading note: the mistake to watch for>`;
 
 const setupSteps = [
-  { step: 'Choose one editable home.', detail: 'A folder of plain-text notes under version control. Everything else (PDFs, exports, copies) is derived from it.' },
+  { step: 'Map the course first.', detail: 'Course goals, then the arc of each unit, then a goal for every day. Everything later is written against this map, not in isolation.' },
   { step: 'Write your guidelines.', detail: 'Short checklists for how you want materials built: what a good lesson looks like, how practice should build, what an assessment must and must not do. They describe your standards, not your lessons; your existing materials stay in your own folder.' },
-  { step: 'Write the index.', detail: 'A short guide the assistant checks first every session: the routing table from request type to procedure, the precedence order, and the invariants.' },
-  { step: 'Write the format spec.', detail: 'Every rule about naming, layout, and appearance, in one file. Procedures point to it instead of restating it.' },
-  { step: 'Write one procedure per task type.', detail: 'Lesson plan, practice, assessment, answer key, build. Each says what to read, what to produce, and how to check it.' },
-  { step: 'Build the planning layer before the daily layer.', detail: 'Course goals, then unit arcs, then daily goals. Daily materials are written against these, not in isolation.' },
+  { step: 'Keep one home for everything.', detail: 'One folder of notes is the only place anything is edited. Printed copies are always made from it, so nothing drifts out of date.' },
 ];
 
 const taskSteps = [
-  { step: 'Classify the request.', detail: 'Match it to one or more rows of the routing table. A request can be several types at once.' },
-  { step: 'Follow the guidelines.', detail: 'Check the style guide and every procedure that applies, fresh each time. Never from memory of an earlier session.' },
-  { step: 'Name the guidelines used.', detail: 'List them in one line before starting. A missed rule becomes visible instead of silent.' },
-  { step: 'Read what the students need.', detail: 'Start from the teacher’s record of what actually happened (how far the class got, which skills didn’t land, what the last assessment showed), not from the plan.' },
-  { step: 'Draft new materials.', detail: 'Write fresh problems and notes into the teacher’s folder. Student and instructor versions come from the same note, never two hand-maintained copies.' },
-  { step: 'Verify.', detail: 'Solve every problem independently and substitute back. Flag anything that looks wrong rather than quietly correcting it.' },
-  { step: 'Build and inspect.', detail: 'Render the PDFs, scan student copies for leaked answers, and look at every page.' },
-  { step: 'Hand off for review.', detail: 'The teacher reviews and decides. Scope, sequence, and difficulty stay human decisions.' },
+  { step: 'Describe what the students need.', detail: 'By skill, from what happened in class: how far the class got, which skills didn’t land, what the last quiz showed.' },
+  { step: 'Ask for the material.', detail: 'A practice set, a review, a lesson plan, a quiz, or an answer key.' },
+  { step: 'The assistant follows the guidelines.', detail: 'It checks them fresh each time and names the ones it used, so a skipped guideline is easy to spot.' },
+  { step: 'It drafts new materials.', detail: 'Fresh problems fitted to the need. The student copy and the teacher copy come from the same draft, so they always match.' },
+  { step: 'Everything is checked.', detail: 'Every answer is solved and substituted back, every page is looked at, and student copies are checked for answers.' },
+  { step: 'The teacher decides.', detail: 'The teacher reviews the draft. What is taught, in what order, and how hard stays with the teacher.' },
 ];
 
 const correctionSteps = [
-  { step: 'Classify the correction.', detail: 'How something looks → format spec. How a task is done → that task’s procedure. A fact about the context → the index.' },
-  { step: 'Write it in exactly one place.', detail: 'Never duplicate a rule. Elsewhere, link to it.' },
-  { step: 'Report where it went.', detail: 'One line naming the file changed, so the rule base stays auditable.' },
-  { step: 'Resolve conflicts by precedence.', detail: 'Older notes that disagree with a rule file lose. Update or retire them.' },
+  { step: 'Notice what’s off.', detail: 'A layout that doesn’t work, a problem that’s too easy, a step students need spelled out.' },
+  { step: 'Write it down once.', detail: 'The correction goes into the one guideline it belongs to, never repeated in several places.' },
+  { step: 'It holds from then on.', detail: 'The next draft already follows it. Nothing has to be said twice.' },
 ];
 
 const principles = [
@@ -139,16 +133,18 @@ const failures = [
 
 
 
+
+
+
 const TOC = [
   ['glance', 'At a glance'],
-  ['problem', '1. The problem'],
-  ['principles', '2. Design principles'],
-  ['architecture', '3. Architecture'],
-  ['procedure', '4. Procedure'],
-  ['planning', '5. The planning hierarchy'],
-  ['pedagogy', '6. Pedagogical principles'],
-  ['verification', '7. Verification'],
-  ['lessons', '8. Failure modes and limits'],
+  ['problem', '1. The teaching problem'],
+  ['planning', '2. Seeing the whole course'],
+  ['pedagogy', '3. Teaching principles'],
+  ['procedure', '4. How a teacher uses it'],
+  ['verification', '5. Quality checks'],
+  ['under-the-hood', '6. How it works under the hood'],
+  ['lessons', '7. Lessons learned and limits'],
 ];
 
 function InShort({ children }) {
@@ -176,9 +172,9 @@ export default function CurriculumPipeline() {
       <header className="edg-hero">
         <h1 className="edg-title">Supplemental Materials</h1>
         <p className="edg-subtitle">
-          A teaching idea: teachers write down how they teach once, as rules, and an AI agent uses those rules to design
-          materials fitted to what their students need right now. Every lesson, practice set, and assessment stays
-          consistent and checked. Shown here with Claude Code, an Obsidian vault, and a small PDF build script.
+          How a teacher can give students practice fitted to what they actually need, without rewriting materials every
+          week. The teacher sets the standards once; an AI assistant drafts supplemental materials that follow them, and
+          the teacher has the final say.
         </p>
         <div className="edg-cta">
           <a href="#glance" className="portfolio-button edg-button-primary">Start reading</a>
@@ -205,19 +201,22 @@ export default function CurriculumPipeline() {
             <div className="cp-glance">
               <div>
                 <span className="edg-label">What it is</span>
-                <p>A way for any teacher to set guidelines that an AI assistant follows when drafting new materials for their students.</p>
+                <p>A way for any teacher to respond to where their students are, with fresh practice and review each week.</p>
               </div>
               <div>
                 <span className="edg-label">What it produces</span>
                 <p>
-                  Lesson plans, practice, assessments, and answer keys shaped to where the students are, all agreeing with
-                  each other. These are supplemental materials that sit alongside a school’s curriculum, not a replacement
-                  for it.
+                  Practice, review sheets, lesson plans, quizzes, and answer keys shaped to what students need, all agreeing
+                  with each other. These are supplemental materials that sit alongside a school’s curriculum, not a
+                  replacement for it.
                 </p>
               </div>
               <div>
                 <span className="edg-label">The core idea</span>
-                <p>Instructions live in files, not in chat. Every correction becomes a rule, so nothing has to be said twice.</p>
+                <p>
+                  The teacher writes down their standards once. Every correction becomes part of those standards, so nothing
+                  has to be said twice.
+                </p>
               </div>
               <div>
                 <span className="edg-label">What stays with the teacher</span>
@@ -232,149 +231,60 @@ export default function CurriculumPipeline() {
 
           {/* 1 */}
           <section className="cp-section" id="problem">
-            <h2 className="ait-h2">1. The problem</h2>
-            <InShort>Students need materials fitted to them, but tailoring by hand doesn’t scale, and a chat assistant forgets the teacher’s standards.</InShort>
+            <h2 className="ait-h2">1. The teaching problem</h2>
+            <InShort>Students need practice fitted to them, but tailoring materials by hand every week doesn’t scale.</InShort>
             <div className="ait-prose">
               <p>
                 Good teaching responds to the students in the room: more practice where a skill didn’t land, a harder version
                 for a group that is ready, a review shaped by what the last quiz showed. Doing that by hand means rewriting
-                materials every week, so most teachers fall back on one generic set. An AI agent can draft tailored materials
-                quickly, but only if it knows the teacher’s standards. Personalized materials are still a system of
-                interdependent documents, held to four constraints:
+                materials every week, so most teachers fall back on one generic set.
+              </p>
+              <p>
+                An AI assistant can draft tailored materials quickly, but only if it works to the teacher’s standards. Those
+                materials still have to hold together:
               </p>
               <ul className="ait-prose-list">
-                <li><strong>Consistency.</strong> Plans, practice, assessments, and keys must agree with each other and follow one format.</li>
-                <li><strong>Correctness.</strong> Every answer must be right, and nothing that looks wrong is quietly “fixed.”</li>
-                <li><strong>Separation.</strong> Student-facing and instructor-facing material must never leak into each other.</li>
-                <li><strong>Adaptivity.</strong> The materials must respond to what students actually need, not to the original plan.</li>
+                <li><strong>Consistency.</strong> Lessons, practice, quizzes, and keys agree with each other and look the same.</li>
+                <li><strong>Correctness.</strong> Every answer is right, and nothing that looks wrong is quietly “fixed.”</li>
+                <li><strong>Separation.</strong> Answers never appear on a student copy.</li>
+                <li><strong>Responsiveness.</strong> Materials follow what students actually need, not the original plan.</li>
               </ul>
-              <p>
-                A language model has no memory between sessions. Used through chat, each request starts from zero: formatting
-                drifts, corrections are lost, and the teacher has to keep restating their standards. The idea here is that the
-                fix is not a better prompt but a better <em>context</em>. The teacher writes a short set of guidelines once,
-                describing how they want things done rather than handing over their lessons. After that, they only have to
-                describe what their students need, and the assistant drafts new materials to fit.
-              </p>
             </div>
 
             <div className="ait-prose">
               <h3 className="ait-h3">What “personalized” means here</h3>
               <p>
-                The teacher’s rules stay fixed: how a lesson is shaped, what good practice looks like, how assessments are
-                built. What changes is the input, meaning the teacher’s read of where the students are. The same rules,
-                applied to different needs, give different materials.
+                The teacher’s standards stay fixed: how a lesson is shaped, what good practice looks like, how quizzes are
+                built. What changes is the teacher’s read of where the students are. The same standards, applied to different
+                needs, give different materials.
               </p>
               <div className="ait-table-wrap">
                 <table className="ait-goals cp-uses">
                   <tbody>
                     <tr><td>Teacher observes</td><td>“The class can set up the problem but loses track of signs.”</td></tr>
-                    <tr><td>Agent adjusts</td><td>The next opening questions, practice sets, and review target that skill, with new numbers and harder variants for students who are ready.</td></tr>
-                    <tr><td>Guidelines guarantee</td><td>Same format, answers checked, no answers on student copies, keys that match.</td></tr>
+                    <tr><td>Assistant adjusts</td><td>The next opening questions, practice sets, and review target that skill, with new numbers and harder variants for students who are ready.</td></tr>
+                    <tr><td>Standards hold</td><td>Same format, answers checked, no answers on student copies, keys that match.</td></tr>
                   </tbody>
                 </table>
               </div>
               <p>
                 Needs are always described by skill, never by student. Personalization comes from what the teacher sees,
-                not from student data handed to the agent.
+                not from student data.
               </p>
             </div>
           </section>
 
           {/* 2 */}
-          <section className="cp-section" id="principles">
-            <h2 className="ait-h2">2. Design principles</h2>
-            <InShort>Borrowed from software engineering: one source of truth, normalized rules, derived outputs, explicit precedence.</InShort>
-            <div className="ait-table-wrap">
-              <table className="ait-goals cp-uses">
-                <tbody>
-                  <tr><td>Single source of truth</td><td>Every artifact is edited in exactly one place. Everything else is derived and disposable.</td></tr>
-                  <tr><td>Guidelines as files</td><td>Standards are short written checklists the assistant follows every session, not instructions repeated in conversation.</td></tr>
-                  <tr><td>One rule, one place</td><td>Rules are normalized like a database: never duplicated, so they can’t quietly disagree.</td></tr>
-                  <tr><td>Explicit precedence</td><td>When two rules conflict, a fixed order decides which wins. Ambiguity is resolved by structure, not judgment.</td></tr>
-                  <tr><td>Content separate from presentation</td><td>Notes hold content; a build step decides appearance. Student and instructor copies come from the same note.</td></tr>
-                  <tr><td>Observable compliance</td><td>The assistant names the guidelines it followed, so a skipped one is visible.</td></tr>
-                  <tr><td>Verify, don’t trust</td><td>Every output is checked independently of the process that produced it.</td></tr>
-                  <tr><td>Teacher ownership</td><td>The guidelines describe how a teacher works, not the lessons themselves, so finished materials never need to be shared to get started. Everything remains the teacher’s intellectual property: plain files in their own folder, portable to any system, and worked on through an AI account set not to train on their work.</td></tr>
-                  <tr><td>Human authority</td><td>The agent drafts; the teacher decides scope, sequence, and difficulty.</td></tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          {/* 3 */}
-          <section className="cp-section" id="architecture">
-            <h2 className="ait-h2">3. Architecture</h2>
-            <InShort>The teacher supplies two things: how they teach, and what their students need. The agent drafts new materials into one vault, and a build step turns them into documents.</InShort>
-            <PipelineDiagram />
-
-            <div className="cp-parts">
-              <div>
-                <h3 className="ait-h3">Student needs</h3>
-                <p>The teacher’s notes on which skills need work, described by topic, never by student.</p>
-              </div>
-              <div>
-                <h3 className="ait-h3">Guidelines</h3>
-                <p>The teacher’s standards as short checklists: an index, a style guide, and one procedure per task type.</p>
-              </div>
-              <div>
-                <h3 className="ait-h3">Vault</h3>
-                <p>The teacher’s own folder of plain Markdown notes, with full version history. The only place anything is edited.</p>
-              </div>
-              <div>
-                <h3 className="ait-h3">Build</h3>
-                <p>A script that renders notes to PDFs with pandoc and LaTeX. Output is derived, never hand-edited.</p>
-              </div>
-            </div>
-
-            <div className="ait-prose">
-              <h3 className="ait-h3">The rule layer</h3>
-              <p>
-                The assistant keeps no memory between sessions, so the guidelines sit in short files it checks each time. They
-                describe <em>how</em>, not <em>what</em>: the shape of a good lesson, the standards for practice and keys, the
-                lines never to cross. The index is deliberately small: which procedure fits which request, which guideline wins
-                in a conflict, and the invariants.
-              </p>
-              <pre className="ait-tree ait-code">{indexFile}</pre>
-
-              <h3 className="ait-h3">One note, two audiences</h3>
-              <p>
-                Instructor-only content sits in a marked block under each problem. The build renders those blocks in red on the
-                instructor copy and strips them from the student copy, so the two can never drift apart.
-              </p>
-              <pre className="ait-tree ait-code">{answerBlock}</pre>
-            </div>
-          </section>
-
-          {/* 4 */}
-          <section className="cp-section" id="procedure">
-            <h2 className="ait-h2">4. Procedure</h2>
-            <InShort>Set up once, then run the same loop for every request, and feed every correction back into the rules.</InShort>
-            <div className="ait-prose">
-              <h3 className="ait-h3">A. Setup (once)</h3>
-              <Steps items={setupSteps} />
-
-              <h3 className="ait-h3">B. The task loop (every request)</h3>
-              <Steps items={taskSteps} />
-
-              <h3 className="ait-h3">C. The correction loop</h3>
-              <p>
-                This loop is what makes the system improve. Without it, the same correction has to be given again next week.
-              </p>
-              <Steps items={correctionSteps} />
-            </div>
-          </section>
-
-          {/* 5 */}
           <section className="cp-section" id="planning">
-            <h2 className="ait-h2">5. The planning hierarchy</h2>
-            <InShort>Daily materials are derived from unit goals, which are derived from course goals. Never the reverse.</InShort>
+            <h2 className="ait-h2">2. Seeing the whole course</h2>
+            <InShort>Daily materials come from unit goals, which come from course goals. Never the reverse.</InShort>
             <div className="ait-prose">
               <p>
                 Personalizing well requires knowing what can bend and what can’t. The hardest part of teaching a course for
-                the first time is seeing past the current topic: why it’s there, what
-                it sets up, and what can’t be rushed. Without that view, it’s easy to just deliver content. The pipeline makes
-                the view explicit by writing it down at three levels, following backward design: decide the evidence of
-                learning first, then plan instruction to produce it.
+                the first time is seeing past the current topic: why it’s there, what it sets up, and what can’t be rushed.
+                Without that view, it’s easy to just deliver content. This approach writes the view down at three levels,
+                following backward design: decide what students should be able to do first, then plan instruction to get
+                them there.
               </p>
             </div>
 
@@ -421,10 +331,10 @@ export default function CurriculumPipeline() {
             </div>
           </section>
 
-          {/* 6 */}
+          {/* 3 */}
           <section className="cp-section" id="pedagogy">
-            <h2 className="ait-h2">6. Pedagogical principles</h2>
-            <InShort>The rules encode a small set of ideas from learning research. None of them depend on AI.</InShort>
+            <h2 className="ait-h2">3. Teaching principles</h2>
+            <InShort>The standards encode a small set of ideas from learning research. None of them depend on AI.</InShort>
             <div className="ait-principles">
               {principles.map((g) => (
                 <section className="ait-principle-group" key={g.area}>
@@ -443,32 +353,124 @@ export default function CurriculumPipeline() {
             </div>
           </section>
 
-          {/* 7 */}
+          {/* 4 */}
+          <section className="cp-section" id="procedure">
+            <h2 className="ait-h2">4. How a teacher uses it</h2>
+            <InShort>Set up once, then follow the same steps for every request, and fold every correction back into the standards.</InShort>
+            <div className="ait-prose">
+              <h3 className="ait-h3">A. Setup (once)</h3>
+              <Steps items={setupSteps} />
+
+              <h3 className="ait-h3">B. Every week</h3>
+              <Steps items={taskSteps} />
+
+              <h3 className="ait-h3">C. When something needs fixing</h3>
+              <p>
+                This is what makes the approach improve over time. Without it, the same correction has to be given again
+                next week.
+              </p>
+              <Steps items={correctionSteps} />
+            </div>
+          </section>
+
+          {/* 5 */}
           <section className="cp-section" id="verification">
-            <h2 className="ait-h2">7. Verification</h2>
-            <InShort>Checks are layered so that no single failure reaches a student.</InShort>
+            <h2 className="ait-h2">5. Quality checks</h2>
+            <InShort>Checks are layered so that no single mistake reaches a student.</InShort>
             <div className="ait-table-wrap">
               <table className="ait-goals cp-uses">
                 <tbody>
-                  <tr><td>Correctness</td><td>Every problem is solved independently by the teacher and by the agent, and every answer is substituted back.</td></tr>
+                  <tr><td>Correctness</td><td>Every problem is solved independently by the teacher and by the assistant, and every answer is substituted back.</td></tr>
                   <tr><td>Transparency</td><td>Anything that looks wrong is flagged for the teacher, never silently corrected.</td></tr>
-                  <tr><td>Presentation</td><td>Every page is rendered and inspected before hand-off.</td></tr>
-                  <tr><td>Separation</td><td>Student copies are scanned for answer-key content; instructor files are marked as such in their names.</td></tr>
-                  <tr><td>Privacy</td><td>No student data enters the system. Needs are described by topic, never by person.</td></tr>
+                  <tr><td>Presentation</td><td>Every page is looked at before it’s handed out.</td></tr>
+                  <tr><td>Separation</td><td>Student copies are checked for answers; teacher copies are clearly labeled.</td></tr>
+                  <tr><td>Privacy</td><td>No student data is ever used. Needs are described by topic, never by person.</td></tr>
                   <tr><td>Authority</td><td>What is taught, in what order, and how hard, stays with the teacher.</td></tr>
                 </tbody>
               </table>
             </div>
           </section>
 
-          {/* 8 */}
+          {/* 6 */}
+          <section className="cp-section" id="under-the-hood">
+            <h2 className="ait-h2">6. How it works under the hood</h2>
+            <InShort>For readers who want the technical detail: written standards guide the assistant, and one folder of notes feeds a print step.</InShort>
+            <div className="ait-prose">
+              <p>
+                The setup shown here uses Claude Code as the assistant, an Obsidian vault (a folder of plain Markdown notes)
+                as the one editable home, and a small script that turns notes into printable PDFs. Any similar tools would
+                work.
+              </p>
+              <p>
+                An AI assistant has no memory between sessions. Used through chat, each request starts from zero: formatting
+                drifts, corrections are lost, and the teacher has to keep restating their standards. The fix is not a better
+                prompt but better <em>context</em>: the standards live in short files the assistant checks every time.
+              </p>
+            </div>
+            <PipelineDiagram />
+
+            <div className="cp-parts">
+              <div>
+                <h3 className="ait-h3">Student needs</h3>
+                <p>The teacher’s notes on which skills need work, described by topic, never by student.</p>
+              </div>
+              <div>
+                <h3 className="ait-h3">Guidelines</h3>
+                <p>The teacher’s standards as short checklists: an overview, a style guide, and one checklist per kind of material.</p>
+              </div>
+              <div>
+                <h3 className="ait-h3">Vault</h3>
+                <p>The teacher’s own folder of plain Markdown notes, with full version history. The only place anything is edited.</p>
+              </div>
+              <div>
+                <h3 className="ait-h3">Build</h3>
+                <p>A script that renders notes to PDFs with pandoc and LaTeX. Output is derived, never hand-edited.</p>
+              </div>
+            </div>
+
+            <div className="ait-prose">
+              <h3 className="ait-h3">Design principles</h3>
+            </div>
+            <div className="ait-table-wrap">
+              <table className="ait-goals cp-uses">
+                <tbody>
+                  <tr><td>Single source of truth</td><td>Every document is edited in exactly one place. Everything else is derived and disposable.</td></tr>
+                  <tr><td>Guidelines as files</td><td>Standards are short written checklists the assistant follows every session, not instructions repeated in conversation.</td></tr>
+                  <tr><td>One rule, one place</td><td>Rules are never duplicated, so they can’t quietly disagree.</td></tr>
+                  <tr><td>Explicit precedence</td><td>When two rules conflict, a fixed order decides which wins.</td></tr>
+                  <tr><td>Content separate from presentation</td><td>Notes hold content; a build step decides appearance. Student and instructor copies come from the same note.</td></tr>
+                  <tr><td>Observable compliance</td><td>The assistant names the guidelines it followed, so a skipped one is visible.</td></tr>
+                  <tr><td>Teacher ownership</td><td>The guidelines describe how a teacher works, not the lessons themselves, so finished materials never need to be shared to get started. Everything remains the teacher’s intellectual property: plain files in their own folder, portable to any system, and worked on through an AI account set not to train on their work.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="ait-prose">
+              <h3 className="ait-h3">The overview file</h3>
+              <p>
+                The guidelines describe <em>how</em>, not <em>what</em>: the shape of a good lesson, the standards for
+                practice and keys, the lines never to cross. A short overview tells the assistant which checklist fits which
+                request, which guideline wins in a conflict, and what must never happen.
+              </p>
+              <pre className="ait-tree ait-code">{indexFile}</pre>
+
+              <h3 className="ait-h3">One note, two audiences</h3>
+              <p>
+                Teacher-only content sits in a marked block under each problem. The build prints those blocks in red on the
+                teacher copy and removes them from the student copy, so the two can never drift apart.
+              </p>
+              <pre className="ait-tree ait-code">{answerBlock}</pre>
+            </div>
+          </section>
+
+          {/* 7 */}
           <section className="cp-section" id="lessons">
-            <h2 className="ait-h2">8. Failure modes and limits</h2>
+            <h2 className="ait-h2">7. Lessons learned and limits</h2>
             <InShort>The first draft was never the hard part. Consistency was.</InShort>
             <div className="ait-prose">
               <p>
-                Once corrections become files, the system stops forgetting them, and a single request can cover an entire
-                unit. Each failure below is common when a teacher starts working this way, and each becomes a rule.
+                Once corrections are written down, they stop being forgotten, and a single request can cover an entire unit.
+                Each problem below is common when a teacher starts working this way, and each becomes a guideline.
               </p>
             </div>
             <div className="ait-corrections ait-narrow">
@@ -482,9 +484,9 @@ export default function CurriculumPipeline() {
             <div className="ait-prose">
               <h3 className="ait-h3">Open problems</h3>
               <ul className="ait-prose-list">
-                <li>Rules are natural language, so compliance isn’t guaranteed. Naming the guidelines used makes misses visible, not impossible.</li>
-                <li>A computer algebra check on every key would add a third, independent verifier.</li>
-                <li>Some rules are mechanical and could be enforced by a script rather than trusted to the agent.</li>
+                <li>Guidelines are written in plain language, so following them isn’t guaranteed. Naming the ones used makes misses visible, not impossible.</li>
+                <li>A computer algebra check on every answer key would add a third, independent check.</li>
+                <li>Some guidelines are mechanical and could be checked by a script rather than trusted to the assistant.</li>
               </ul>
             </div>
           </section>
