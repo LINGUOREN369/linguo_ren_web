@@ -12,20 +12,20 @@ export default function HomePageSimple({ onEmailClick, emailEasterEggClicks }) {
 
         <main className="simple-home-main">
           <p>
-            Full-stack developer building evidence-aware software for education,
-            research, and social-impact organizations.
+            Math teacher who also builds tools for schools, researchers, and mission-driven organizations.
           </p>
           <p>
-            I am interested in how AI and data systems shape judgment under constraint, especially when funding,
-            access, and responsibility are unevenly distributed.
+            I am interested in how AI and data can help people make better decisions, especially where time, money,
+            and access are limited.
           </p>
           <p>
-            Recent work includes <Link to="/edgrantai">EdGrantAI</Link>, a grant discovery and recommendation system
-            designed to make uncertainty more visible and human review more central.
+            Recent work includes <Link to="/supplemental-materials">Supplemental Materials</Link>, a way for teachers to
+            give students practice fitted to what they need, and <Link to="/edgrantai">EdGrantAI</Link>, which helps
+            nonprofits find grants while keeping people in charge of the final call.
           </p>
           <p>
-            Some beliefs: evidence matters more than hype. Good systems make uncertainty legible. AI should support
-            judgment, not replace responsibility.
+            What I believe: evidence matters more than hype. Good tools are honest about what they don’t know. AI should
+            support people’s judgment, not replace it.
           </p>
           
 
